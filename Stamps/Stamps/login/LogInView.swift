@@ -37,10 +37,67 @@ struct LogInView: View {
         
     }
     
+    @ObservedObject var viewModel: LogInViewModule = LogInViewModule()
     var body: some View {
-        
-        NavigationLink("log In", destination: CustomerStampView())
-            .navigationBarTitle("Stamps", displayMode: .inline)
+        ZStack {
+            Color.pink
+            VStack {
+                NavigationLink(destination: CustomerStampView(), isActive: $viewModel.logInSuccess) { EmptyView() }
+                
+                HStack {
+                    Image("email")
+                        .resizable()
+                        .frame(width: 24, height: 24)
+                        .padding()
+                    CustomTextField(placeholder: Text("UserName"), text: $viewModel.username, secureEntry: false)
+                        .accentColor(.white)
+                        .foregroundColor(.white)
+                            
+                }
+                HStack {
+                    Image("password")
+                        .resizable()
+                        .frame(width: 24, height: 24)
+                        .padding()
+                    CustomTextField(placeholder: Text("Password"), text: $viewModel.password, secureEntry: true)
+                        .foregroundColor(.white)
+                        .foregroundColor(.white)
+                }
+                NavigationLink("Sign Up", destination: SignUpView())
+                    .foregroundColor(.white)
+                Button("log in") {
+                    viewModel.login()
+                }
+                    .foregroundColor(.white)
+                
+            }
+            .padding()
+            .navigationBarTitle("Log In", displayMode: .inline)
+        }
+    }
+}
+
+struct CustomTextField: View {
+    var placeholder: Text
+    @Binding var text: String
+    var editingChanged: (Bool)->() = { _ in }
+    var commit: ()->() = { }
+    let secureEntry: Bool
+
+    var body: some View {
+        ZStack(alignment: .leading) {
+            if text.isEmpty {
+                placeholder
+                .foregroundColor(.white)
+                    .opacity(0.7)
+            }
+            
+            if secureEntry {
+                SecureField("", text: $text, onCommit: commit)
+            } else {
+                TextField("", text: $text, onEditingChanged: editingChanged, onCommit: commit)
+            }
+        }
     }
 }
 

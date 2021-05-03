@@ -6,3 +6,12 @@
 //
 
 import Foundation
+class LogInViewModule: ObservableObject {
+    @Published var username: String = ""
+    @Published var password: String = ""
+    @Published var logInSuccess = false
+    
+    func login() {
+        logInSuccess = true
+    }
+}
