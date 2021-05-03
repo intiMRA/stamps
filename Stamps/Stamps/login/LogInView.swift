@@ -40,35 +40,39 @@ struct LogInView: View {
     @ObservedObject var viewModel: LogInViewModule = LogInViewModule()
     var body: some View {
         ZStack {
-            Color.pink
+            Color.customPink
             VStack {
                 NavigationLink(destination: CustomerStampView(), isActive: $viewModel.logInSuccess) { EmptyView() }
                 
-                HStack {
+                HStack(spacing: 10) {
                     Image("email")
                         .resizable()
                         .frame(width: 24, height: 24)
-                        .padding()
                     CustomTextField(placeholder: Text("UserName"), text: $viewModel.username, secureEntry: false)
-                        .accentColor(.white)
-                        .foregroundColor(.white)
+                        .frame(height: 24)
+                        .background(Color.white.opacity(0.3))
+                        .accentColor(Color.textColor)
+                        .foregroundColor(Color.textColor)
+                        .cornerRadius(5)
                             
                 }
                 HStack {
                     Image("password")
                         .resizable()
                         .frame(width: 24, height: 24)
-                        .padding()
                     CustomTextField(placeholder: Text("Password"), text: $viewModel.password, secureEntry: true)
-                        .foregroundColor(.white)
-                        .foregroundColor(.white)
+                        .frame(height: 24)
+                        .background(Color.white.opacity(0.3))
+                        .accentColor(Color.textColor)
+                        .foregroundColor(Color.textColor)
+                        .cornerRadius(5)
                 }
                 NavigationLink("Sign Up", destination: SignUpView())
-                    .foregroundColor(.white)
+                    .foregroundColor(Color.textColor)
                 Button("log in") {
                     viewModel.login()
                 }
-                    .foregroundColor(.white)
+                    .foregroundColor(Color.textColor)
                 
             }
             .padding()
@@ -88,14 +92,17 @@ struct CustomTextField: View {
         ZStack(alignment: .leading) {
             if text.isEmpty {
                 placeholder
-                .foregroundColor(.white)
+                    .padding(.leading, 10)
+                    .foregroundColor(Color.textColor)
                     .opacity(0.7)
             }
             
             if secureEntry {
                 SecureField("", text: $text, onCommit: commit)
+                    .padding(.leading, 10)
             } else {
                 TextField("", text: $text, onEditingChanged: editingChanged, onCommit: commit)
+                    .padding(.leading, 10)
             }
         }
     }

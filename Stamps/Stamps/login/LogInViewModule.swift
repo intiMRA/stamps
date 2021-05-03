@@ -12,7 +12,7 @@ class LogInViewModule: ObservableObject {
     @Published var logInSuccess = false
     
     func login() {
-        guard let s = try? encryptMessage(message: username, encryptionKey: password), let ss = try? decryptMessage(encryptedMessage: s, encryptionKey: password) else {
+        guard !password.isEmpty, !username.isEmpty, let s = try? encryptMessage(message: username, encryptionKey: password), let ss = try? decryptMessage(encryptedMessage: s, encryptionKey: password) else {
             return
         }
         

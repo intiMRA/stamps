@@ -11,7 +11,7 @@ struct CustomerStampView: View {
     @ObservedObject private var viewModel: CustomerStampViewModel = CustomerStampViewModel()
     var body: some View {
         ZStack {
-            Color.pink
+            Color.customPink
             VStack {
                 CardView(content: viewModel.stamps, completion: { index in
                     viewModel.changed(at: index)
@@ -27,15 +27,19 @@ private struct CardView: View {
     let content: CardStamps
     let completion: (_ index: String) -> Void
     var body: some View {
-        VStack(spacing: 50) {
-            HorizontalCardStackView(content: content.row1, completion: completion)
-            HorizontalCardStackView(content: content.row2, completion: completion)
-            HorizontalCardStackView(content: content.row3, completion: completion)
-            HorizontalCardStackView(content: content.row4, completion: completion)
-            HorizontalCardStackView(content: content.row5, completion: completion)
+        ScrollView() {
+            VStack(spacing: 50) {
+                HorizontalCardStackView(content: content.row1, completion: completion)
+                HorizontalCardStackView(content: content.row2, completion: completion)
+                HorizontalCardStackView(content: content.row3, completion: completion)
+                HorizontalCardStackView(content: content.row4, completion: completion)
+                HorizontalCardStackView(content: content.row5, completion: completion)
+            }
+            .padding(.all, 10)
         }
-        .background(Color.yellow)
+        .background(Color.white.opacity(0.2))
         .padding()
+        .cornerRadius(5)
     }
 }
 private struct HorizontalCardStackView: View {
@@ -54,9 +58,9 @@ private struct CardSlotView: View {
     let completion: (_ index: String) -> Void
     var body: some View {
         Rectangle()
-            .fill(value.value ? Color.red : Color.white)
-            .border(Color.black)
+            .fill(value.value ? Color.customPurple : Color.white)
             .aspectRatio(1.0, contentMode: .fit)
+            .cornerRadius(5)
             .onTapGesture(count: 1, perform: { completion(value.index) })
     }
 }
