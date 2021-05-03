@@ -21,6 +21,7 @@
 		41249C7A263BD63500BF3D2C /* CustomerStampUnittests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41249C79263BD63500BF3D2C /* CustomerStampUnittests.swift */; };
 		41249C82263BD68C00BF3D2C /* CustomerStampView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41249C81263BD68B00BF3D2C /* CustomerStampView.swift */; };
 		41A0AC7E263FCAED00008542 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A0AC7D263FCAED00008542 /* SignUpView.swift */; };
+		41A0ACAC263FE31000008542 /* RNCryptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A0ACAB263FE31000008542 /* RNCryptor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		41249C79263BD63500BF3D2C /* CustomerStampUnittests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerStampUnittests.swift; sourceTree = "<group>"; };
 		41249C81263BD68B00BF3D2C /* CustomerStampView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerStampView.swift; sourceTree = "<group>"; };
 		41A0AC7D263FCAED00008542 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		41A0ACAB263FE31000008542 /* RNCryptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNCryptor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +113,7 @@
 		41249C18263BD37F00BF3D2C /* Stamps */ = {
 			isa = PBXGroup;
 			children = (
+				41A0AC85263FDBAA00008542 /* Encryption */,
 				41249C6A263BD57700BF3D2C /* customerStamp */,
 				41249C48263BD41700BF3D2C /* login */,
 				41249C19263BD37F00BF3D2C /* StampsApp.swift */,
@@ -184,6 +187,14 @@
 				41249C79263BD63500BF3D2C /* CustomerStampUnittests.swift */,
 			);
 			path = tests;
+			sourceTree = "<group>";
+		};
+		41A0AC85263FDBAA00008542 /* Encryption */ = {
+			isa = PBXGroup;
+			children = (
+				41A0ACAB263FE31000008542 /* RNCryptor.swift */,
+			);
+			path = Encryption;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -318,6 +329,7 @@
 				41249C6C263BD5D200BF3D2C /* CustomerStampViewModel.swift in Sources */,
 				41249C1C263BD37F00BF3D2C /* LogInView.swift in Sources */,
 				41249C4D263BD47000BF3D2C /* LogInViewModule.swift in Sources */,
+				41A0ACAC263FE31000008542 /* RNCryptor.swift in Sources */,
 				41249C1A263BD37F00BF3D2C /* StampsApp.swift in Sources */,
 				41A0AC7E263FCAED00008542 /* SignUpView.swift in Sources */,
 				41249C82263BD68C00BF3D2C /* CustomerStampView.swift in Sources */,
