@@ -22,6 +22,7 @@
 		41249C82263BD68C00BF3D2C /* CustomerStampView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41249C81263BD68B00BF3D2C /* CustomerStampView.swift */; };
 		417912842640A7F500BDAD3C /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 417912832640A7F500BDAD3C /* Color.xcassets */; };
 		417912892640ACCF00BDAD3C /* Color+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417912882640ACCF00BDAD3C /* Color+Custom.swift */; };
+		417912FF2640FD3600BDAD3C /* LogInAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417912FE2640FD3600BDAD3C /* LogInAPI.swift */; };
 		41A0AC7E263FCAED00008542 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A0AC7D263FCAED00008542 /* SignUpView.swift */; };
 		41A0ACAC263FE31000008542 /* RNCryptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A0ACAB263FE31000008542 /* RNCryptor.swift */; };
 /* End PBXBuildFile section */
@@ -65,6 +66,7 @@
 		41249C81263BD68B00BF3D2C /* CustomerStampView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerStampView.swift; sourceTree = "<group>"; };
 		417912832640A7F500BDAD3C /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
 		417912882640ACCF00BDAD3C /* Color+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Custom.swift"; sourceTree = "<group>"; };
+		417912FE2640FD3600BDAD3C /* LogInAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInAPI.swift; sourceTree = "<group>"; };
 		41A0AC7D263FCAED00008542 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		41A0ACAB263FE31000008542 /* RNCryptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNCryptor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -117,10 +119,11 @@
 		41249C18263BD37F00BF3D2C /* Stamps */ = {
 			isa = PBXGroup;
 			children = (
+				417912F72640FCF000BDAD3C /* NetworkLayer */,
 				417912822640A7A900BDAD3C /* Assets */,
 				41A0AC85263FDBAA00008542 /* Encryption */,
-				41249C6A263BD57700BF3D2C /* customerStamp */,
-				41249C48263BD41700BF3D2C /* login */,
+				41249C6A263BD57700BF3D2C /* CustomerStamp */,
+				41249C48263BD41700BF3D2C /* Login */,
 				41249C19263BD37F00BF3D2C /* StampsApp.swift */,
 				41249C22263BD38200BF3D2C /* Info.plist */,
 				41249C1F263BD38200BF3D2C /* Preview Content */,
@@ -154,7 +157,7 @@
 			path = StampsUITests;
 			sourceTree = "<group>";
 		};
-		41249C48263BD41700BF3D2C /* login */ = {
+		41249C48263BD41700BF3D2C /* Login */ = {
 			isa = PBXGroup;
 			children = (
 				41249C56263BD49C00BF3D2C /* tests */,
@@ -162,7 +165,7 @@
 				41249C4C263BD47000BF3D2C /* LogInViewModule.swift */,
 				41A0AC7D263FCAED00008542 /* SignUpView.swift */,
 			);
-			path = login;
+			path = Login;
 			sourceTree = "<group>";
 		};
 		41249C56263BD49C00BF3D2C /* tests */ = {
@@ -174,14 +177,14 @@
 			path = tests;
 			sourceTree = "<group>";
 		};
-		41249C6A263BD57700BF3D2C /* customerStamp */ = {
+		41249C6A263BD57700BF3D2C /* CustomerStamp */ = {
 			isa = PBXGroup;
 			children = (
 				41249C70263BD5DF00BF3D2C /* tests */,
 				41249C6B263BD5D200BF3D2C /* CustomerStampViewModel.swift */,
 				41249C81263BD68B00BF3D2C /* CustomerStampView.swift */,
 			);
-			path = customerStamp;
+			path = CustomerStamp;
 			sourceTree = "<group>";
 		};
 		41249C70263BD5DF00BF3D2C /* tests */ = {
@@ -201,6 +204,14 @@
 				417912882640ACCF00BDAD3C /* Color+Custom.swift */,
 			);
 			path = Assets;
+			sourceTree = "<group>";
+		};
+		417912F72640FCF000BDAD3C /* NetworkLayer */ = {
+			isa = PBXGroup;
+			children = (
+				417912FE2640FD3600BDAD3C /* LogInAPI.swift */,
+			);
+			path = NetworkLayer;
 			sourceTree = "<group>";
 		};
 		41A0AC85263FDBAA00008542 /* Encryption */ = {
@@ -347,6 +358,7 @@
 				41249C4D263BD47000BF3D2C /* LogInViewModule.swift in Sources */,
 				41A0ACAC263FE31000008542 /* RNCryptor.swift in Sources */,
 				41249C1A263BD37F00BF3D2C /* StampsApp.swift in Sources */,
+				417912FF2640FD3600BDAD3C /* LogInAPI.swift in Sources */,
 				41A0AC7E263FCAED00008542 /* SignUpView.swift in Sources */,
 				41249C82263BD68C00BF3D2C /* CustomerStampView.swift in Sources */,
 			);
