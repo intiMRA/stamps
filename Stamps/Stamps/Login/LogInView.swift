@@ -18,12 +18,12 @@ struct LogInView: View {
         // this only applies to big titles
         appearance.largeTitleTextAttributes = [
             .font : UIFont.systemFont(ofSize: 20),
-            NSAttributedString.Key.foregroundColor : UIColor.white
+            NSAttributedString.Key.foregroundColor : UIColor.textColor
         ]
         // this only applies to small titles
         appearance.titleTextAttributes = [
             .font : UIFont.systemFont(ofSize: 20),
-            NSAttributedString.Key.foregroundColor : UIColor.white
+            NSAttributedString.Key.foregroundColor : UIColor.textColor
         ]
         
         //In the following two lines you make sure that you apply the style for good
@@ -32,8 +32,8 @@ struct LogInView: View {
         
         // This property is not present on the UINavigationBarAppearance
         // object for some reason and you have to leave it til the end
-        UINavigationBar.appearance().tintColor = .white
-        appearance.backgroundColor = .black
+        UINavigationBar.appearance().tintColor = .textColor
+        appearance.backgroundColor = .customPink
         
     }
     
@@ -41,31 +41,20 @@ struct LogInView: View {
     var body: some View {
         ZStack {
             Color.customPink
-            VStack {
+            VStack(spacing: 10) {
                 NavigationLink(destination: CustomerStampView(), isActive: $viewModel.logInSuccess) { EmptyView() }
                 
                 HStack(spacing: 10) {
                     Image("email")
                         .resizable()
                         .frame(width: 24, height: 24)
-                    CustomTextField(placeholder: Text("UserName"), text: $viewModel.username, secureEntry: false)
-                        .frame(height: 24)
-                        .background(Color.white.opacity(0.3))
-                        .accentColor(Color.textColor)
-                        .foregroundColor(Color.textColor)
-                        .cornerRadius(5)
-                            
+                    CustomTextField(placeholder: Text("UserName"), text: $viewModel.username, secureEntry: false)                            
                 }
                 HStack {
                     Image("password")
                         .resizable()
                         .frame(width: 24, height: 24)
                     CustomTextField(placeholder: Text("Password"), text: $viewModel.password, secureEntry: true)
-                        .frame(height: 24)
-                        .background(Color.white.opacity(0.3))
-                        .accentColor(Color.textColor)
-                        .foregroundColor(Color.textColor)
-                        .cornerRadius(5)
                 }
                 NavigationLink("Sign Up", destination: SignUpView())
                     .foregroundColor(Color.textColor)
@@ -77,33 +66,6 @@ struct LogInView: View {
             }
             .padding()
             .navigationBarTitle("Log In", displayMode: .inline)
-        }
-    }
-}
-
-struct CustomTextField: View {
-    var placeholder: Text
-    @Binding var text: String
-    var editingChanged: (Bool)->() = { _ in }
-    var commit: ()->() = { }
-    let secureEntry: Bool
-
-    var body: some View {
-        ZStack(alignment: .leading) {
-            if text.isEmpty {
-                placeholder
-                    .padding(.leading, 10)
-                    .foregroundColor(Color.textColor)
-                    .opacity(0.7)
-            }
-            
-            if secureEntry {
-                SecureField("", text: $text, onCommit: commit)
-                    .padding(.leading, 10)
-            } else {
-                TextField("", text: $text, onEditingChanged: editingChanged, onCommit: commit)
-                    .padding(.leading, 10)
-            }
         }
     }
 }

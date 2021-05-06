@@ -21,3 +21,17 @@ public extension Color {
         Color("TextColor")
     }
 }
+
+extension UIColor {
+    static var customPurple: UIColor {
+        UIColor(named: "Purple") ?? .black
+    }
+    
+    static var customPink: UIColor {
+        UIColor(named: "Pink") ?? .black
+    }
+    
+    static var textColor: UIColor {
+        UIColor(named: "TextColor") ?? .black
+    }
+}

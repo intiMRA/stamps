@@ -8,8 +8,8 @@
 import Foundation
 import Combine
 class LogInViewModule: ObservableObject {
-    @Published var username: String = ""
-    @Published var password: String = ""
+    @Published var username = ""
+    @Published var password = ""
     @Published var logInSuccess = false
     private var cancellables = Set<AnyCancellable>()
     private let api = LogInAPI()
