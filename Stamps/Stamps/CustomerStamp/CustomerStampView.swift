@@ -43,7 +43,7 @@ private struct CardView: View {
     }
 }
 private struct HorizontalCardStackView: View {
-    let content: [IdentifiableBool]
+    let content: [CardSlot]
     let completion: (_ index: String) -> Void
     var body: some View {
         HStack(spacing: 10) {
@@ -54,14 +54,28 @@ private struct HorizontalCardStackView: View {
     }
 }
 private struct CardSlotView: View {
-    let value: IdentifiableBool
+    let value: CardSlot
     let completion: (_ index: String) -> Void
     var body: some View {
-        Rectangle()
-            .fill(value.value ? Color.customPurple : Color.white)
-            .aspectRatio(1.0, contentMode: .fit)
-            .cornerRadius(5)
-            .onTapGesture(count: 1, perform: { completion(value.index) })
+        ZStack {
+            Rectangle()
+                .fill(value.isStamped ? Color.customPurple : Color.white)
+                .aspectRatio(1.0, contentMode: .fit)
+                .cornerRadius(5)
+                .onTapGesture(count: 1, perform: { completion(value.index) })
+            if value.hasIcon {
+                if value.isStamped {
+                    Image("tick")
+                        .resizable()
+                        .frame(width: 40, height: 40, alignment: .center)
+                } else {
+                    Image("coffee")
+                        .resizable()
+                        .frame(width: 40, height: 40, alignment: .center)
+                }
+            }
+            
+        }
     }
 }
 

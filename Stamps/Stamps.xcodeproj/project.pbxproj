@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		41249C1A263BD37F00BF3D2C /* StampsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41249C19263BD37F00BF3D2C /* StampsApp.swift */; };
 		41249C1C263BD37F00BF3D2C /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41249C1B263BD37F00BF3D2C /* LogInView.swift */; };
-		41249C1E263BD38200BF3D2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41249C1D263BD38200BF3D2C /* Assets.xcassets */; };
 		41249C21263BD38200BF3D2C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41249C20263BD38200BF3D2C /* Preview Assets.xcassets */; };
 		41249C2C263BD38300BF3D2C /* StampsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41249C2B263BD38300BF3D2C /* StampsTests.swift */; };
 		41249C37263BD38300BF3D2C /* StampsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41249C36263BD38300BF3D2C /* StampsUITests.swift */; };
@@ -20,6 +19,9 @@
 		41249C72263BD60E00BF3D2C /* CustomerStampUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41249C71263BD60E00BF3D2C /* CustomerStampUITests.swift */; };
 		41249C7A263BD63500BF3D2C /* CustomerStampUnittests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41249C79263BD63500BF3D2C /* CustomerStampUnittests.swift */; };
 		41249C82263BD68C00BF3D2C /* CustomerStampView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41249C81263BD68B00BF3D2C /* CustomerStampView.swift */; };
+		4143AA6F2643C8B200DCC6D7 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4143AA6E2643C8B200DCC6D7 /* SignUpViewModel.swift */; };
+		4143AA782643C9B900DCC6D7 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4143AA772643C9B900DCC6D7 /* CustomTextField.swift */; };
+		4143AA832643D9E800DCC6D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4143AA822643D9E800DCC6D7 /* Assets.xcassets */; };
 		417912842640A7F500BDAD3C /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 417912832640A7F500BDAD3C /* Color.xcassets */; };
 		417912892640ACCF00BDAD3C /* Color+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417912882640ACCF00BDAD3C /* Color+Custom.swift */; };
 		417912FF2640FD3600BDAD3C /* LogInAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417912FE2640FD3600BDAD3C /* LogInAPI.swift */; };
@@ -48,7 +50,6 @@
 		41249C16263BD37F00BF3D2C /* Stamps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stamps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		41249C19263BD37F00BF3D2C /* StampsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StampsApp.swift; sourceTree = "<group>"; };
 		41249C1B263BD37F00BF3D2C /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
-		41249C1D263BD38200BF3D2C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		41249C20263BD38200BF3D2C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		41249C22263BD38200BF3D2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		41249C27263BD38300BF3D2C /* StampsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StampsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -64,6 +65,9 @@
 		41249C71263BD60E00BF3D2C /* CustomerStampUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerStampUITests.swift; sourceTree = "<group>"; };
 		41249C79263BD63500BF3D2C /* CustomerStampUnittests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerStampUnittests.swift; sourceTree = "<group>"; };
 		41249C81263BD68B00BF3D2C /* CustomerStampView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerStampView.swift; sourceTree = "<group>"; };
+		4143AA6E2643C8B200DCC6D7 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
+		4143AA772643C9B900DCC6D7 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		4143AA822643D9E800DCC6D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		417912832640A7F500BDAD3C /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
 		417912882640ACCF00BDAD3C /* Color+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Custom.swift"; sourceTree = "<group>"; };
 		417912FE2640FD3600BDAD3C /* LogInAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInAPI.swift; sourceTree = "<group>"; };
@@ -119,6 +123,8 @@
 		41249C18263BD37F00BF3D2C /* Stamps */ = {
 			isa = PBXGroup;
 			children = (
+				4143AA762643C99F00DCC6D7 /* Components */,
+				4143AA6D2643C87800DCC6D7 /* Sing up */,
 				417912F72640FCF000BDAD3C /* NetworkLayer */,
 				417912822640A7A900BDAD3C /* Assets */,
 				41A0AC85263FDBAA00008542 /* Encryption */,
@@ -163,7 +169,6 @@
 				41249C56263BD49C00BF3D2C /* tests */,
 				41249C1B263BD37F00BF3D2C /* LogInView.swift */,
 				41249C4C263BD47000BF3D2C /* LogInViewModule.swift */,
-				41A0AC7D263FCAED00008542 /* SignUpView.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -180,6 +185,7 @@
 		41249C6A263BD57700BF3D2C /* CustomerStamp */ = {
 			isa = PBXGroup;
 			children = (
+				4143AA6C2643C85B00DCC6D7 /* New Group */,
 				41249C70263BD5DF00BF3D2C /* tests */,
 				41249C6B263BD5D200BF3D2C /* CustomerStampViewModel.swift */,
 				41249C81263BD68B00BF3D2C /* CustomerStampView.swift */,
@@ -196,10 +202,34 @@
 			path = tests;
 			sourceTree = "<group>";
 		};
+		4143AA6C2643C85B00DCC6D7 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		4143AA6D2643C87800DCC6D7 /* Sing up */ = {
+			isa = PBXGroup;
+			children = (
+				41A0AC7D263FCAED00008542 /* SignUpView.swift */,
+				4143AA6E2643C8B200DCC6D7 /* SignUpViewModel.swift */,
+			);
+			path = "Sing up";
+			sourceTree = "<group>";
+		};
+		4143AA762643C99F00DCC6D7 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				4143AA772643C9B900DCC6D7 /* CustomTextField.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		417912822640A7A900BDAD3C /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				41249C1D263BD38200BF3D2C /* Assets.xcassets */,
+				4143AA822643D9E800DCC6D7 /* Assets.xcassets */,
 				417912832640A7F500BDAD3C /* Color.xcassets */,
 				417912882640ACCF00BDAD3C /* Color+Custom.swift */,
 			);
@@ -326,7 +356,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				41249C21263BD38200BF3D2C /* Preview Assets.xcassets in Resources */,
-				41249C1E263BD38200BF3D2C /* Assets.xcassets in Resources */,
+				4143AA832643D9E800DCC6D7 /* Assets.xcassets in Resources */,
 				417912842640A7F500BDAD3C /* Color.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -353,7 +383,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				41249C6C263BD5D200BF3D2C /* CustomerStampViewModel.swift in Sources */,
+				4143AA782643C9B900DCC6D7 /* CustomTextField.swift in Sources */,
 				417912892640ACCF00BDAD3C /* Color+Custom.swift in Sources */,
+				4143AA6F2643C8B200DCC6D7 /* SignUpViewModel.swift in Sources */,
 				41249C1C263BD37F00BF3D2C /* LogInView.swift in Sources */,
 				41249C4D263BD47000BF3D2C /* LogInViewModule.swift in Sources */,
 				41A0ACAC263FE31000008542 /* RNCryptor.swift in Sources */,

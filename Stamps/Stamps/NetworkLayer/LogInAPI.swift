@@ -11,6 +11,11 @@ import Combine
 struct LogInModel {
     let userName: String
 }
+
+struct SignUpModel {
+    let userName: String
+}
+
 class LogInAPI {
     func login(username: String, password: String) -> AnyPublisher<LogInModel, Error> {
         Deferred {
@@ -28,6 +33,24 @@ class LogInAPI {
         }
         .eraseToAnyPublisher()
     }
+    
+    func signUp(username: String, password: String, isStore: Bool) -> AnyPublisher<SignUpModel, Error> {
+        Deferred {
+            Future { [self] promise in
+                guard let s = try? encryptMessage(message: username, encryptionKey: password), let ss = try? decryptMessage(encryptedMessage: s, encryptionKey: password) else {
+                    promise(.failure(NSError(domain: "", code: 1, userInfo: nil)))
+                    return
+                }
+                if ss == username {
+                    promise(.success(SignUpModel(userName: ss)))
+                } else {
+                    promise(.failure(NSError(domain: "", code: 1, userInfo: nil)))
+                }
+            }
+        }
+        .eraseToAnyPublisher()
+    }
+    
     
     func encryptMessage(message: String, encryptionKey: String) throws -> String {
         let messageData = message.data(using: .utf8)!
