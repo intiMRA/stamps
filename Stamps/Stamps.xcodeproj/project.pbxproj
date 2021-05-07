@@ -25,6 +25,8 @@
 		417912842640A7F500BDAD3C /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 417912832640A7F500BDAD3C /* Color.xcassets */; };
 		417912892640ACCF00BDAD3C /* Color+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417912882640ACCF00BDAD3C /* Color+Custom.swift */; };
 		417912FF2640FD3600BDAD3C /* LogInAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417912FE2640FD3600BDAD3C /* LogInAPI.swift */; };
+		419DE7692645044A00C54E69 /* QRCodeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419DE7682645044A00C54E69 /* QRCodeManager.swift */; };
+		419DE77226450B7600C54E69 /* ShopStamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419DE77126450B7600C54E69 /* ShopStamp.swift */; };
 		41A0AC7E263FCAED00008542 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A0AC7D263FCAED00008542 /* SignUpView.swift */; };
 		41A0ACAC263FE31000008542 /* RNCryptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A0ACAB263FE31000008542 /* RNCryptor.swift */; };
 /* End PBXBuildFile section */
@@ -71,6 +73,8 @@
 		417912832640A7F500BDAD3C /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
 		417912882640ACCF00BDAD3C /* Color+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Custom.swift"; sourceTree = "<group>"; };
 		417912FE2640FD3600BDAD3C /* LogInAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInAPI.swift; sourceTree = "<group>"; };
+		419DE7682645044A00C54E69 /* QRCodeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeManager.swift; sourceTree = "<group>"; };
+		419DE77126450B7600C54E69 /* ShopStamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopStamp.swift; sourceTree = "<group>"; };
 		41A0AC7D263FCAED00008542 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		41A0ACAB263FE31000008542 /* RNCryptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNCryptor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -123,6 +127,8 @@
 		41249C18263BD37F00BF3D2C /* Stamps */ = {
 			isa = PBXGroup;
 			children = (
+				419DE77026450B4D00C54E69 /* ShopStamps */,
+				419DE7642645042300C54E69 /* Utils */,
 				4143AA762643C99F00DCC6D7 /* Components */,
 				4143AA6D2643C87800DCC6D7 /* Sing up */,
 				417912F72640FCF000BDAD3C /* NetworkLayer */,
@@ -242,6 +248,22 @@
 				417912FE2640FD3600BDAD3C /* LogInAPI.swift */,
 			);
 			path = NetworkLayer;
+			sourceTree = "<group>";
+		};
+		419DE7642645042300C54E69 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				419DE7682645044A00C54E69 /* QRCodeManager.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		419DE77026450B4D00C54E69 /* ShopStamps */ = {
+			isa = PBXGroup;
+			children = (
+				419DE77126450B7600C54E69 /* ShopStamp.swift */,
+			);
+			path = ShopStamps;
 			sourceTree = "<group>";
 		};
 		41A0AC85263FDBAA00008542 /* Encryption */ = {
@@ -382,11 +404,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				419DE77226450B7600C54E69 /* ShopStamp.swift in Sources */,
 				41249C6C263BD5D200BF3D2C /* CustomerStampViewModel.swift in Sources */,
 				4143AA782643C9B900DCC6D7 /* CustomTextField.swift in Sources */,
 				417912892640ACCF00BDAD3C /* Color+Custom.swift in Sources */,
 				4143AA6F2643C8B200DCC6D7 /* SignUpViewModel.swift in Sources */,
 				41249C1C263BD37F00BF3D2C /* LogInView.swift in Sources */,
+				419DE7692645044A00C54E69 /* QRCodeManager.swift in Sources */,
 				41249C4D263BD47000BF3D2C /* LogInViewModule.swift in Sources */,
 				41A0ACAC263FE31000008542 /* RNCryptor.swift in Sources */,
 				41249C1A263BD37F00BF3D2C /* StampsApp.swift in Sources */,

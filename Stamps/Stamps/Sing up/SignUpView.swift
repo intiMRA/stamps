@@ -13,7 +13,7 @@ struct SignUpView: View {
         ZStack {
             Color.customPink
             VStack(spacing: 10) {
-                NavigationLink(destination: CustomerStampView(), isActive: $viewModel.signUpSuccessfully) { EmptyView() }
+                NavigationLink(destination: nextView, isActive: $viewModel.signUpSuccessfully) { EmptyView() }
                 
                 HStack(spacing: 10) {
                     Image("email")
@@ -42,6 +42,15 @@ struct SignUpView: View {
             }
             .padding()
             .navigationBarTitle("Log In", displayMode: .inline)
+        }
+    }
+    
+    @ViewBuilder
+    var nextView: some View {
+        if viewModel.isStore {
+            ShopStamp(username: viewModel.username)
+        } else {
+            CustomerStampView()
         }
     }
 }
