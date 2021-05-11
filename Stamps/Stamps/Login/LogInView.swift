@@ -42,7 +42,7 @@ struct LogInView: View {
         ZStack {
             Color.customPink
             VStack(spacing: 10) {
-                NavigationLink(destination: CustomerStampView(), isActive: $viewModel.logInSuccess) { EmptyView() }
+                NavigationLink(destination: nextView, isActive: $viewModel.logInSuccess) { EmptyView() }
                 
                 HStack(spacing: 10) {
                     Image("email")
@@ -66,6 +66,15 @@ struct LogInView: View {
             }
             .padding()
             .navigationBarTitle("Log In", displayMode: .inline)
+        }
+    }
+    
+    @ViewBuilder
+    var nextView: some View {
+        if viewModel.isStore {
+            ShopStamp(username: viewModel.username)
+        } else {
+            TabBarView()
         }
     }
 }

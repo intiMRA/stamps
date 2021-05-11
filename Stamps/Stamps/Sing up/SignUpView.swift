@@ -50,7 +50,7 @@ struct SignUpView: View {
         if viewModel.isStore {
             ShopStamp(username: viewModel.username)
         } else {
-            CustomerStampView()
+            TabBarView()
         }
     }
 }
