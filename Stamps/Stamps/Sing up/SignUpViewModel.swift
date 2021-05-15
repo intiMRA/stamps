@@ -30,6 +30,8 @@ class SignUpViewModel: ObservableObject {
                 }
             }, receiveValue: { _ in
                 self.signUpSuccessfully = true
+                ReduxStore.shared.username = self.username
+                ReduxStore.shared.isStore = self.isStore
             })
             .store(in: &cancellables)
     }

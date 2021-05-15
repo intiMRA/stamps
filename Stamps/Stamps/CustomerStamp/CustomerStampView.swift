@@ -24,7 +24,7 @@ struct CustomerStampView: View {
 }
 
 private struct CardView: View {
-    let content: CardStamps
+    let content: CardData
     let completion: (_ index: String) -> Void
     var body: some View {
         ScrollView() {
