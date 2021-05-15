@@ -11,8 +11,8 @@ import SwiftUI
 struct CustomTextField: View {
     var placeholder: Text
     @Binding var text: String
-    var editingChanged: (Bool)->() = { _ in }
-    var commit: ()->() = { }
+    var editingChanged: (Bool) -> Void = { _ in }
+    var commit: () -> Void = { }
     let secureEntry: Bool
 
     var body: some View {

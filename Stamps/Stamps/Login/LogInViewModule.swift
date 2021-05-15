@@ -11,6 +11,7 @@ class LogInViewModule: ObservableObject {
     @Published var username = ""
     @Published var password = ""
     @Published var logInSuccess = false
+    var isStore = false
     private var cancellables = Set<AnyCancellable>()
     private let api = LogInAPI()
     
