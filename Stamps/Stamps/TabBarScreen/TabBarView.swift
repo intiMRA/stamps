@@ -9,19 +9,22 @@ import SwiftUI
 
 struct TabBarView: View {
     var body: some View {
-        TabView {
-            CustomerStampView()
-                .font(.system(size: 30, weight: .bold, design: .rounded))
-                .tabItem {
-                    Image("Grid")
-                    Text("Grid")
-                }
-            
-            ScanningView()
-                .tabItem {
-                    Image("QR")
-                    Text("Scan")
-                }
+        ZStack {
+            Color.customPink
+            TabView {
+                CardListview()
+                    .font(.system(size: 30, weight: .bold, design: .rounded))
+                    .tabItem {
+                        Image("Grid")
+                        Text("Grid")
+                    }
+                
+                ScanningView()
+                    .tabItem {
+                        Image("QR")
+                        Text("Scan")
+                    }
+            }
         }
     }
 }

@@ -7,12 +7,17 @@
 
 import Foundation
 
+struct customerModel {
+    var username = ""
+    var stores = [Store]()
+    var stampCards = [String: CardData]()
+}
+
 class ReduxStore {
     static var shared = ReduxStore()
     
-    var username = ""
-    var isStore = false
-    var stores = [Store]()
-    var stanpCards = [String: CardData]()
+    var customerModel: customerModel?
+    var storeModel: Store?
+    
 }
 

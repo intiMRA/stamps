@@ -25,6 +25,7 @@ class LogInAPI {
                     return
                 }
                 if ss == username {
+                    ReduxStore.shared.customerModel = customerModel(username: username, stores: [Store()], stampCards: ["The Store": CardData()])
                     promise(.success(LogInModel(userName: ss)))
                 } else {
                     promise(.failure(NSError(domain: "", code: 1, userInfo: nil)))
@@ -42,6 +43,11 @@ class LogInAPI {
                     return
                 }
                 if ss == username {
+                    if isStore {
+                        ReduxStore.shared.storeModel = Store()
+                    } else {
+                        ReduxStore.shared.customerModel = customerModel(username: username, stores: [Store()], stampCards: ["The Store": CardData()])
+                    }
                     promise(.success(SignUpModel(userName: ss)))
                 } else {
                     promise(.failure(NSError(domain: "", code: 1, userInfo: nil)))

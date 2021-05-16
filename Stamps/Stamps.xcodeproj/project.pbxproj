@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		352288452650BFAE00BD1DFD /* CardListview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352288442650BFAE00BD1DFD /* CardListview.swift */; };
+		352288472650BFC500BD1DFD /* CardListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352288462650BFC500BD1DFD /* CardListViewModel.swift */; };
 		35FB33FD264F450300CCB847 /* ReduxStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FB33FC264F450300CCB847 /* ReduxStore.swift */; };
 		35FB33FF264F45FF00CCB847 /* CardData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FB33FE264F45FF00CCB847 /* CardData.swift */; };
 		35FB3401264F470100CCB847 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FB3400264F470100CCB847 /* Store.swift */; };
@@ -18,10 +20,10 @@
 		41249C4D263BD47000BF3D2C /* LogInViewModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41249C4C263BD47000BF3D2C /* LogInViewModule.swift */; };
 		41249C52263BD49000BF3D2C /* LogInUinitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41249C51263BD49000BF3D2C /* LogInUinitTests.swift */; };
 		41249C63263BD52200BF3D2C /* LogInUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41249C62263BD52200BF3D2C /* LogInUITests.swift */; };
-		41249C6C263BD5D200BF3D2C /* CustomerStampViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41249C6B263BD5D200BF3D2C /* CustomerStampViewModel.swift */; };
+		41249C6C263BD5D200BF3D2C /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41249C6B263BD5D200BF3D2C /* CardViewModel.swift */; };
 		41249C72263BD60E00BF3D2C /* CustomerStampUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41249C71263BD60E00BF3D2C /* CustomerStampUITests.swift */; };
 		41249C7A263BD63500BF3D2C /* CustomerStampUnittests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41249C79263BD63500BF3D2C /* CustomerStampUnittests.swift */; };
-		41249C82263BD68C00BF3D2C /* CustomerStampView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41249C81263BD68B00BF3D2C /* CustomerStampView.swift */; };
+		41249C82263BD68C00BF3D2C /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41249C81263BD68B00BF3D2C /* CardView.swift */; };
 		4143AA6F2643C8B200DCC6D7 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4143AA6E2643C8B200DCC6D7 /* SignUpViewModel.swift */; };
 		4143AA782643C9B900DCC6D7 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4143AA772643C9B900DCC6D7 /* CustomTextField.swift */; };
 		4143AA832643D9E800DCC6D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4143AA822643D9E800DCC6D7 /* Assets.xcassets */; };
@@ -58,6 +60,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		352288442650BFAE00BD1DFD /* CardListview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListview.swift; sourceTree = "<group>"; };
+		352288462650BFC500BD1DFD /* CardListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListViewModel.swift; sourceTree = "<group>"; };
 		35FB33FC264F450300CCB847 /* ReduxStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReduxStore.swift; sourceTree = "<group>"; };
 		35FB33FE264F45FF00CCB847 /* CardData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardData.swift; sourceTree = "<group>"; };
 		35FB3400264F470100CCB847 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
@@ -75,10 +79,10 @@
 		41249C4C263BD47000BF3D2C /* LogInViewModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewModule.swift; sourceTree = "<group>"; };
 		41249C51263BD49000BF3D2C /* LogInUinitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInUinitTests.swift; sourceTree = "<group>"; };
 		41249C62263BD52200BF3D2C /* LogInUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInUITests.swift; sourceTree = "<group>"; };
-		41249C6B263BD5D200BF3D2C /* CustomerStampViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerStampViewModel.swift; sourceTree = "<group>"; };
+		41249C6B263BD5D200BF3D2C /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
 		41249C71263BD60E00BF3D2C /* CustomerStampUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerStampUITests.swift; sourceTree = "<group>"; };
 		41249C79263BD63500BF3D2C /* CustomerStampUnittests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerStampUnittests.swift; sourceTree = "<group>"; };
-		41249C81263BD68B00BF3D2C /* CustomerStampView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerStampView.swift; sourceTree = "<group>"; };
+		41249C81263BD68B00BF3D2C /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		4143AA6E2643C8B200DCC6D7 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		4143AA772643C9B900DCC6D7 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		4143AA822643D9E800DCC6D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -122,6 +126,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		352288422650BF7F00BD1DFD /* CardView */ = {
+			isa = PBXGroup;
+			children = (
+				41249C70263BD5DF00BF3D2C /* tests */,
+				41249C6B263BD5D200BF3D2C /* CardViewModel.swift */,
+				41249C81263BD68B00BF3D2C /* CardView.swift */,
+			);
+			path = CardView;
+			sourceTree = "<group>";
+		};
+		352288432650BF9400BD1DFD /* Cards list */ = {
+			isa = PBXGroup;
+			children = (
+				352288442650BFAE00BD1DFD /* CardListview.swift */,
+				352288462650BFC500BD1DFD /* CardListViewModel.swift */,
+			);
+			path = "Cards list";
+			sourceTree = "<group>";
+		};
 		35FB33FB264F44ED00CCB847 /* Store */ = {
 			isa = PBXGroup;
 			children = (
@@ -165,7 +188,7 @@
 				417912F72640FCF000BDAD3C /* NetworkLayer */,
 				417912822640A7A900BDAD3C /* Assets */,
 				41A0AC85263FDBAA00008542 /* Encryption */,
-				41249C6A263BD57700BF3D2C /* CustomerStamp */,
+				41249C6A263BD57700BF3D2C /* Stamp cards */,
 				41249C48263BD41700BF3D2C /* Login */,
 				41249C19263BD37F00BF3D2C /* StampsApp.swift */,
 				41249C22263BD38200BF3D2C /* Info.plist */,
@@ -219,14 +242,13 @@
 			path = tests;
 			sourceTree = "<group>";
 		};
-		41249C6A263BD57700BF3D2C /* CustomerStamp */ = {
+		41249C6A263BD57700BF3D2C /* Stamp cards */ = {
 			isa = PBXGroup;
 			children = (
-				41249C70263BD5DF00BF3D2C /* tests */,
-				41249C6B263BD5D200BF3D2C /* CustomerStampViewModel.swift */,
-				41249C81263BD68B00BF3D2C /* CustomerStampView.swift */,
+				352288432650BF9400BD1DFD /* Cards list */,
+				352288422650BF7F00BD1DFD /* CardView */,
 			);
-			path = CustomerStamp;
+			path = "Stamp cards";
 			sourceTree = "<group>";
 		};
 		41249C70263BD5DF00BF3D2C /* tests */ = {
@@ -451,7 +473,8 @@
 				419DE77226450B7600C54E69 /* ShopStamp.swift in Sources */,
 				417FD739264A689B002AEDE8 /* QRCodeCameraDelegate.swift in Sources */,
 				417FD73B264A68EF002AEDE8 /* CameraPreview.swift in Sources */,
-				41249C6C263BD5D200BF3D2C /* CustomerStampViewModel.swift in Sources */,
+				352288472650BFC500BD1DFD /* CardListViewModel.swift in Sources */,
+				41249C6C263BD5D200BF3D2C /* CardViewModel.swift in Sources */,
 				417FD732264A61E0002AEDE8 /* TabBarView.swift in Sources */,
 				4143AA782643C9B900DCC6D7 /* CustomTextField.swift in Sources */,
 				417912892640ACCF00BDAD3C /* Color+Custom.swift in Sources */,
@@ -463,10 +486,11 @@
 				35FB3401264F470100CCB847 /* Store.swift in Sources */,
 				41A0ACAC263FE31000008542 /* RNCryptor.swift in Sources */,
 				41249C1A263BD37F00BF3D2C /* StampsApp.swift in Sources */,
+				352288452650BFAE00BD1DFD /* CardListview.swift in Sources */,
 				417912FF2640FD3600BDAD3C /* LogInAPI.swift in Sources */,
 				35FB33FF264F45FF00CCB847 /* CardData.swift in Sources */,
 				41A0AC7E263FCAED00008542 /* SignUpView.swift in Sources */,
-				41249C82263BD68C00BF3D2C /* CustomerStampView.swift in Sources */,
+				41249C82263BD68C00BF3D2C /* CardView.swift in Sources */,
 				417FD737264A6803002AEDE8 /* ScanningViewModel.swift in Sources */,
 				417FD73D264A6934002AEDE8 /* QRCameraViewRepresentable.swift in Sources */,
 			);

@@ -1,5 +1,5 @@
 //
-//  CustomerStampViewModel.swift
+//  CardViewModel.swift
 //  Stamps
 //
 //  Created by Inti Resende Albuquerque on 30/04/21.
@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-class CustomerStampViewModel: ObservableObject {
+class CardViewModel: ObservableObject {
     @Published var stamps: CardData = CardData()
     let row1 = [CardSlot(isStamped: false, index: "\(RowIndex.one.rawValue)_0"),
                 CardSlot(isStamped: false, index: "\(RowIndex.one.rawValue)_1"),
@@ -35,7 +35,7 @@ class CustomerStampViewModel: ObservableObject {
                 CardSlot(isStamped: false, index: "\(RowIndex.five.rawValue)_2"),
                 CardSlot(isStamped: false, index: "\(RowIndex.five.rawValue)_3", hasIcon: true)]
     
-    init(storeName: String = "The Store") {
+    init(cardData: CardData = CardData(row1: [], row2: [], row3: [], row4: [], row5: [], storeName: "The Store")) {
         self.stamps = CardData(row1: row1, row2: row2, row3: row3, row4: row4, row5: row5)
     }
     

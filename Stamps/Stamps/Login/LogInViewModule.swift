@@ -30,8 +30,6 @@ class LogInViewModule: ObservableObject {
         }, receiveValue: { module in
             if module.userName == self.username {
                 self.logInSuccess = true
-                ReduxStore.shared.username = self.username
-                ReduxStore.shared.isStore = false
             }
         })
         .store(in: &cancellables)

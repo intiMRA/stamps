@@ -73,7 +73,7 @@ struct CardData {
             changed[indexNumber] = CardSlot(isStamped: true, index: index, hasIcon: changed[indexNumber].hasIcon)
             changedCard = CardData(row1: row1, row2: row2, row3: row3, row4: row4, row5: changed)
         }
-        ReduxStore.shared.stanpCards[self.storeName] = changedCard
+        ReduxStore.shared.customerModel?.stampCards[self.storeName] = changedCard
         return changedCard
     }
 }
