@@ -13,25 +13,34 @@ struct CardListview: View {
         ZStack {
             Color.customPink
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-            ScrollView {
-                LazyVStack(alignment: .leading) {
-                    ForEach(viewModel.storeList, id: \.storeName) { store in
-                        if let cardData = viewModel.cardData(for: store.storeName) {
-                            NavigationLink(destination: CardView(viewModel: CardViewModel(cardData: cardData))) {
-                                HStack {
-                                    Text(store.storeName)
-                                    Spacer()
-                                    Image("Chevron")
-                                }
+            if viewModel.cardsList.count == 0 {
+                Text("you dont have any card yet")
+                    .foregroundColor(Color.textColor)
+                    .padding(.horizontal, 16)
+            } else {
+                ScrollView {
+                    LazyVStack(alignment: .leading) {
+                        ForEach(viewModel.storeList, id: \.storeName) { store in
+                            if let cardData = viewModel.cardData(for: store.storeName) {
+                                NavigationLink(destination: CardView(viewModel: CardViewModel(cardData: cardData))) {
+                                    HStack {
+                                        Text(store.storeName)
+                                        Spacer()
+                                        Image("Chevron")
+                                    }
                                     .padding(.horizontal, 16)
+                                }
                             }
                         }
+                        Spacer()
                     }
-                    Spacer()
                 }
+                .background(Color.customPink)
             }
-            .background(Color.customPink)
         }
+        .onAppear(perform: {
+            viewModel.loadData()
+        })
     }
 }
 

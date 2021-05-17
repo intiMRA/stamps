@@ -18,8 +18,8 @@ struct CardView: View {
         ZStack {
             Color.customPink
             VStack {
-                Card(content: viewModel.stamps, completion: { index in
-                    viewModel.changed(at: index)
+                Card(content: viewModel.stamps, completion: { _ in
+                    
                 })
             }
         }

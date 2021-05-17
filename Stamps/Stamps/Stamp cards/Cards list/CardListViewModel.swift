@@ -21,4 +21,9 @@ class CardListViewModel: ObservableObject {
         cardsList[cardName]
     }
     
+    func loadData() {
+        self.cardsList = ReduxStore.shared.customerModel?.stampCards ?? [:]
+        self.storeList = ReduxStore.shared.customerModel?.stores ?? []
+    }
+    
 }

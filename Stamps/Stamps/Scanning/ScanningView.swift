@@ -40,8 +40,11 @@ struct ScanningView: View {
                     }
                     .background(Color.white)
                     .cornerRadius(10)
-                    
-                }.padding()
+                }
+                .onTapGesture(count: 1, perform: {
+                    viewModel.lastQrCode = ""
+                })
+                .padding()
             }
         }
 }
