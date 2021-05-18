@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		352288452650BFAE00BD1DFD /* CardListview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352288442650BFAE00BD1DFD /* CardListview.swift */; };
 		352288472650BFC500BD1DFD /* CardListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352288462650BFC500BD1DFD /* CardListViewModel.swift */; };
+		3596620B2653DA6E003D3323 /* QRCodeScanningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3596620A2653DA6E003D3323 /* QRCodeScanningView.swift */; };
+		3596620D2653E10C003D3323 /* QRCodeScanningViewSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3596620C2653E10C003D3323 /* QRCodeScanningViewSwiftUI.swift */; };
 		35FB33FD264F450300CCB847 /* ReduxStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FB33FC264F450300CCB847 /* ReduxStore.swift */; };
 		35FB33FF264F45FF00CCB847 /* CardData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FB33FE264F45FF00CCB847 /* CardData.swift */; };
 		35FB3401264F470100CCB847 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FB3400264F470100CCB847 /* Store.swift */; };
@@ -33,9 +35,6 @@
 		417FD732264A61E0002AEDE8 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417FD731264A61E0002AEDE8 /* TabBarView.swift */; };
 		417FD735264A6761002AEDE8 /* ScanningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417FD734264A6761002AEDE8 /* ScanningView.swift */; };
 		417FD737264A6803002AEDE8 /* ScanningViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417FD736264A6803002AEDE8 /* ScanningViewModel.swift */; };
-		417FD739264A689B002AEDE8 /* QRCodeCameraDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417FD738264A689B002AEDE8 /* QRCodeCameraDelegate.swift */; };
-		417FD73B264A68EF002AEDE8 /* CameraPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417FD73A264A68EF002AEDE8 /* CameraPreview.swift */; };
-		417FD73D264A6934002AEDE8 /* QRCameraViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417FD73C264A6934002AEDE8 /* QRCameraViewRepresentable.swift */; };
 		419DE7692645044A00C54E69 /* QRCodeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419DE7682645044A00C54E69 /* QRCodeManager.swift */; };
 		419DE77226450B7600C54E69 /* ShopStamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419DE77126450B7600C54E69 /* ShopStamp.swift */; };
 		41A0AC7E263FCAED00008542 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A0AC7D263FCAED00008542 /* SignUpView.swift */; };
@@ -62,6 +61,8 @@
 /* Begin PBXFileReference section */
 		352288442650BFAE00BD1DFD /* CardListview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListview.swift; sourceTree = "<group>"; };
 		352288462650BFC500BD1DFD /* CardListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListViewModel.swift; sourceTree = "<group>"; };
+		3596620A2653DA6E003D3323 /* QRCodeScanningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeScanningView.swift; sourceTree = "<group>"; };
+		3596620C2653E10C003D3323 /* QRCodeScanningViewSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeScanningViewSwiftUI.swift; sourceTree = "<group>"; };
 		35FB33FC264F450300CCB847 /* ReduxStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReduxStore.swift; sourceTree = "<group>"; };
 		35FB33FE264F45FF00CCB847 /* CardData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardData.swift; sourceTree = "<group>"; };
 		35FB3400264F470100CCB847 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
@@ -92,9 +93,6 @@
 		417FD731264A61E0002AEDE8 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		417FD734264A6761002AEDE8 /* ScanningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanningView.swift; sourceTree = "<group>"; };
 		417FD736264A6803002AEDE8 /* ScanningViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanningViewModel.swift; sourceTree = "<group>"; };
-		417FD738264A689B002AEDE8 /* QRCodeCameraDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeCameraDelegate.swift; sourceTree = "<group>"; };
-		417FD73A264A68EF002AEDE8 /* CameraPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreview.swift; sourceTree = "<group>"; };
-		417FD73C264A6934002AEDE8 /* QRCameraViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCameraViewRepresentable.swift; sourceTree = "<group>"; };
 		419DE7682645044A00C54E69 /* QRCodeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeManager.swift; sourceTree = "<group>"; };
 		419DE77126450B7600C54E69 /* ShopStamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopStamp.swift; sourceTree = "<group>"; };
 		41A0AC7D263FCAED00008542 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
@@ -308,9 +306,8 @@
 			children = (
 				417FD734264A6761002AEDE8 /* ScanningView.swift */,
 				417FD736264A6803002AEDE8 /* ScanningViewModel.swift */,
-				417FD738264A689B002AEDE8 /* QRCodeCameraDelegate.swift */,
-				417FD73A264A68EF002AEDE8 /* CameraPreview.swift */,
-				417FD73C264A6934002AEDE8 /* QRCameraViewRepresentable.swift */,
+				3596620A2653DA6E003D3323 /* QRCodeScanningView.swift */,
+				3596620C2653E10C003D3323 /* QRCodeScanningViewSwiftUI.swift */,
 			);
 			path = Scanning;
 			sourceTree = "<group>";
@@ -471,12 +468,11 @@
 			files = (
 				417FD735264A6761002AEDE8 /* ScanningView.swift in Sources */,
 				419DE77226450B7600C54E69 /* ShopStamp.swift in Sources */,
-				417FD739264A689B002AEDE8 /* QRCodeCameraDelegate.swift in Sources */,
-				417FD73B264A68EF002AEDE8 /* CameraPreview.swift in Sources */,
 				352288472650BFC500BD1DFD /* CardListViewModel.swift in Sources */,
 				41249C6C263BD5D200BF3D2C /* CardViewModel.swift in Sources */,
 				417FD732264A61E0002AEDE8 /* TabBarView.swift in Sources */,
 				4143AA782643C9B900DCC6D7 /* CustomTextField.swift in Sources */,
+				3596620B2653DA6E003D3323 /* QRCodeScanningView.swift in Sources */,
 				417912892640ACCF00BDAD3C /* Color+Custom.swift in Sources */,
 				35FB33FD264F450300CCB847 /* ReduxStore.swift in Sources */,
 				4143AA6F2643C8B200DCC6D7 /* SignUpViewModel.swift in Sources */,
@@ -487,12 +483,12 @@
 				41A0ACAC263FE31000008542 /* RNCryptor.swift in Sources */,
 				41249C1A263BD37F00BF3D2C /* StampsApp.swift in Sources */,
 				352288452650BFAE00BD1DFD /* CardListview.swift in Sources */,
+				3596620D2653E10C003D3323 /* QRCodeScanningViewSwiftUI.swift in Sources */,
 				417912FF2640FD3600BDAD3C /* LogInAPI.swift in Sources */,
 				35FB33FF264F45FF00CCB847 /* CardData.swift in Sources */,
 				41A0AC7E263FCAED00008542 /* SignUpView.swift in Sources */,
 				41249C82263BD68C00BF3D2C /* CardView.swift in Sources */,
 				417FD737264A6803002AEDE8 /* ScanningViewModel.swift in Sources */,
-				417FD73D264A6934002AEDE8 /* QRCameraViewRepresentable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,17 +6,27 @@
 //
 
 import Foundation
-
+import Combine
 class ScanningViewModel: ObservableObject {
     
-    /// Defines how often we are going to try looking for a new QR-code in the camera feed.
-    let scanInterval: Double = 1.0
+    @Published var shouldScan: Bool = false
+    @Published var code: String = ""
+    private var cancellables = Set<AnyCancellable>()
     
-    @Published var torchIsOn: Bool = false
-    @Published var lastQrCode: String = "Qr-code goes here"
+    init() {
+        $code
+            .sink { code in
+                self.foundQRCode(code)
+                self.shouldScan = false
+            }
+            .store(in: &cancellables)
+    }
     
     
-    func onFoundQrCode(_ code: String) {
+    func foundQRCode(_ code: String) {
+        guard !code.isEmpty else {
+            return
+        }
         if let card = ReduxStore.shared.customerModel?.stampCards[code] {
             ReduxStore.shared.customerModel?.stampCards[code] = card.stamp()
         } else {
@@ -47,6 +57,5 @@ class ScanningViewModel: ObservableObject {
             ReduxStore.shared.customerModel?.stampCards[code] = CardData(row1: row1, row2: row2, row3: row3, row4: row4, row5: row5)
             ReduxStore.shared.customerModel?.stores = [Store(storeName: code)]
         }
-        self.lastQrCode = code
     }
 }
