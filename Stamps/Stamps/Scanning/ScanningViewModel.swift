@@ -7,8 +7,8 @@
 
 import Foundation
 import Combine
+
 class ScanningViewModel: ObservableObject {
-    
     @Published var shouldScan: Bool = false
     @Published var code: String = ""
     private var cancellables = Set<AnyCancellable>()
