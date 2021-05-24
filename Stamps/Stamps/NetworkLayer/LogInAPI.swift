@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import FirebaseDatabase
 
 struct LogInModel {
     let userName: String
@@ -17,6 +18,7 @@ struct SignUpModel {
 }
 
 class LogInAPI {
+    let database = Database.database().reference()
     func login(username: String, password: String) -> AnyPublisher<LogInModel, Error> {
         Deferred {
             Future { [self] promise in
