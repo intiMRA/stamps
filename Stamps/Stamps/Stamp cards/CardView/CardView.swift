@@ -1,5 +1,5 @@
 //
-//  CustomerStampView.swift
+//  CardView.swift
 //  Stamps
 //
 //  Created by Inti Resende Albuquerque on 30/04/21.
@@ -7,14 +7,19 @@
 
 import SwiftUI
 
-struct CustomerStampView: View {
-    @ObservedObject private var viewModel: CustomerStampViewModel = CustomerStampViewModel()
+struct CardView: View {
+    @ObservedObject private var viewModel: CardViewModel
+    
+    init(viewModel: CardViewModel = CardViewModel()) {
+        self.viewModel = viewModel
+    }
+    
     var body: some View {
         ZStack {
             Color.customPink
             VStack {
-                CardView(content: viewModel.stamps, completion: { index in
-                    viewModel.changed(at: index)
+                Card(content: viewModel.stamps, completion: { _ in
+                    
                 })
             }
         }
@@ -23,8 +28,8 @@ struct CustomerStampView: View {
     }
 }
 
-private struct CardView: View {
-    let content: CardStamps
+private struct Card: View {
+    let content: CardData
     let completion: (_ index: String) -> Void
     var body: some View {
         ScrollView() {
@@ -81,6 +86,6 @@ private struct CardSlotView: View {
 
 struct SwiftUIView_Previews: PreviewProvider {
     static var previews: some View {
-        CustomerStampView()
+        CardView()
     }
 }

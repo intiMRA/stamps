@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		352288452650BFAE00BD1DFD /* CardListview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352288442650BFAE00BD1DFD /* CardListview.swift */; };
+		352288472650BFC500BD1DFD /* CardListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352288462650BFC500BD1DFD /* CardListViewModel.swift */; };
+		3596620B2653DA6E003D3323 /* QRCodeScanningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3596620A2653DA6E003D3323 /* QRCodeScanningView.swift */; };
+		3596620D2653E10C003D3323 /* QRCodeScanningViewSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3596620C2653E10C003D3323 /* QRCodeScanningViewSwiftUI.swift */; };
+		35FB33FD264F450300CCB847 /* ReduxStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FB33FC264F450300CCB847 /* ReduxStore.swift */; };
+		35FB33FF264F45FF00CCB847 /* CardData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FB33FE264F45FF00CCB847 /* CardData.swift */; };
+		35FB3401264F470100CCB847 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FB3400264F470100CCB847 /* Store.swift */; };
 		41249C1A263BD37F00BF3D2C /* StampsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41249C19263BD37F00BF3D2C /* StampsApp.swift */; };
 		41249C1C263BD37F00BF3D2C /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41249C1B263BD37F00BF3D2C /* LogInView.swift */; };
 		41249C21263BD38200BF3D2C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41249C20263BD38200BF3D2C /* Preview Assets.xcassets */; };
@@ -15,10 +22,10 @@
 		41249C4D263BD47000BF3D2C /* LogInViewModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41249C4C263BD47000BF3D2C /* LogInViewModule.swift */; };
 		41249C52263BD49000BF3D2C /* LogInUinitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41249C51263BD49000BF3D2C /* LogInUinitTests.swift */; };
 		41249C63263BD52200BF3D2C /* LogInUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41249C62263BD52200BF3D2C /* LogInUITests.swift */; };
-		41249C6C263BD5D200BF3D2C /* CustomerStampViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41249C6B263BD5D200BF3D2C /* CustomerStampViewModel.swift */; };
+		41249C6C263BD5D200BF3D2C /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41249C6B263BD5D200BF3D2C /* CardViewModel.swift */; };
 		41249C72263BD60E00BF3D2C /* CustomerStampUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41249C71263BD60E00BF3D2C /* CustomerStampUITests.swift */; };
 		41249C7A263BD63500BF3D2C /* CustomerStampUnittests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41249C79263BD63500BF3D2C /* CustomerStampUnittests.swift */; };
-		41249C82263BD68C00BF3D2C /* CustomerStampView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41249C81263BD68B00BF3D2C /* CustomerStampView.swift */; };
+		41249C82263BD68C00BF3D2C /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41249C81263BD68B00BF3D2C /* CardView.swift */; };
 		4143AA6F2643C8B200DCC6D7 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4143AA6E2643C8B200DCC6D7 /* SignUpViewModel.swift */; };
 		4143AA782643C9B900DCC6D7 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4143AA772643C9B900DCC6D7 /* CustomTextField.swift */; };
 		4143AA832643D9E800DCC6D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4143AA822643D9E800DCC6D7 /* Assets.xcassets */; };
@@ -28,9 +35,6 @@
 		417FD732264A61E0002AEDE8 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417FD731264A61E0002AEDE8 /* TabBarView.swift */; };
 		417FD735264A6761002AEDE8 /* ScanningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417FD734264A6761002AEDE8 /* ScanningView.swift */; };
 		417FD737264A6803002AEDE8 /* ScanningViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417FD736264A6803002AEDE8 /* ScanningViewModel.swift */; };
-		417FD739264A689B002AEDE8 /* QRCodeCameraDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417FD738264A689B002AEDE8 /* QRCodeCameraDelegate.swift */; };
-		417FD73B264A68EF002AEDE8 /* CameraPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417FD73A264A68EF002AEDE8 /* CameraPreview.swift */; };
-		417FD73D264A6934002AEDE8 /* QRCameraViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417FD73C264A6934002AEDE8 /* QRCameraViewRepresentable.swift */; };
 		419DE7692645044A00C54E69 /* QRCodeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419DE7682645044A00C54E69 /* QRCodeManager.swift */; };
 		419DE77226450B7600C54E69 /* ShopStamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419DE77126450B7600C54E69 /* ShopStamp.swift */; };
 		41A0AC7E263FCAED00008542 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A0AC7D263FCAED00008542 /* SignUpView.swift */; };
@@ -55,6 +59,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		352288442650BFAE00BD1DFD /* CardListview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListview.swift; sourceTree = "<group>"; };
+		352288462650BFC500BD1DFD /* CardListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListViewModel.swift; sourceTree = "<group>"; };
+		3596620A2653DA6E003D3323 /* QRCodeScanningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeScanningView.swift; sourceTree = "<group>"; };
+		3596620C2653E10C003D3323 /* QRCodeScanningViewSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeScanningViewSwiftUI.swift; sourceTree = "<group>"; };
+		35FB33FC264F450300CCB847 /* ReduxStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReduxStore.swift; sourceTree = "<group>"; };
+		35FB33FE264F45FF00CCB847 /* CardData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardData.swift; sourceTree = "<group>"; };
+		35FB3400264F470100CCB847 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		41249C16263BD37F00BF3D2C /* Stamps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stamps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		41249C19263BD37F00BF3D2C /* StampsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StampsApp.swift; sourceTree = "<group>"; };
 		41249C1B263BD37F00BF3D2C /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
@@ -69,10 +80,10 @@
 		41249C4C263BD47000BF3D2C /* LogInViewModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewModule.swift; sourceTree = "<group>"; };
 		41249C51263BD49000BF3D2C /* LogInUinitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInUinitTests.swift; sourceTree = "<group>"; };
 		41249C62263BD52200BF3D2C /* LogInUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInUITests.swift; sourceTree = "<group>"; };
-		41249C6B263BD5D200BF3D2C /* CustomerStampViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerStampViewModel.swift; sourceTree = "<group>"; };
+		41249C6B263BD5D200BF3D2C /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
 		41249C71263BD60E00BF3D2C /* CustomerStampUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerStampUITests.swift; sourceTree = "<group>"; };
 		41249C79263BD63500BF3D2C /* CustomerStampUnittests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerStampUnittests.swift; sourceTree = "<group>"; };
-		41249C81263BD68B00BF3D2C /* CustomerStampView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerStampView.swift; sourceTree = "<group>"; };
+		41249C81263BD68B00BF3D2C /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		4143AA6E2643C8B200DCC6D7 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		4143AA772643C9B900DCC6D7 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		4143AA822643D9E800DCC6D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -82,9 +93,6 @@
 		417FD731264A61E0002AEDE8 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		417FD734264A6761002AEDE8 /* ScanningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanningView.swift; sourceTree = "<group>"; };
 		417FD736264A6803002AEDE8 /* ScanningViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanningViewModel.swift; sourceTree = "<group>"; };
-		417FD738264A689B002AEDE8 /* QRCodeCameraDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeCameraDelegate.swift; sourceTree = "<group>"; };
-		417FD73A264A68EF002AEDE8 /* CameraPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreview.swift; sourceTree = "<group>"; };
-		417FD73C264A6934002AEDE8 /* QRCameraViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCameraViewRepresentable.swift; sourceTree = "<group>"; };
 		419DE7682645044A00C54E69 /* QRCodeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeManager.swift; sourceTree = "<group>"; };
 		419DE77126450B7600C54E69 /* ShopStamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopStamp.swift; sourceTree = "<group>"; };
 		41A0AC7D263FCAED00008542 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
@@ -116,6 +124,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		352288422650BF7F00BD1DFD /* CardView */ = {
+			isa = PBXGroup;
+			children = (
+				41249C70263BD5DF00BF3D2C /* tests */,
+				41249C6B263BD5D200BF3D2C /* CardViewModel.swift */,
+				41249C81263BD68B00BF3D2C /* CardView.swift */,
+			);
+			path = CardView;
+			sourceTree = "<group>";
+		};
+		352288432650BF9400BD1DFD /* Cards list */ = {
+			isa = PBXGroup;
+			children = (
+				352288442650BFAE00BD1DFD /* CardListview.swift */,
+				352288462650BFC500BD1DFD /* CardListViewModel.swift */,
+			);
+			path = "Cards list";
+			sourceTree = "<group>";
+		};
+		35FB33FB264F44ED00CCB847 /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				35FB33FC264F450300CCB847 /* ReduxStore.swift */,
+				35FB33FE264F45FF00CCB847 /* CardData.swift */,
+				35FB3400264F470100CCB847 /* Store.swift */,
+			);
+			path = Store;
+			sourceTree = "<group>";
+		};
 		41249C0D263BD37E00BF3D2C = {
 			isa = PBXGroup;
 			children = (
@@ -139,6 +176,7 @@
 		41249C18263BD37F00BF3D2C /* Stamps */ = {
 			isa = PBXGroup;
 			children = (
+				35FB33FB264F44ED00CCB847 /* Store */,
 				417FD733264A672A002AEDE8 /* Scanning */,
 				417FD730264A61BF002AEDE8 /* TabBarScreen */,
 				419DE77026450B4D00C54E69 /* ShopStamps */,
@@ -148,7 +186,7 @@
 				417912F72640FCF000BDAD3C /* NetworkLayer */,
 				417912822640A7A900BDAD3C /* Assets */,
 				41A0AC85263FDBAA00008542 /* Encryption */,
-				41249C6A263BD57700BF3D2C /* CustomerStamp */,
+				41249C6A263BD57700BF3D2C /* Stamp cards */,
 				41249C48263BD41700BF3D2C /* Login */,
 				41249C19263BD37F00BF3D2C /* StampsApp.swift */,
 				41249C22263BD38200BF3D2C /* Info.plist */,
@@ -202,15 +240,13 @@
 			path = tests;
 			sourceTree = "<group>";
 		};
-		41249C6A263BD57700BF3D2C /* CustomerStamp */ = {
+		41249C6A263BD57700BF3D2C /* Stamp cards */ = {
 			isa = PBXGroup;
 			children = (
-				4143AA6C2643C85B00DCC6D7 /* New Group */,
-				41249C70263BD5DF00BF3D2C /* tests */,
-				41249C6B263BD5D200BF3D2C /* CustomerStampViewModel.swift */,
-				41249C81263BD68B00BF3D2C /* CustomerStampView.swift */,
+				352288432650BF9400BD1DFD /* Cards list */,
+				352288422650BF7F00BD1DFD /* CardView */,
 			);
-			path = CustomerStamp;
+			path = "Stamp cards";
 			sourceTree = "<group>";
 		};
 		41249C70263BD5DF00BF3D2C /* tests */ = {
@@ -220,13 +256,6 @@
 				41249C79263BD63500BF3D2C /* CustomerStampUnittests.swift */,
 			);
 			path = tests;
-			sourceTree = "<group>";
-		};
-		4143AA6C2643C85B00DCC6D7 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group";
 			sourceTree = "<group>";
 		};
 		4143AA6D2643C87800DCC6D7 /* Sing up */ = {
@@ -277,9 +306,8 @@
 			children = (
 				417FD734264A6761002AEDE8 /* ScanningView.swift */,
 				417FD736264A6803002AEDE8 /* ScanningViewModel.swift */,
-				417FD738264A689B002AEDE8 /* QRCodeCameraDelegate.swift */,
-				417FD73A264A68EF002AEDE8 /* CameraPreview.swift */,
-				417FD73C264A6934002AEDE8 /* QRCameraViewRepresentable.swift */,
+				3596620A2653DA6E003D3323 /* QRCodeScanningView.swift */,
+				3596620C2653E10C003D3323 /* QRCodeScanningViewSwiftUI.swift */,
 			);
 			path = Scanning;
 			sourceTree = "<group>";
@@ -440,23 +468,27 @@
 			files = (
 				417FD735264A6761002AEDE8 /* ScanningView.swift in Sources */,
 				419DE77226450B7600C54E69 /* ShopStamp.swift in Sources */,
-				417FD739264A689B002AEDE8 /* QRCodeCameraDelegate.swift in Sources */,
-				417FD73B264A68EF002AEDE8 /* CameraPreview.swift in Sources */,
-				41249C6C263BD5D200BF3D2C /* CustomerStampViewModel.swift in Sources */,
+				352288472650BFC500BD1DFD /* CardListViewModel.swift in Sources */,
+				41249C6C263BD5D200BF3D2C /* CardViewModel.swift in Sources */,
 				417FD732264A61E0002AEDE8 /* TabBarView.swift in Sources */,
 				4143AA782643C9B900DCC6D7 /* CustomTextField.swift in Sources */,
+				3596620B2653DA6E003D3323 /* QRCodeScanningView.swift in Sources */,
 				417912892640ACCF00BDAD3C /* Color+Custom.swift in Sources */,
+				35FB33FD264F450300CCB847 /* ReduxStore.swift in Sources */,
 				4143AA6F2643C8B200DCC6D7 /* SignUpViewModel.swift in Sources */,
 				41249C1C263BD37F00BF3D2C /* LogInView.swift in Sources */,
 				419DE7692645044A00C54E69 /* QRCodeManager.swift in Sources */,
 				41249C4D263BD47000BF3D2C /* LogInViewModule.swift in Sources */,
+				35FB3401264F470100CCB847 /* Store.swift in Sources */,
 				41A0ACAC263FE31000008542 /* RNCryptor.swift in Sources */,
 				41249C1A263BD37F00BF3D2C /* StampsApp.swift in Sources */,
+				352288452650BFAE00BD1DFD /* CardListview.swift in Sources */,
+				3596620D2653E10C003D3323 /* QRCodeScanningViewSwiftUI.swift in Sources */,
 				417912FF2640FD3600BDAD3C /* LogInAPI.swift in Sources */,
+				35FB33FF264F45FF00CCB847 /* CardData.swift in Sources */,
 				41A0AC7E263FCAED00008542 /* SignUpView.swift in Sources */,
-				41249C82263BD68C00BF3D2C /* CustomerStampView.swift in Sources */,
+				41249C82263BD68C00BF3D2C /* CardView.swift in Sources */,
 				417FD737264A6803002AEDE8 /* ScanningViewModel.swift in Sources */,
-				417FD73D264A6934002AEDE8 /* QRCameraViewRepresentable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -619,7 +651,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Stamps/Preview Content\"";
-				DEVELOPMENT_TEAM = M5S6ALGJ5D;
+				DEVELOPMENT_TEAM = 6K524MKAFK;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Stamps/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -627,7 +659,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "-.Stamps";
+				PRODUCT_BUNDLE_IDENTIFIER = "-.StampsApp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -641,7 +673,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Stamps/Preview Content\"";
-				DEVELOPMENT_TEAM = M5S6ALGJ5D;
+				DEVELOPMENT_TEAM = 6K524MKAFK;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Stamps/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -649,7 +681,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "-.Stamps";
+				PRODUCT_BUNDLE_IDENTIFIER = "-.StampsApp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -662,7 +694,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = M5S6ALGJ5D;
+				DEVELOPMENT_TEAM = 6K524MKAFK;
 				INFOPLIST_FILE = StampsTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -684,7 +716,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = M5S6ALGJ5D;
+				DEVELOPMENT_TEAM = 6K524MKAFK;
 				INFOPLIST_FILE = StampsTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -705,7 +737,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = M5S6ALGJ5D;
+				DEVELOPMENT_TEAM = 6K524MKAFK;
 				INFOPLIST_FILE = StampsUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -725,7 +757,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = M5S6ALGJ5D;
+				DEVELOPMENT_TEAM = 6K524MKAFK;
 				INFOPLIST_FILE = StampsUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
