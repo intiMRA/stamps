@@ -71,6 +71,8 @@ class LogInAPI {
                 }
                 if ss == username {
                     if isStore {
+                        let dic: NSDictionary = ["name": username]
+                        database.child("stores/\(s)").setValue(dic)
                         ReduxStore.shared.storeModel = Store()
                     } else {
                         
