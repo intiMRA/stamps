@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 import FirebaseDatabase
+import FirebaseAuth
 
 struct LogInModel {
     let userName: String
@@ -22,26 +23,16 @@ class LogInAPI {
     func login(username: String, password: String, isStore: Bool = false) -> AnyPublisher<LogInModel, Error> {
         Deferred {
             Future { [self] promise in
-                guard let s = try? encryptMessage(message: username, encryptionKey: password), let ss = try? decryptMessage(encryptedMessage: s, encryptionKey: password) else {
-                    promise(.failure(NSError(domain: "", code: 1, userInfo: nil)))
-                    return
+                Auth.auth().signIn(withEmail: "\(username)@stamps.com", password: password) { Result, error in
+                    database.child("users/\(Result!.user.uid)").observe(DataEventType.value, with: { (snapshot) in
+                                let postDict = snapshot.value as? [String : AnyObject] ?? [:]
+                                let name = postDict["name"] as! String
+                                let stores: [Store] = []
+                                let stampCards: [String: CardData] = [:]
+                                ReduxStore.shared.customerModel = customerModel(username: name, stores: stores, stampCards: stampCards)
+                                promise(.success(LogInModel(userName: username)))
+                       })
                 }
-                database.child("users").observeSingleEvent(of: .value, with: { (snapshot) in
-
-                       if snapshot.hasChild(username){
-                        _ = database.child("users").child(username).observe(DataEventType.value, with: { (snapshot) in
-                            let postDict = snapshot.value as? [String : AnyObject] ?? [:]
-                            let name = postDict["name"] as! String
-                            let stores: [Store] = []
-                            let stampCards: [String: CardData] = [:]
-                            ReduxStore.shared.customerModel = customerModel(username: name, stores: stores, stampCards: stampCards)
-                            promise(.success(LogInModel(userName: ss)))
-                        })
-
-                       }else{
-                        promise(.failure(NSError(domain: "", code: 1, userInfo: nil)))
-                       }
-                   })
             }
         }
         .eraseToAnyPublisher()
@@ -50,23 +41,21 @@ class LogInAPI {
     func signUp(username: String, password: String, isStore: Bool) -> AnyPublisher<SignUpModel, Error> {
         Deferred {
             Future { [self] promise in
-                guard let s = try? encryptMessage(message: username, encryptionKey: password), let ss = try? decryptMessage(encryptedMessage: s, encryptionKey: password) else {
-                    promise(.failure(NSError(domain: "", code: 1, userInfo: nil)))
-                    return
-                }
-                if ss == username {
-                    if isStore {
-                        let dic: NSDictionary = ["name": username]
-                        database.child("stores/\(username)").setValue(dic)
-                        ReduxStore.shared.storeModel = Store()
+                Auth.auth().createUser(withEmail: "\(username)@stamps.com", password: password) { result, error in
+                    if error == nil {
+                            if isStore {
+                                let dic: NSDictionary = ["name": username]
+                                database.child("stores/\(result!.user.uid)").setValue(dic)
+                                ReduxStore.shared.storeModel = Store()
+                            } else {
+                                let dic: NSDictionary = ["name": username]
+                                database.child("users/\(result!.user.uid)").setValue(dic)
+                                ReduxStore.shared.customerModel = customerModel(username: username)
+                            }
+                            promise(.success(SignUpModel(userName: username)))
                     } else {
-                        let dic: NSDictionary = ["name": username]
-                        database.child("users/\(username)").setValue(dic)
-                        ReduxStore.shared.customerModel = customerModel(username: username)
+                        return promise(.failure(NSError()))
                     }
-                    promise(.success(SignUpModel(userName: ss)))
-                } else {
-                    promise(.failure(NSError(domain: "", code: 1, userInfo: nil)))
                 }
             }
         }
