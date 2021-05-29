@@ -6,18 +6,62 @@
 //
 
 import Foundation
+import UIKit
+struct CustomerModel {
+    let userId: String
+    let username: String
+    let stampCards: [CardData]
+    
+    func replaceCard(_ card: CardData) -> CustomerModel {
+        guard let index = stampCards.firstIndex(where: { $0.storeId == card.storeId }) else {
+            return self
+        }
+        var cards = stampCards
+        cards[index] = card
+        
+        return CustomerModel(userId: self.userId, username: self.username, stampCards: cards)
+        
+    }
+}
 
-struct customerModel {
-    var username = ""
-    var stores = [Store]()
-    var stampCards = [String: CardData]()
+struct StoreModel {
+    let storeName: String
+    let storeId: String
+    let QRCode: UIImage
+    let products: [String] = []
+    init(storeName: String = "The Store", storeId: String = "id") {
+        self.storeName = storeName
+        self.storeId = storeId
+        self.QRCode = QRCodeManager.generateQRCode(from: storeId)
+    }
 }
 
 class ReduxStore {
-    static var shared = ReduxStore()
+    private(set) static var shared = ReduxStore()
     
-    var customerModel: customerModel?
-    var storeModel: Store?
+    var customerModel: CustomerModel?
+    let storeModel: StoreModel?
+    
+    init(customerModel: CustomerModel? = nil, storeModel: StoreModel? = nil) {
+        self.customerModel = customerModel
+        self.storeModel = storeModel
+    }
+    
+    func changeState(customerModel: CustomerModel? = nil, storeModel: StoreModel? = nil) {
+        if customerModel == nil && storeModel == nil {
+            return
+        }
+        ReduxStore.shared = ReduxStore(customerModel: customerModel ?? ReduxStore.shared.customerModel, storeModel: storeModel ?? ReduxStore.shared.storeModel)
+    }
+    
+    func addCard(_ card: CardData) {
+        guard let customerModel = self.customerModel else {
+            return
+        }
+        var cards = customerModel.stampCards
+        cards.append(card)
+        ReduxStore.shared.changeState(customerModel: CustomerModel(userId: customerModel.userId, username: customerModel.username, stampCards: cards))
+    }
     
 }
 

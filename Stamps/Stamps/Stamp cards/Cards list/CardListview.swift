@@ -20,16 +20,14 @@ struct CardListview: View {
             } else {
                 ScrollView {
                     LazyVStack(alignment: .leading) {
-                        ForEach(viewModel.storeList, id: \.storeName) { store in
-                            if let cardData = viewModel.cardData(for: store.storeName) {
-                                NavigationLink(destination: CardView(viewModel: CardViewModel(cardData: cardData))) {
-                                    HStack {
-                                        Text(store.storeName)
-                                        Spacer()
-                                        Image("Chevron")
-                                    }
-                                    .padding(.horizontal, 16)
+                        ForEach(viewModel.cardsList, id: \.storeId) { cardData in
+                            NavigationLink(destination: CardView(viewModel: CardViewModel(cardData: cardData))) {
+                                HStack {
+                                    Text(cardData.storeName)
+                                    Spacer()
+                                    Image("Chevron")
                                 }
+                                .padding(.horizontal, 16)
                             }
                         }
                         Spacer()

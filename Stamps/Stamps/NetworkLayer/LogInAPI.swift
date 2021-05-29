@@ -23,15 +23,25 @@ class LogInAPI {
     func login(username: String, password: String, isStore: Bool = false) -> AnyPublisher<LogInModel, Error> {
         Deferred {
             Future { [self] promise in
-                Auth.auth().signIn(withEmail: "\(username)@stamps.com", password: password) { Result, error in
-                    database.child("users/\(Result!.user.uid)").observe(DataEventType.value, with: { (snapshot) in
-                                let postDict = snapshot.value as? [String : AnyObject] ?? [:]
-                                let name = postDict["name"] as! String
-                                let stores: [Store] = []
-                                let stampCards: [String: CardData] = [:]
-                                ReduxStore.shared.customerModel = customerModel(username: name, stores: stores, stampCards: stampCards)
-                                promise(.success(LogInModel(userName: username)))
-                       })
+                Auth.auth().signIn(withEmail: "\(username)@stamps.com", password: password) { result, error in
+                    guard let result = result else {
+                        if let error = error {
+                            promise(.failure(error))
+                        } else {
+                            promise(.failure(NSError()))
+                        }
+                        return
+                    }
+                    database.child("users/\(result.user.uid)").observe(DataEventType.value, with: { (snapshot) in
+                        let postDict = snapshot.value as? [String : AnyObject] ?? [:]
+                        guard let name = postDict["name"] as? String else {
+                            promise(.failure(NSError()))
+                            return
+                        }
+                        let stampCards: [CardData] = []
+                        ReduxStore.shared.changeState(customerModel: CustomerModel(userId: result.user.uid, username: name, stampCards: stampCards))
+                        promise(.success(LogInModel(userName: username)))
+                    })
                 }
             }
         }
@@ -42,19 +52,27 @@ class LogInAPI {
         Deferred {
             Future { [self] promise in
                 Auth.auth().createUser(withEmail: "\(username)@stamps.com", password: password) { result, error in
+                    guard let result = result else {
+                        if let error = error {
+                            promise(.failure(error))
+                        } else {
+                            promise(.failure(NSError()))
+                        }
+                        return
+                    }
                     if error == nil {
-                            if isStore {
-                                let dic: NSDictionary = ["name": username]
-                                database.child("stores/\(result!.user.uid)").setValue(dic)
-                                ReduxStore.shared.storeModel = Store()
-                            } else {
-                                let dic: NSDictionary = ["name": username]
-                                database.child("users/\(result!.user.uid)").setValue(dic)
-                                ReduxStore.shared.customerModel = customerModel(username: username)
-                            }
-                            promise(.success(SignUpModel(userName: username)))
+                        if isStore {
+                            let dic: NSDictionary = ["name": username]
+                            database.child("stores/\(result.user.uid)").setValue(dic)
+                            ReduxStore.shared.changeState(storeModel: StoreModel(storeName: username, storeId: result.user.uid))
+                        } else {
+                            let dic: NSDictionary = ["name": username]
+                            database.child("users/\(result.user.uid)").setValue(dic)
+                            ReduxStore.shared.changeState(customerModel: CustomerModel(userId: result.user.uid, username: username, stampCards: []))
+                        }
+                        promise(.success(SignUpModel(userName: username)))
                     } else {
-                        return promise(.failure(NSError()))
+                        promise(.failure(NSError()))
                     }
                 }
             }

@@ -11,12 +11,12 @@
 		16EB5BA384F43E596D04925A /* Pods_StampsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6CA3A32C9194A3684D1D5F8 /* Pods_StampsTests.framework */; };
 		352288452650BFAE00BD1DFD /* CardListview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352288442650BFAE00BD1DFD /* CardListview.swift */; };
 		352288472650BFC500BD1DFD /* CardListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352288462650BFC500BD1DFD /* CardListViewModel.swift */; };
+		3584F9D02661AA5900146AC3 /* StampsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3584F9CF2661AA5900146AC3 /* StampsAPI.swift */; };
 		3596620B2653DA6E003D3323 /* QRCodeScanningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3596620A2653DA6E003D3323 /* QRCodeScanningView.swift */; };
 		3596620D2653E10C003D3323 /* QRCodeScanningViewSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3596620C2653E10C003D3323 /* QRCodeScanningViewSwiftUI.swift */; };
 		35CEA0FA265BB44500FFF9DE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 35CEA0F9265BB44500FFF9DE /* GoogleService-Info.plist */; };
 		35FB33FD264F450300CCB847 /* ReduxStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FB33FC264F450300CCB847 /* ReduxStore.swift */; };
 		35FB33FF264F45FF00CCB847 /* CardData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FB33FE264F45FF00CCB847 /* CardData.swift */; };
-		35FB3401264F470100CCB847 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FB3400264F470100CCB847 /* Store.swift */; };
 		41249C1A263BD37F00BF3D2C /* StampsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41249C19263BD37F00BF3D2C /* StampsApp.swift */; };
 		41249C1C263BD37F00BF3D2C /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41249C1B263BD37F00BF3D2C /* LogInView.swift */; };
 		41249C21263BD38200BF3D2C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41249C20263BD38200BF3D2C /* Preview Assets.xcassets */; };
@@ -67,12 +67,12 @@
 		23B7E3B8E7A8D1A5A92A9117 /* Pods-Stamps.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stamps.debug.xcconfig"; path = "Target Support Files/Pods-Stamps/Pods-Stamps.debug.xcconfig"; sourceTree = "<group>"; };
 		352288442650BFAE00BD1DFD /* CardListview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListview.swift; sourceTree = "<group>"; };
 		352288462650BFC500BD1DFD /* CardListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListViewModel.swift; sourceTree = "<group>"; };
+		3584F9CF2661AA5900146AC3 /* StampsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StampsAPI.swift; sourceTree = "<group>"; };
 		3596620A2653DA6E003D3323 /* QRCodeScanningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeScanningView.swift; sourceTree = "<group>"; };
 		3596620C2653E10C003D3323 /* QRCodeScanningViewSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeScanningViewSwiftUI.swift; sourceTree = "<group>"; };
 		35CEA0F9265BB44500FFF9DE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		35FB33FC264F450300CCB847 /* ReduxStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReduxStore.swift; sourceTree = "<group>"; };
 		35FB33FE264F45FF00CCB847 /* CardData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardData.swift; sourceTree = "<group>"; };
-		35FB3400264F470100CCB847 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		41249C16263BD37F00BF3D2C /* Stamps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stamps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		41249C19263BD37F00BF3D2C /* StampsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StampsApp.swift; sourceTree = "<group>"; };
 		41249C1B263BD37F00BF3D2C /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
@@ -165,7 +165,6 @@
 			children = (
 				35FB33FC264F450300CCB847 /* ReduxStore.swift */,
 				35FB33FE264F45FF00CCB847 /* CardData.swift */,
-				35FB3400264F470100CCB847 /* Store.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -309,6 +308,7 @@
 			isa = PBXGroup;
 			children = (
 				417912FE2640FD3600BDAD3C /* LogInAPI.swift */,
+				3584F9CF2661AA5900146AC3 /* StampsAPI.swift */,
 			);
 			path = NetworkLayer;
 			sourceTree = "<group>";
@@ -630,8 +630,8 @@
 				4143AA6F2643C8B200DCC6D7 /* SignUpViewModel.swift in Sources */,
 				41249C1C263BD37F00BF3D2C /* LogInView.swift in Sources */,
 				419DE7692645044A00C54E69 /* QRCodeManager.swift in Sources */,
+				3584F9D02661AA5900146AC3 /* StampsAPI.swift in Sources */,
 				41249C4D263BD47000BF3D2C /* LogInViewModule.swift in Sources */,
-				35FB3401264F470100CCB847 /* Store.swift in Sources */,
 				41A0ACAC263FE31000008542 /* RNCryptor.swift in Sources */,
 				41249C1A263BD37F00BF3D2C /* StampsApp.swift in Sources */,
 				352288452650BFAE00BD1DFD /* CardListview.swift in Sources */,

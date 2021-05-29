@@ -9,21 +9,18 @@ import Foundation
 import Combine
 
 class CardListViewModel: ObservableObject {
-    @Published var cardsList = [String: CardData]()
-    @Published var storeList = [Store]()
+    @Published var cardsList = [CardData]()
     
     init() {
-        self.cardsList = ReduxStore.shared.customerModel?.stampCards ?? [:]
-        self.storeList = ReduxStore.shared.customerModel?.stores ?? []
+        self.cardsList = ReduxStore.shared.customerModel?.stampCards ?? []
     }
     
     func cardData(for cardName: String) -> CardData? {
-        cardsList[cardName]
+        cardsList.first { $0.storeName == cardName }
     }
     
     func loadData() {
-        self.cardsList = ReduxStore.shared.customerModel?.stampCards ?? [:]
-        self.storeList = ReduxStore.shared.customerModel?.stores ?? []
+        self.cardsList = ReduxStore.shared.customerModel?.stampCards ?? []
     }
     
 }
