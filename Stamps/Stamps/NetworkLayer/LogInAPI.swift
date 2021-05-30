@@ -32,16 +32,21 @@ class LogInAPI {
                         }
                         return
                     }
-                    database.child("users/\(result.user.uid)").observe(DataEventType.value, with: { (snapshot) in
-                        let postDict = snapshot.value as? [String : AnyObject] ?? [:]
-                        guard let name = postDict["name"] as? String else {
-                            promise(.failure(NSError()))
-                            return
-                        }
-                        let stampCards: [CardData] = []
-                        ReduxStore.shared.changeState(customerModel: CustomerModel(userId: result.user.uid, username: name, stampCards: stampCards))
+                    
+                    if isStore {
                         promise(.success(LogInModel(userName: username)))
-                    })
+                    } else {
+                        database.child("users/\(result.user.uid)").observe(DataEventType.value, with: { (snapshot) in
+                            let postDict = snapshot.value as? [String : AnyObject] ?? [:]
+                            guard let name = postDict["name"] as? String else {
+                                promise(.failure(NSError()))
+                                return
+                            }
+                            let stampCards: [CardData] = []
+                            ReduxStore.shared.changeState(customerModel: CustomerModel(userId: result.user.uid, username: name, stampCards: stampCards))
+                            promise(.success(LogInModel(userName: username)))
+                        })
+                    }
                 }
             }
         }
@@ -51,7 +56,7 @@ class LogInAPI {
     func signUp(username: String, password: String, isStore: Bool) -> AnyPublisher<SignUpModel, Error> {
         Deferred {
             Future { [self] promise in
-                Auth.auth().createUser(withEmail: "\(username)@stamps.com", password: password) { result, error in
+                Auth.auth().createUser(withEmail: "\(username.replacingOccurrences(of: " ", with: "-"))@stamps.com", password: password) { result, error in
                     guard let result = result else {
                         if let error = error {
                             promise(.failure(error))
