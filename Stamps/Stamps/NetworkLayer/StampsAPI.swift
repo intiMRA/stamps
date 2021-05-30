@@ -41,4 +41,25 @@ class StampsAPI {
         ]
         database.child("users/\(customerModel.userId)/cards/\(card.storeId)").setValue(cardDict)
     }
+    
+    func fetchStoreDetails(code: String) -> AnyPublisher<StoreModel, Error> {
+        Deferred {
+            Future { promise in
+                self.database.child("stores/\(code)").observe(DataEventType.value, with: { snapshot in
+                    if let storeData = snapshot.value as? [String: AnyObject] {
+                        guard
+                            let storeName = storeData["name"] as? String
+                        else {
+                            promise(.failure(NSError()))
+                            return
+                        }
+                        promise(.success(StoreModel(storeName: storeName, storeId: code)))
+                    } else {
+                        promise(.failure(NSError()))
+                    }
+                })
+            }
+        }
+        .eraseToAnyPublisher()
+    }
 }

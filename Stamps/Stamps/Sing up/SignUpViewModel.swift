@@ -9,7 +9,8 @@ import Foundation
 import Combine
 
 class SignUpViewModel: ObservableObject {
-    @Published var username = ""
+    @Published var name = ""
+    @Published var id = ""
     @Published var password = ""
     @Published var isStore = false
     @Published var signUpSuccessfully = false
@@ -17,10 +18,10 @@ class SignUpViewModel: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     
     func signUp() {
-        guard !password.isEmpty, !username.isEmpty else {
+        guard !password.isEmpty, !name.isEmpty else {
             return
         }
-        api.signUp(username: username, password: password, isStore: isStore)
+        api.signUp(username: name, password: password, isStore: isStore)
             .sink(receiveCompletion: { completion in
                 switch completion {
                 case .finished:
@@ -28,7 +29,9 @@ class SignUpViewModel: ObservableObject {
                 case .failure(_):
                     break
                 }
-            }, receiveValue: { _ in
+            }, receiveValue: { model in
+                self.name = model.name
+                self.id = model.id
                 self.signUpSuccessfully = true
             })
             .store(in: &cancellables)

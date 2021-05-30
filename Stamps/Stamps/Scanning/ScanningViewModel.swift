@@ -11,6 +11,7 @@ import Combine
 class ScanningViewModel: ObservableObject {
     @Published var shouldScan: Bool = false
     @Published var code: String = ""
+    @Published var storeName = ""
     private var cancellables = Set<AnyCancellable>()
     private let cardApi = StampsAPI()
     
@@ -23,27 +24,34 @@ class ScanningViewModel: ObservableObject {
             .store(in: &cancellables)
     }
     
-    func fetchStoreDetails() -> StoreModel? {
-        return StoreModel(storeName: "The Store", storeId: "bTvMM0eKsth2n6GMvoawZdlLWV72")
-    }
-    
     func foundQRCode(_ code: String) {
         guard !code.isEmpty else {
             return
         }
         
-        if let card = ReduxStore.shared.customerModel?.stampCards.first(where: { $0.storeName == code }) {
-            ReduxStore.shared.changeState(customerModel: ReduxStore.shared.customerModel?.replaceCard(card.stamp()))
-            cardApi.saveCard(card)
+        if let card = ReduxStore.shared.customerModel?.stampCards.first(where: { $0.storeId == code }) {
+            self.storeName = card.storeName
+            let stampedCard = card.stamp()
+            ReduxStore.shared.changeState(customerModel: ReduxStore.shared.customerModel?.replaceCard(stampedCard))
+            cardApi.saveCard(stampedCard)
         } else {
             
-            guard let store = fetchStoreDetails() else {
-                return
-            }
-            
-            let card = CardData.newCard(storeName: store.storeName, storeId: store.storeId, listIndex: ReduxStore.shared.customerModel?.stampCards.count)
-            ReduxStore.shared.addCard(card)
-            cardApi.saveCard(card)
+            cardApi.fetchStoreDetails(code: code)
+                .receive(on: DispatchQueue.main)
+                .sink (receiveCompletion: { completion in
+                    switch completion {
+                    case .finished:
+                        break
+                    case .failure(_):
+                        break
+                    }
+                }, receiveValue: { store in
+                    self.storeName = store.storeName
+                    let card = CardData.newCard(storeName: store.storeName, storeId: store.storeId, listIndex: ReduxStore.shared.customerModel?.stampCards.count)
+                    ReduxStore.shared.addCard(card)
+                    self.cardApi.saveCard(card)
+                })
+                .store(in: &cancellables)
         }
     }
 }

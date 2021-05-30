@@ -29,7 +29,7 @@ struct StoreModel {
     let storeId: String
     let QRCode: UIImage
     let products: [String] = []
-    init(storeName: String = "The Store", storeId: String = "id") {
+    init(storeName: String, storeId: String) {
         self.storeName = storeName
         self.storeId = storeId
         self.QRCode = QRCodeManager.generateQRCode(from: storeId)

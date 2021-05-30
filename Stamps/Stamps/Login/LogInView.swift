@@ -61,7 +61,7 @@ struct LogInView: View {
                 Button("log in") {
                     viewModel.login()
                 }
-                    .foregroundColor(Color.textColor)
+                .foregroundColor(Color.textColor)
                 
             }
             .padding()
@@ -72,7 +72,7 @@ struct LogInView: View {
     @ViewBuilder
     var nextView: some View {
         if viewModel.isStore {
-            ShopStamp(username: viewModel.username)
+            ShopStamp(soreId: viewModel.username)
         } else {
             TabBarView()
         }

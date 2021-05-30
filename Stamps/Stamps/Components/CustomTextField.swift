@@ -14,7 +14,7 @@ struct CustomTextField: View {
     var editingChanged: (Bool) -> Void = { _ in }
     var commit: () -> Void = { }
     let secureEntry: Bool
-
+    
     var body: some View {
         ZStack(alignment: .leading) {
             if text.isEmpty {
@@ -37,6 +37,6 @@ struct CustomTextField: View {
         .accentColor(Color.textColor)
         .foregroundColor(Color.textColor)
         .cornerRadius(5)
-
+        
     }
 }

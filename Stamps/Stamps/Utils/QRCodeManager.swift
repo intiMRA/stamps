@@ -20,7 +20,7 @@ class QRCodeManager {
                 return UIImage(cgImage: cgiQrImage)
             }
         }
-
+        
         return UIImage()
     }
 }

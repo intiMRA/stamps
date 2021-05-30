@@ -12,17 +12,17 @@ struct ScanningView: View {
     var body: some View {
         ZStack {
             Color.customPink
-        if viewModel.shouldScan {
-            QRCodeScanningViewSwiftUI(code: $viewModel.code, shouldScan: viewModel.shouldScan)
-        } else {
-            VStack {
-                Text("Congrats you've a new stamp on your stamp for \(viewModel.code)")
+            if viewModel.shouldScan {
+                QRCodeScanningViewSwiftUI(code: $viewModel.code, shouldScan: viewModel.shouldScan)
+            } else {
+                VStack {
+                    Text("Congrats you've a new stamp on your stamp for \(viewModel.storeName)")
+                }
+                .contentShape(Rectangle())
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .onTapGesture(count: 1, perform: { viewModel.shouldScan = true })
             }
-            .contentShape(Rectangle())
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .onTapGesture(count: 1, perform: { viewModel.shouldScan = true })
         }
-    }
     }
 }
 

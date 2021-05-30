@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct ShopStamp: View {
-    let username: String
+    let soreId: String
     var body: some View {
-        Image(uiImage: QRCodeManager.generateQRCode(from: username))
+        Image(uiImage: QRCodeManager.generateQRCode(from: soreId))
             .interpolation(.none)
             .resizable()
             .frame(width: 200, height: 200, alignment: .center)
@@ -19,6 +19,6 @@ struct ShopStamp: View {
 
 struct ShopStamp_Previews: PreviewProvider {
     static var previews: some View {
-        ShopStamp(username: "that")
+        ShopStamp(soreId: "that")
     }
 }
