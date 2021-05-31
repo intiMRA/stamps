@@ -23,6 +23,7 @@ struct ScanningView: View {
                 .onTapGesture(count: 1, perform: { viewModel.shouldScan = true })
             }
         }
+        .alert(isPresented: $viewModel.shouldShowAlert, content: { Alert(title: Text("error")) })
     }
 }
 

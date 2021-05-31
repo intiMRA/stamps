@@ -12,6 +12,7 @@ class ScanningViewModel: ObservableObject {
     @Published var shouldScan: Bool = false
     @Published var code: String = ""
     @Published var storeName = ""
+    @Published var shouldShowAlert = false
     private var cancellables = Set<AnyCancellable>()
     private let cardApi = StampsAPI()
     
@@ -43,6 +44,7 @@ class ScanningViewModel: ObservableObject {
                     case .finished:
                         break
                     case .failure(_):
+                        self.shouldShowAlert = true
                         break
                     }
                 }, receiveValue: { store in
