@@ -10,7 +10,7 @@ import SwiftUI
 struct CardView: View {
     @ObservedObject private var viewModel: CardViewModel
     
-    init(viewModel: CardViewModel = CardViewModel()) {
+    init(viewModel: CardViewModel) {
         self.viewModel = viewModel
     }
     
@@ -86,6 +86,6 @@ private struct CardSlotView: View {
 
 struct SwiftUIView_Previews: PreviewProvider {
     static var previews: some View {
-        CardView()
+        CardView(viewModel: CardViewModel(cardData: CardData(storeName: "", storeId: "", listIndex: -1)))
     }
 }

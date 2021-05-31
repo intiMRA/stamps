@@ -1,0 +1,23 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'Stamps' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for Stamps
+  pod 'Firebase/Auth'
+  pod 'Firebase/Core'
+  pod 'Firebase/Database'
+  pod 'Firebase/Firestore'
+
+  target 'StampsTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'StampsUITests' do
+    # Pods for testing
+  end
+
+end

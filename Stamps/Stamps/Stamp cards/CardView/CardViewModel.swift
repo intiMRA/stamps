@@ -9,9 +9,9 @@ import Foundation
 import Combine
 
 class CardViewModel: ObservableObject {
-    @Published var stamps: CardData = CardData()
+    @Published var stamps: CardData = CardData(storeName: "", storeId: "", listIndex: -1)
     
-    init(cardData: CardData = CardData(row1: [], row2: [], row3: [], row4: [], row5: [], storeName: "The Store")) {
+    init(cardData: CardData) {
         self.stamps = cardData
     }
 }

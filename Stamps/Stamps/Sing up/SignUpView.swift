@@ -19,7 +19,7 @@ struct SignUpView: View {
                     Image("email")
                         .resizable()
                         .frame(width: 24, height: 24)
-                    CustomTextField(placeholder: Text("UserName"), text: $viewModel.username, secureEntry: false)
+                    CustomTextField(placeholder: Text("UserName"), text: $viewModel.name, secureEntry: false)
                 }
                 HStack {
                     Image("password")
@@ -37,7 +37,7 @@ struct SignUpView: View {
                 Button("Submit") {
                     viewModel.signUp()
                 }
-                    .foregroundColor(Color.textColor)
+                .foregroundColor(Color.textColor)
                 
             }
             .padding()
@@ -48,7 +48,7 @@ struct SignUpView: View {
     @ViewBuilder
     var nextView: some View {
         if viewModel.isStore {
-            ShopStamp(username: viewModel.username)
+            ShopStamp(soreId: viewModel.id)
         } else {
             TabBarView()
         }

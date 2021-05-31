@@ -7,53 +7,91 @@
 
 import Foundation
 import Combine
+import FirebaseDatabase
+import FirebaseAuth
 
 struct LogInModel {
     let userName: String
 }
 
 struct SignUpModel {
-    let userName: String
+    let name: String
+    let id: String
 }
 
+func cards(from dict: [String: AnyObject]) -> [CardData] {
+    var cards = [CardData]()
+    
+    guard let cardsDictionary = dict["cards"] as? [String: AnyObject] else {
+        return []
+    }
+    
+    cardsDictionary.forEach({ key, value in
+        guard
+            let value = value as? [String: AnyObject],
+            let storeName = value["storeName"] as? String,
+            let storeId = value["storeId"] as? String,
+            let listIndex = value["listIndex"] as? Int,
+            let lastIndex = value["lastIndex"] as? [String: AnyObject],
+            let row = lastIndex["row"] as? String,
+            let col = lastIndex["col"] as? Int,
+            let rowIndex = RowIndex(rawValue: row)
+        else {
+            return
+        }
+        
+        cards.append(CardData(row1: cardSlot(from: value, row: "row1"), row2: cardSlot(from: value, row: "row2"), row3: cardSlot(from: value, row: "row3"), row4: cardSlot(from: value, row: "row4"), row5: cardSlot(from: value, row: "row5"), storeName: storeName, storeId: storeId, listIndex: listIndex, lastIndex: (row: rowIndex, col: col)))
+    })
+    return cards
+}
+
+func cardSlot(from dict: [String: AnyObject], row: String) -> [CardSlot] {
+    guard let rowData = dict[row] as? [[String: AnyObject]]  else {
+        return []
+    }
+    
+    return rowData.compactMap { value in
+        guard
+            let isStamped = value["isStamped"] as? Bool,
+            let index = value["index"] as? String,
+            let hasIcon = value["hasIcon"] as? Bool
+        else {
+            return nil
+        }
+        return CardSlot(isStamped: isStamped, index: index, hasIcon: hasIcon)
+    }
+}
+
+
 class LogInAPI {
-    func login(username: String, password: String) -> AnyPublisher<LogInModel, Error> {
+    let database = Database.database().reference()
+    func login(username: String, password: String, isStore: Bool = false) -> AnyPublisher<LogInModel, Error> {
         Deferred {
             Future { [self] promise in
-                guard let s = try? encryptMessage(message: username, encryptionKey: password), let ss = try? decryptMessage(encryptedMessage: s, encryptionKey: password) else {
-                    promise(.failure(NSError(domain: "", code: 1, userInfo: nil)))
-                    return
-                }
-                if ss == username {
-                    let row1 = [CardSlot(isStamped: false, index: "\(RowIndex.one.rawValue)_0"),
-                                CardSlot(isStamped: false, index: "\(RowIndex.one.rawValue)_1"),
-                                CardSlot(isStamped: false, index: "\(RowIndex.one.rawValue)_2"),
-                                CardSlot(isStamped: false, index: "\(RowIndex.one.rawValue)_3", hasIcon: true)]
+                Auth.auth().signIn(withEmail: "\(username)@stamps.com", password: password) { result, error in
+                    guard let result = result else {
+                        if let error = error {
+                            promise(.failure(error))
+                        } else {
+                            promise(.failure(NSError()))
+                        }
+                        return
+                    }
                     
-                    let row2 = [CardSlot(isStamped: false, index: "\(RowIndex.two.rawValue)_0"),
-                                CardSlot(isStamped: false, index: "\(RowIndex.two.rawValue)_1"),
-                                CardSlot(isStamped: false, index: "\(RowIndex.two.rawValue)_2"),
-                                CardSlot(isStamped: false, index: "\(RowIndex.two.rawValue)_3", hasIcon: true)]
-                    
-                    let row3 = [CardSlot(isStamped: false, index: "\(RowIndex.three.rawValue)_0"),
-                                CardSlot(isStamped: false, index: "\(RowIndex.three.rawValue)_1"),
-                                CardSlot(isStamped: false, index: "\(RowIndex.three.rawValue)_2"),
-                                CardSlot(isStamped: false, index: "\(RowIndex.three.rawValue)_3", hasIcon: true)]
-                    
-                    let row4 = [CardSlot(isStamped: false, index: "\(RowIndex.four.rawValue)_0"),
-                                CardSlot(isStamped: false, index: "\(RowIndex.four.rawValue)_1"),
-                                CardSlot(isStamped: false, index: "\(RowIndex.four.rawValue)_2"),
-                                CardSlot(isStamped: false, index: "\(RowIndex.four.rawValue)_3", hasIcon: true)]
-                    
-                    let row5 = [CardSlot(isStamped: false, index: "\(RowIndex.five.rawValue)_0"),
-                                CardSlot(isStamped: false, index: "\(RowIndex.five.rawValue)_1"),
-                                CardSlot(isStamped: false, index: "\(RowIndex.five.rawValue)_2"),
-                                CardSlot(isStamped: false, index: "\(RowIndex.five.rawValue)_3", hasIcon: true)]
-                    
-                    ReduxStore.shared.customerModel = customerModel(username: username, stores: [Store()], stampCards: ["The Store": CardData(row1: row1, row2: row2, row3: row3, row4: row4, row5: row5)])
-                    promise(.success(LogInModel(userName: ss)))
-                } else {
-                    promise(.failure(NSError(domain: "", code: 1, userInfo: nil)))
+                    if isStore {
+                        promise(.success(LogInModel(userName: username)))
+                    } else {
+                        database.child("users/\(result.user.uid)").observe(DataEventType.value, with: { (snapshot) in
+                            let postDict = snapshot.value as? [String : AnyObject] ?? [:]
+                            guard let name = postDict["name"] as? String else {
+                                promise(.failure(NSError()))
+                                return
+                            }
+                            let stampCards: [CardData] = cards(from: postDict)
+                            ReduxStore.shared.changeState(customerModel: CustomerModel(userId: result.user.uid, username: name, stampCards: stampCards))
+                            promise(.success(LogInModel(userName: username)))
+                        })
+                    }
                 }
             }
         }
@@ -63,20 +101,29 @@ class LogInAPI {
     func signUp(username: String, password: String, isStore: Bool) -> AnyPublisher<SignUpModel, Error> {
         Deferred {
             Future { [self] promise in
-                guard let s = try? encryptMessage(message: username, encryptionKey: password), let ss = try? decryptMessage(encryptedMessage: s, encryptionKey: password) else {
-                    promise(.failure(NSError(domain: "", code: 1, userInfo: nil)))
-                    return
-                }
-                if ss == username {
-                    if isStore {
-                        ReduxStore.shared.storeModel = Store()
-                    } else {
-                        
-                        ReduxStore.shared.customerModel = customerModel(username: username)
+                Auth.auth().createUser(withEmail: "\(username.replacingOccurrences(of: " ", with: "-"))@stamps.com", password: password) { result, error in
+                    guard let result = result else {
+                        if let error = error {
+                            promise(.failure(error))
+                        } else {
+                            promise(.failure(NSError()))
+                        }
+                        return
                     }
-                    promise(.success(SignUpModel(userName: ss)))
-                } else {
-                    promise(.failure(NSError(domain: "", code: 1, userInfo: nil)))
+                    if error == nil {
+                        if isStore {
+                            let dic: NSDictionary = ["name": username]
+                            database.child("stores/\(result.user.uid)").setValue(dic)
+                            ReduxStore.shared.changeState(storeModel: StoreModel(storeName: username, storeId: result.user.uid))
+                        } else {
+                            let dic: NSDictionary = ["name": username]
+                            database.child("users/\(result.user.uid)").setValue(dic)
+                            ReduxStore.shared.changeState(customerModel: CustomerModel(userId: result.user.uid, username: username, stampCards: []))
+                        }
+                        promise(.success(SignUpModel(name: username, id: result.user.uid)))
+                    } else {
+                        promise(.failure(NSError()))
+                    }
                 }
             }
         }

@@ -7,16 +7,16 @@
 import SwiftUI
 
 struct QRCodeScanningViewSwiftUI: UIViewRepresentable {
-
+    
     @Binding var code: String
     let shouldScan: Bool
-
+    
     func makeUIView(context: UIViewRepresentableContext<QRCodeScanningViewSwiftUI>) -> QRCodeScanningView {
         let qrCodeView = QRCodeScanningView()
         qrCodeView.delegate = context.coordinator
         return qrCodeView
     }
-
+    
     func updateUIView(_ uiView: QRCodeScanningView, context: UIViewRepresentableContext<QRCodeScanningViewSwiftUI>) {
         if shouldScan {
             uiView.startScanning()
@@ -24,7 +24,7 @@ struct QRCodeScanningViewSwiftUI: UIViewRepresentable {
             uiView.stopScanning()
         }
     }
-
+    
     func makeCoordinator() -> QRCodeScanningViewSwiftUI.Coordinator {
         Coordinator(parent: self)
     }
@@ -32,7 +32,7 @@ struct QRCodeScanningViewSwiftUI: UIViewRepresentable {
     static func dismantleUIView(_ uiView: QRCodeScanningView, coordinator: Self.Coordinator) {
         uiView.stopScanning()
     }
-
+    
     class Coordinator: NSObject, QRCodeScanningViewDelegate {
         var parent: QRCodeScanningViewSwiftUI
         init(parent: QRCodeScanningViewSwiftUI) {
