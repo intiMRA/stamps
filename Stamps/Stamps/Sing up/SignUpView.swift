@@ -43,6 +43,15 @@ struct SignUpView: View {
             .padding()
             .navigationBarTitle("Log In", displayMode: .inline)
         }
+        .alert(isPresented: $viewModel.showAlert) {
+            Alert(
+                title: Text(viewModel.error?.title ?? ""),
+                message: Text(viewModel.error?.message ?? ""),
+                dismissButton: .cancel(Text("Ok"), action: {
+                    viewModel.error = nil
+                })
+            )
+        }
     }
     
     @ViewBuilder

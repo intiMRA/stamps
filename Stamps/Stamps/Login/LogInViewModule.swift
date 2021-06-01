@@ -11,6 +11,8 @@ class LogInViewModule: ObservableObject {
     @Published var username = ""
     @Published var password = ""
     @Published var logInSuccess = false
+    @Published var showAlert = false
+    var error: LogInError?
     var isStore = false
     private var cancellables = Set<AnyCancellable>()
     private let api = LogInAPI()
@@ -23,8 +25,9 @@ class LogInViewModule: ObservableObject {
             switch completion {
             case .finished:
                 break
-            case .failure(_):
-                self?.logInSuccess = false
+            case let .failure(error):
+                self?.showAlert = true
+                self?.error = error
             }
             
         }, receiveValue: { module in
