@@ -9,15 +9,21 @@ import Foundation
 import Combine
 
 class ScanningViewModel: ObservableObject {
+    static var invalidCharacters = CharacterSet(charactersIn: ".#$[]")
     @Published var shouldScan: Bool = false
     @Published var code: String = ""
     @Published var storeName = ""
+    @Published var shouldShowAlert = false
+    var error: ScanningError?
     private var cancellables = Set<AnyCancellable>()
     private let cardApi = StampsAPI()
     
     init() {
         $code
             .sink { code in
+                guard !code.isEmpty else {
+                    return
+                }
                 self.foundQRCode(code)
                 self.shouldScan = false
             }
@@ -25,7 +31,9 @@ class ScanningViewModel: ObservableObject {
     }
     
     func foundQRCode(_ code: String) {
-        guard !code.isEmpty else {
+        guard code.rangeOfCharacter(from: ScanningViewModel.invalidCharacters) == nil else {
+            self.error = ScanningError(title: "Invalid Code", message: "The QR code you scanned is not in our database, or a scanning error occured")
+            self.shouldShowAlert = true
             return
         }
         
@@ -35,14 +43,15 @@ class ScanningViewModel: ObservableObject {
             ReduxStore.shared.changeState(customerModel: ReduxStore.shared.customerModel?.replaceCard(stampedCard))
             cardApi.saveCard(stampedCard)
         } else {
-            
             cardApi.fetchStoreDetails(code: code)
                 .receive(on: DispatchQueue.main)
                 .sink (receiveCompletion: { completion in
                     switch completion {
                     case .finished:
                         break
-                    case .failure(_):
+                    case let .failure(error):
+                        self.error = error
+                        self.shouldShowAlert = true
                         break
                     }
                 }, receiveValue: { store in

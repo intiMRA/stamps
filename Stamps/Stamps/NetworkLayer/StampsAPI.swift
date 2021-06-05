@@ -9,7 +9,14 @@ import Foundation
 import Combine
 import FirebaseDatabase
 
+struct ScanningError: Error {
+    let title: String
+    let message: String
+}
+
 class StampsAPI {
+    static let scanningError = ScanningError(title: "Invalid Code", message: "The QR code you scanned is not in our database, or a scanning error occured")
+    
     let database = Database.database().reference()
     func saveCard(_ card: CardData) {
         guard let customerModel = ReduxStore.shared.customerModel else {
@@ -42,7 +49,7 @@ class StampsAPI {
         database.child("users/\(customerModel.userId)/cards/\(card.storeId)").setValue(cardDict)
     }
     
-    func fetchStoreDetails(code: String) -> AnyPublisher<StoreModel, Error> {
+    func fetchStoreDetails(code: String) -> AnyPublisher<StoreModel, ScanningError> {
         Deferred {
             Future { promise in
                 self.database.child("stores/\(code)").observe(DataEventType.value, with: { snapshot in
@@ -50,12 +57,12 @@ class StampsAPI {
                         guard
                             let storeName = storeData["name"] as? String
                         else {
-                            promise(.failure(NSError()))
+                            promise(.failure(StampsAPI.scanningError))
                             return
                         }
                         promise(.success(StoreModel(storeName: storeName, storeId: code)))
                     } else {
-                        promise(.failure(NSError()))
+                        promise(.failure(StampsAPI.scanningError))
                     }
                 })
             }

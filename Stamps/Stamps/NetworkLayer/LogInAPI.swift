@@ -14,6 +14,12 @@ struct LogInModel {
     let userName: String
 }
 
+struct LogInError: Error {
+    static let unkownError = LogInError(title: "Something went wrong", message: "An unknown error occured, please try again later.")
+    let title: String
+    let message: String
+}
+
 struct SignUpModel {
     let name: String
     let id: String
@@ -65,15 +71,45 @@ func cardSlot(from dict: [String: AnyObject], row: String) -> [CardSlot] {
 
 class LogInAPI {
     let database = Database.database().reference()
-    func login(username: String, password: String, isStore: Bool = false) -> AnyPublisher<LogInModel, Error> {
+    
+    func logInError(from errorCode: AuthErrorCode) -> LogInError {
+        switch errorCode {
+        case .invalidCredential:
+            return LogInError(title: "Wrong Credentials", message: "Please enter a valid username and password.")
+        case .emailAlreadyInUse:
+            return LogInError(title: "Invalid Username", message: "Please enter another username this one is already in use.")
+        case .invalidEmail:
+            return LogInError(title: "Invalid Username", message: "This username is invalid, please choose a different one.")
+        case .wrongPassword:
+            return LogInError(title: "Invalid Password", message: "Plese enter your correct password.")
+        case .userNotFound:
+            return LogInError(title: "Invalid Username", message: "There is no user with that name in our database, please enter a correct username.")
+        case .accountExistsWithDifferentCredential:
+            return LogInError(title: "Invalid Credentials", message: "Please enter a correct username and password.")
+        case .networkError:
+            return LogInError(title: "Network Error", message: "Please make sure you have an internet connection to use the app.")
+        case .credentialAlreadyInUse:
+            return LogInError(title: "Invalid Credentials", message: "Please enter your correct username and password.")
+        case .weakPassword:
+            return LogInError(title: "Invalid Password", message: "Passwords need to contain at least 1 number and need to be at least 6 characters long.")
+        case .webNetworkRequestFailed:
+            return LogInError(title: "Network Error", message: "Please make sure you have an internet connection to use the app.")
+        default:
+            return LogInError.unkownError
+        }
+    }
+    func login(username: String, password: String, isStore: Bool = false) -> AnyPublisher<LogInModel, LogInError> {
         Deferred {
             Future { [self] promise in
                 Auth.auth().signIn(withEmail: "\(username)@stamps.com", password: password) { result, error in
                     guard let result = result else {
                         if let error = error {
-                            promise(.failure(error))
+                            if let errorCode = AuthErrorCode(rawValue: error._code) {
+                                promise(.failure(logInError(from: errorCode)))
+                            }
+                            promise(.failure(LogInError.unkownError))
                         } else {
-                            promise(.failure(NSError()))
+                            promise(.failure(LogInError.unkownError))
                         }
                         return
                     }
@@ -84,7 +120,7 @@ class LogInAPI {
                         database.child("users/\(result.user.uid)").observe(DataEventType.value, with: { (snapshot) in
                             let postDict = snapshot.value as? [String : AnyObject] ?? [:]
                             guard let name = postDict["name"] as? String else {
-                                promise(.failure(NSError()))
+                                promise(.failure(LogInError.unkownError))
                                 return
                             }
                             let stampCards: [CardData] = cards(from: postDict)
@@ -98,51 +134,34 @@ class LogInAPI {
         .eraseToAnyPublisher()
     }
     
-    func signUp(username: String, password: String, isStore: Bool) -> AnyPublisher<SignUpModel, Error> {
+    func signUp(username: String, password: String, isStore: Bool) -> AnyPublisher<SignUpModel, LogInError> {
         Deferred {
             Future { [self] promise in
                 Auth.auth().createUser(withEmail: "\(username.replacingOccurrences(of: " ", with: "-"))@stamps.com", password: password) { result, error in
                     guard let result = result else {
                         if let error = error {
-                            promise(.failure(error))
+                            if let errorCode = AuthErrorCode(rawValue: error._code) {
+                                promise(.failure(logInError(from: errorCode)))
+                            }
+                            promise(.failure(LogInError.unkownError))
                         } else {
-                            promise(.failure(NSError()))
+                            promise(.failure(LogInError.unkownError))
                         }
                         return
                     }
-                    if error == nil {
-                        if isStore {
-                            let dic: NSDictionary = ["name": username]
-                            database.child("stores/\(result.user.uid)").setValue(dic)
-                            ReduxStore.shared.changeState(storeModel: StoreModel(storeName: username, storeId: result.user.uid))
-                        } else {
-                            let dic: NSDictionary = ["name": username]
-                            database.child("users/\(result.user.uid)").setValue(dic)
-                            ReduxStore.shared.changeState(customerModel: CustomerModel(userId: result.user.uid, username: username, stampCards: []))
-                        }
-                        promise(.success(SignUpModel(name: username, id: result.user.uid)))
+                    if isStore {
+                        let dic: NSDictionary = ["name": username]
+                        database.child("stores/\(result.user.uid)").setValue(dic)
+                        ReduxStore.shared.changeState(storeModel: StoreModel(storeName: username, storeId: result.user.uid))
                     } else {
-                        promise(.failure(NSError()))
+                        let dic: NSDictionary = ["name": username]
+                        database.child("users/\(result.user.uid)").setValue(dic)
+                        ReduxStore.shared.changeState(customerModel: CustomerModel(userId: result.user.uid, username: username, stampCards: []))
                     }
+                    promise(.success(SignUpModel(name: username, id: result.user.uid)))
                 }
             }
         }
         .eraseToAnyPublisher()
-    }
-    
-    
-    func encryptMessage(message: String, encryptionKey: String) throws -> String {
-        let messageData = message.data(using: .utf8)!
-        let cipherData = RNCryptor.encrypt(data: messageData, withPassword: encryptionKey)
-        return cipherData.base64EncodedString()
-    }
-    
-    func decryptMessage(encryptedMessage: String, encryptionKey: String) throws -> String {
-        
-        let encryptedData = Data.init(base64Encoded: encryptedMessage)!
-        let decryptedData = try RNCryptor.decrypt(data: encryptedData, withPassword: encryptionKey)
-        let decryptedString = String(data: decryptedData, encoding: .utf8)!
-        
-        return decryptedString
     }
 }

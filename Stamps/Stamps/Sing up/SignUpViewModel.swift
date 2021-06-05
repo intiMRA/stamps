@@ -14,6 +14,8 @@ class SignUpViewModel: ObservableObject {
     @Published var password = ""
     @Published var isStore = false
     @Published var signUpSuccessfully = false
+    @Published var showAlert = false
+    var error: LogInError?
     private let api = LogInAPI()
     private var cancellables = Set<AnyCancellable>()
     
@@ -26,8 +28,9 @@ class SignUpViewModel: ObservableObject {
                 switch completion {
                 case .finished:
                     break
-                case .failure(_):
-                    break
+                case let .failure(error):
+                    self.showAlert = true
+                    self.error = error
                 }
             }, receiveValue: { model in
                 self.name = model.name
