@@ -25,6 +25,15 @@ struct CardView: View {
                 })
             }
         }
+        .alert(isPresented: $viewModel.showAlert) {
+            Alert(
+                title: Text(viewModel.alertContent?.title ?? ""),
+                message: Text(viewModel.alertContent?.message ?? ""),
+                dismissButton: .cancel(Text("Ok"), action: {
+                    viewModel.alertContent = nil
+                })
+            )
+        }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .navigationBarTitle("Stamps", displayMode: .inline)
     }

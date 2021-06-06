@@ -132,7 +132,7 @@ struct CardData {
                     CardSlot(isStamped: false, index: "\(RowIndex.five.rawValue)_2"),
                     CardSlot(isStamped: false, index: "\(RowIndex.five.rawValue)_3", hasIcon: true)]
         
-        return CardData(row1: row1, row2: row2, row3: row3, row4: row4, row5: row5, storeName: storeName, storeId: storeId, listIndex: listIndex ?? 0)
+        return CardData(row1: row1, row2: row2, row3: row3, row4: row4, row5: row5, storeName: storeName, storeId: storeId, listIndex: listIndex ?? 0, lastIndex: (row: .one, col: 1))
     }
     
     func claim(index: String) -> CardData {
@@ -145,23 +145,23 @@ struct CardData {
         switch row {
         case .one:
             var row1 = self.row1
-            row1[row1.count - 1] = row1[row1.count - 1].stamp()
+            row1[row1.count - 1] = row1[row1.count - 1].claim()
             return CardData(row1: row1, row2: row2, row3: row3, row4: row4, row5: row5, storeName: storeName, storeId: storeId, listIndex: listIndex, lastIndex: lastIndex)
         case .two:
             var row2 = self.row2
-            row2[row2.count - 1] = row1[row2.count - 1].stamp()
+            row2[row2.count - 1] = row1[row2.count - 1].claim()
             return CardData(row1: row1, row2: row2, row3: row3, row4: row4, row5: row5, storeName: storeName, storeId: storeId, listIndex: listIndex, lastIndex: lastIndex)
         case .three:
             var row3 = self.row3
-            row3[row3.count - 1] = row3[row3.count - 1].stamp()
+            row3[row3.count - 1] = row3[row3.count - 1].claim()
             return CardData(row1: row1, row2: row2, row3: row3, row4: row4, row5: row5, storeName: storeName, storeId: storeId, listIndex: listIndex, lastIndex: lastIndex)
         case .four:
             var row4 = self.row1
-            row4[row4.count - 1] = row4[row4.count - 1].stamp()
+            row4[row4.count - 1] = row4[row4.count - 1].claim()
             return CardData(row1: row1, row2: row2, row3: row3, row4: row4, row5: row5, storeName: storeName, storeId: storeId, listIndex: listIndex, lastIndex: lastIndex)
         case .five:
             var row5 = self.row5
-            row5[row5.count - 1] = row5[row5.count - 1].stamp()
+            row5[row5.count - 1] = row5[row5.count - 1].claim()
             return CardData(row1: row1, row2: row2, row3: row3, row4: row4, row5: row5, storeName: storeName, storeId: storeId, listIndex: listIndex, lastIndex: lastIndex)
         }
     }
