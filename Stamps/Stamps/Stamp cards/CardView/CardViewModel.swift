@@ -24,7 +24,10 @@ class CardViewModel: ObservableObject {
     }
     
     func claim(_ index: String) {
-        let card = stamps.claim(index: index)
+        guard let card = stamps.claim(index: index) else {
+            return
+        }
+        
         ReduxStore.shared.changeState(customerModel: ReduxStore.shared.customerModel?.replaceCard(card))
         api.saveCard(card)
         alertContent = RewardAlertContent(title: "Reward Redeemed", message: "You redeemed a reward, please show this message to one of the emplyees of the shop.")

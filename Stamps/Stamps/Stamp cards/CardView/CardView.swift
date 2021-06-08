@@ -19,7 +19,7 @@ struct CardView: View {
             Color.customPink
             VStack {
                 Card(content: viewModel.stamps, completion: { slot in
-                    if slot.hasIcon {
+                    if slot.hasIcon, !slot.claimed {
                         viewModel.claim(slot.index)
                     }
                 })

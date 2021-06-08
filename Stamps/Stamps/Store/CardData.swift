@@ -20,12 +20,16 @@ struct CardSlot {
         self.claimed = claimed
     }
     
-    func claim() -> CardSlot {
-        CardSlot(isStamped: self.isStamped, index: self.index, hasIcon: self.hasIcon, claimed: true)
+    func claim(previousSlot: CardSlot) -> CardSlot? {
+        guard previousSlot.isStamped else {
+            return nil
+        }
+        
+        return CardSlot(isStamped: self.isStamped, index: self.index, hasIcon: self.hasIcon, claimed: true)
     }
     
     func stamp() -> CardSlot {
-        CardSlot(isStamped: true, index: self.index, hasIcon: self.hasIcon)
+        CardSlot(isStamped: true, index: self.index, hasIcon: self.hasIcon, claimed: self.claimed)
     }
 }
 
@@ -64,43 +68,43 @@ struct CardData {
         switch lastIndex.row {
         case .one:
             var row = row1
-            let prevCard = row[lastIndex.col]
-            row[lastIndex.col] = prevCard.stamp()
-            guard lastIndex.col + 1 < row.count else {
+            let slot = row[lastIndex.col]
+            row[lastIndex.col] = slot.stamp()
+            guard lastIndex.col + 2 < row.count else {
                 return CardData(row1: row, row2: row2, row3: row3, row4: row4, row5: row5, storeName: storeName, storeId: storeId, listIndex: listIndex, lastIndex: (row: .two, col: 0))
             }
             return CardData(row1: row, row2: row2, row3: row3, row4: row4, row5: row5, storeName: storeName, storeId: storeId, listIndex: listIndex, lastIndex: (row: lastIndex.row, col: lastIndex.col + 1))
         case .two:
             var row = row2
-            let prevCard = row[lastIndex.col]
-            row[lastIndex.col] = prevCard.stamp()
-            guard lastIndex.col + 1 < row.count else {
+            let slot = row[lastIndex.col]
+            row[lastIndex.col] = slot.stamp()
+            guard lastIndex.col + 2 < row.count else {
                 return CardData(row1: row1, row2: row, row3: row3, row4: row4, row5: row5, storeName: storeName, storeId: storeId, listIndex: listIndex, lastIndex: (row: .three, col: 0))
             }
             return CardData(row1: row1, row2: row, row3: row3, row4: row4, row5: row5, storeName: storeName, storeId: storeId, listIndex: listIndex, lastIndex: (row: lastIndex.row, col: lastIndex.col + 1))
         case .three:
             var row = row3
-            let prevCard = row[lastIndex.col]
-            row[lastIndex.col] = prevCard.stamp()
-            guard lastIndex.col + 1 < row.count else {
+            let slot = row[lastIndex.col]
+            row[lastIndex.col] = slot.stamp()
+            guard lastIndex.col + 2 < row.count else {
                 return CardData(row1: row1, row2: row2, row3: row, row4: row4, row5: row5, storeName: storeName, storeId: storeId, listIndex: listIndex, lastIndex: (row: .four, col: 0))
             }
             return CardData(row1: row1, row2: row2, row3: row, row4: row4, row5: row5, storeName: storeName, storeId: storeId, listIndex: listIndex, lastIndex: (row: lastIndex.row, col: lastIndex.col + 1))
         case .four:
             var row = row4
-            let prevCard = row[lastIndex.col]
-            row[lastIndex.col] = prevCard.stamp()
-            guard lastIndex.col + 1 < row.count else {
+            let slot = row[lastIndex.col]
+            row[lastIndex.col] = slot.stamp()
+            guard lastIndex.col + 2 < row.count else {
                 return CardData(row1: row1, row2: row2, row3: row3, row4: row, row5: row5, storeName: storeName, storeId: storeId, listIndex: listIndex, lastIndex: (row: .five, col: 0))
             }
             return CardData(row1: row1, row2: row2, row3: row3, row4: row, row5: row5, storeName: storeName, storeId: storeId, listIndex: listIndex, lastIndex: (row: lastIndex.row, col: lastIndex.col + 1))
         case .five:
             var row = row5
-            let prevCard = row[lastIndex.col]
-            row[lastIndex.col] = prevCard.stamp()
-            guard lastIndex.col + 1 < row.count else {
+            let slot = row[lastIndex.col]
+            row[lastIndex.col] = slot.stamp()
+            guard lastIndex.col + 2 < row.count else {
                 //TODO tell customer to claim rewards
-                return CardData(row1: row1, row2: row2, row3: row3, row4: row4, row5: row5, storeName: storeName, storeId: storeId, listIndex: listIndex, lastIndex: (row: .one, col: 0))
+                return self
             }
             return CardData(row1: row1, row2: row2, row3: row3, row4: row4, row5: row, storeName: storeName, storeId: storeId, listIndex: listIndex, lastIndex: (row: lastIndex.row, col: lastIndex.col + 1))
         }
@@ -135,7 +139,7 @@ struct CardData {
         return CardData(row1: row1, row2: row2, row3: row3, row4: row4, row5: row5, storeName: storeName, storeId: storeId, listIndex: listIndex ?? 0, lastIndex: (row: .one, col: 1))
     }
     
-    func claim(index: String) -> CardData {
+    func claim(index: String) -> CardData? {
         guard
             let row = RowIndex(rawValue: String(index.split(separator: "_")[0])),
             String(index.split(separator: "_")[1]) == String(row1.count - 1)
@@ -145,23 +149,64 @@ struct CardData {
         switch row {
         case .one:
             var row1 = self.row1
-            row1[row1.count - 1] = row1[row1.count - 1].claim()
+            guard let slot = row1[row1.count - 1].claim(previousSlot: row1[row1.count - 2]) else {
+                return nil
+            }
+            var lastIndex = self.lastIndex
+            
+            if lastIndex.row == row {
+                lastIndex = (row: .two, col: 0)
+            }
+            
+            row1[row1.count - 1] = slot.stamp()
             return CardData(row1: row1, row2: row2, row3: row3, row4: row4, row5: row5, storeName: storeName, storeId: storeId, listIndex: listIndex, lastIndex: lastIndex)
         case .two:
             var row2 = self.row2
-            row2[row2.count - 1] = row1[row2.count - 1].claim()
+            guard let slot = row2[row2.count - 1].claim(previousSlot: row2[row2.count - 2]) else {
+                return nil
+            }
+            var lastIndex = self.lastIndex
+            
+            if lastIndex.row == row {
+                lastIndex = (row: .three, col: 0)
+            }
+            
+            row2[row2.count - 1] = slot.stamp()
             return CardData(row1: row1, row2: row2, row3: row3, row4: row4, row5: row5, storeName: storeName, storeId: storeId, listIndex: listIndex, lastIndex: lastIndex)
         case .three:
             var row3 = self.row3
-            row3[row3.count - 1] = row3[row3.count - 1].claim()
+            guard let slot = row3[row3.count - 1].claim(previousSlot: row3[row3.count - 2]) else {
+                return nil
+            }
+            
+            var lastIndex = self.lastIndex
+            
+            if lastIndex.row == row {
+                lastIndex = (row: .four, col: 0)
+            }
+            
+            row3[row3.count - 1] = slot.stamp()
             return CardData(row1: row1, row2: row2, row3: row3, row4: row4, row5: row5, storeName: storeName, storeId: storeId, listIndex: listIndex, lastIndex: lastIndex)
         case .four:
-            var row4 = self.row1
-            row4[row4.count - 1] = row4[row4.count - 1].claim()
+            var row4 = self.row4
+            guard let slot = row4[row4.count - 1].claim(previousSlot: row4[row4.count - 2]) else {
+                return nil
+            }
+            
+            var lastIndex = self.lastIndex
+            
+            if lastIndex.row == row {
+                lastIndex = (row: .five, col: 0)
+            }
+            
+            row4[row4.count - 1] = slot.stamp()
             return CardData(row1: row1, row2: row2, row3: row3, row4: row4, row5: row5, storeName: storeName, storeId: storeId, listIndex: listIndex, lastIndex: lastIndex)
         case .five:
             var row5 = self.row5
-            row5[row5.count - 1] = row5[row5.count - 1].claim()
+            guard let slot = row5[row5.count - 1].claim(previousSlot: row5[row5.count - 2]) else {
+                return nil
+            }
+            row5[row5.count - 1] = slot.stamp()
             return CardData(row1: row1, row2: row2, row3: row3, row4: row4, row5: row5, storeName: storeName, storeId: storeId, listIndex: listIndex, lastIndex: lastIndex)
         }
     }
