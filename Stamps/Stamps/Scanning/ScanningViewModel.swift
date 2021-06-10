@@ -8,9 +8,14 @@
 import Foundation
 import Combine
 
+enum ScanningViewModelState: String {
+    case startScreen, scanning, showReward
+}
+
 class ScanningViewModel: ObservableObject {
     static var invalidCharacters = CharacterSet(charactersIn: ".#$[]")
-    @Published var shouldScan: Bool = false
+    var shouldScan: Bool = false
+    @Published var state: ScanningViewModelState = .startScreen
     @Published var code: String = ""
     @Published var storeName = ""
     @Published var shouldShowAlert = false
@@ -25,6 +30,7 @@ class ScanningViewModel: ObservableObject {
                     return
                 }
                 self.foundQRCode(code)
+                self.state = .showReward
                 self.shouldScan = false
             }
             .store(in: &cancellables)
