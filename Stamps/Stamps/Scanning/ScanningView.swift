@@ -16,7 +16,7 @@ struct ScanningView: View {
             switch viewModel.state {
             case .startScreen:
                 VStack {
-                    Text("Congrats you've a new stamp on your stamp for \(viewModel.storeName)")
+                    Text("Please tap to scan.")
                 }
                 .contentShape(Rectangle())
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
