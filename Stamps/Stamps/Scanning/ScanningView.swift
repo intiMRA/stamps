@@ -17,6 +17,7 @@ struct ScanningView: View {
             case .startScreen:
                 VStack {
                     Text("Please tap to scan.")
+                        .foregroundColor(Color.textColor)
                 }
                 .contentShape(Rectangle())
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -30,6 +31,7 @@ struct ScanningView: View {
             case .showReward:
                 VStack {
                     Text("Congrats you've a new stamp on your stamp for \(viewModel.storeName)")
+                        .foregroundColor(Color.textColor)
                 }
                 .contentShape(Rectangle())
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
