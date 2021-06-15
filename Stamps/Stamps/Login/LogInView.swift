@@ -37,7 +37,7 @@ struct LogInView: View {
         
     }
     
-    @ObservedObject var viewModel: LogInViewModule = LogInViewModule()
+    @StateObject var viewModel: LogInViewModel = LogInViewModel()
     var body: some View {
         ZStack {
             Color.customPink
@@ -56,6 +56,14 @@ struct LogInView: View {
                         .frame(width: 24, height: 24)
                     CustomTextField(placeholder: Text("Password"), text: $viewModel.password, secureEntry: true)
                 }
+                
+                HStack {
+                    Image("shop")
+                        .resizable()
+                        .frame(width: 24, height: 24)
+                    Toggle("sing up as a store", isOn: $viewModel.isStore)
+                }
+                
                 NavigationLink("Sign Up", destination: SignUpView())
                     .foregroundColor(Color.textColor)
                 Button("log in") {

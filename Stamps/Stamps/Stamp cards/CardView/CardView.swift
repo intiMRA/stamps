@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct CardView: View {
-    @ObservedObject private var viewModel: CardViewModel
+    @StateObject private var viewModel: CardViewModel
     
     init(viewModel: CardViewModel) {
-        self.viewModel = viewModel
+        self._viewModel = StateObject(wrappedValue: viewModel)
     }
     
     var body: some View {

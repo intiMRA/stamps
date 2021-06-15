@@ -22,7 +22,7 @@
 		41249C21263BD38200BF3D2C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41249C20263BD38200BF3D2C /* Preview Assets.xcassets */; };
 		41249C2C263BD38300BF3D2C /* StampsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41249C2B263BD38300BF3D2C /* StampsTests.swift */; };
 		41249C37263BD38300BF3D2C /* StampsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41249C36263BD38300BF3D2C /* StampsUITests.swift */; };
-		41249C4D263BD47000BF3D2C /* LogInViewModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41249C4C263BD47000BF3D2C /* LogInViewModule.swift */; };
+		41249C4D263BD47000BF3D2C /* LogInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41249C4C263BD47000BF3D2C /* LogInViewModel.swift */; };
 		41249C52263BD49000BF3D2C /* LogInUinitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41249C51263BD49000BF3D2C /* LogInUinitTests.swift */; };
 		41249C63263BD52200BF3D2C /* LogInUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41249C62263BD52200BF3D2C /* LogInUITests.swift */; };
 		41249C6C263BD5D200BF3D2C /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41249C6B263BD5D200BF3D2C /* CardViewModel.swift */; };
@@ -83,7 +83,7 @@
 		41249C32263BD38300BF3D2C /* StampsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StampsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		41249C36263BD38300BF3D2C /* StampsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StampsUITests.swift; sourceTree = "<group>"; };
 		41249C38263BD38300BF3D2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		41249C4C263BD47000BF3D2C /* LogInViewModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewModule.swift; sourceTree = "<group>"; };
+		41249C4C263BD47000BF3D2C /* LogInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewModel.swift; sourceTree = "<group>"; };
 		41249C51263BD49000BF3D2C /* LogInUinitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInUinitTests.swift; sourceTree = "<group>"; };
 		41249C62263BD52200BF3D2C /* LogInUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInUITests.swift; sourceTree = "<group>"; };
 		41249C6B263BD5D200BF3D2C /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
@@ -242,7 +242,7 @@
 			children = (
 				41249C56263BD49C00BF3D2C /* tests */,
 				41249C1B263BD37F00BF3D2C /* LogInView.swift */,
-				41249C4C263BD47000BF3D2C /* LogInViewModule.swift */,
+				41249C4C263BD47000BF3D2C /* LogInViewModel.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -620,7 +620,7 @@
 				41249C1C263BD37F00BF3D2C /* LogInView.swift in Sources */,
 				419DE7692645044A00C54E69 /* QRCodeManager.swift in Sources */,
 				3584F9D02661AA5900146AC3 /* StampsAPI.swift in Sources */,
-				41249C4D263BD47000BF3D2C /* LogInViewModule.swift in Sources */,
+				41249C4D263BD47000BF3D2C /* LogInViewModel.swift in Sources */,
 				41249C1A263BD37F00BF3D2C /* StampsApp.swift in Sources */,
 				352288452650BFAE00BD1DFD /* CardListview.swift in Sources */,
 				3596620D2653E10C003D3323 /* QRCodeScanningViewSwiftUI.swift in Sources */,

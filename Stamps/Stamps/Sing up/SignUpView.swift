@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SignUpView: View {
-    @ObservedObject private var viewModel: SignUpViewModel = SignUpViewModel()
+    @StateObject private var viewModel: SignUpViewModel = SignUpViewModel()
     var body: some View {
         ZStack {
             Color.customPink

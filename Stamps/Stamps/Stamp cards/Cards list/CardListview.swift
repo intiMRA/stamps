@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CardListview: View {
-    @ObservedObject var viewModel = CardListViewModel()
+    @StateObject var viewModel = CardListViewModel()
     var body: some View {
         ZStack {
             Color.customPink

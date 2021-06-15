@@ -7,7 +7,7 @@
 
 import SwiftUI
 struct ScanningView: View {
-    @ObservedObject var viewModel = ScanningViewModel()
+    @StateObject var viewModel = ScanningViewModel()
     
     var body: some View {
         ZStack {
