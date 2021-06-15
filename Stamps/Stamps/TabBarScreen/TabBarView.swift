@@ -8,24 +8,34 @@
 import SwiftUI
 
 struct TabBarView: View {
+    @State private var selection = 0
+    init() {
+        UITabBar.appearance().barTintColor = .background
+    }
+    
     var body: some View {
-        ZStack {
-            Color.customPink
-            TabView {
-                CardListview()
-                    .font(.system(size: 30, weight: .bold, design: .rounded))
-                    .tabItem {
-                        Image("Grid")
-                        Text("Grid")
+        TabView(selection: $selection) {
+            CardListview()
+                .tabItem {
+                    VStack {
+                        Image("List")
+                            .renderingMode(.template)
+                        Text("Your Cards")
                     }
-                
-                ScanningView()
-                    .tabItem {
+                }
+                .tag(0)
+            
+            ScanningView()
+                .tabItem {
+                    VStack {
                         Image("QR")
+                            .renderingMode(.template)
                         Text("Scan")
                     }
-            }
+                }
+                .tag(1)
         }
+        .accentColor(.textColor)
     }
 }
 

@@ -11,7 +11,7 @@ struct ScanningView: View {
     
     var body: some View {
         ZStack {
-            Color.customPink
+            Color.background
             
             switch viewModel.state {
             case .startScreen:

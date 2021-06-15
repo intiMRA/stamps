@@ -11,27 +11,22 @@ struct SignUpView: View {
     @StateObject private var viewModel: SignUpViewModel = SignUpViewModel()
     var body: some View {
         ZStack {
-            Color.customPink
+            Color.background
             VStack(spacing: 10) {
                 NavigationLink(destination: nextView, isActive: $viewModel.signUpSuccessfully) { EmptyView() }
                 
                 HStack(spacing: 10) {
-                    Image("email")
-                        .resizable()
-                        .frame(width: 24, height: 24)
+                    Icon("email")
                     CustomTextField(placeholder: Text("UserName"), text: $viewModel.name, secureEntry: false)
                 }
                 HStack {
-                    Image("password")
-                        .resizable()
-                        .frame(width: 24, height: 24)
+                    Icon("password")
                     CustomTextField(placeholder: Text("Password"), text: $viewModel.password, secureEntry: true)
                 }
                 HStack {
-                    Image("shop")
-                        .resizable()
-                        .frame(width: 24, height: 24)
+                    Icon("shop")
                     Toggle("sing up as a store", isOn: $viewModel.isStore)
+                        .toggleStyle(SwitchToggleStyle(tint: .toggle))
                 }
                 
                 Button("Submit") {
