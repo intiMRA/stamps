@@ -18,10 +18,21 @@ struct CardView: View {
         ZStack {
             Color.customPink
             VStack {
-                Card(content: viewModel.stamps, completion: { _ in
-                    
+                Card(content: viewModel.stamps, completion: { slot in
+                    if slot.hasIcon, !slot.claimed {
+                        viewModel.claim(slot.index)
+                    }
                 })
             }
+        }
+        .alert(isPresented: $viewModel.showAlert) {
+            Alert(
+                title: Text(viewModel.alertContent?.title ?? ""),
+                message: Text(viewModel.alertContent?.message ?? ""),
+                dismissButton: .cancel(Text("Ok"), action: {
+                    viewModel.alertContent = nil
+                })
+            )
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .navigationBarTitle("Stamps", displayMode: .inline)
@@ -30,7 +41,7 @@ struct CardView: View {
 
 private struct Card: View {
     let content: CardData
-    let completion: (_ index: String) -> Void
+    let completion: (_ index: CardSlot) -> Void
     var body: some View {
         ScrollView() {
             VStack(spacing: 50) {
@@ -49,7 +60,7 @@ private struct Card: View {
 }
 private struct HorizontalCardStackView: View {
     let content: [CardSlot]
-    let completion: (_ index: String) -> Void
+    let completion: (_ index: CardSlot) -> Void
     var body: some View {
         HStack(spacing: 10) {
             ForEach(content, id: \.index) { ib in
@@ -60,16 +71,16 @@ private struct HorizontalCardStackView: View {
 }
 private struct CardSlotView: View {
     let value: CardSlot
-    let completion: (_ index: String) -> Void
+    let completion: (_ index: CardSlot) -> Void
     var body: some View {
         ZStack {
             Rectangle()
                 .fill(value.isStamped ? Color.customPurple : Color.white)
                 .aspectRatio(1.0, contentMode: .fit)
                 .cornerRadius(5)
-                .onTapGesture(count: 1, perform: { completion(value.index) })
+                .onTapGesture(count: 1, perform: { completion(value) })
             if value.hasIcon {
-                if value.isStamped {
+                if value.isStamped && value.claimed {
                     Image("tick")
                         .resizable()
                         .frame(width: 40, height: 40, alignment: .center)

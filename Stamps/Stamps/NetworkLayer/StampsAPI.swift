@@ -25,15 +25,15 @@ class StampsAPI {
         
         let lastIndex: NSDictionary = ["row": card.lastIndex.row.rawValue, "col": card.lastIndex.col]
         
-        let row1: NSArray = card.row1.map { ["isStamped": $0.isStamped, "index": $0.index, "hasIcon": $0.hasIcon] } as NSArray
+        let row1: NSArray = card.row1.map { ["isStamped": $0.isStamped, "index": $0.index, "hasIcon": $0.hasIcon, "claimed": $0.claimed] } as NSArray
         
-        let row2: NSArray = card.row2.map { ["isStamped": $0.isStamped, "index": $0.index, "hasIcon": $0.hasIcon] } as NSArray
+        let row2: NSArray = card.row2.map { ["isStamped": $0.isStamped, "index": $0.index, "hasIcon": $0.hasIcon, "claimed": $0.claimed] } as NSArray
         
-        let row3: NSArray = card.row3.map { ["isStamped": $0.isStamped, "index": $0.index, "hasIcon": $0.hasIcon] } as NSArray
+        let row3: NSArray = card.row3.map { ["isStamped": $0.isStamped, "index": $0.index, "hasIcon": $0.hasIcon, "claimed": $0.claimed] } as NSArray
         
-        let row4: NSArray = card.row4.map { ["isStamped": $0.isStamped, "index": $0.index, "hasIcon": $0.hasIcon] } as NSArray
+        let row4: NSArray = card.row4.map { ["isStamped": $0.isStamped, "index": $0.index, "hasIcon": $0.hasIcon, "claimed": $0.claimed] } as NSArray
         
-        let row5: NSArray = card.row5.map { ["isStamped": $0.isStamped, "index": $0.index, "hasIcon": $0.hasIcon] } as NSArray
+        let row5: NSArray = card.row5.map { ["isStamped": $0.isStamped, "index": $0.index, "hasIcon": $0.hasIcon, "claimed": $0.claimed] } as NSArray
         
         let cardDict: NSDictionary = [
             "lastIndex": lastIndex,

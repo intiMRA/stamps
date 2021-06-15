@@ -60,11 +60,12 @@ func cardSlot(from dict: [String: AnyObject], row: String) -> [CardSlot] {
         guard
             let isStamped = value["isStamped"] as? Bool,
             let index = value["index"] as? String,
-            let hasIcon = value["hasIcon"] as? Bool
+            let hasIcon = value["hasIcon"] as? Bool,
+            let claimed = value["claimed"] as? Bool
         else {
             return nil
         }
-        return CardSlot(isStamped: isStamped, index: index, hasIcon: hasIcon)
+        return CardSlot(isStamped: isStamped, index: index, hasIcon: hasIcon, claimed: claimed)
     }
 }
 
