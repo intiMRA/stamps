@@ -7,11 +7,11 @@
 
 import SwiftUI
 struct ScanningView: View {
-    @ObservedObject var viewModel = ScanningViewModel()
+    @StateObject var viewModel = ScanningViewModel()
     
     var body: some View {
         ZStack {
-            Color.customPink
+            Color.background
             
             switch viewModel.state {
             case .startScreen:

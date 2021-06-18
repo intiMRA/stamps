@@ -102,7 +102,9 @@ class LogInAPI {
     func login(username: String, password: String, isStore: Bool = false) -> AnyPublisher<LogInModel, LogInError> {
         Deferred {
             Future { [self] promise in
-                Auth.auth().signIn(withEmail: "\(username)@stamps.com", password: password) { result, error in
+                let nameSuffix = isStore ? "@stampsStore.com" : "@stamps.com"
+                
+                Auth.auth().signIn(withEmail: "\(username)\(nameSuffix)", password: password) { result, error in
                     guard let result = result else {
                         if let error = error {
                             if let errorCode = AuthErrorCode(rawValue: error._code) {
@@ -138,7 +140,8 @@ class LogInAPI {
     func signUp(username: String, password: String, isStore: Bool) -> AnyPublisher<SignUpModel, LogInError> {
         Deferred {
             Future { [self] promise in
-                Auth.auth().createUser(withEmail: "\(username.replacingOccurrences(of: " ", with: "-"))@stamps.com", password: password) { result, error in
+                let nameSuffix = isStore ? "@stampsStore.com" : "@stamps.com"
+                Auth.auth().createUser(withEmail: "\(username.replacingOccurrences(of: " ", with: "-"))\(nameSuffix)", password: password) { result, error in
                     guard let result = result else {
                         if let error = error {
                             if let errorCode = AuthErrorCode(rawValue: error._code) {

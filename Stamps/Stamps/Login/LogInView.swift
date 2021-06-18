@@ -33,29 +33,32 @@ struct LogInView: View {
         // This property is not present on the UINavigationBarAppearance
         // object for some reason and you have to leave it til the end
         UINavigationBar.appearance().tintColor = .textColor
-        appearance.backgroundColor = .customPink
+        appearance.backgroundColor = .background
         
     }
     
-    @ObservedObject var viewModel: LogInViewModule = LogInViewModule()
+    @StateObject var viewModel: LogInViewModel = LogInViewModel()
     var body: some View {
         ZStack {
-            Color.customPink
+            Color.background
             VStack(spacing: 10) {
                 NavigationLink(destination: nextView, isActive: $viewModel.logInSuccess) { EmptyView() }
                 
                 HStack(spacing: 10) {
-                    Image("email")
-                        .resizable()
-                        .frame(width: 24, height: 24)
+                    Icon("email")
                     CustomTextField(placeholder: Text("UserName"), text: $viewModel.username, secureEntry: false)                            
                 }
                 HStack {
-                    Image("password")
-                        .resizable()
-                        .frame(width: 24, height: 24)
+                    Icon("password")
                     CustomTextField(placeholder: Text("Password"), text: $viewModel.password, secureEntry: true)
                 }
+                
+                HStack {
+                    Icon("shop")
+                    Toggle("sing up as a store", isOn: $viewModel.isStore)
+                        .toggleStyle(SwitchToggleStyle(tint: .toggle))
+                }
+                
                 NavigationLink("Sign Up", destination: SignUpView())
                     .foregroundColor(Color.textColor)
                 Button("log in") {

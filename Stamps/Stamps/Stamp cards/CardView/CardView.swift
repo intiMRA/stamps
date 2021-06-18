@@ -8,15 +8,15 @@
 import SwiftUI
 
 struct CardView: View {
-    @ObservedObject private var viewModel: CardViewModel
+    @StateObject private var viewModel: CardViewModel
     
     init(viewModel: CardViewModel) {
-        self.viewModel = viewModel
+        self._viewModel = StateObject(wrappedValue: viewModel)
     }
     
     var body: some View {
         ZStack {
-            Color.customPink
+            Color.background
             VStack {
                 Card(content: viewModel.stamps, completion: { slot in
                     if slot.hasIcon, !slot.claimed {
@@ -81,13 +81,9 @@ private struct CardSlotView: View {
                 .onTapGesture(count: 1, perform: { completion(value) })
             if value.hasIcon {
                 if value.isStamped && value.claimed {
-                    Image("tick")
-                        .resizable()
-                        .frame(width: 40, height: 40, alignment: .center)
+                    Icon("tick", size: 40)
                 } else {
-                    Image("coffee")
-                        .resizable()
-                        .frame(width: 40, height: 40, alignment: .center)
+                    Icon("coffee", size: 40)
                 }
             }
             

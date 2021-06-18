@@ -13,6 +13,18 @@ public extension Color {
         Color("Purple")
     }
     
+    static var background: Color {
+        Color("Background")
+    }
+    
+    static var icon: Color {
+        Color("IconColor")
+    }
+    
+    static var toggle: Color {
+        Color("ToggleColor")
+    }
+    
     static var customPink: Color {
         Color("Pink")
     }
@@ -33,5 +45,13 @@ extension UIColor {
     
     static var textColor: UIColor {
         UIColor(named: "TextColor") ?? .black
+    }
+    
+    static var background: UIColor {
+        UIColor(named: "Background") ?? .black
+    }
+    
+    static var icon: UIColor {
+        UIColor(named: "IconColor") ?? .black
     }
 }

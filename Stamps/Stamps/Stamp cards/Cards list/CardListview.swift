@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct CardListview: View {
-    @ObservedObject var viewModel = CardListViewModel()
+    @StateObject var viewModel = CardListViewModel()
     var body: some View {
         ZStack {
-            Color.customPink
+            Color.background
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             if viewModel.cardsList.count == 0 {
-                Text("you dont have any card yet")
+                Text("you dont have any cards yet")
                     .foregroundColor(Color.textColor)
                     .padding(.horizontal, 16)
             } else {
@@ -26,6 +26,8 @@ struct CardListview: View {
                                     Text(cardData.storeName)
                                     Spacer()
                                     Image("Chevron")
+                                        .renderingMode(.template)
+                                        .foregroundColor(.icon)
                                 }
                                 .padding(.horizontal, 16)
                             }
@@ -33,7 +35,7 @@ struct CardListview: View {
                         Spacer()
                     }
                 }
-                .background(Color.customPink)
+                .background(Color.background)
             }
         }
         .onAppear(perform: {
