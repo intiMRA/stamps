@@ -14,6 +14,7 @@ struct ShopStamp: View {
             .interpolation(.none)
             .resizable()
             .frame(width: 200, height: 200, alignment: .center)
+            .navigationBarBackButtonHidden(true)
     }
 }
 

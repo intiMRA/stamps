@@ -39,22 +39,40 @@ struct LogInView: View {
     
     @StateObject var viewModel: LogInViewModel = LogInViewModel()
     var body: some View {
+        VStack(alignment: .leading) {
+            switch viewModel.state {
+            case .loading:
+                Color.background
+                    .onAppear( perform: viewModel.logInUserAlreadySignedIn)
+            case .store:
+                ShopStamp(soreId: viewModel.username)
+            case .user:
+                TabBarView()
+            case .notLoggedIn:
+                noLoggedInView
+            }
+        }
+        .navigationBarBackButtonHidden(true)
+    }
+    
+    @ViewBuilder
+    var noLoggedInView: some View {
         ZStack {
             Color.background
             VStack(spacing: 10) {
                 NavigationLink(destination: nextView, isActive: $viewModel.logInSuccess) { EmptyView() }
                 
                 HStack(spacing: 10) {
-                    Icon("email")
-                    CustomTextField(placeholder: Text("UserName"), text: $viewModel.username, secureEntry: false)                            
+                    Icon(.email)
+                    CustomTextField(placeholder: Text("UserName"), text: $viewModel.username, secureEntry: false)
                 }
                 HStack {
-                    Icon("password")
+                    Icon(.password)
                     CustomTextField(placeholder: Text("Password"), text: $viewModel.password, secureEntry: true)
                 }
                 
                 HStack {
-                    Icon("shop")
+                    Icon(.shop)
                     Toggle("sing up as a store", isOn: $viewModel.isStore)
                         .toggleStyle(SwitchToggleStyle(tint: .toggle))
                 }

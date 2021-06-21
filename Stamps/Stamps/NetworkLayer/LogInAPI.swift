@@ -12,6 +12,7 @@ import FirebaseAuth
 
 struct LogInModel {
     let userName: String
+    let isStore: Bool
 }
 
 struct LogInError: Error {
@@ -99,11 +100,11 @@ class LogInAPI {
             return LogInError.unkownError
         }
     }
+    
     func login(username: String, password: String, isStore: Bool = false) -> AnyPublisher<LogInModel, LogInError> {
         Deferred {
             Future { [self] promise in
                 let nameSuffix = isStore ? "@stampsStore.com" : "@stamps.com"
-                
                 Auth.auth().signIn(withEmail: "\(username)\(nameSuffix)", password: password) { result, error in
                     guard let result = result else {
                         if let error = error {
@@ -118,7 +119,8 @@ class LogInAPI {
                     }
                     
                     if isStore {
-                        promise(.success(LogInModel(userName: username)))
+                        ReduxStore.shared.changeState(storeModel: StoreModel(storeName: username, storeId: result.user.uid))
+                        promise(.success(LogInModel(userName: username, isStore: true)))
                     } else {
                         database.child("users/\(result.user.uid)").observe(DataEventType.value, with: { (snapshot) in
                             let postDict = snapshot.value as? [String : AnyObject] ?? [:]
@@ -128,13 +130,49 @@ class LogInAPI {
                             }
                             let stampCards: [CardData] = cards(from: postDict)
                             ReduxStore.shared.changeState(customerModel: CustomerModel(userId: result.user.uid, username: name, stampCards: stampCards))
-                            promise(.success(LogInModel(userName: username)))
+                            promise(.success(LogInModel(userName: username, isStore: false)))
                         })
                     }
                 }
             }
         }
         .eraseToAnyPublisher()
+    }
+    
+    func logInUserAlreadySignedIn() -> AnyPublisher<LogInModel, LogInError> {
+        Deferred {
+            Future { [self] promise in
+                
+                guard let currentUser = Auth.auth().currentUser else {
+                    promise(.failure(LogInError.unkownError))
+                    return
+                }
+                
+                let splitUserEmail = currentUser.email?.split(separator: "@")
+                guard let subString = splitUserEmail?[0] else {
+                    promise(.failure(LogInError.unkownError))
+                    return
+                }
+                let username = String(subString)
+                
+                let isStore = splitUserEmail?[1] == "@stampsStore.com"
+                if isStore {
+                    ReduxStore.shared.changeState(storeModel: StoreModel(storeName: username, storeId: currentUser.uid))
+                    promise(.success(LogInModel(userName: username, isStore: true)))
+                } else {
+                    database.child("users/\(currentUser.uid)").observe(DataEventType.value, with: { (snapshot) in
+                        let postDict = snapshot.value as? [String : AnyObject] ?? [:]
+                        guard let name = postDict["name"] as? String else {
+                            promise(.failure(LogInError.unkownError))
+                            return
+                        }
+                        let stampCards: [CardData] = cards(from: postDict)
+                        ReduxStore.shared.changeState(customerModel: CustomerModel(userId: currentUser.uid, username: name, stampCards: stampCards))
+                        promise(.success(LogInModel(userName: username, isStore: false)))
+                    })
+                }
+        }
+    }.eraseToAnyPublisher()
     }
     
     func signUp(username: String, password: String, isStore: Bool) -> AnyPublisher<SignUpModel, LogInError> {
