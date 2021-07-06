@@ -45,11 +45,9 @@ private struct Card: View {
     var body: some View {
         ScrollView() {
             VStack(spacing: 50) {
-                HorizontalCardStackView(content: content.row1, completion: completion)
-                HorizontalCardStackView(content: content.row2, completion: completion)
-                HorizontalCardStackView(content: content.row3, completion: completion)
-                HorizontalCardStackView(content: content.row4, completion: completion)
-                HorizontalCardStackView(content: content.row5, completion: completion)
+                ForEach(0 ..< content.card.count, id: \.self) { index in
+                    HorizontalCardStackView(content: content.card[index], completion: completion)
+                }
             }
             .padding(.all, 10)
         }

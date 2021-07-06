@@ -40,23 +40,29 @@ func cards(from dict: [String: AnyObject]) -> [CardData] {
             let storeId = value["storeId"] as? String,
             let listIndex = value["listIndex"] as? Int,
             let lastIndex = value["lastIndex"] as? [String: AnyObject],
-            let row = lastIndex["row"] as? String,
+            let rowIndex = lastIndex["row"] as? Int,
             let col = lastIndex["col"] as? Int,
-            let rowIndex = RowIndex(rawValue: row)
+            let numberOfRows = value["numberOfRows"] as? Int,
+            let numberOfColums = value["numberOfColums"] as? Int,
+            let stampsAfter = value["stampsAfter"] as? Int,
+            let cardDictionary = value["card"] as? [[[String: AnyObject]]]
         else {
             return
         }
         
-        cards.append(CardData(row1: cardSlot(from: value, row: "row1"), row2: cardSlot(from: value, row: "row2"), row3: cardSlot(from: value, row: "row3"), row4: cardSlot(from: value, row: "row4"), row5: cardSlot(from: value, row: "row5"), storeName: storeName, storeId: storeId, listIndex: listIndex, lastIndex: (row: rowIndex, col: col)))
+        var cardsSlots = [[CardSlot]]()
+        
+        cardDictionary.forEach { data in
+            cardsSlots.append(cardSlot(from: value, rowData: data))
+        }
+        
+        cards.append(CardData(card: cardsSlots, storeName: storeName, storeId: storeId, listIndex: listIndex, nextToStamp: (row: rowIndex, col: col)))
     })
     return cards
 }
 
-func cardSlot(from dict: [String: AnyObject], row: String) -> [CardSlot] {
-    guard let rowData = dict[row] as? [[String: AnyObject]]  else {
-        return []
-    }
-    
+func cardSlot(from dict: [String: AnyObject], rowData: [[String: AnyObject]]) -> [CardSlot] {
+
     return rowData.compactMap { value in
         guard
             let isStamped = value["isStamped"] as? Bool,
