@@ -16,15 +16,15 @@ struct SignUpView: View {
                 NavigationLink(destination: nextView, isActive: $viewModel.signUpSuccessfully) { EmptyView() }
                 
                 HStack(spacing: 10) {
-                    Icon("email")
+                    Icon(.email)
                     CustomTextField(placeholder: Text("UserName"), text: $viewModel.name, secureEntry: false)
                 }
                 HStack {
-                    Icon("password")
+                    Icon(.password)
                     CustomTextField(placeholder: Text("Password"), text: $viewModel.password, secureEntry: true)
                 }
                 HStack {
-                    Icon("shop")
+                    Icon(.shop)
                     Toggle("sing up as a store", isOn: $viewModel.isStore)
                         .toggleStyle(SwitchToggleStyle(tint: .toggle))
                 }

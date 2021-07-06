@@ -18,7 +18,7 @@ struct TabBarView: View {
             CardListview()
                 .tabItem {
                     VStack {
-                        Image("List")
+                        Image(iconName: .list)
                             .renderingMode(.template)
                         Text("Your Cards")
                     }
@@ -28,13 +28,24 @@ struct TabBarView: View {
             ScanningView()
                 .tabItem {
                     VStack {
-                        Image("QR")
+                        Image(iconName: .qrCode)
                             .renderingMode(.template)
                         Text("Scan")
                     }
                 }
                 .tag(1)
+            
+            SettingsView()
+                .tabItem {
+                    VStack {
+                        Image(iconName: .settings)
+                            .renderingMode(.template)
+                        Text("Settings")
+                    }
+                }
+                .tag(2)
         }
+        .navigationBarBackButtonHidden(true)
         .accentColor(.textColor)
     }
 }

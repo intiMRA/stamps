@@ -7,12 +7,17 @@
 
 import Foundation
 import Combine
+enum LogInType: String {
+    case loading, store, user, notLoggedIn
+}
+
 class LogInViewModel: ObservableObject {
     @Published var username = ""
     @Published var password = ""
     @Published var logInSuccess = false
     @Published var showAlert = false
     @Published var isStore = false
+    @Published var state: LogInType = .loading
     var error: LogInError?
     private var cancellables = Set<AnyCancellable>()
     private let api = LogInAPI()
@@ -21,7 +26,9 @@ class LogInViewModel: ObservableObject {
         guard !password.isEmpty, !username.isEmpty else {
             return
         }
-        api.login(username: username, password: password, isStore: isStore).sink (receiveCompletion: { [weak self] completion in
+        api.login(username: username, password: password, isStore: isStore)
+            .receive(on: DispatchQueue.main)
+            .sink (receiveCompletion: { [weak self] completion in
             switch completion {
             case .finished:
                 break
@@ -30,11 +37,33 @@ class LogInViewModel: ObservableObject {
                 self?.error = error
             }
             
-        }, receiveValue: { module in
-            if module.userName == self.username {
+        }, receiveValue: { model in
+            if model.userName == self.username {
                 self.logInSuccess = true
             }
         })
         .store(in: &cancellables)
+    }
+    
+    func logInUserAlreadySignedIn() {
+        api.logInUserAlreadySignedIn()
+            .receive(on: DispatchQueue.main)
+            .sink (receiveCompletion: { [weak self] completion in
+                switch completion {
+                case .finished:
+                    break
+                case _:
+                    self?.state = .notLoggedIn
+                }
+                
+            }, receiveValue: { model in
+                if model.isStore {
+                    self.state = .store
+                    self.username = model.userName
+                } else {
+                    self.state = .user
+                }
+            })
+            .store(in: &cancellables)
     }
 }

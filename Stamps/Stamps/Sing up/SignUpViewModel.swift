@@ -24,6 +24,7 @@ class SignUpViewModel: ObservableObject {
             return
         }
         api.signUp(username: name, password: password, isStore: isStore)
+            .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
                 switch completion {
                 case .finished:

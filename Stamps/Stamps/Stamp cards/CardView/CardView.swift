@@ -81,9 +81,9 @@ private struct CardSlotView: View {
                 .onTapGesture(count: 1, perform: { completion(value) })
             if value.hasIcon {
                 if value.isStamped && value.claimed {
-                    Icon("tick", size: 40)
+                    Icon(.tick, size: 40)
                 } else {
-                    Icon("coffee", size: 40)
+                    Icon(.coffee, size: 40)
                 }
             }
             
