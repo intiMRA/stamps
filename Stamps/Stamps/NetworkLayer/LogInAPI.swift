@@ -32,14 +32,16 @@ func cards(from dict: [String: AnyObject]) -> [CardData] {
     guard let cardsDictionary = dict["cards"] as? [String: AnyObject] else {
         return []
     }
-    
+    cardsDictionary.forEach { (key: String, value: AnyObject) in
+        
+    }
     cardsDictionary.forEach({ key, value in
         guard
             let value = value as? [String: AnyObject],
             let storeName = value["storeName"] as? String,
             let storeId = value["storeId"] as? String,
             let listIndex = value["listIndex"] as? Int,
-            let lastIndex = value["lastIndex"] as? [String: AnyObject],
+            let lastIndex = value["nextToStamp"] as? [String: AnyObject],
             let rowIndex = lastIndex["row"] as? Int,
             let col = lastIndex["col"] as? Int,
             let numberOfRows = value["numberOfRows"] as? Int,
@@ -56,7 +58,7 @@ func cards(from dict: [String: AnyObject]) -> [CardData] {
             cardsSlots.append(cardSlot(from: value, rowData: data))
         }
         
-        cards.append(CardData(card: cardsSlots, storeName: storeName, storeId: storeId, listIndex: listIndex, nextToStamp: (row: rowIndex, col: col)))
+        cards.append(CardData(card: cardsSlots, storeName: storeName, storeId: storeId, listIndex: listIndex, nextToStamp: (row: rowIndex, col: col), numberOfRows: numberOfRows, numberOfColums: numberOfColums, stampsAfter: stampsAfter))
     })
     return cards
 }
@@ -148,7 +150,6 @@ class LogInAPI {
     func logInUserAlreadySignedIn() -> AnyPublisher<LogInModel, LogInError> {
         Deferred {
             Future { [self] promise in
-                
                 guard let currentUser = Auth.auth().currentUser else {
                     promise(.failure(LogInError.unkownError))
                     return
@@ -161,10 +162,19 @@ class LogInAPI {
                 }
                 let username = String(subString)
                 
-                let isStore = splitUserEmail?[1] == "@stampsStore.com"
+                let isStore = splitUserEmail?[1] == "stampsstore.com"
+                guard ReduxStore.shared.customerModel == nil else {
+                    if isStore {
+                        promise(.success(LogInModel(userName: currentUser.uid, isStore: true)))
+                    } else {
+                        promise(.success(LogInModel(userName: username, isStore: false)))
+                    }
+                    return
+                }
+                
                 if isStore {
                     ReduxStore.shared.changeState(storeModel: StoreModel(storeName: username, storeId: currentUser.uid))
-                    promise(.success(LogInModel(userName: username, isStore: true)))
+                    promise(.success(LogInModel(userName: currentUser.uid, isStore: true)))
                 } else {
                     database.child("users/\(currentUser.uid)").observe(DataEventType.value, with: { (snapshot) in
                         let postDict = snapshot.value as? [String : AnyObject] ?? [:]
@@ -173,7 +183,9 @@ class LogInAPI {
                             return
                         }
                         let stampCards: [CardData] = cards(from: postDict)
-                        ReduxStore.shared.changeState(customerModel: CustomerModel(userId: currentUser.uid, username: name, stampCards: stampCards))
+                        if ReduxStore.shared.customerModel == nil {
+                            ReduxStore.shared.changeState(customerModel: CustomerModel(userId: currentUser.uid, username: name, stampCards: stampCards))
+                        }
                         promise(.success(LogInModel(userName: username, isStore: false)))
                     })
                 }

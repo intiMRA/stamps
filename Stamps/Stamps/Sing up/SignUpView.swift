@@ -52,9 +52,9 @@ struct SignUpView: View {
     @ViewBuilder
     var nextView: some View {
         if viewModel.isStore {
-            ShopStamp(soreId: viewModel.id)
+            ShopStamp(storeId: viewModel.id)
         } else {
-            TabBarView()
+            UserTabView()
         }
     }
 }

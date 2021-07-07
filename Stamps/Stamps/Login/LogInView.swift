@@ -43,11 +43,10 @@ struct LogInView: View {
             switch viewModel.state {
             case .loading:
                 Color.background
-                    .onAppear( perform: viewModel.logInUserAlreadySignedIn)
             case .store:
-                ShopStamp(soreId: viewModel.username)
+                ShopStamp(storeId: viewModel.username)
             case .user:
-                TabBarView()
+                UserTabView()
             case .notLoggedIn:
                 noLoggedInView
             }
@@ -102,9 +101,9 @@ struct LogInView: View {
     @ViewBuilder
     var nextView: some View {
         if viewModel.isStore {
-            ShopStamp(soreId: viewModel.username)
+            ShopStamp(storeId: viewModel.username)
         } else {
-            TabBarView()
+            UserTabView()
         }
     }
 }

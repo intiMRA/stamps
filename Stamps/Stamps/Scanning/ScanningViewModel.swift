@@ -25,6 +25,7 @@ class ScanningViewModel: ObservableObject {
     
     init() {
         $code
+            .dropFirst()
             .receive(on: DispatchQueue.main)
             .sink { code in
                 guard !code.isEmpty else {

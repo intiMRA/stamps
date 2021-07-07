@@ -39,7 +39,7 @@
 		417912842640A7F500BDAD3C /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 417912832640A7F500BDAD3C /* Color.xcassets */; };
 		417912892640ACCF00BDAD3C /* Color+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417912882640ACCF00BDAD3C /* Color+Custom.swift */; };
 		417912FF2640FD3600BDAD3C /* LogInAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417912FE2640FD3600BDAD3C /* LogInAPI.swift */; };
-		417FD732264A61E0002AEDE8 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417FD731264A61E0002AEDE8 /* TabBarView.swift */; };
+		417FD732264A61E0002AEDE8 /* UserTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417FD731264A61E0002AEDE8 /* UserTabView.swift */; };
 		417FD735264A6761002AEDE8 /* ScanningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417FD734264A6761002AEDE8 /* ScanningView.swift */; };
 		417FD737264A6803002AEDE8 /* ScanningViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417FD736264A6803002AEDE8 /* ScanningViewModel.swift */; };
 		419DE7692645044A00C54E69 /* QRCodeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419DE7682645044A00C54E69 /* QRCodeManager.swift */; };
@@ -104,7 +104,7 @@
 		417912832640A7F500BDAD3C /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
 		417912882640ACCF00BDAD3C /* Color+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Custom.swift"; sourceTree = "<group>"; };
 		417912FE2640FD3600BDAD3C /* LogInAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInAPI.swift; sourceTree = "<group>"; };
-		417FD731264A61E0002AEDE8 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
+		417FD731264A61E0002AEDE8 /* UserTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTabView.swift; sourceTree = "<group>"; };
 		417FD734264A6761002AEDE8 /* ScanningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanningView.swift; sourceTree = "<group>"; };
 		417FD736264A6803002AEDE8 /* ScanningViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanningViewModel.swift; sourceTree = "<group>"; };
 		419DE7682645044A00C54E69 /* QRCodeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeManager.swift; sourceTree = "<group>"; };
@@ -333,7 +333,7 @@
 		417FD730264A61BF002AEDE8 /* TabBarScreen */ = {
 			isa = PBXGroup;
 			children = (
-				417FD731264A61E0002AEDE8 /* TabBarView.swift */,
+				417FD731264A61E0002AEDE8 /* UserTabView.swift */,
 			);
 			path = TabBarScreen;
 			sourceTree = "<group>";
@@ -633,7 +633,7 @@
 				352288472650BFC500BD1DFD /* CardListViewModel.swift in Sources */,
 				41249C6C263BD5D200BF3D2C /* CardViewModel.swift in Sources */,
 				35874BF62678897000B58D4C /* Icon.swift in Sources */,
-				417FD732264A61E0002AEDE8 /* TabBarView.swift in Sources */,
+				417FD732264A61E0002AEDE8 /* UserTabView.swift in Sources */,
 				4143AA782643C9B900DCC6D7 /* CustomTextField.swift in Sources */,
 				3596620B2653DA6E003D3323 /* QRCodeScanningView.swift in Sources */,
 				417912892640ACCF00BDAD3C /* Color+Custom.swift in Sources */,

@@ -84,7 +84,7 @@ struct CardData {
         }
         
         guard nextToStamp.col + 2 < row.count else {
-            return CardData(card: newCard, storeName: storeName, storeId: storeId, listIndex: listIndex, nextToStamp: (row: nextToStamp.col + 1, col: 0))
+            return CardData(card: newCard, storeName: storeName, storeId: storeId, listIndex: listIndex, nextToStamp: (row: nextToStamp.row + 1, col: 0))
         }
         return CardData(card: newCard, storeName: storeName, storeId: storeId, listIndex: listIndex, nextToStamp: (row: nextToStamp.row, col: nextToStamp.col + 1))
     }
@@ -93,14 +93,17 @@ struct CardData {
         var newCard = [[CardSlot]]()
         var amountCreated = 0
         for row in 0 ..< numberOfRows {
+            newCard.append([])
             for col in 0 ..< numberOfColums {
                 if row == 0, col == 0 {
-                    newCard[row][col] = CardSlot(isStamped: firstStamp, index: "\(row)_\(col)")
-                } else if amountCreated == stampsAfter {
-                    newCard[row][col] = CardSlot(isStamped: false, index: "\(row)_\(col)", hasIcon: true)
+                    newCard[row].append(CardSlot(isStamped: firstStamp, index: "\(row)_\(col)"))
                     amountCreated += 1
+                } else if amountCreated == stampsAfter - 1 {
+                    newCard[row].append(CardSlot(isStamped: false, index: "\(row)_\(col)", hasIcon: true))
+                    amountCreated = 0
                 } else {
-                    newCard[row][col] = CardSlot(isStamped: false, index: "\(row)_\(col)")
+                    newCard[row].append(CardSlot(isStamped: false, index: "\(row)_\(col)"))
+                    amountCreated += 1
                 }
             }
         }
