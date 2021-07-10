@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 struct CardSlot {
     let isStamped: Bool
     let index: String
@@ -62,7 +61,7 @@ struct CardData {
         self.stampsAfter = stampsAfter
     }
     
-    func stamp() -> CardData {
+    func stamp() -> CardData? {
         guard nextToStamp.row < card.count else {
             //should never happen
             return self
@@ -76,9 +75,9 @@ struct CardData {
         
         guard nextToStamp.row < card.count - 1 else {
 
-            guard nextToStamp.col + 2 < row.count else {
-                //TODO tell customer to claim rewards
-                return self
+            guard nextToStamp.col + 1 < row.count else {
+                //Tell customer to claim rewards
+                return nil
             }
             return CardData(card: newCard, storeName: storeName, storeId: storeId, listIndex: listIndex, nextToStamp: (row: nextToStamp.row, col: nextToStamp.col + 1))
         }
@@ -89,14 +88,14 @@ struct CardData {
         return CardData(card: newCard, storeName: storeName, storeId: storeId, listIndex: listIndex, nextToStamp: (row: nextToStamp.row, col: nextToStamp.col + 1))
     }
     
-    static func newCard(storeName: String, storeId: String, listIndex: Int?, firstStamp: Bool = true, numberOfRows: Int = 5, numberOfColums: Int = 4, stampsAfter: Int = 4) -> CardData {
+    static func newCard(storeName: String, storeId: String, listIndex: Int?, firstIsStamped: Bool = true, numberOfRows: Int = 5, numberOfColums: Int = 4, stampsAfter: Int = 4) -> CardData {
         var newCard = [[CardSlot]]()
         var amountCreated = 0
         for row in 0 ..< numberOfRows {
             newCard.append([])
             for col in 0 ..< numberOfColums {
                 if row == 0, col == 0 {
-                    newCard[row].append(CardSlot(isStamped: firstStamp, index: "\(row)_\(col)"))
+                    newCard[row].append(CardSlot(isStamped: firstIsStamped, index: "\(row)_\(col)"))
                     amountCreated += 1
                 } else if amountCreated == stampsAfter - 1 {
                     newCard[row].append(CardSlot(isStamped: false, index: "\(row)_\(col)", hasIcon: true))
@@ -108,7 +107,7 @@ struct CardData {
             }
         }
         
-        return CardData(card: newCard, storeName: storeName, storeId: storeId, listIndex: listIndex ?? 0, nextToStamp: (row: 0, col: 1))
+        return CardData(card: newCard, storeName: storeName, storeId: storeId, listIndex: listIndex ?? 0, nextToStamp: (row: 0, col: firstIsStamped ? 1 : 0))
     }
     
     func claim(index: String) -> CardData? {
@@ -122,7 +121,7 @@ struct CardData {
         
         guard rowIndex < card.count - 1 else {
             var newCard = card
-            guard var row = self.card.last, let slot = row[row.count - 1].claim(previousSlot: row[row.count - 2]) else {
+            guard var row = self.card.last, let slot = row.last?.claim(previousSlot: row[row.count - 2]) else {
                 return nil
             }
             row[row.count - 1] = slot.stamp()
@@ -142,6 +141,11 @@ struct CardData {
         
         row[row.count - 1] = slot.stamp()
         newCard[rowIndex] = row
+        
         return CardData(card: newCard, storeName: storeName, storeId: storeId, listIndex: listIndex, nextToStamp: nextToStamp)
+    }
+    
+    func allSlotsAreClaimed() -> Bool {
+        self.card.first(where: { $0.last?.claimed == false }) == nil
     }
 }

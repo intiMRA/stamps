@@ -30,11 +30,13 @@ struct CardView: View {
                 title: Text(viewModel.alertContent?.title ?? ""),
                 message: Text(viewModel.alertContent?.message ?? ""),
                 dismissButton: .cancel(Text("Ok"), action: {
+                    viewModel.alertContent?.handler()
                     viewModel.alertContent = nil
                 })
             )
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .animation( viewModel.showLinearAnimation ? .linear(duration: 0.25) : .easeInOut(duration: 0.25))
         .navigationBarTitle("Stamps", displayMode: .inline)
     }
 }
