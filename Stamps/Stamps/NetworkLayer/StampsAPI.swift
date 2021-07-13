@@ -23,28 +23,19 @@ class StampsAPI {
             return
         }
         
-        let lastIndex: NSDictionary = ["row": card.lastIndex.row.rawValue, "col": card.lastIndex.col]
+        let nextToStamp: NSDictionary = ["row": card.nextToStamp.row, "col": card.nextToStamp.col]
         
-        let row1: NSArray = card.row1.map { ["isStamped": $0.isStamped, "index": $0.index, "hasIcon": $0.hasIcon, "claimed": $0.claimed] } as NSArray
-        
-        let row2: NSArray = card.row2.map { ["isStamped": $0.isStamped, "index": $0.index, "hasIcon": $0.hasIcon, "claimed": $0.claimed] } as NSArray
-        
-        let row3: NSArray = card.row3.map { ["isStamped": $0.isStamped, "index": $0.index, "hasIcon": $0.hasIcon, "claimed": $0.claimed] } as NSArray
-        
-        let row4: NSArray = card.row4.map { ["isStamped": $0.isStamped, "index": $0.index, "hasIcon": $0.hasIcon, "claimed": $0.claimed] } as NSArray
-        
-        let row5: NSArray = card.row5.map { ["isStamped": $0.isStamped, "index": $0.index, "hasIcon": $0.hasIcon, "claimed": $0.claimed] } as NSArray
+        let cardToSave: NSArray = card.card.map { $0.map { ["isStamped": $0.isStamped, "index": $0.index, "hasIcon": $0.hasIcon, "claimed": $0.claimed] } } as NSArray
         
         let cardDict: NSDictionary = [
-            "lastIndex": lastIndex,
+            "nextToStamp": nextToStamp,
             "listIndex": card.listIndex,
             "storeId": card.storeId,
             "storeName": card.storeName,
-            "row1": row1,
-            "row2": row2,
-            "row3": row3,
-            "row4": row4,
-            "row5": row5
+            "numberOfRows": card.numberOfRows,
+            "numberOfColums": card.numberOfColums,
+            "stampsAfter": card.stampsAfter,
+            "card": cardToSave
         ]
         database.child("users/\(customerModel.userId)/cards/\(card.storeId)").setValue(cardDict)
     }

@@ -22,6 +22,10 @@ class LogInViewModel: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     private let api = LogInAPI()
     
+    init() {
+        logInUserAlreadySignedIn()
+    }
+    
     func login() {
         guard !password.isEmpty, !username.isEmpty else {
             return

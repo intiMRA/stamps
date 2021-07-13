@@ -25,6 +25,7 @@ class ScanningViewModel: ObservableObject {
     
     init() {
         $code
+            .dropFirst()
             .receive(on: DispatchQueue.main)
             .sink { code in
                 guard !code.isEmpty else {
@@ -46,7 +47,12 @@ class ScanningViewModel: ObservableObject {
         
         if let card = ReduxStore.shared.customerModel?.stampCards.first(where: { $0.storeId == code }) {
             self.storeName = card.storeName
-            let stampedCard = card.stamp()
+            
+            guard let stampedCard = card.stamp() else {
+                self.error = ScanningError(title: "Maximum Number Of Stamps", message: "This card has no more slots to be stamped, please claim your rewards")
+                self.shouldShowAlert = true
+                return
+            }
             ReduxStore.shared.changeState(customerModel: ReduxStore.shared.customerModel?.replaceCard(stampedCard))
             cardApi.saveCard(stampedCard)
         } else {

@@ -8,18 +8,42 @@
 import SwiftUI
 
 struct ShopStamp: View {
-    let soreId: String
+    let storeId: String
+    @State private var selection = 0
+    init(storeId: String) {
+        self.storeId = storeId
+        UITabBar.appearance().barTintColor = .background
+    }
     var body: some View {
-        Image(uiImage: QRCodeManager.generateQRCode(from: soreId))
-            .interpolation(.none)
-            .resizable()
-            .frame(width: 200, height: 200, alignment: .center)
-            .navigationBarBackButtonHidden(true)
+        TabView(selection: $selection) {
+            Image(uiImage: QRCodeManager.generateQRCode(from: storeId))
+                .interpolation(.none)
+                .resizable()
+                .frame(width: 200, height: 200, alignment: .center)
+                .tabItem {
+                    Image(iconName: .qrCode)
+                        .renderingMode(.template)
+                    Text("Your Cards")
+                }
+                .tag(0)
+            
+            SettingsView()
+                .tabItem {
+                    VStack {
+                        Image(iconName: .settings)
+                            .renderingMode(.template)
+                        Text("Settings")
+                    }
+                }
+                .tag(1)
+        }
+        .navigationBarBackButtonHidden(true)
+        .accentColor(.textColor)
     }
 }
 
 struct ShopStamp_Previews: PreviewProvider {
     static var previews: some View {
-        ShopStamp(soreId: "that")
+        ShopStamp(storeId: "that")
     }
 }

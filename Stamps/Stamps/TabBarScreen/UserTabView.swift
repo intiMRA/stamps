@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TabBarView: View {
+struct UserTabView: View {
     @State private var selection = 0
     init() {
         UITabBar.appearance().barTintColor = .background
@@ -52,6 +52,6 @@ struct TabBarView: View {
 
 struct TabBarView_Previews: PreviewProvider {
     static var previews: some View {
-        TabBarView()
+        UserTabView()
     }
 }
