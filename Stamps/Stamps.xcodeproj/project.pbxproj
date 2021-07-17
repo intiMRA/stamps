@@ -15,6 +15,8 @@
 		352288452650BFAE00BD1DFD /* CardListview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352288442650BFAE00BD1DFD /* CardListview.swift */; };
 		352288472650BFC500BD1DFD /* CardListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352288462650BFC500BD1DFD /* CardListViewModel.swift */; };
 		357AAA6A26A2577E00C403D7 /* SignUpUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357AAA6926A2577E00C403D7 /* SignUpUnitTests.swift */; };
+		3583DD3A26A281A1008D0A6C /* ReduxStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3583DD3926A281A1008D0A6C /* ReduxStoreTests.swift */; };
+		3583DD3C26A2894E008D0A6C /* CardDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3583DD3B26A2894E008D0A6C /* CardDataTests.swift */; };
 		3584F9D02661AA5900146AC3 /* StampsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3584F9CF2661AA5900146AC3 /* StampsAPI.swift */; };
 		35874BF62678897000B58D4C /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35874BF52678897000B58D4C /* Icon.swift */; };
 		3596620B2653DA6E003D3323 /* QRCodeScanningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3596620A2653DA6E003D3323 /* QRCodeScanningView.swift */; };
@@ -75,6 +77,8 @@
 		352288442650BFAE00BD1DFD /* CardListview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListview.swift; sourceTree = "<group>"; };
 		352288462650BFC500BD1DFD /* CardListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListViewModel.swift; sourceTree = "<group>"; };
 		357AAA6926A2577E00C403D7 /* SignUpUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpUnitTests.swift; sourceTree = "<group>"; };
+		3583DD3926A281A1008D0A6C /* ReduxStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReduxStoreTests.swift; sourceTree = "<group>"; };
+		3583DD3B26A2894E008D0A6C /* CardDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDataTests.swift; sourceTree = "<group>"; };
 		3584F9CF2661AA5900146AC3 /* StampsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StampsAPI.swift; sourceTree = "<group>"; };
 		35874BF52678897000B58D4C /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
 		3596620A2653DA6E003D3323 /* QRCodeScanningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeScanningView.swift; sourceTree = "<group>"; };
@@ -185,9 +189,19 @@
 			path = tests;
 			sourceTree = "<group>";
 		};
+		3583DD3826A2814E008D0A6C /* tests */ = {
+			isa = PBXGroup;
+			children = (
+				3583DD3926A281A1008D0A6C /* ReduxStoreTests.swift */,
+				3583DD3B26A2894E008D0A6C /* CardDataTests.swift */,
+			);
+			path = tests;
+			sourceTree = "<group>";
+		};
 		35FB33FB264F44ED00CCB847 /* Store */ = {
 			isa = PBXGroup;
 			children = (
+				3583DD3826A2814E008D0A6C /* tests */,
 				35FB33FC264F450300CCB847 /* ReduxStore.swift */,
 				35FB33FE264F45FF00CCB847 /* CardData.swift */,
 			);
@@ -673,6 +687,8 @@
 			files = (
 				41249C7A263BD63500BF3D2C /* CustomerStampUnittests.swift in Sources */,
 				41249C2C263BD38300BF3D2C /* StampsTests.swift in Sources */,
+				3583DD3A26A281A1008D0A6C /* ReduxStoreTests.swift in Sources */,
+				3583DD3C26A2894E008D0A6C /* CardDataTests.swift in Sources */,
 				357AAA6A26A2577E00C403D7 /* SignUpUnitTests.swift in Sources */,
 				41249C52263BD49000BF3D2C /* LogInUinitTests.swift in Sources */,
 			);

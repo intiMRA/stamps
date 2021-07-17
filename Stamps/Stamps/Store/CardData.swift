@@ -32,7 +32,8 @@ struct CardSlot {
     }
 }
 
-struct CardData {
+struct CardData: Equatable {
+    
     let card: [[CardSlot]]
     let nextToStamp: (row: Int, col: Int)
     let storeName: String
@@ -147,5 +148,9 @@ struct CardData {
     
     func allSlotsAreClaimed() -> Bool {
         self.card.first(where: { $0.last?.claimed == false }) == nil
+    }
+    
+    static func == (lhs: CardData, rhs: CardData) -> Bool {
+        lhs.storeId == rhs.storeId
     }
 }
