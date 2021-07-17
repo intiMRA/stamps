@@ -34,6 +34,83 @@ class LogInUinitTests: XCTestCase {
         
         waitForExpectations(timeout: 10)
     }
+    
+    func testLogInShouldFail() {
+        let api = MockLogInAPI()
+        api.error = .internalError
+        let viewModel = LogInViewModel(api: api)
+        
+        viewModel.isStore = false
+        viewModel.username = "pete"
+        viewModel.password = "password"
+        
+        viewModel.login()
+        var expectation: XCTestExpectation? = self.expectation(description: "wating for log in")
+        
+        viewModel.$showAlert
+            .dropFirst()
+            .sink { showAlert in
+                if showAlert {
+                    expectation?.fulfill()
+                    expectation = nil
+                }
+            }
+            .store(in: &cancellables)
+        
+        waitForExpectations(timeout: 10)
+        XCTAssertEqual(viewModel.error?.title, LogInAPI.logInError(from: .internalError).title)
+        XCTAssertEqual(viewModel.error?.message, LogInAPI.logInError(from: .internalError).message)
+    }
+    
+    func testLogInAsStoreSucessfully() {
+        let viewModel = LogInViewModel(api: MockLogInAPI())
+        
+        viewModel.isStore = true
+        viewModel.username = "pete"
+        viewModel.password = "password"
+        
+        viewModel.login()
+        var expectation: XCTestExpectation? = self.expectation(description: "wating for log in")
+        
+        viewModel.$logInSuccess
+            .dropFirst()
+            .sink { success in
+                if success {
+                    expectation?.fulfill()
+                    expectation = nil
+                }
+            }
+            .store(in: &cancellables)
+        
+        waitForExpectations(timeout: 10)
+    }
+    
+    func testLogInAsStoreShouldFail() {
+        let api = MockLogInAPI()
+        api.error = .internalError
+        let viewModel = LogInViewModel(api: api)
+        
+        viewModel.isStore = true
+        viewModel.username = "pete"
+        viewModel.password = "password"
+        
+        viewModel.login()
+        var expectation: XCTestExpectation? = self.expectation(description: "wating for log in")
+        
+        viewModel.$showAlert
+            .dropFirst()
+            .sink { showAlert in
+                if showAlert {
+                    expectation?.fulfill()
+                    expectation = nil
+                }
+            }
+            .store(in: &cancellables)
+        
+        waitForExpectations(timeout: 10)
+        XCTAssertEqual(viewModel.error?.title, LogInAPI.logInError(from: .internalError).title)
+        XCTAssertEqual(viewModel.error?.message, LogInAPI.logInError(from: .internalError).message)
+    }
 
 }
 
