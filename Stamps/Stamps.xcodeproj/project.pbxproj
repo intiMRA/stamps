@@ -15,6 +15,8 @@
 		352288452650BFAE00BD1DFD /* CardListview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352288442650BFAE00BD1DFD /* CardListview.swift */; };
 		352288472650BFC500BD1DFD /* CardListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352288462650BFC500BD1DFD /* CardListViewModel.swift */; };
 		357AAA6A26A2577E00C403D7 /* SignUpUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357AAA6926A2577E00C403D7 /* SignUpUnitTests.swift */; };
+		3581BEDA26A589F200DED9FD /* CardCustomisationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3581BED926A589F200DED9FD /* CardCustomisationView.swift */; };
+		3581BEDC26A58A1400DED9FD /* CardCustomisationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3581BEDB26A58A1400DED9FD /* CardCustomisationViewModel.swift */; };
 		3583DD3A26A281A1008D0A6C /* ReduxStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3583DD3926A281A1008D0A6C /* ReduxStoreTests.swift */; };
 		3583DD3C26A2894E008D0A6C /* CardDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3583DD3B26A2894E008D0A6C /* CardDataTests.swift */; };
 		3584F9D02661AA5900146AC3 /* StampsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3584F9CF2661AA5900146AC3 /* StampsAPI.swift */; };
@@ -77,6 +79,8 @@
 		352288442650BFAE00BD1DFD /* CardListview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListview.swift; sourceTree = "<group>"; };
 		352288462650BFC500BD1DFD /* CardListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListViewModel.swift; sourceTree = "<group>"; };
 		357AAA6926A2577E00C403D7 /* SignUpUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpUnitTests.swift; sourceTree = "<group>"; };
+		3581BED926A589F200DED9FD /* CardCustomisationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCustomisationView.swift; sourceTree = "<group>"; };
+		3581BEDB26A58A1400DED9FD /* CardCustomisationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCustomisationViewModel.swift; sourceTree = "<group>"; };
 		3583DD3926A281A1008D0A6C /* ReduxStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReduxStoreTests.swift; sourceTree = "<group>"; };
 		3583DD3B26A2894E008D0A6C /* CardDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDataTests.swift; sourceTree = "<group>"; };
 		3584F9CF2661AA5900146AC3 /* StampsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StampsAPI.swift; sourceTree = "<group>"; };
@@ -189,6 +193,15 @@
 			path = tests;
 			sourceTree = "<group>";
 		};
+		3581BED826A589B600DED9FD /* card cutomisation */ = {
+			isa = PBXGroup;
+			children = (
+				3581BED926A589F200DED9FD /* CardCustomisationView.swift */,
+				3581BEDB26A58A1400DED9FD /* CardCustomisationViewModel.swift */,
+			);
+			path = "card cutomisation";
+			sourceTree = "<group>";
+		};
 		3583DD3826A2814E008D0A6C /* tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -233,6 +246,7 @@
 		41249C18263BD37F00BF3D2C /* Stamps */ = {
 			isa = PBXGroup;
 			children = (
+				3581BED826A589B600DED9FD /* card cutomisation */,
 				351CA580268080CD006ABAC2 /* Settings */,
 				35FB33FB264F44ED00CCB847 /* Store */,
 				417FD733264A672A002AEDE8 /* Scanning */,
@@ -662,10 +676,12 @@
 				4143AA782643C9B900DCC6D7 /* CustomTextField.swift in Sources */,
 				3596620B2653DA6E003D3323 /* QRCodeScanningView.swift in Sources */,
 				417912892640ACCF00BDAD3C /* Color+Custom.swift in Sources */,
+				3581BEDC26A58A1400DED9FD /* CardCustomisationViewModel.swift in Sources */,
 				35FB33FD264F450300CCB847 /* ReduxStore.swift in Sources */,
 				4143AA6F2643C8B200DCC6D7 /* SignUpViewModel.swift in Sources */,
 				41249C1C263BD37F00BF3D2C /* LogInView.swift in Sources */,
 				419DE7692645044A00C54E69 /* QRCodeManager.swift in Sources */,
+				3581BEDA26A589F200DED9FD /* CardCustomisationView.swift in Sources */,
 				351CA57D26807C31006ABAC2 /* SettingsViewModel.swift in Sources */,
 				3584F9D02661AA5900146AC3 /* StampsAPI.swift in Sources */,
 				41249C4D263BD47000BF3D2C /* LogInViewModel.swift in Sources */,

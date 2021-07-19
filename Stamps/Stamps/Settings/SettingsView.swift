@@ -23,6 +23,18 @@ struct SettingsView: View {
                     EmptyView()
                 }
                 .transition(.slide)
+                
+                HStack {
+                    Icon(.logout)
+                    Text("Lol")
+                }
+                .contentShape(Rectangle())
+                .onTapGesture(count: 1, perform: {viewModel.showCardCustomisation = true})
+                NavigationLink(destination: CardCustomisationView(), isActive: $viewModel.showCardCustomisation) {
+                    EmptyView()
+                }
+                .transition(.slide)
+                
                 Spacer()
             }
             .padding(.horizontal, 16)

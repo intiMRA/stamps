@@ -16,16 +16,19 @@ struct ShopStamp: View {
     }
     var body: some View {
         TabView(selection: $selection) {
-            Image(uiImage: QRCodeManager.generateQRCode(from: storeId))
-                .interpolation(.none)
-                .resizable()
-                .frame(width: 200, height: 200, alignment: .center)
-                .tabItem {
-                    Image(iconName: .qrCode)
-                        .renderingMode(.template)
-                    Text("Your Cards")
-                }
-                .tag(0)
+            ZStack {
+                Color.background
+                Image(uiImage: QRCodeManager.generateQRCode(from: storeId))
+                    .interpolation(.none)
+                    .resizable()
+                    .frame(width: 200, height: 200, alignment: .center)
+            }
+            .tabItem {
+                Image(iconName: .qrCode)
+                    .renderingMode(.template)
+                Text("Your Cards")
+            }
+            .tag(0)
             
             SettingsView()
                 .tabItem {

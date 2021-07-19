@@ -9,8 +9,9 @@ import Foundation
 import Combine
 
 class SettingsViewModel: ObservableObject {
-    @Published var isLoggedOut: Bool = false
-    @Published var shouldShowAlert: Bool = false
+    @Published var isLoggedOut = false
+    @Published var shouldShowAlert = false
+    @Published var showCardCustomisation = false
     private var cancellables = Set<AnyCancellable>()
     let api = LogOutApi()
     

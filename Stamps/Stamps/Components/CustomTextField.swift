@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct CustomTextField: View {
-    var placeholder: Text
+    var placeholder: String
     @Binding var text: String
     var editingChanged: (Bool) -> Void = { _ in }
     var commit: () -> Void = { }
@@ -18,7 +18,7 @@ struct CustomTextField: View {
     var body: some View {
         ZStack(alignment: .leading) {
             if text.isEmpty {
-                placeholder
+                Text(placeholder)
                     .padding(.leading, 10)
                     .foregroundColor(Color.textColor)
                     .opacity(0.7)

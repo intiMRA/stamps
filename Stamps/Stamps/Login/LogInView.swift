@@ -63,11 +63,11 @@ struct LogInView: View {
                 
                 HStack(spacing: 10) {
                     Icon(.email)
-                    CustomTextField(placeholder: Text("UserName"), text: $viewModel.username, secureEntry: false)
+                    CustomTextField(placeholder: "UserName", text: $viewModel.username, secureEntry: false)
                 }
                 HStack {
                     Icon(.password)
-                    CustomTextField(placeholder: Text("Password"), text: $viewModel.password, secureEntry: true)
+                    CustomTextField(placeholder: "Password", text: $viewModel.password, secureEntry: true)
                 }
                 
                 HStack {
