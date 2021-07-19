@@ -16,8 +16,12 @@ class SignUpViewModel: ObservableObject {
     @Published var signUpSuccessfully = false
     @Published var showAlert = false
     var error: LogInError?
-    private let api = LogInAPI()
+    private let api: LogInAPIProtocol
     private var cancellables = Set<AnyCancellable>()
+    
+    init(api: LogInAPIProtocol = LogInAPI()) {
+        self.api = api
+    }
     
     func signUp() {
         guard !password.isEmpty, !name.isEmpty else {

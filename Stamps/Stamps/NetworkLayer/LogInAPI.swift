@@ -10,6 +10,12 @@ import Combine
 import FirebaseDatabase
 import FirebaseAuth
 
+protocol LogInAPIProtocol: AnyObject {
+    func login(username: String, password: String, isStore: Bool) -> AnyPublisher<LogInModel, LogInError>
+    func logInUserAlreadySignedIn() -> AnyPublisher<LogInModel, LogInError>
+    func signUp(username: String, password: String, isStore: Bool) -> AnyPublisher<SignUpModel, LogInError>
+}
+
 struct LogInModel {
     let userName: String
     let isStore: Bool
@@ -79,10 +85,10 @@ func cardSlot(from dict: [String: AnyObject], rowData: [[String: AnyObject]]) ->
 }
 
 
-class LogInAPI {
+class LogInAPI: LogInAPIProtocol {
     let database = Database.database().reference()
     
-    func logInError(from errorCode: AuthErrorCode) -> LogInError {
+    static func logInError(from errorCode: AuthErrorCode) -> LogInError {
         switch errorCode {
         case .invalidCredential:
             return LogInError(title: "Wrong Credentials", message: "Please enter a valid username and password.")
@@ -117,7 +123,7 @@ class LogInAPI {
                     guard let result = result else {
                         if let error = error {
                             if let errorCode = AuthErrorCode(rawValue: error._code) {
-                                promise(.failure(logInError(from: errorCode)))
+                                promise(.failure(LogInAPI.logInError(from: errorCode)))
                             }
                             promise(.failure(LogInError.unkownError))
                         } else {
@@ -201,7 +207,7 @@ class LogInAPI {
                     guard let result = result else {
                         if let error = error {
                             if let errorCode = AuthErrorCode(rawValue: error._code) {
-                                promise(.failure(logInError(from: errorCode)))
+                                promise(.failure(LogInAPI.logInError(from: errorCode)))
                             }
                             promise(.failure(LogInError.unkownError))
                         } else {

@@ -7,7 +7,8 @@
 
 import Foundation
 import UIKit
-struct CustomerModel {
+struct CustomerModel: Equatable {
+    
     let userId: String
     let username: String
     let stampCards: [CardData]
@@ -22,9 +23,13 @@ struct CustomerModel {
         return CustomerModel(userId: self.userId, username: self.username, stampCards: cards)
         
     }
+    
+    static func == (lhs: CustomerModel, rhs: CustomerModel) -> Bool {
+        lhs.userId == rhs.userId
+    }
 }
 
-struct StoreModel {
+struct StoreModel: Equatable {
     let storeName: String
     let storeId: String
     let QRCode: UIImage
@@ -33,6 +38,10 @@ struct StoreModel {
         self.storeName = storeName
         self.storeId = storeId
         self.QRCode = QRCodeManager.generateQRCode(from: storeId)
+    }
+    
+    static func == (lhs: StoreModel, rhs: StoreModel) -> Bool {
+        lhs.storeId == rhs.storeId
     }
 }
 

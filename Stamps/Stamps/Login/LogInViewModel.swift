@@ -20,9 +20,10 @@ class LogInViewModel: ObservableObject {
     @Published var state: LogInType = .loading
     var error: LogInError?
     private var cancellables = Set<AnyCancellable>()
-    private let api = LogInAPI()
+    private let api: LogInAPIProtocol
     
-    init() {
+    init(api: LogInAPIProtocol = LogInAPI()) {
+        self.api = api
         logInUserAlreadySignedIn()
     }
     
