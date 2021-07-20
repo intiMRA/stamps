@@ -15,14 +15,15 @@ struct RewardAlertContent {
 }
 
 class CardViewModel: ObservableObject {
-    let api = StampsAPI()
+    let api: StampsAPI?
     var alertContent: RewardAlertContent?
     var showLinearAnimation = true
     @Published var showAlert = false
     @Published var stamps: CardData = CardData(storeName: "", storeId: "", listIndex: -1)
     
-    init(cardData: CardData) {
+    init(cardData: CardData, api: StampsAPI? = StampsAPI()) {
         self.stamps = cardData
+        self.api = api
     }
     
     func claim(_ index: String) {
@@ -38,13 +39,13 @@ class CardViewModel: ObservableObject {
                     self.showLinearAnimation = false
                     self.stamps = CardData.newCard(storeName: card.storeName, storeId: card.storeId, listIndex: card.listIndex, firstIsStamped: false)
                     ReduxStore.shared.changeState(customerModel: ReduxStore.shared.customerModel?.replaceCard(self.stamps))
-                    self.api.saveCard(self.stamps)
+                    self.api?.saveCard(self.stamps)
                 }
             } else {
                 self.showLinearAnimation = true
                 self.stamps = card
                 ReduxStore.shared.changeState(customerModel: ReduxStore.shared.customerModel?.replaceCard(card))
-                self.api.saveCard(card)
+                self.api?.saveCard(card)
             }
         })
         showAlert = true
