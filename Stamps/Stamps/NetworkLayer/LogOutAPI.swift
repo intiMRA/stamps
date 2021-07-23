@@ -1,5 +1,5 @@
 //
-//  LogOutApi.swift
+//  LogOutAPI.swift
 //  Stamps
 //
 //  Created by Inti Albuquerque on 21/06/21.
@@ -12,7 +12,7 @@ import Combine
 import FirebaseDatabase
 import FirebaseAuth
 
-class LogOutApi {
+class LogOutAPI {
     
     func logout() -> AnyPublisher<Void, LogInError> {
         Deferred {

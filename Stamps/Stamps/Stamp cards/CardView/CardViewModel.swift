@@ -16,14 +16,18 @@ struct RewardAlertContent {
 
 class CardViewModel: ObservableObject {
     let api: StampsAPI?
+    let cardCustomizationAPI: CardCustomizationAPI?
     var alertContent: RewardAlertContent?
     var showLinearAnimation = true
+    var showSubmitButton: Bool
     @Published var showAlert = false
     @Published var stamps: CardData = CardData(storeName: "", storeId: "", listIndex: -1)
     
-    init(cardData: CardData, api: StampsAPI? = StampsAPI()) {
+    init(cardData: CardData, api: StampsAPI? = StampsAPI(), showSubmitButton: Bool = false, cardCustomizationAPI: CardCustomizationAPI? = CardCustomizationAPI()) {
         self.stamps = cardData
         self.api = api
+        self.showSubmitButton = showSubmitButton
+        self.cardCustomizationAPI = cardCustomizationAPI
     }
     
     func claim(_ index: String) {
@@ -49,5 +53,9 @@ class CardViewModel: ObservableObject {
             }
         })
         showAlert = true
+    }
+    
+    func submit() {
+        cardCustomizationAPI?.uploadNewCardDetails(numberOfRows: stamps.numberOfRows, numberOfColumns: stamps.numberOfColums, numberBeforeReward: stamps.numberOfStampsBeforeReward, storeId: stamps.storeId)
     }
 }

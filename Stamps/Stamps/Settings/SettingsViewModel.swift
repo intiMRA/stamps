@@ -13,7 +13,7 @@ class SettingsViewModel: ObservableObject {
     @Published var shouldShowAlert = false
     @Published var showCardCustomisation = false
     private var cancellables = Set<AnyCancellable>()
-    let api = LogOutApi()
+    let api = LogOutAPI()
     
     @objc
     func logOut() {

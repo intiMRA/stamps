@@ -41,7 +41,7 @@ struct CardData: Equatable {
     let listIndex: Int
     let numberOfRows: Int
     let numberOfColums: Int
-    let stampsAfter: Int
+    let numberOfStampsBeforeReward: Int
     
     init(
         card: [[CardSlot]] = [[]],
@@ -59,7 +59,7 @@ struct CardData: Equatable {
         self.storeId = storeId
         self.numberOfRows = numberOfRows
         self.numberOfColums = numberOfColums
-        self.stampsAfter = stampsAfter
+        self.numberOfStampsBeforeReward = stampsAfter
     }
     
     func stamp() -> CardData? {

@@ -21,7 +21,7 @@ struct CardCustomisationView: View {
                 
                 Text("Nuber of stamps required before reward")
                 CustomTextField(placeholder: viewModel.rewardsAfterNumber, text: $viewModel.rewardsAfterNumber, keyboardType: .numberPad)
-                NavigationLink("preview", destination: CardView(viewModel: CardViewModel(cardData: CardData.newCard(storeName: "store", storeId: "id", listIndex: 0, firstIsStamped: false, numberOfRows: viewModel.numberOfRowsInt, numberOfColums: viewModel.numberOfColsInt, stampsAfter: viewModel.rewardsAfterNumberInt), api: nil)))
+                NavigationLink("preview", destination: CardView(viewModel: CardViewModel(cardData: CardData.newCard(storeName: "store", storeId: "id", listIndex: 0, firstIsStamped: false, numberOfRows: viewModel.numberOfRowsInt, numberOfColums: viewModel.numberOfColsInt, stampsAfter: viewModel.rewardsAfterNumberInt), showSubmitButton: true)))
             }
             .padding(.horizontal, 16)
         }

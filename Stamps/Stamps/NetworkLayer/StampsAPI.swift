@@ -34,7 +34,7 @@ class StampsAPI {
             "storeName": card.storeName,
             "numberOfRows": card.numberOfRows,
             "numberOfColums": card.numberOfColums,
-            "stampsAfter": card.stampsAfter,
+            "stampsAfter": card.numberOfStampsBeforeReward,
             "card": cardToSave
         ]
         database.child("users/\(customerModel.userId)/cards/\(card.storeId)").setValue(cardDict)

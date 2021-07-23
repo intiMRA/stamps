@@ -23,6 +23,12 @@ struct CardView: View {
                         viewModel.claim(slot.index)
                     }
                 })
+                if viewModel.showSubmitButton {
+                    Button("Submit") {
+                        viewModel.submit()
+                    }
+                    .padding()
+                }
             }
         }
         .alert(isPresented: $viewModel.showAlert) {

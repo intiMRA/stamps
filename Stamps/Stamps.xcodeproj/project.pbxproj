@@ -10,7 +10,7 @@
 		10C064E4137D08C52D67744C /* Pods_Stamps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A714EF59D30C4CA807F11F8 /* Pods_Stamps.framework */; };
 		16EB5BA384F43E596D04925A /* Pods_StampsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6CA3A32C9194A3684D1D5F8 /* Pods_StampsTests.framework */; };
 		351CA57D26807C31006ABAC2 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351CA57C26807C31006ABAC2 /* SettingsViewModel.swift */; };
-		351CA57F26807CBE006ABAC2 /* LogOutApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351CA57E26807CBE006ABAC2 /* LogOutApi.swift */; };
+		351CA57F26807CBE006ABAC2 /* LogOutAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351CA57E26807CBE006ABAC2 /* LogOutAPI.swift */; };
 		351CA582268080EB006ABAC2 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351CA581268080EB006ABAC2 /* SettingsView.swift */; };
 		352288452650BFAE00BD1DFD /* CardListview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352288442650BFAE00BD1DFD /* CardListview.swift */; };
 		352288472650BFC500BD1DFD /* CardListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352288462650BFC500BD1DFD /* CardListViewModel.swift */; };
@@ -19,6 +19,7 @@
 		3581BEDC26A58A1400DED9FD /* CardCustomisationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3581BEDB26A58A1400DED9FD /* CardCustomisationViewModel.swift */; };
 		3583DD3A26A281A1008D0A6C /* ReduxStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3583DD3926A281A1008D0A6C /* ReduxStoreTests.swift */; };
 		3583DD3C26A2894E008D0A6C /* CardDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3583DD3B26A2894E008D0A6C /* CardDataTests.swift */; };
+		3583E9A926AAAEA900CB93E5 /* CardCustomizationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3583E9A826AAAEA900CB93E5 /* CardCustomizationAPI.swift */; };
 		3584F9D02661AA5900146AC3 /* StampsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3584F9CF2661AA5900146AC3 /* StampsAPI.swift */; };
 		35874BF62678897000B58D4C /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35874BF52678897000B58D4C /* Icon.swift */; };
 		3596620B2653DA6E003D3323 /* QRCodeScanningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3596620A2653DA6E003D3323 /* QRCodeScanningView.swift */; };
@@ -74,7 +75,7 @@
 		1D93B3D6E709BA086EE693DB /* Pods-Stamps-StampsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stamps-StampsUITests.debug.xcconfig"; path = "Target Support Files/Pods-Stamps-StampsUITests/Pods-Stamps-StampsUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		23B7E3B8E7A8D1A5A92A9117 /* Pods-Stamps.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stamps.debug.xcconfig"; path = "Target Support Files/Pods-Stamps/Pods-Stamps.debug.xcconfig"; sourceTree = "<group>"; };
 		351CA57C26807C31006ABAC2 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
-		351CA57E26807CBE006ABAC2 /* LogOutApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogOutApi.swift; sourceTree = "<group>"; };
+		351CA57E26807CBE006ABAC2 /* LogOutAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogOutAPI.swift; sourceTree = "<group>"; };
 		351CA581268080EB006ABAC2 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		352288442650BFAE00BD1DFD /* CardListview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListview.swift; sourceTree = "<group>"; };
 		352288462650BFC500BD1DFD /* CardListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListViewModel.swift; sourceTree = "<group>"; };
@@ -83,6 +84,7 @@
 		3581BEDB26A58A1400DED9FD /* CardCustomisationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCustomisationViewModel.swift; sourceTree = "<group>"; };
 		3583DD3926A281A1008D0A6C /* ReduxStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReduxStoreTests.swift; sourceTree = "<group>"; };
 		3583DD3B26A2894E008D0A6C /* CardDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDataTests.swift; sourceTree = "<group>"; };
+		3583E9A826AAAEA900CB93E5 /* CardCustomizationAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCustomizationAPI.swift; sourceTree = "<group>"; };
 		3584F9CF2661AA5900146AC3 /* StampsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StampsAPI.swift; sourceTree = "<group>"; };
 		35874BF52678897000B58D4C /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
 		3596620A2653DA6E003D3323 /* QRCodeScanningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeScanningView.swift; sourceTree = "<group>"; };
@@ -364,7 +366,8 @@
 			children = (
 				417912FE2640FD3600BDAD3C /* LogInAPI.swift */,
 				3584F9CF2661AA5900146AC3 /* StampsAPI.swift */,
-				351CA57E26807CBE006ABAC2 /* LogOutApi.swift */,
+				351CA57E26807CBE006ABAC2 /* LogOutAPI.swift */,
+				3583E9A826AAAEA900CB93E5 /* CardCustomizationAPI.swift */,
 			);
 			path = NetworkLayer;
 			sourceTree = "<group>";
@@ -666,7 +669,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				351CA57F26807CBE006ABAC2 /* LogOutApi.swift in Sources */,
+				351CA57F26807CBE006ABAC2 /* LogOutAPI.swift in Sources */,
+				3583E9A926AAAEA900CB93E5 /* CardCustomizationAPI.swift in Sources */,
 				417FD735264A6761002AEDE8 /* ScanningView.swift in Sources */,
 				419DE77226450B7600C54E69 /* ShopStamp.swift in Sources */,
 				352288472650BFC500BD1DFD /* CardListViewModel.swift in Sources */,
