@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @ObservedObject var viewModel = SettingsViewModel()
+    @StateObject var viewModel = SettingsViewModel()
     var body: some View {
         ZStack(alignment: .leading) {
             Color.background

@@ -8,7 +8,10 @@
 import SwiftUI
 
 struct CardCustomisationView: View {
-    @StateObject var viewModel = CardCustomisationViewModel()
+    @StateObject var viewModel: CardCustomisationViewModel
+    init(viewModel: CardCustomisationViewModel = CardCustomisationViewModel()) {
+        self._viewModel = StateObject(wrappedValue: viewModel)
+    }
     var body: some View {
         ZStack {
             Color.background
@@ -21,7 +24,11 @@ struct CardCustomisationView: View {
                 
                 Text("Nuber of stamps required before reward")
                 CustomTextField(placeholder: viewModel.rewardsAfterNumber, text: $viewModel.rewardsAfterNumber, keyboardType: .numberPad)
-                NavigationLink("preview", destination: CardView(viewModel: CardViewModel(cardData: CardData.newCard(storeName: "store", storeId: "id", listIndex: 0, firstIsStamped: false, numberOfRows: viewModel.numberOfRowsInt, numberOfColums: viewModel.numberOfColsInt, stampsAfter: viewModel.rewardsAfterNumberInt), showSubmitButton: true)))
+                NavigationLink("preview", destination: CardView(viewModel: CardViewModel(cardData: CardData.newCard(storeName: "store", storeId: viewModel.storeId, listIndex: 0, firstIsStamped: false, numberOfRows: viewModel.numberOfRowsInt, numberOfColums: viewModel.numberOfColsInt, stampsAfter: viewModel.rewardsAfterNumberInt), showSubmitButton: true)))
+                    Button("Submit") {
+                        viewModel.submit()
+                    }
+                    .padding()
             }
             .padding(.horizontal, 16)
         }
@@ -30,6 +37,6 @@ struct CardCustomisationView: View {
 
 struct CardCustomisationView_Previews: PreviewProvider {
     static var previews: some View {
-        CardCustomisationView()
+        CardCustomisationView(viewModel: CardCustomisationViewModel(storeName: "id", storeId: "id"))
     }
 }
