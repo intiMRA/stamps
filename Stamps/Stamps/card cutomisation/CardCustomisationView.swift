@@ -24,13 +24,35 @@ struct CardCustomisationView: View {
                 
                 Text("Nuber of stamps required before reward")
                 CustomTextField(placeholder: viewModel.rewardsAfterNumber, text: $viewModel.rewardsAfterNumber, keyboardType: .numberPad)
-                NavigationLink("preview", destination: CardView(viewModel: CardViewModel(cardData: CardData.newCard(storeName: "store", storeId: viewModel.storeId, listIndex: 0, firstIsStamped: false, numberOfRows: viewModel.numberOfRowsInt, numberOfColums: viewModel.numberOfColsInt, stampsAfter: viewModel.rewardsAfterNumberInt), showSubmitButton: true)))
-                    Button("Submit") {
-                        viewModel.submit()
+                
+                VStack(alignment: .center) {
+                    NavigationLink("preview", destination: CardView(viewModel: CardViewModel(cardData: CardData.newCard(storeName: "store", storeId: viewModel.storeId, listIndex: 0, firstIsStamped: false, numberOfRows: viewModel.numberOfRowsInt, numberOfColums: viewModel.numberOfColsInt, stampsAfter: viewModel.rewardsAfterNumberInt), showSubmitButton: true)))
+                        .foregroundColor(Color.textColor)
+                        .padding(.bottom, 10)
+                    
+                        Button("Submit") {
+                            viewModel.submit()
+                        }
+                        .foregroundColor(Color.textColor)
+                    
+                    NavigationLink(destination: ShopStamp(storeId: viewModel.storeId), isActive: $viewModel.navigateToTabsView) {
+                        EmptyView()
                     }
-                    .padding()
+                }
+                .padding(.top, 20)
+                .frame(maxWidth: .infinity)
             }
             .padding(.horizontal, 16)
+            .alert(isPresented: $viewModel.showAlert) {
+                Alert(
+                    title: Text(viewModel.alertContent?.title ?? ""),
+                    message: Text(viewModel.alertContent?.message ?? ""),
+                    dismissButton: .cancel(Text("Ok"), action: {
+                        viewModel.alertContent?.handler()
+                        viewModel.alertContent = nil
+                    })
+                )
+            }
         }
     }
 }

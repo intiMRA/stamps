@@ -12,8 +12,15 @@ class SettingsViewModel: ObservableObject {
     @Published var isLoggedOut = false
     @Published var shouldShowAlert = false
     @Published var showCardCustomisation = false
+    
+    let isStore: Bool
+    let api: LogOutAPI
     private var cancellables = Set<AnyCancellable>()
-    let api = LogOutAPI()
+    
+    init(isStore: Bool = ReduxStore.shared.storeModel != nil, api: LogOutAPI = LogOutAPI()) {
+        self.isStore = isStore
+        self.api = api
+    }
     
     @objc
     func logOut() {

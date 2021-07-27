@@ -18,6 +18,7 @@ enum IconName: String {
     case shop = "Shop"
     case tick = "Tick"
     case settings = "Settings"
+    case customize = "Customize"
 }
 
 struct Icon: View {

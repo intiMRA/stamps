@@ -12,6 +12,8 @@ class CardCustomisationViewModel: ObservableObject {
     @Published var numberOfRows = "5"
     @Published var numberOfCols = "4"
     @Published var rewardsAfterNumber = "8"
+    @Published var showAlert = false
+    @Published var navigateToTabsView = false
     
     let storeId: String
     let storeName: String
@@ -19,6 +21,7 @@ class CardCustomisationViewModel: ObservableObject {
     var numberOfRowsInt = 5
     var numberOfColsInt = 4
     var rewardsAfterNumberInt  = 8
+    var alertContent: RewardAlertContent?
     
     var cancellables = Set<AnyCancellable>()
     
@@ -51,5 +54,11 @@ class CardCustomisationViewModel: ObservableObject {
     
     func submit() {
         api.uploadNewCardDetails(numberOfRows: numberOfRowsInt, numberOfColumns: numberOfColsInt, numberBeforeReward: rewardsAfterNumberInt, storeId: storeId)
+        
+        alertContent = RewardAlertContent(title: "Updated", message: "Your card details have been updated.", handler: {
+            self.showAlert = false
+            self.navigateToTabsView = true
+        })
+        self.showAlert = true
     }
 }

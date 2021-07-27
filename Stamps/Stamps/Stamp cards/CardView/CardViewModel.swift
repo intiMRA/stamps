@@ -20,6 +20,8 @@ class CardViewModel: ObservableObject {
     var alertContent: RewardAlertContent?
     var showLinearAnimation = true
     var showSubmitButton: Bool
+    @Published var navigateToTabsView = false
+    
     @Published var showAlert = false
     @Published var stamps: CardData = CardData(storeName: "", storeId: "", listIndex: -1)
     
@@ -57,5 +59,11 @@ class CardViewModel: ObservableObject {
     
     func submit() {
         cardCustomizationAPI?.uploadNewCardDetails(numberOfRows: stamps.numberOfRows, numberOfColumns: stamps.numberOfColums, numberBeforeReward: stamps.numberOfStampsBeforeReward, storeId: stamps.storeId)
+        
+        alertContent = RewardAlertContent(title: "Updated", message: "Your card details have been updated.", handler: {
+            self.showAlert = false
+            self.navigateToTabsView = true
+        })
+        self.showAlert = true
     }
 }

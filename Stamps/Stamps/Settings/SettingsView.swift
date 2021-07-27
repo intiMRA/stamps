@@ -12,7 +12,7 @@ struct SettingsView: View {
     var body: some View {
         ZStack(alignment: .leading) {
             Color.background
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 20) {
                 HStack {
                     Icon(.logout)
                     Text("Log Out")
@@ -24,16 +24,18 @@ struct SettingsView: View {
                 }
                 .transition(.slide)
                 
-                HStack {
-                    Icon(.logout)
-                    Text("Lol")
+                if viewModel.isStore {
+                    HStack {
+                        Icon(.customize)
+                        Text("Customise your card")
+                    }
+                    .contentShape(Rectangle())
+                    .onTapGesture(count: 1, perform: {viewModel.showCardCustomisation = true})
+                    NavigationLink(destination: CardCustomisationView(), isActive: $viewModel.showCardCustomisation) {
+                        EmptyView()
+                    }
+                    .transition(.slide)
                 }
-                .contentShape(Rectangle())
-                .onTapGesture(count: 1, perform: {viewModel.showCardCustomisation = true})
-                NavigationLink(destination: CardCustomisationView(), isActive: $viewModel.showCardCustomisation) {
-                    EmptyView()
-                }
-                .transition(.slide)
                 
                 Spacer()
             }
