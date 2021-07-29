@@ -101,9 +101,3 @@ private struct CardSlotView: View {
         }
     }
 }
-
-struct SwiftUIView_Previews: PreviewProvider {
-    static var previews: some View {
-        CardView(viewModel: CardViewModel(cardData: CardData(storeName: "", storeId: "", listIndex: -1)))
-    }
-}

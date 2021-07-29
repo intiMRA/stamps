@@ -6,27 +6,86 @@
 //
 
 import XCTest
+import Combine
+@testable import Stamps
 
 class CustomerStampUnittests: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    var cancellables = Set<AnyCancellable>()
+    func testClaimSlot() {
+        let card = [[CardSlot(isStamped: true, index: "0_0"), CardSlot(isStamped: false, index: "0_1")], [CardSlot(isStamped: true, index: "1_0"), CardSlot(isStamped: false, index: "1_1")]]
+        let cardData = CardData(card: card, storeName: "testStore", storeId: "testId", listIndex: 0, nextToStamp: (row: 1, col: 0), numberOfRows: 2, numberOfColums: 2, numberOfStampsBeforeReward: 2)
+        let mockStore = MockReduxStore()
+        mockStore.customerModel = CustomerModel(userId: "testid", username: "testname", stampCards: [cardData])
+        let vm = CardViewModel(cardData: cardData, api: nil, showSubmitButton: false, cardCustomizationAPI: nil, reduxStore: mockStore)
+        let claimExpectation = self.expectation(description: "wait for claiming")
+        let alertExpectation = self.expectation(description: "wait for alert")
+        
+        //run
+        vm.claim("0_1")
+        
+        //verify
+        vm.$showAlert
+            .sink { showAlert in
+                XCTAssertTrue(showAlert)
+                vm.alertContent?.handler()
+                alertExpectation.fulfill()
+            }
+            .store(in: &cancellables)
+        
+        vm.$stamps
+            .sink { card in
+                XCTAssertTrue(card.card[0][1].claimed)
+                XCTAssertTrue(mockStore.customerModel?.stampCards[0].card[0][1].claimed == true)
+                claimExpectation.fulfill()
+            }
+            .store(in: &cancellables)
+        waitForExpectations(timeout: 10)
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    
+    func testClaimSlotAllClaimed() {
+        let card = [[CardSlot(isStamped: true, index: "0_0"), CardSlot(isStamped: true, index: "0_1", claimed: true)], [CardSlot(isStamped: true, index: "1_0"), CardSlot(isStamped: true, index: "1_1", claimed: true)]]
+        let cardData = CardData(card: card, storeName: "testStore", storeId: "testId", listIndex: 0, nextToStamp: (row: 1, col: 0), numberOfRows: 2, numberOfColums: 2, numberOfStampsBeforeReward: 2)
+        let mockStore = MockReduxStore()
+        mockStore.customerModel = CustomerModel(userId: "testid", username: "testname", stampCards: [cardData])
+        let vm = CardViewModel(cardData: cardData, api: nil, showSubmitButton: false, cardCustomizationAPI: nil, reduxStore: mockStore)
+        let claimExpectation = self.expectation(description: "wait for claiming")
+        let alertExpectation = self.expectation(description: "wait for alert")
+        
+        //run
+        vm.claim("0_1")
+        
+        //verify
+        vm.$showAlert
+            .sink { showAlert in
+                XCTAssertTrue(showAlert)
+                vm.alertContent?.handler()
+                alertExpectation.fulfill()
+            }
+            .store(in: &cancellables)
+        
+        vm.$stamps
+            .dropFirst()
+            .sink { card in
+                XCTAssertFalse(card.card[0][1].claimed)
+                claimExpectation.fulfill()
+            }
+            .store(in: &cancellables)
+        waitForExpectations(timeout: 10)
+        XCTAssertTrue(mockStore.customerModel?.stampCards[0].card[0][1].claimed == false)
     }
+}
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+class MockReduxStore: ReduxStoreProtocol {
+    var customerModel: CustomerModel?
+    
+    var storeModel: StoreModel?
+    
+    func addCard(_ card: CardData) {
+        self.customerModel = self.customerModel?.replaceCard(card)
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    
+    func changeState(customerModel: CustomerModel?, storeModel: StoreModel?) {
+        self.customerModel = customerModel
+        self.storeModel = storeModel
     }
-
 }

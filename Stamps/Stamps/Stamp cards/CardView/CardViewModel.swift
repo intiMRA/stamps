@@ -16,6 +16,7 @@ struct RewardAlertContent {
 
 class CardViewModel: ObservableObject {
     let api: StampsAPI?
+    let reduxStore: ReduxStoreProtocol
     let cardCustomizationAPI: CardCustomizationAPI?
     var alertContent: RewardAlertContent?
     var showLinearAnimation = true
@@ -23,13 +24,14 @@ class CardViewModel: ObservableObject {
     @Published var navigateToTabsView = false
     
     @Published var showAlert = false
-    @Published var stamps: CardData = CardData(storeName: "", storeId: "", listIndex: -1)
+    @Published var stamps: CardData = CardData(storeName: "", storeId: "", listIndex: -1, numberOfRows: 0, numberOfColums: 0, numberOfStampsBeforeReward: 0)
     
-    init(cardData: CardData, api: StampsAPI? = StampsAPI(), showSubmitButton: Bool = false, cardCustomizationAPI: CardCustomizationAPI? = CardCustomizationAPI()) {
+    init(cardData: CardData, api: StampsAPI? = StampsAPI(), showSubmitButton: Bool = false, cardCustomizationAPI: CardCustomizationAPI? = CardCustomizationAPI(), reduxStore: ReduxStoreProtocol = ReduxStore.shared) {
         self.stamps = cardData
         self.api = api
         self.showSubmitButton = showSubmitButton
         self.cardCustomizationAPI = cardCustomizationAPI
+        self.reduxStore = reduxStore
     }
     
     func claim(_ index: String) {
@@ -43,14 +45,14 @@ class CardViewModel: ObservableObject {
                 self.stamps = card
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     self.showLinearAnimation = false
-                    self.stamps = CardData.newCard(storeName: card.storeName, storeId: card.storeId, listIndex: card.listIndex, firstIsStamped: false)
-                    ReduxStore.shared.changeState(customerModel: ReduxStore.shared.customerModel?.replaceCard(self.stamps))
+                    self.stamps = CardData.newCard(storeName: card.storeName, storeId: card.storeId, listIndex: card.listIndex, firstIsStamped: false, numberOfRows: card.numberOfRows, numberOfColums: card.numberOfColums, numberOfStampsBeforeReward: card.numberOfStampsBeforeReward)
+                    self.reduxStore.changeState(customerModel: self.reduxStore.customerModel?.replaceCard(self.stamps))
                     self.api?.saveCard(self.stamps)
                 }
             } else {
                 self.showLinearAnimation = true
                 self.stamps = card
-                ReduxStore.shared.changeState(customerModel: ReduxStore.shared.customerModel?.replaceCard(card))
+                self.reduxStore.changeState(customerModel: self.reduxStore.customerModel?.replaceCard(card))
                 self.api?.saveCard(card)
             }
         })

@@ -49,9 +49,9 @@ struct CardData: Equatable {
         storeId: String,
         listIndex: Int,
         nextToStamp: (row: Int, col: Int) = (row: 0, col: 0),
-        numberOfRows: Int = 5,
-        numberOfColums: Int = 4,
-        stampsAfter: Int = 4) {
+        numberOfRows: Int,
+        numberOfColums: Int,
+        numberOfStampsBeforeReward: Int) {
         self.card = card
         self.storeName = storeName
         self.nextToStamp = nextToStamp
@@ -59,7 +59,7 @@ struct CardData: Equatable {
         self.storeId = storeId
         self.numberOfRows = numberOfRows
         self.numberOfColums = numberOfColums
-        self.numberOfStampsBeforeReward = stampsAfter
+        self.numberOfStampsBeforeReward = numberOfStampsBeforeReward
     }
     
     func stamp() -> CardData? {
@@ -80,16 +80,16 @@ struct CardData: Equatable {
                 //Tell customer to claim rewards
                 return nil
             }
-            return CardData(card: newCard, storeName: storeName, storeId: storeId, listIndex: listIndex, nextToStamp: (row: nextToStamp.row, col: nextToStamp.col + 1))
+            return CardData(card: newCard, storeName: storeName, storeId: storeId, listIndex: listIndex, nextToStamp: (row: nextToStamp.row, col: nextToStamp.col + 1), numberOfRows: self.numberOfRows, numberOfColums: self.numberOfColums, numberOfStampsBeforeReward: self.numberOfStampsBeforeReward)
         }
         
         guard nextToStamp.col + 2 < row.count else {
-            return CardData(card: newCard, storeName: storeName, storeId: storeId, listIndex: listIndex, nextToStamp: (row: nextToStamp.row + 1, col: 0))
+            return CardData(card: newCard, storeName: storeName, storeId: storeId, listIndex: listIndex, nextToStamp: (row: nextToStamp.row + 1, col: 0), numberOfRows: self.numberOfRows, numberOfColums: self.numberOfColums, numberOfStampsBeforeReward: self.numberOfStampsBeforeReward)
         }
-        return CardData(card: newCard, storeName: storeName, storeId: storeId, listIndex: listIndex, nextToStamp: (row: nextToStamp.row, col: nextToStamp.col + 1))
+        return CardData(card: newCard, storeName: storeName, storeId: storeId, listIndex: listIndex, nextToStamp: (row: nextToStamp.row, col: nextToStamp.col + 1), numberOfRows: self.numberOfRows, numberOfColums: self.numberOfColums, numberOfStampsBeforeReward: self.numberOfStampsBeforeReward)
     }
     
-    static func newCard(storeName: String, storeId: String, listIndex: Int?, firstIsStamped: Bool = true, numberOfRows: Int = 5, numberOfColums: Int = 4, stampsAfter: Int = 4) -> CardData {
+    static func newCard(storeName: String, storeId: String, listIndex: Int?, firstIsStamped: Bool = true, numberOfRows: Int, numberOfColums: Int, numberOfStampsBeforeReward: Int) -> CardData {
         var newCard = [[CardSlot]]()
         var amountCreated = 0
         for row in 0 ..< numberOfRows {
@@ -98,7 +98,7 @@ struct CardData: Equatable {
                 if row == 0, col == 0 {
                     newCard[row].append(CardSlot(isStamped: firstIsStamped, index: "\(row)_\(col)"))
                     amountCreated += 1
-                } else if amountCreated == stampsAfter - 1 {
+                } else if amountCreated == numberOfStampsBeforeReward - 1 {
                     newCard[row].append(CardSlot(isStamped: false, index: "\(row)_\(col)", hasIcon: true))
                     amountCreated = 0
                 } else {
@@ -108,7 +108,8 @@ struct CardData: Equatable {
             }
         }
         
-        return CardData(card: newCard, storeName: storeName, storeId: storeId, listIndex: listIndex ?? 0, nextToStamp: (row: 0, col: firstIsStamped ? 1 : 0))
+        //ToDO pass in the store
+        return CardData(card: newCard, storeName: storeName, storeId: storeId, listIndex: listIndex ?? 0, nextToStamp: (row: 0, col: firstIsStamped ? 1 : 0), numberOfRows: numberOfRows, numberOfColums: numberOfColums, numberOfStampsBeforeReward: numberOfStampsBeforeReward)
     }
     
     func claim(index: String) -> CardData? {
@@ -127,7 +128,7 @@ struct CardData: Equatable {
             }
             row[row.count - 1] = slot.stamp()
             newCard[rowIndex] = row
-            return CardData(card: newCard, storeName: storeName, storeId: storeId, listIndex: listIndex, nextToStamp: nextToStamp)
+            return CardData(card: newCard, storeName: storeName, storeId: storeId, listIndex: listIndex, nextToStamp: nextToStamp, numberOfRows: self.numberOfRows, numberOfColums: self.numberOfColums, numberOfStampsBeforeReward: self.numberOfStampsBeforeReward)
         }
         var newCard = card
         var row = card[rowIndex]
@@ -143,7 +144,7 @@ struct CardData: Equatable {
         row[row.count - 1] = slot.stamp()
         newCard[rowIndex] = row
         
-        return CardData(card: newCard, storeName: storeName, storeId: storeId, listIndex: listIndex, nextToStamp: nextToStamp)
+        return CardData(card: newCard, storeName: storeName, storeId: storeId, listIndex: listIndex, nextToStamp: nextToStamp, numberOfRows: self.numberOfRows, numberOfColums: self.numberOfColums, numberOfStampsBeforeReward: self.numberOfStampsBeforeReward)
     }
     
     func allSlotsAreClaimed() -> Bool {
