@@ -9,16 +9,24 @@ import Foundation
 import SwiftUI
 
 struct CustomTextField: View {
-    var placeholder: Text
+    var placeholder: String
     @Binding var text: String
     var editingChanged: (Bool) -> Void = { _ in }
     var commit: () -> Void = { }
     let secureEntry: Bool
+    let keyboardType: UIKeyboardType
+    
+    init(placeholder: String = "", text: Binding<String>, secureEntry: Bool = false, keyboardType: UIKeyboardType = .alphabet) {
+        self.placeholder = placeholder
+        self._text = text
+        self.secureEntry = secureEntry
+        self.keyboardType = keyboardType
+    }
     
     var body: some View {
         ZStack(alignment: .leading) {
             if text.isEmpty {
-                placeholder
+                Text(placeholder)
                     .padding(.leading, 10)
                     .foregroundColor(Color.textColor)
                     .opacity(0.7)
@@ -26,9 +34,11 @@ struct CustomTextField: View {
             
             if secureEntry {
                 SecureField("", text: $text, onCommit: commit)
+                    .keyboardType(keyboardType)
                     .padding(.leading, 10)
             } else {
                 TextField("", text: $text, onEditingChanged: editingChanged, onCommit: commit)
+                    .keyboardType(keyboardType)
                     .padding(.leading, 10)
             }
         }

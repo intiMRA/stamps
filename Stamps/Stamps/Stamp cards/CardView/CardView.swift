@@ -23,6 +23,17 @@ struct CardView: View {
                         viewModel.claim(slot.index)
                     }
                 })
+                if viewModel.showSubmitButton {
+                    Button("Submit") {
+                        viewModel.submit()
+                    }
+                    .foregroundColor(Color.textColor)
+                    .padding()
+                }
+                
+                NavigationLink(destination: ShopStamp(storeId: viewModel.stamps.storeId), isActive: $viewModel.navigateToTabsView) {
+                    EmptyView()
+                }
             }
         }
         .alert(isPresented: $viewModel.showAlert) {

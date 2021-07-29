@@ -9,10 +9,18 @@ import Foundation
 import Combine
 
 class SettingsViewModel: ObservableObject {
-    @Published var isLoggedOut: Bool = false
-    @Published var shouldShowAlert: Bool = false
+    @Published var isLoggedOut = false
+    @Published var shouldShowAlert = false
+    @Published var showCardCustomisation = false
+    
+    let isStore: Bool
+    let api: LogOutAPI
     private var cancellables = Set<AnyCancellable>()
-    let api = LogOutApi()
+    
+    init(isStore: Bool = ReduxStore.shared.storeModel != nil, api: LogOutAPI = LogOutAPI()) {
+        self.isStore = isStore
+        self.api = api
+    }
     
     @objc
     func logOut() {

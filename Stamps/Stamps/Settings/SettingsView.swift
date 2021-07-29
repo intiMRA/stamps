@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @ObservedObject var viewModel = SettingsViewModel()
+    @StateObject var viewModel = SettingsViewModel()
     var body: some View {
         ZStack(alignment: .leading) {
             Color.background
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 20) {
                 HStack {
                     Icon(.logout)
                     Text("Log Out")
@@ -23,6 +23,20 @@ struct SettingsView: View {
                     EmptyView()
                 }
                 .transition(.slide)
+                
+                if viewModel.isStore {
+                    HStack {
+                        Icon(.customize)
+                        Text("Customise your card")
+                    }
+                    .contentShape(Rectangle())
+                    .onTapGesture(count: 1, perform: {viewModel.showCardCustomisation = true})
+                    NavigationLink(destination: CardCustomisationView(), isActive: $viewModel.showCardCustomisation) {
+                        EmptyView()
+                    }
+                    .transition(.slide)
+                }
+                
                 Spacer()
             }
             .padding(.horizontal, 16)

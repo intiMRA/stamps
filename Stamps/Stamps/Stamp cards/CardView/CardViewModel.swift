@@ -15,14 +15,21 @@ struct RewardAlertContent {
 }
 
 class CardViewModel: ObservableObject {
-    let api = StampsAPI()
+    let api: StampsAPI?
+    let cardCustomizationAPI: CardCustomizationAPI?
     var alertContent: RewardAlertContent?
     var showLinearAnimation = true
+    var showSubmitButton: Bool
+    @Published var navigateToTabsView = false
+    
     @Published var showAlert = false
     @Published var stamps: CardData = CardData(storeName: "", storeId: "", listIndex: -1)
     
-    init(cardData: CardData) {
+    init(cardData: CardData, api: StampsAPI? = StampsAPI(), showSubmitButton: Bool = false, cardCustomizationAPI: CardCustomizationAPI? = CardCustomizationAPI()) {
         self.stamps = cardData
+        self.api = api
+        self.showSubmitButton = showSubmitButton
+        self.cardCustomizationAPI = cardCustomizationAPI
     }
     
     func claim(_ index: String) {
@@ -38,15 +45,25 @@ class CardViewModel: ObservableObject {
                     self.showLinearAnimation = false
                     self.stamps = CardData.newCard(storeName: card.storeName, storeId: card.storeId, listIndex: card.listIndex, firstIsStamped: false)
                     ReduxStore.shared.changeState(customerModel: ReduxStore.shared.customerModel?.replaceCard(self.stamps))
-                    self.api.saveCard(self.stamps)
+                    self.api?.saveCard(self.stamps)
                 }
             } else {
                 self.showLinearAnimation = true
                 self.stamps = card
                 ReduxStore.shared.changeState(customerModel: ReduxStore.shared.customerModel?.replaceCard(card))
-                self.api.saveCard(card)
+                self.api?.saveCard(card)
             }
         })
         showAlert = true
+    }
+    
+    func submit() {
+        cardCustomizationAPI?.uploadNewCardDetails(numberOfRows: stamps.numberOfRows, numberOfColumns: stamps.numberOfColums, numberBeforeReward: stamps.numberOfStampsBeforeReward, storeId: stamps.storeId)
+        
+        alertContent = RewardAlertContent(title: "Updated", message: "Your card details have been updated.", handler: {
+            self.showAlert = false
+            self.navigateToTabsView = true
+        })
+        self.showAlert = true
     }
 }
