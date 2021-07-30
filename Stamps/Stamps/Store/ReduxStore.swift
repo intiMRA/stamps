@@ -86,5 +86,9 @@ class ReduxStore: ReduxStoreProtocol {
         ReduxStore.shared.changeState(customerModel: CustomerModel(userId: customerModel.userId, username: customerModel.username, stampCards: cards))
     }
     
+    func setNill() {
+        ReduxStore.shared = ReduxStore()
+    }
+    
 }
 
