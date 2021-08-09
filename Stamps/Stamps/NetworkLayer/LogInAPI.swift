@@ -64,7 +64,7 @@ func cards(from dict: [String: AnyObject]) -> [CardData] {
             cardsSlots.append(cardSlot(from: value, rowData: data))
         }
         
-        cards.append(CardData(card: cardsSlots, storeName: storeName, storeId: storeId, listIndex: listIndex, nextToStamp: (row: rowIndex, col: col), numberOfRows: numberOfRows, numberOfColums: numberOfColums, stampsAfter: stampsAfter))
+        cards.append(CardData(card: cardsSlots, storeName: storeName, storeId: storeId, listIndex: listIndex, nextToStamp: (row: rowIndex, col: col), numberOfRows: numberOfRows, numberOfColums: numberOfColums, numberOfStampsBeforeReward: stampsAfter))
     })
     return cards
 }

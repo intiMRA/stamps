@@ -26,7 +26,7 @@ struct CardCustomisationView: View {
                 CustomTextField(placeholder: viewModel.rewardsAfterNumber, text: $viewModel.rewardsAfterNumber, keyboardType: .numberPad)
                 
                 VStack(alignment: .center) {
-                    NavigationLink("preview", destination: CardView(viewModel: CardViewModel(cardData: CardData.newCard(storeName: "store", storeId: viewModel.storeId, listIndex: 0, firstIsStamped: false, numberOfRows: viewModel.numberOfRowsInt, numberOfColums: viewModel.numberOfColsInt, stampsAfter: viewModel.rewardsAfterNumberInt), showSubmitButton: true)))
+                    NavigationLink("preview", destination: CardView(viewModel: CardViewModel(cardData: CardData.newCard(storeName: "store", storeId: viewModel.storeId, listIndex: 0, firstIsStamped: false, numberOfRows: viewModel.numberOfRowsInt, numberOfColums: viewModel.numberOfColsInt, numberOfStampsBeforeReward: viewModel.rewardsAfterNumberInt), showSubmitButton: true)))
                         .foregroundColor(Color.textColor)
                         .padding(.bottom, 10)
                     

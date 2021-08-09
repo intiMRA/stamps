@@ -7,6 +7,20 @@
 
 import Foundation
 import UIKit
+
+protocol ReduxStoreProtocol {
+    var customerModel: CustomerModel? { get }
+    var storeModel: StoreModel? { get }
+    func changeState(customerModel: CustomerModel?, storeModel: StoreModel?)
+    func addCard(_ card: CardData)
+    
+}
+
+extension ReduxStoreProtocol {
+    func changeState(customerModel: CustomerModel? = nil, storeModel: StoreModel? = nil) {
+        changeState(customerModel: customerModel, storeModel: storeModel)
+    }
+}
 struct CustomerModel: Equatable {
     
     let userId: String
@@ -45,10 +59,10 @@ struct StoreModel: Equatable {
     }
 }
 
-class ReduxStore {
+class ReduxStore: ReduxStoreProtocol {
     private(set) static var shared = ReduxStore()
     
-    var customerModel: CustomerModel?
+    let customerModel: CustomerModel?
     let storeModel: StoreModel?
     
     init(customerModel: CustomerModel? = nil, storeModel: StoreModel? = nil) {
@@ -70,6 +84,10 @@ class ReduxStore {
         var cards = customerModel.stampCards
         cards.append(card)
         ReduxStore.shared.changeState(customerModel: CustomerModel(userId: customerModel.userId, username: customerModel.username, stampCards: cards))
+    }
+    
+    func setNill() {
+        ReduxStore.shared = ReduxStore()
     }
     
 }

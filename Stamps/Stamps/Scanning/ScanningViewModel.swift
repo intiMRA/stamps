@@ -69,7 +69,8 @@ class ScanningViewModel: ObservableObject {
                     }
                 }, receiveValue: { store in
                     self.storeName = store.storeName
-                    let card = CardData.newCard(storeName: store.storeName, storeId: store.storeId, listIndex: ReduxStore.shared.customerModel?.stampCards.count)
+                    //TODO replace
+                    let card = CardData.newCard(storeName: store.storeName, storeId: store.storeId, listIndex: ReduxStore.shared.customerModel?.stampCards.count, numberOfRows: 5, numberOfColums: 4, numberOfStampsBeforeReward: 4)
                     ReduxStore.shared.addCard(card)
                     self.cardApi.saveCard(card)
                 })
