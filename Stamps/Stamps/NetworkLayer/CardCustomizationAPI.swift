@@ -8,7 +8,11 @@
 import Foundation
 import FirebaseDatabase
 
-class CardCustomizationAPI {
+protocol CardCustomizationAPIProtocol {
+    func uploadNewCardDetails(numberOfRows: Int, numberOfColumns: Int, numberBeforeReward: Int, storeId: String)
+}
+
+class CardCustomizationAPI: CardCustomizationAPIProtocol {
     let database = Database.database().reference()
     func uploadNewCardDetails(numberOfRows: Int, numberOfColumns: Int, numberBeforeReward: Int, storeId: String) {
         let newDetails: NSDictionary = ["numberOfRows": numberOfRows, "numberOfColumns": numberOfColumns, "numberBeforeReward": numberBeforeReward]

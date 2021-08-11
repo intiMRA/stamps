@@ -22,6 +22,7 @@
 		3583E9A926AAAEA900CB93E5 /* CardCustomizationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3583E9A826AAAEA900CB93E5 /* CardCustomizationAPI.swift */; };
 		3584F9D02661AA5900146AC3 /* StampsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3584F9CF2661AA5900146AC3 /* StampsAPI.swift */; };
 		35874BF62678897000B58D4C /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35874BF52678897000B58D4C /* Icon.swift */; };
+		358C04F926C1431C00BFD6BD /* CardCustomisationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358C04F826C1431C00BFD6BD /* CardCustomisationTests.swift */; };
 		3596620B2653DA6E003D3323 /* QRCodeScanningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3596620A2653DA6E003D3323 /* QRCodeScanningView.swift */; };
 		3596620D2653E10C003D3323 /* QRCodeScanningViewSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3596620C2653E10C003D3323 /* QRCodeScanningViewSwiftUI.swift */; };
 		35CEA0FA265BB44500FFF9DE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 35CEA0F9265BB44500FFF9DE /* GoogleService-Info.plist */; };
@@ -87,6 +88,7 @@
 		3583E9A826AAAEA900CB93E5 /* CardCustomizationAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCustomizationAPI.swift; sourceTree = "<group>"; };
 		3584F9CF2661AA5900146AC3 /* StampsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StampsAPI.swift; sourceTree = "<group>"; };
 		35874BF52678897000B58D4C /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
+		358C04F826C1431C00BFD6BD /* CardCustomisationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCustomisationTests.swift; sourceTree = "<group>"; };
 		3596620A2653DA6E003D3323 /* QRCodeScanningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeScanningView.swift; sourceTree = "<group>"; };
 		3596620C2653E10C003D3323 /* QRCodeScanningViewSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeScanningViewSwiftUI.swift; sourceTree = "<group>"; };
 		35CEA0F9265BB44500FFF9DE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 		3581BED826A589B600DED9FD /* card cutomisation */ = {
 			isa = PBXGroup;
 			children = (
+				358C04F726C142C700BFD6BD /* tests */,
 				3581BED926A589F200DED9FD /* CardCustomisationView.swift */,
 				3581BEDB26A58A1400DED9FD /* CardCustomisationViewModel.swift */,
 			);
@@ -209,6 +212,14 @@
 			children = (
 				3583DD3926A281A1008D0A6C /* ReduxStoreTests.swift */,
 				3583DD3B26A2894E008D0A6C /* CardDataTests.swift */,
+			);
+			path = tests;
+			sourceTree = "<group>";
+		};
+		358C04F726C142C700BFD6BD /* tests */ = {
+			isa = PBXGroup;
+			children = (
+				358C04F826C1431C00BFD6BD /* CardCustomisationTests.swift */,
 			);
 			path = tests;
 			sourceTree = "<group>";
@@ -709,6 +720,7 @@
 				41249C2C263BD38300BF3D2C /* StampsTests.swift in Sources */,
 				3583DD3A26A281A1008D0A6C /* ReduxStoreTests.swift in Sources */,
 				3583DD3C26A2894E008D0A6C /* CardDataTests.swift in Sources */,
+				358C04F926C1431C00BFD6BD /* CardCustomisationTests.swift in Sources */,
 				357AAA6A26A2577E00C403D7 /* SignUpUnitTests.swift in Sources */,
 				41249C52263BD49000BF3D2C /* LogInUinitTests.swift in Sources */,
 			);

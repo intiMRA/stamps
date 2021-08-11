@@ -25,8 +25,8 @@ class CardCustomisationViewModel: ObservableObject {
     
     var cancellables = Set<AnyCancellable>()
     
-    let api: CardCustomizationAPI
-    init(storeName: String? = nil, storeId: String? = nil, api: CardCustomizationAPI = CardCustomizationAPI()) {
+    let api: CardCustomizationAPIProtocol
+    init(storeName: String? = nil, storeId: String? = nil, api: CardCustomizationAPIProtocol = CardCustomizationAPI()) {
         self.api = api
         self.storeId = storeId ?? ReduxStore.shared.storeModel?.storeId ?? ""
         self.storeName = storeName ?? ReduxStore.shared.storeModel?.storeName ?? ""
