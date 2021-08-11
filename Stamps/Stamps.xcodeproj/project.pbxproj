@@ -81,6 +81,7 @@
 		352288442650BFAE00BD1DFD /* CardListview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListview.swift; sourceTree = "<group>"; };
 		352288462650BFC500BD1DFD /* CardListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListViewModel.swift; sourceTree = "<group>"; };
 		3576112526C3D2800028C497 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Stamps/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3576112926C3F2D40028C497 /* Stamps.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Stamps.xctestplan; sourceTree = "<group>"; };
 		357AAA6926A2577E00C403D7 /* SignUpUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpUnitTests.swift; sourceTree = "<group>"; };
 		3581BED926A589F200DED9FD /* CardCustomisationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCustomisationView.swift; sourceTree = "<group>"; };
 		3581BEDB26A58A1400DED9FD /* CardCustomisationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCustomisationViewModel.swift; sourceTree = "<group>"; };
@@ -204,6 +205,7 @@
 				358C04F726C142C700BFD6BD /* tests */,
 				3581BED926A589F200DED9FD /* CardCustomisationView.swift */,
 				3581BEDB26A58A1400DED9FD /* CardCustomisationViewModel.swift */,
+				3576112926C3F2D40028C497 /* Stamps.xctestplan */,
 			);
 			path = "card cutomisation";
 			sourceTree = "<group>";
