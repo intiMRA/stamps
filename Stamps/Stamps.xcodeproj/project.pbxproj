@@ -14,6 +14,7 @@
 		351CA582268080EB006ABAC2 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351CA581268080EB006ABAC2 /* SettingsView.swift */; };
 		352288452650BFAE00BD1DFD /* CardListview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352288442650BFAE00BD1DFD /* CardListview.swift */; };
 		352288472650BFC500BD1DFD /* CardListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352288462650BFC500BD1DFD /* CardListViewModel.swift */; };
+		3576112626C3D2800028C497 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3576112526C3D2800028C497 /* GoogleService-Info.plist */; };
 		357AAA6A26A2577E00C403D7 /* SignUpUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357AAA6926A2577E00C403D7 /* SignUpUnitTests.swift */; };
 		3581BEDA26A589F200DED9FD /* CardCustomisationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3581BED926A589F200DED9FD /* CardCustomisationView.swift */; };
 		3581BEDC26A58A1400DED9FD /* CardCustomisationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3581BEDB26A58A1400DED9FD /* CardCustomisationViewModel.swift */; };
@@ -25,7 +26,6 @@
 		358C04F926C1431C00BFD6BD /* CardCustomisationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358C04F826C1431C00BFD6BD /* CardCustomisationTests.swift */; };
 		3596620B2653DA6E003D3323 /* QRCodeScanningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3596620A2653DA6E003D3323 /* QRCodeScanningView.swift */; };
 		3596620D2653E10C003D3323 /* QRCodeScanningViewSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3596620C2653E10C003D3323 /* QRCodeScanningViewSwiftUI.swift */; };
-		35CEA0FA265BB44500FFF9DE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 35CEA0F9265BB44500FFF9DE /* GoogleService-Info.plist */; };
 		35FB33FD264F450300CCB847 /* ReduxStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FB33FC264F450300CCB847 /* ReduxStore.swift */; };
 		35FB33FF264F45FF00CCB847 /* CardData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FB33FE264F45FF00CCB847 /* CardData.swift */; };
 		41249C1A263BD37F00BF3D2C /* StampsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41249C19263BD37F00BF3D2C /* StampsApp.swift */; };
@@ -80,6 +80,7 @@
 		351CA581268080EB006ABAC2 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		352288442650BFAE00BD1DFD /* CardListview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListview.swift; sourceTree = "<group>"; };
 		352288462650BFC500BD1DFD /* CardListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListViewModel.swift; sourceTree = "<group>"; };
+		3576112526C3D2800028C497 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Stamps/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		357AAA6926A2577E00C403D7 /* SignUpUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpUnitTests.swift; sourceTree = "<group>"; };
 		3581BED926A589F200DED9FD /* CardCustomisationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCustomisationView.swift; sourceTree = "<group>"; };
 		3581BEDB26A58A1400DED9FD /* CardCustomisationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCustomisationViewModel.swift; sourceTree = "<group>"; };
@@ -237,6 +238,7 @@
 		41249C0D263BD37E00BF3D2C = {
 			isa = PBXGroup;
 			children = (
+				3576112526C3D2800028C497 /* GoogleService-Info.plist */,
 				41249C18263BD37F00BF3D2C /* Stamps */,
 				41249C2A263BD38300BF3D2C /* StampsTests */,
 				41249C35263BD38300BF3D2C /* StampsUITests */,
@@ -550,7 +552,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				41249C21263BD38200BF3D2C /* Preview Assets.xcassets in Resources */,
-				35CEA0FA265BB44500FFF9DE /* GoogleService-Info.plist in Resources */,
+				3576112626C3D2800028C497 /* GoogleService-Info.plist in Resources */,
 				4143AA832643D9E800DCC6D7 /* Assets.xcassets in Resources */,
 				417912842640A7F500BDAD3C /* Color.xcassets in Resources */,
 			);
