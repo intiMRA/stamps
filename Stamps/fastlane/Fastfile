@@ -21,8 +21,12 @@ platform :ios do
     scan(
       buildlog_path: "./fastlane/fastlane-buildlog",
       derived_data_path: "~/Library/Developer/Xcode/DerivedData",
-      project: "Stamps.xcodeproj",
-      scheme: "StampsTests"
+      workspace: "Stamps.xcworkspace",
+      scheme: "StampsTests",
+      max_concurrent_simulators: 4,
+      reset_simulator: true,
+      prelaunch_simulator: true,
+      concurrent_workers: 4
     )
   end
 end
