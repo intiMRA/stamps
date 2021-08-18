@@ -1,0 +1,38 @@
+{
+  "configurations" : [
+    {
+      "id" : "309645E1-1136-43DD-B2CC-E299407DDFE9",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : false,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:Stamps.xcodeproj",
+      "identifier" : "41249C15263BD37F00BF3D2C",
+      "name" : "Stamps"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:Stamps.xcodeproj",
+        "identifier" : "41249C26263BD38300BF3D2C",
+        "name" : "StampsTests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:Stamps.xcodeproj",
+        "identifier" : "41249C31263BD38300BF3D2C",
+        "name" : "StampsUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

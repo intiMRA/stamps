@@ -1,0 +1,489 @@
+Command line invocation:
+    /Users/intialbuquerque/Downloads/Xcode-beta.app/Contents/Developer/usr/bin/xcodebuild -workspace Stamps.xcworkspace -scheme StampsTests -derivedDataPath "~/Library/Developer/Xcode/DerivedData" -destination "platform=iOS Simulator,id=F4466A34-26F0-44A7-8CF2-127F537F8592" -parallel-testing-worker-count 4 -maximum-concurrent-test-simulator-destinations 4 build test
+
+User defaults from command line:
+    IDEDerivedDataPathOverride = /Users/intialbuquerque/Library/Developer/Xcode/DerivedData
+    IDEMaxParallelTestingSimulators = 4
+    IDEPackageSupportUseBuiltinSCM = YES
+
+note: Using new build system
+note: Planning
+Analyze workspace
+
+Create build description
+Build description signature: b294c9992d1b55d2231986c175aa20d2
+Build description path: /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/XCBuildData/b294c9992d1b55d2231986c175aa20d2-desc.xcbuild
+
+note: Build preparation complete
+note: Building targets in parallel
+WriteAuxiliaryFile /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/nanopb.build/all-product-headers.yaml (in target 'nanopb' from project 'Pods')
+    cd /Users/intialbuquerque/projects/stamps/Stamps/Pods
+    write-file /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/nanopb.build/all-product-headers.yaml
+
+WriteAuxiliaryFile /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/GTMSessionFetcher.build/GTMSessionFetcher-all-non-framework-target-headers.hmap (in target 'GTMSessionFetcher' from project 'Pods')
+    cd /Users/intialbuquerque/projects/stamps/Stamps/Pods
+    write-file /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/GTMSessionFetcher.build/GTMSessionFetcher-all-non-framework-target-headers.hmap
+
+WriteAuxiliaryFile /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/PromisesObjC.build/FBLPromises-all-non-framework-target-headers.hmap (in target 'PromisesObjC' from project 'Pods')
+    cd /Users/intialbuquerque/projects/stamps/Stamps/Pods
+    write-file /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/PromisesObjC.build/FBLPromises-all-non-framework-target-headers.hmap
+
+/Users/intialbuquerque/projects/stamps/Stamps/Pods/Pods.xcodeproj: warning: The iOS Simulator deployment target 'IPHONEOS_DEPLOYMENT_TARGET' is set to 8.0, but the range of supported deployment target versions is 9.0 to 15.0.99. (in target 'BoringSSL-GRPC' from project 'Pods')
+WriteAuxiliaryFile /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/BoringSSL-GRPC.build/all-product-headers.yaml (in target 'BoringSSL-GRPC' from project 'Pods')
+    cd /Users/intialbuquerque/projects/stamps/Stamps/Pods
+    write-file /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/BoringSSL-GRPC.build/all-product-headers.yaml
+
+ProcessProductPackaging "" /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/gRPC-C++-gRPCCertificates-Cpp.build/gRPCCertificates-Cpp.bundle-Simulated.xcent (in target 'gRPC-C++-gRPCCertificates-Cpp' from project 'Pods')
+    cd /Users/intialbuquerque/projects/stamps/Stamps/Pods
+    
+    Entitlements:
+    
+    {
+    "application-identifier" = "6K524MKAFK.org.cocoapods.gRPCCertificates-Cpp";
+    "keychain-access-groups" =     (
+        "6K524MKAFK.org.cocoapods.gRPCCertificates-Cpp"
+    );
+}
+    
+    builtin-productPackagingUtility -entitlements -format xml -o /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/gRPC-C++-gRPCCertificates-Cpp.build/gRPCCertificates-Cpp.bundle-Simulated.xcent
+
+WriteAuxiliaryFile /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/nanopb.build/nanopb-all-non-framework-target-headers.hmap (in target 'nanopb' from project 'Pods')
+    cd /Users/intialbuquerque/projects/stamps/Stamps/Pods
+    write-file /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/nanopb.build/nanopb-all-non-framework-target-headers.hmap
+
+WriteAuxiliaryFile /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/PromisesObjC.build/all-product-headers.yaml (in target 'PromisesObjC' from project 'Pods')
+    cd /Users/intialbuquerque/projects/stamps/Stamps/Pods
+    write-file /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/PromisesObjC.build/all-product-headers.yaml
+
+WriteAuxiliaryFile /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/GTMSessionFetcher.build/all-product-headers.yaml (in target 'GTMSessionFetcher' from project 'Pods')
+    cd /Users/intialbuquerque/projects/stamps/Stamps/Pods
+    write-file /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/GTMSessionFetcher.build/all-product-headers.yaml
+
+WriteAuxiliaryFile /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/BoringSSL-GRPC.build/openssl_grpc-all-non-framework-target-headers.hmap (in target 'BoringSSL-GRPC' from project 'Pods')
+    cd /Users/intialbuquerque/projects/stamps/Stamps/Pods
+    write-file /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/BoringSSL-GRPC.build/openssl_grpc-all-non-framework-target-headers.hmap
+
+WriteAuxiliaryFile /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/GoogleUtilities.build/GoogleUtilities-all-non-framework-target-headers.hmap (in target 'GoogleUtilities' from project 'Pods')
+    cd /Users/intialbuquerque/projects/stamps/Stamps/Pods
+    write-file /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/GoogleUtilities.build/GoogleUtilities-all-non-framework-target-headers.hmap
+
+WriteAuxiliaryFile /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/GoogleUtilities.build/all-product-headers.yaml (in target 'GoogleUtilities' from project 'Pods')
+    cd /Users/intialbuquerque/projects/stamps/Stamps/Pods
+    write-file /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/GoogleUtilities.build/all-product-headers.yaml
+
+WriteAuxiliaryFile /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/GoogleDataTransport.build/GoogleDataTransport-all-non-framework-target-headers.hmap (in target 'GoogleDataTransport' from project 'Pods')
+    cd /Users/intialbuquerque/projects/stamps/Stamps/Pods
+    write-file /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/GoogleDataTransport.build/GoogleDataTransport-all-non-framework-target-headers.hmap
+
+WriteAuxiliaryFile /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/GoogleDataTransport.build/all-product-headers.yaml (in target 'GoogleDataTransport' from project 'Pods')
+    cd /Users/intialbuquerque/projects/stamps/Stamps/Pods
+    write-file /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/GoogleDataTransport.build/all-product-headers.yaml
+
+WriteAuxiliaryFile /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/FirebaseCoreDiagnostics.build/FirebaseCoreDiagnostics-all-non-framework-target-headers.hmap (in target 'FirebaseCoreDiagnostics' from project 'Pods')
+    cd /Users/intialbuquerque/projects/stamps/Stamps/Pods
+    write-file /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/FirebaseCoreDiagnostics.build/FirebaseCoreDiagnostics-all-non-framework-target-headers.hmap
+
+WriteAuxiliaryFile /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/FirebaseCoreDiagnostics.build/all-product-headers.yaml (in target 'FirebaseCoreDiagnostics' from project 'Pods')
+    cd /Users/intialbuquerque/projects/stamps/Stamps/Pods
+    write-file /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/FirebaseCoreDiagnostics.build/all-product-headers.yaml
+
+WriteAuxiliaryFile /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/FirebaseCore.build/FirebaseCore-all-non-framework-target-headers.hmap (in target 'FirebaseCore' from project 'Pods')
+    cd /Users/intialbuquerque/projects/stamps/Stamps/Pods
+    write-file /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/FirebaseCore.build/FirebaseCore-all-non-framework-target-headers.hmap
+
+WriteAuxiliaryFile /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/FirebaseCore.build/all-product-headers.yaml (in target 'FirebaseCore' from project 'Pods')
+    cd /Users/intialbuquerque/projects/stamps/Stamps/Pods
+    write-file /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/FirebaseCore.build/all-product-headers.yaml
+
+WriteAuxiliaryFile /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/FirebaseInstallations.build/FirebaseInstallations-all-non-framework-target-headers.hmap (in target 'FirebaseInstallations' from project 'Pods')
+    cd /Users/intialbuquerque/projects/stamps/Stamps/Pods
+    write-file /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/FirebaseInstallations.build/FirebaseInstallations-all-non-framework-target-headers.hmap
+
+WriteAuxiliaryFile /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/FirebaseFirestore.build/FirebaseFirestore-all-non-framework-target-headers.hmap (in target 'FirebaseFirestore' from project 'Pods')
+    cd /Users/intialbuquerque/projects/stamps/Stamps/Pods
+    write-file /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/FirebaseFirestore.build/FirebaseFirestore-all-non-framework-target-headers.hmap
+
+WriteAuxiliaryFile /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/FirebaseDatabase.build/FirebaseDatabase-all-non-framework-target-headers.hmap (in target 'FirebaseDatabase' from project 'Pods')
+    cd /Users/intialbuquerque/projects/stamps/Stamps/Pods
+    write-file /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/FirebaseDatabase.build/FirebaseDatabase-all-non-framework-target-headers.hmap
+
+WriteAuxiliaryFile /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/FirebaseAuth.build/FirebaseAuth-all-non-framework-target-headers.hmap (in target 'FirebaseAuth' from project 'Pods')
+    cd /Users/intialbuquerque/projects/stamps/Stamps/Pods
+    write-file /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/FirebaseAuth.build/FirebaseAuth-all-non-framework-target-headers.hmap
+
+WriteAuxiliaryFile /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/FirebaseFirestore.build/all-product-headers.yaml (in target 'FirebaseFirestore' from project 'Pods')
+    cd /Users/intialbuquerque/projects/stamps/Stamps/Pods
+    write-file /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/FirebaseFirestore.build/all-product-headers.yaml
+
+WriteAuxiliaryFile /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/FirebaseDatabase.build/all-product-headers.yaml (in target 'FirebaseDatabase' from project 'Pods')
+    cd /Users/intialbuquerque/projects/stamps/Stamps/Pods
+    write-file /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/FirebaseDatabase.build/all-product-headers.yaml
+
+WriteAuxiliaryFile /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/FirebaseInstallations.build/all-product-headers.yaml (in target 'FirebaseInstallations' from project 'Pods')
+    cd /Users/intialbuquerque/projects/stamps/Stamps/Pods
+    write-file /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/FirebaseInstallations.build/all-product-headers.yaml
+
+WriteAuxiliaryFile /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/FirebaseAuth.build/all-product-headers.yaml (in target 'FirebaseAuth' from project 'Pods')
+    cd /Users/intialbuquerque/projects/stamps/Stamps/Pods
+    write-file /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/FirebaseAuth.build/all-product-headers.yaml
+
+WriteAuxiliaryFile /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Pods-Stamps.build/Pods_Stamps-all-non-framework-target-headers.hmap (in target 'Pods-Stamps' from project 'Pods')
+    cd /Users/intialbuquerque/projects/stamps/Stamps/Pods
+    write-file /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Pods-Stamps.build/Pods_Stamps-all-non-framework-target-headers.hmap
+
+WriteAuxiliaryFile /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Pods-Stamps.build/all-product-headers.yaml (in target 'Pods-Stamps' from project 'Pods')
+    cd /Users/intialbuquerque/projects/stamps/Stamps/Pods
+    write-file /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Pods-Stamps.build/all-product-headers.yaml
+
+WriteAuxiliaryFile /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Pods-StampsTests.build/Pods_StampsTests-all-non-framework-target-headers.hmap (in target 'Pods-StampsTests' from project 'Pods')
+    cd /Users/intialbuquerque/projects/stamps/Stamps/Pods
+    write-file /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Pods-StampsTests.build/Pods_StampsTests-all-non-framework-target-headers.hmap
+
+ProcessProductPackaging "" /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Stamps.build/Debug-iphonesimulator/Stamps.build/Stamps.app-Simulated.xcent (in target 'Stamps' from project 'Stamps')
+    cd /Users/intialbuquerque/projects/stamps/Stamps
+    
+    Entitlements:
+    
+    {
+    "application-identifier" = "6K524MKAFK.-.StampsApp";
+    "keychain-access-groups" =     (
+        "6K524MKAFK.-.StampsApp"
+    );
+}
+    
+    builtin-productPackagingUtility -entitlements -format xml -o /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Stamps.build/Debug-iphonesimulator/Stamps.build/Stamps.app-Simulated.xcent
+
+WriteAuxiliaryFile /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Pods-StampsTests.build/all-product-headers.yaml (in target 'Pods-StampsTests' from project 'Pods')
+    cd /Users/intialbuquerque/projects/stamps/Stamps/Pods
+    write-file /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Pods-StampsTests.build/all-product-headers.yaml
+
+ProcessProductPackaging "" /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Stamps.build/Debug-iphonesimulator/Stamps.build/Stamps.app.xcent (in target 'Stamps' from project 'Stamps')
+    cd /Users/intialbuquerque/projects/stamps/Stamps
+    
+    Entitlements:
+    
+    {
+    "com.apple.security.get-task-allow" = 1;
+}
+    
+    builtin-productPackagingUtility -entitlements -format xml -o /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Stamps.build/Debug-iphonesimulator/Stamps.build/Stamps.app.xcent
+
+Ld /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/Stamps.app/Stamps normal (in target 'Stamps' from project 'Stamps')
+    cd /Users/intialbuquerque/projects/stamps/Stamps
+    /Users/intialbuquerque/Downloads/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -target arm64-apple-ios14.0-simulator -isysroot /Users/intialbuquerque/Downloads/Xcode-beta.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator15.0.sdk -L/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/BoringSSL-GRPC -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/FirebaseAuth -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/FirebaseCore -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/FirebaseCoreDiagnostics -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/FirebaseDatabase -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/FirebaseFirestore -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/FirebaseInstallations -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/GTMSessionFetcher -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/GoogleDataTransport -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/GoogleUtilities -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/PromisesObjC -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/abseil -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/gRPC-C++ -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/gRPC-Core -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/leveldb-library -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/nanopb -F/Users/intialbuquerque/projects/stamps/Stamps/Pods/FirebaseAnalytics/Frameworks -F/Users/intialbuquerque/projects/stamps/Stamps/Pods/GoogleAppMeasurement/Frameworks -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/XCFrameworkIntermediates/FirebaseAnalytics -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/XCFrameworkIntermediates/GoogleAppMeasurement -filelist /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Stamps.build/Debug-iphonesimulator/Stamps.build/Objects-normal/arm64/Stamps.LinkFileList -Xlinker -rpath -Xlinker @executable_path/Frameworks -Xlinker -rpath -Xlinker @loader_path/Frameworks -Xlinker -rpath -Xlinker @executable_path/Frameworks -dead_strip -Xlinker -object_path_lto -Xlinker /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Stamps.build/Debug-iphonesimulator/Stamps.build/Objects-normal/arm64/Stamps_lto.o -Xlinker -export_dynamic -Xlinker -no_deduplicate -Xlinker -objc_abi_version -Xlinker 2 -fobjc-link-runtime -L/Users/intialbuquerque/Downloads/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator -L/usr/lib/swift -Xlinker -add_ast_path -Xlinker /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Stamps.build/Debug-iphonesimulator/Stamps.build/Objects-normal/arm64/Stamps.swiftmodule -lc++ -licucore -lsqlite3 -lz -framework CFNetwork -framework CoreTelephony -framework FBLPromises -framework FirebaseAnalytics -framework FirebaseAuth -framework FirebaseCore -framework FirebaseCoreDiagnostics -framework FirebaseDatabase -framework FirebaseFirestore -framework FirebaseInstallations -framework Foundation -framework GTMSessionFetcher -framework GoogleAppMeasurement -framework GoogleDataTransport -framework GoogleUtilities -framework SafariServices -framework Security -framework StoreKit -framework SystemConfiguration -framework UIKit -framework absl -framework grpc -framework grpcpp -framework leveldb -framework nanopb -framework openssl_grpc -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __entitlements -Xlinker /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Stamps.build/Debug-iphonesimulator/Stamps.build/Stamps.app-Simulated.xcent -framework Pods_Stamps -Xlinker -no_adhoc_codesign -Xlinker -dependency_info -Xlinker /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Stamps.build/Debug-iphonesimulator/Stamps.build/Objects-normal/arm64/Stamps_dependency_info.dat -o /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/Stamps.app/Stamps
+
+CopySwiftLibs /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/Stamps.app (in target 'Stamps' from project 'Stamps')
+    cd /Users/intialbuquerque/projects/stamps/Stamps
+    export CODESIGN_ALLOCATE\=/Users/intialbuquerque/Downloads/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/codesign_allocate
+    export DEVELOPER_DIR\=/Users/intialbuquerque/Downloads/Xcode-beta.app/Contents/Developer
+    export SDKROOT\=/Users/intialbuquerque/Downloads/Xcode-beta.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator15.0.sdk
+    builtin-swiftStdLibTool --copy --verbose --sign - --scan-executable /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/Stamps.app/Stamps --scan-folder /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/Stamps.app/Frameworks --scan-folder /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/Stamps.app/PlugIns --scan-folder /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/Pods_Stamps.framework --platform iphonesimulator --toolchain /Users/intialbuquerque/Downloads/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --destination /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/Stamps.app/Frameworks --strip-bitcode --strip-bitcode-tool /Users/intialbuquerque/Downloads/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/bitcode_strip --emit-dependency-info /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Stamps.build/Debug-iphonesimulator/Stamps.build/SwiftStdLibToolInputDependencies.dep --filter-for-swift-os
+
+ProcessProductPackaging "" /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Stamps.build/Debug-iphonesimulator/StampsTests.build/StampsTests.xctest-Simulated.xcent (in target 'StampsTests' from project 'Stamps')
+    cd /Users/intialbuquerque/projects/stamps/Stamps
+    
+    Entitlements:
+    
+    {
+    "application-identifier" = "6K524MKAFK.-.StampsTests";
+    "keychain-access-groups" =     (
+        "6K524MKAFK.-.StampsTests"
+    );
+}
+    
+    builtin-productPackagingUtility -entitlements -format xml -o /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Stamps.build/Debug-iphonesimulator/StampsTests.build/StampsTests.xctest-Simulated.xcent
+
+Ld /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/Stamps.app/PlugIns/StampsTests.xctest/StampsTests normal (in target 'StampsTests' from project 'Stamps')
+    cd /Users/intialbuquerque/projects/stamps/Stamps
+    /Users/intialbuquerque/Downloads/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -target arm64-apple-ios14.0-simulator -bundle -isysroot /Users/intialbuquerque/Downloads/Xcode-beta.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator15.0.sdk -L/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator -L/Users/intialbuquerque/Downloads/Xcode-beta.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/BoringSSL-GRPC -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/FirebaseAuth -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/FirebaseCore -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/FirebaseCoreDiagnostics -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/FirebaseDatabase -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/FirebaseFirestore -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/FirebaseInstallations -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/GTMSessionFetcher -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/GoogleDataTransport -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/GoogleUtilities -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/PromisesObjC -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/abseil -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/gRPC-C++ -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/gRPC-Core -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/leveldb-library -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/nanopb -F/Users/intialbuquerque/projects/stamps/Stamps/Pods/FirebaseAnalytics/Frameworks -F/Users/intialbuquerque/projects/stamps/Stamps/Pods/GoogleAppMeasurement/Frameworks -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/XCFrameworkIntermediates/FirebaseAnalytics -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/XCFrameworkIntermediates/GoogleAppMeasurement -iframework /Users/intialbuquerque/Downloads/Xcode-beta.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -iframework /Users/intialbuquerque/Downloads/Xcode-beta.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator15.0.sdk/Developer/Library/Frameworks -filelist /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Stamps.build/Debug-iphonesimulator/StampsTests.build/Objects-normal/arm64/StampsTests.LinkFileList -Xlinker -rpath -Xlinker @loader_path/Frameworks -Xlinker -rpath -Xlinker @executable_path/Frameworks -Xlinker -rpath -Xlinker @loader_path/Frameworks -dead_strip -bundle_loader /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/Stamps.app/Stamps -Xlinker -object_path_lto -Xlinker /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Stamps.build/Debug-iphonesimulator/StampsTests.build/Objects-normal/arm64/StampsTests_lto.o -Xlinker -export_dynamic -Xlinker -no_deduplicate -Xlinker -objc_abi_version -Xlinker 2 -fobjc-link-runtime -L/Users/intialbuquerque/Downloads/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator -L/usr/lib/swift -Xlinker -add_ast_path -Xlinker /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Stamps.build/Debug-iphonesimulator/StampsTests.build/Objects-normal/arm64/StampsTests.swiftmodule -lc++ -licucore -lsqlite3 -lz -framework CFNetwork -framework CoreTelephony -framework FBLPromises -framework FirebaseAuth -framework FirebaseCore -framework FirebaseCoreDiagnostics -framework FirebaseDatabase -framework FirebaseFirestore -framework FirebaseInstallations -framework Foundation -framework GTMSessionFetcher -framework GoogleDataTransport -framework GoogleUtilities -framework SafariServices -framework Security -framework StoreKit -framework SystemConfiguration -framework UIKit -framework absl -framework grpc -framework grpcpp -framework leveldb -framework nanopb -framework openssl_grpc -framework XCTest -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __entitlements -Xlinker /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Stamps.build/Debug-iphonesimulator/StampsTests.build/StampsTests.xctest-Simulated.xcent -framework Pods_StampsTests -Xlinker -no_adhoc_codesign -Xlinker -dependency_info -Xlinker /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Stamps.build/Debug-iphonesimulator/StampsTests.build/Objects-normal/arm64/StampsTests_dependency_info.dat -o /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/Stamps.app/PlugIns/StampsTests.xctest/StampsTests
+
+CopySwiftLibs /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/Stamps.app/PlugIns/StampsTests.xctest (in target 'StampsTests' from project 'Stamps')
+    cd /Users/intialbuquerque/projects/stamps/Stamps
+    export CODESIGN_ALLOCATE\=/Users/intialbuquerque/Downloads/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/codesign_allocate
+    export DEVELOPER_DIR\=/Users/intialbuquerque/Downloads/Xcode-beta.app/Contents/Developer
+    export SDKROOT\=/Users/intialbuquerque/Downloads/Xcode-beta.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator15.0.sdk
+    builtin-swiftStdLibTool --copy --verbose --sign - --scan-executable /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/Stamps.app/PlugIns/StampsTests.xctest/StampsTests --scan-folder /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/Stamps.app/PlugIns/StampsTests.xctest/Frameworks --scan-folder /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/Stamps.app/PlugIns/StampsTests.xctest/PlugIns --scan-folder /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/Pods_StampsTests.framework --platform iphonesimulator --toolchain /Users/intialbuquerque/Downloads/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --destination /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/Stamps.app/PlugIns/StampsTests.xctest/Frameworks --strip-bitcode --scan-executable /Users/intialbuquerque/Downloads/Xcode-beta.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib/libXCTestSwiftSupport.dylib --strip-bitcode-tool /Users/intialbuquerque/Downloads/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/bitcode_strip --emit-dependency-info /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Stamps.build/Debug-iphonesimulator/StampsTests.build/SwiftStdLibToolInputDependencies.dep --filter-for-swift-os
+
+CodeSign /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/Stamps.app/PlugIns/StampsTests.xctest (in target 'StampsTests' from project 'Stamps')
+    cd /Users/intialbuquerque/projects/stamps/Stamps
+    export CODESIGN_ALLOCATE\=/Users/intialbuquerque/Downloads/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/codesign_allocate
+    
+    Signing Identity:     "-"
+    
+    /usr/bin/codesign --force --sign - --timestamp\=none --generate-entitlement-der /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/Stamps.app/PlugIns/StampsTests.xctest
+
+CodeSign /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/Stamps.app (in target 'Stamps' from project 'Stamps')
+    cd /Users/intialbuquerque/projects/stamps/Stamps
+    export CODESIGN_ALLOCATE\=/Users/intialbuquerque/Downloads/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/codesign_allocate
+    
+    Signing Identity:     "-"
+    
+    /usr/bin/codesign --force --sign - --entitlements /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Stamps.build/Debug-iphonesimulator/Stamps.build/Stamps.app.xcent --timestamp\=none --generate-entitlement-der /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/Stamps.app
+
+/Users/intialbuquerque/projects/stamps/Stamps/Pods/Pods.xcodeproj: warning: The iOS Simulator deployment target 'IPHONEOS_DEPLOYMENT_TARGET' is set to 8.0, but the range of supported deployment target versions is 9.0 to 15.0.99. (in target 'gRPC-C++' from project 'Pods')
+/Users/intialbuquerque/projects/stamps/Stamps/Pods/Pods.xcodeproj: warning: The iOS Simulator deployment target 'IPHONEOS_DEPLOYMENT_TARGET' is set to 8.0, but the range of supported deployment target versions is 9.0 to 15.0.99. (in target 'abseil' from project 'Pods')
+/Users/intialbuquerque/projects/stamps/Stamps/Pods/Pods.xcodeproj: warning: The iOS Simulator deployment target 'IPHONEOS_DEPLOYMENT_TARGET' is set to 8.0, but the range of supported deployment target versions is 9.0 to 15.0.99. (in target 'gRPC-Core' from project 'Pods')
+/Users/intialbuquerque/projects/stamps/Stamps/Pods/Pods.xcodeproj: warning: The iOS Simulator deployment target 'IPHONEOS_DEPLOYMENT_TARGET' is set to 8.0, but the range of supported deployment target versions is 9.0 to 15.0.99. (in target 'leveldb-library' from project 'Pods')
+/Users/intialbuquerque/projects/stamps/Stamps/Pods/Pods.xcodeproj: warning: The iOS Simulator deployment target 'IPHONEOS_DEPLOYMENT_TARGET' is set to 8.0, but the range of supported deployment target versions is 9.0 to 15.0.99. (in target 'gRPC-C++-gRPCCertificates-Cpp' from project 'Pods')
+** BUILD SUCCEEDED **
+
+note: Using new build system
+note: Planning
+Analyze workspace
+
+Create build description
+Build description signature: ffdc6e2a67bcd99dc2d15aedbd4b23eb
+Build description path: /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/XCBuildData/ffdc6e2a67bcd99dc2d15aedbd4b23eb-desc.xcbuild
+
+note: Build preparation complete
+note: Building targets in parallel
+WriteAuxiliaryFile /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/nanopb.build/all-product-headers.yaml (in target 'nanopb' from project 'Pods')
+    cd /Users/intialbuquerque/projects/stamps/Stamps/Pods
+    write-file /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/nanopb.build/all-product-headers.yaml
+
+WriteAuxiliaryFile /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/PromisesObjC.build/FBLPromises-all-non-framework-target-headers.hmap (in target 'PromisesObjC' from project 'Pods')
+    cd /Users/intialbuquerque/projects/stamps/Stamps/Pods
+    write-file /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/PromisesObjC.build/FBLPromises-all-non-framework-target-headers.hmap
+
+/Users/intialbuquerque/projects/stamps/Stamps/Pods/Pods.xcodeproj: warning: The iOS Simulator deployment target 'IPHONEOS_DEPLOYMENT_TARGET' is set to 8.0, but the range of supported deployment target versions is 9.0 to 15.0.99. (in target 'gRPC-C++-gRPCCertificates-Cpp' from project 'Pods')
+ProcessProductPackaging "" /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/gRPC-C++-gRPCCertificates-Cpp.build/gRPCCertificates-Cpp.bundle-Simulated.xcent (in target 'gRPC-C++-gRPCCertificates-Cpp' from project 'Pods')
+    cd /Users/intialbuquerque/projects/stamps/Stamps/Pods
+    
+    Entitlements:
+    
+    {
+    "application-identifier" = "6K524MKAFK.org.cocoapods.gRPCCertificates-Cpp";
+    "keychain-access-groups" =     (
+        "6K524MKAFK.org.cocoapods.gRPCCertificates-Cpp"
+    );
+}
+    
+    builtin-productPackagingUtility -entitlements -format xml -o /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/gRPC-C++-gRPCCertificates-Cpp.build/gRPCCertificates-Cpp.bundle-Simulated.xcent
+
+WriteAuxiliaryFile /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/GTMSessionFetcher.build/GTMSessionFetcher-all-non-framework-target-headers.hmap (in target 'GTMSessionFetcher' from project 'Pods')
+    cd /Users/intialbuquerque/projects/stamps/Stamps/Pods
+    write-file /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/GTMSessionFetcher.build/GTMSessionFetcher-all-non-framework-target-headers.hmap
+
+WriteAuxiliaryFile /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/BoringSSL-GRPC.build/all-product-headers.yaml (in target 'BoringSSL-GRPC' from project 'Pods')
+    cd /Users/intialbuquerque/projects/stamps/Stamps/Pods
+    write-file /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/BoringSSL-GRPC.build/all-product-headers.yaml
+
+WriteAuxiliaryFile /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/nanopb.build/nanopb-all-non-framework-target-headers.hmap (in target 'nanopb' from project 'Pods')
+    cd /Users/intialbuquerque/projects/stamps/Stamps/Pods
+    write-file /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/nanopb.build/nanopb-all-non-framework-target-headers.hmap
+
+WriteAuxiliaryFile /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/PromisesObjC.build/all-product-headers.yaml (in target 'PromisesObjC' from project 'Pods')
+    cd /Users/intialbuquerque/projects/stamps/Stamps/Pods
+    write-file /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/PromisesObjC.build/all-product-headers.yaml
+
+WriteAuxiliaryFile /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/GTMSessionFetcher.build/all-product-headers.yaml (in target 'GTMSessionFetcher' from project 'Pods')
+    cd /Users/intialbuquerque/projects/stamps/Stamps/Pods
+    write-file /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/GTMSessionFetcher.build/all-product-headers.yaml
+
+WriteAuxiliaryFile /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/BoringSSL-GRPC.build/openssl_grpc-all-non-framework-target-headers.hmap (in target 'BoringSSL-GRPC' from project 'Pods')
+    cd /Users/intialbuquerque/projects/stamps/Stamps/Pods
+    write-file /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/BoringSSL-GRPC.build/openssl_grpc-all-non-framework-target-headers.hmap
+
+WriteAuxiliaryFile /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/GoogleUtilities.build/GoogleUtilities-all-non-framework-target-headers.hmap (in target 'GoogleUtilities' from project 'Pods')
+    cd /Users/intialbuquerque/projects/stamps/Stamps/Pods
+    write-file /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/GoogleUtilities.build/GoogleUtilities-all-non-framework-target-headers.hmap
+
+WriteAuxiliaryFile /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/GoogleUtilities.build/all-product-headers.yaml (in target 'GoogleUtilities' from project 'Pods')
+    cd /Users/intialbuquerque/projects/stamps/Stamps/Pods
+    write-file /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/GoogleUtilities.build/all-product-headers.yaml
+
+WriteAuxiliaryFile /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/GoogleDataTransport.build/GoogleDataTransport-all-non-framework-target-headers.hmap (in target 'GoogleDataTransport' from project 'Pods')
+    cd /Users/intialbuquerque/projects/stamps/Stamps/Pods
+    write-file /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/GoogleDataTransport.build/GoogleDataTransport-all-non-framework-target-headers.hmap
+
+WriteAuxiliaryFile /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/GoogleDataTransport.build/all-product-headers.yaml (in target 'GoogleDataTransport' from project 'Pods')
+    cd /Users/intialbuquerque/projects/stamps/Stamps/Pods
+    write-file /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/GoogleDataTransport.build/all-product-headers.yaml
+
+WriteAuxiliaryFile /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/FirebaseCoreDiagnostics.build/FirebaseCoreDiagnostics-all-non-framework-target-headers.hmap (in target 'FirebaseCoreDiagnostics' from project 'Pods')
+    cd /Users/intialbuquerque/projects/stamps/Stamps/Pods
+    write-file /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/FirebaseCoreDiagnostics.build/FirebaseCoreDiagnostics-all-non-framework-target-headers.hmap
+
+WriteAuxiliaryFile /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/FirebaseCoreDiagnostics.build/all-product-headers.yaml (in target 'FirebaseCoreDiagnostics' from project 'Pods')
+    cd /Users/intialbuquerque/projects/stamps/Stamps/Pods
+    write-file /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/FirebaseCoreDiagnostics.build/all-product-headers.yaml
+
+WriteAuxiliaryFile /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/FirebaseCore.build/FirebaseCore-all-non-framework-target-headers.hmap (in target 'FirebaseCore' from project 'Pods')
+    cd /Users/intialbuquerque/projects/stamps/Stamps/Pods
+    write-file /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/FirebaseCore.build/FirebaseCore-all-non-framework-target-headers.hmap
+
+WriteAuxiliaryFile /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/FirebaseCore.build/all-product-headers.yaml (in target 'FirebaseCore' from project 'Pods')
+    cd /Users/intialbuquerque/projects/stamps/Stamps/Pods
+    write-file /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/FirebaseCore.build/all-product-headers.yaml
+
+WriteAuxiliaryFile /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/FirebaseFirestore.build/FirebaseFirestore-all-non-framework-target-headers.hmap (in target 'FirebaseFirestore' from project 'Pods')
+    cd /Users/intialbuquerque/projects/stamps/Stamps/Pods
+    write-file /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/FirebaseFirestore.build/FirebaseFirestore-all-non-framework-target-headers.hmap
+
+WriteAuxiliaryFile /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/FirebaseInstallations.build/FirebaseInstallations-all-non-framework-target-headers.hmap (in target 'FirebaseInstallations' from project 'Pods')
+    cd /Users/intialbuquerque/projects/stamps/Stamps/Pods
+    write-file /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/FirebaseInstallations.build/FirebaseInstallations-all-non-framework-target-headers.hmap
+
+WriteAuxiliaryFile /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/FirebaseDatabase.build/FirebaseDatabase-all-non-framework-target-headers.hmap (in target 'FirebaseDatabase' from project 'Pods')
+    cd /Users/intialbuquerque/projects/stamps/Stamps/Pods
+    write-file /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/FirebaseDatabase.build/FirebaseDatabase-all-non-framework-target-headers.hmap
+
+WriteAuxiliaryFile /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/FirebaseAuth.build/FirebaseAuth-all-non-framework-target-headers.hmap (in target 'FirebaseAuth' from project 'Pods')
+    cd /Users/intialbuquerque/projects/stamps/Stamps/Pods
+    write-file /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/FirebaseAuth.build/FirebaseAuth-all-non-framework-target-headers.hmap
+
+WriteAuxiliaryFile /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/FirebaseInstallations.build/all-product-headers.yaml (in target 'FirebaseInstallations' from project 'Pods')
+    cd /Users/intialbuquerque/projects/stamps/Stamps/Pods
+    write-file /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/FirebaseInstallations.build/all-product-headers.yaml
+
+WriteAuxiliaryFile /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/FirebaseFirestore.build/all-product-headers.yaml (in target 'FirebaseFirestore' from project 'Pods')
+    cd /Users/intialbuquerque/projects/stamps/Stamps/Pods
+    write-file /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/FirebaseFirestore.build/all-product-headers.yaml
+
+WriteAuxiliaryFile /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/FirebaseDatabase.build/all-product-headers.yaml (in target 'FirebaseDatabase' from project 'Pods')
+    cd /Users/intialbuquerque/projects/stamps/Stamps/Pods
+    write-file /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/FirebaseDatabase.build/all-product-headers.yaml
+
+WriteAuxiliaryFile /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/FirebaseAuth.build/all-product-headers.yaml (in target 'FirebaseAuth' from project 'Pods')
+    cd /Users/intialbuquerque/projects/stamps/Stamps/Pods
+    write-file /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/FirebaseAuth.build/all-product-headers.yaml
+
+WriteAuxiliaryFile /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Pods-Stamps.build/Pods_Stamps-all-non-framework-target-headers.hmap (in target 'Pods-Stamps' from project 'Pods')
+    cd /Users/intialbuquerque/projects/stamps/Stamps/Pods
+    write-file /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Pods-Stamps.build/Pods_Stamps-all-non-framework-target-headers.hmap
+
+WriteAuxiliaryFile /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Pods-Stamps.build/all-product-headers.yaml (in target 'Pods-Stamps' from project 'Pods')
+    cd /Users/intialbuquerque/projects/stamps/Stamps/Pods
+    write-file /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Pods-Stamps.build/all-product-headers.yaml
+
+WriteAuxiliaryFile /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Pods-StampsTests.build/Pods_StampsTests-all-non-framework-target-headers.hmap (in target 'Pods-StampsTests' from project 'Pods')
+    cd /Users/intialbuquerque/projects/stamps/Stamps/Pods
+    write-file /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Pods-StampsTests.build/Pods_StampsTests-all-non-framework-target-headers.hmap
+
+ProcessProductPackaging "" /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Stamps.build/Debug-iphonesimulator/Stamps.build/Stamps.app-Simulated.xcent (in target 'Stamps' from project 'Stamps')
+    cd /Users/intialbuquerque/projects/stamps/Stamps
+    
+    Entitlements:
+    
+    {
+    "application-identifier" = "6K524MKAFK.-.StampsApp";
+    "keychain-access-groups" =     (
+        "6K524MKAFK.-.StampsApp"
+    );
+}
+    
+    builtin-productPackagingUtility -entitlements -format xml -o /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Stamps.build/Debug-iphonesimulator/Stamps.build/Stamps.app-Simulated.xcent
+
+ProcessProductPackaging "" /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Stamps.build/Debug-iphonesimulator/Stamps.build/Stamps.app.xcent (in target 'Stamps' from project 'Stamps')
+    cd /Users/intialbuquerque/projects/stamps/Stamps
+    
+    Entitlements:
+    
+    {
+    "com.apple.security.get-task-allow" = 1;
+}
+    
+    builtin-productPackagingUtility -entitlements -format xml -o /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Stamps.build/Debug-iphonesimulator/Stamps.build/Stamps.app.xcent
+
+WriteAuxiliaryFile /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Pods-StampsTests.build/all-product-headers.yaml (in target 'Pods-StampsTests' from project 'Pods')
+    cd /Users/intialbuquerque/projects/stamps/Stamps/Pods
+    write-file /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Pods-StampsTests.build/all-product-headers.yaml
+
+Ld /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/Stamps.app/Stamps normal (in target 'Stamps' from project 'Stamps')
+    cd /Users/intialbuquerque/projects/stamps/Stamps
+    /Users/intialbuquerque/Downloads/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -target arm64-apple-ios14.0-simulator -isysroot /Users/intialbuquerque/Downloads/Xcode-beta.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator15.0.sdk -L/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/BoringSSL-GRPC -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/FirebaseAuth -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/FirebaseCore -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/FirebaseCoreDiagnostics -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/FirebaseDatabase -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/FirebaseFirestore -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/FirebaseInstallations -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/GTMSessionFetcher -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/GoogleDataTransport -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/GoogleUtilities -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/PromisesObjC -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/abseil -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/gRPC-C++ -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/gRPC-Core -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/leveldb-library -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/nanopb -F/Users/intialbuquerque/projects/stamps/Stamps/Pods/FirebaseAnalytics/Frameworks -F/Users/intialbuquerque/projects/stamps/Stamps/Pods/GoogleAppMeasurement/Frameworks -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/XCFrameworkIntermediates/FirebaseAnalytics -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/XCFrameworkIntermediates/GoogleAppMeasurement -filelist /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Stamps.build/Debug-iphonesimulator/Stamps.build/Objects-normal/arm64/Stamps.LinkFileList -Xlinker -rpath -Xlinker @executable_path/Frameworks -Xlinker -rpath -Xlinker @loader_path/Frameworks -Xlinker -rpath -Xlinker @executable_path/Frameworks -dead_strip -Xlinker -object_path_lto -Xlinker /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Stamps.build/Debug-iphonesimulator/Stamps.build/Objects-normal/arm64/Stamps_lto.o -Xlinker -export_dynamic -Xlinker -no_deduplicate -Xlinker -objc_abi_version -Xlinker 2 -fobjc-link-runtime -L/Users/intialbuquerque/Downloads/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator -L/usr/lib/swift -Xlinker -add_ast_path -Xlinker /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Stamps.build/Debug-iphonesimulator/Stamps.build/Objects-normal/arm64/Stamps.swiftmodule -lc++ -licucore -lsqlite3 -lz -framework CFNetwork -framework CoreTelephony -framework FBLPromises -framework FirebaseAnalytics -framework FirebaseAuth -framework FirebaseCore -framework FirebaseCoreDiagnostics -framework FirebaseDatabase -framework FirebaseFirestore -framework FirebaseInstallations -framework Foundation -framework GTMSessionFetcher -framework GoogleAppMeasurement -framework GoogleDataTransport -framework GoogleUtilities -framework SafariServices -framework Security -framework StoreKit -framework SystemConfiguration -framework UIKit -framework absl -framework grpc -framework grpcpp -framework leveldb -framework nanopb -framework openssl_grpc -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __entitlements -Xlinker /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Stamps.build/Debug-iphonesimulator/Stamps.build/Stamps.app-Simulated.xcent -framework Pods_Stamps -Xlinker -no_adhoc_codesign -Xlinker -dependency_info -Xlinker /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Stamps.build/Debug-iphonesimulator/Stamps.build/Objects-normal/arm64/Stamps_dependency_info.dat -o /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/Stamps.app/Stamps
+
+CopySwiftLibs /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/Stamps.app (in target 'Stamps' from project 'Stamps')
+    cd /Users/intialbuquerque/projects/stamps/Stamps
+    export CODESIGN_ALLOCATE\=/Users/intialbuquerque/Downloads/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/codesign_allocate
+    export DEVELOPER_DIR\=/Users/intialbuquerque/Downloads/Xcode-beta.app/Contents/Developer
+    export SDKROOT\=/Users/intialbuquerque/Downloads/Xcode-beta.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator15.0.sdk
+    builtin-swiftStdLibTool --copy --verbose --sign - --scan-executable /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/Stamps.app/Stamps --scan-folder /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/Stamps.app/Frameworks --scan-folder /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/Stamps.app/PlugIns --scan-folder /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/Pods_Stamps.framework --platform iphonesimulator --toolchain /Users/intialbuquerque/Downloads/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --destination /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/Stamps.app/Frameworks --strip-bitcode --strip-bitcode-tool /Users/intialbuquerque/Downloads/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/bitcode_strip --emit-dependency-info /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Stamps.build/Debug-iphonesimulator/Stamps.build/SwiftStdLibToolInputDependencies.dep --filter-for-swift-os
+
+ProcessProductPackaging "" /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Stamps.build/Debug-iphonesimulator/StampsTests.build/StampsTests.xctest-Simulated.xcent (in target 'StampsTests' from project 'Stamps')
+    cd /Users/intialbuquerque/projects/stamps/Stamps
+    
+    Entitlements:
+    
+    {
+    "application-identifier" = "6K524MKAFK.-.StampsTests";
+    "keychain-access-groups" =     (
+        "6K524MKAFK.-.StampsTests"
+    );
+}
+    
+    builtin-productPackagingUtility -entitlements -format xml -o /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Stamps.build/Debug-iphonesimulator/StampsTests.build/StampsTests.xctest-Simulated.xcent
+
+Ld /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/Stamps.app/PlugIns/StampsTests.xctest/StampsTests normal (in target 'StampsTests' from project 'Stamps')
+    cd /Users/intialbuquerque/projects/stamps/Stamps
+    /Users/intialbuquerque/Downloads/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -target arm64-apple-ios14.0-simulator -bundle -isysroot /Users/intialbuquerque/Downloads/Xcode-beta.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator15.0.sdk -L/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator -L/Users/intialbuquerque/Downloads/Xcode-beta.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/BoringSSL-GRPC -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/FirebaseAuth -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/FirebaseCore -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/FirebaseCoreDiagnostics -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/FirebaseDatabase -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/FirebaseFirestore -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/FirebaseInstallations -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/GTMSessionFetcher -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/GoogleDataTransport -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/GoogleUtilities -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/PromisesObjC -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/abseil -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/gRPC-C++ -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/gRPC-Core -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/leveldb-library -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/nanopb -F/Users/intialbuquerque/projects/stamps/Stamps/Pods/FirebaseAnalytics/Frameworks -F/Users/intialbuquerque/projects/stamps/Stamps/Pods/GoogleAppMeasurement/Frameworks -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/XCFrameworkIntermediates/FirebaseAnalytics -F/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/XCFrameworkIntermediates/GoogleAppMeasurement -iframework /Users/intialbuquerque/Downloads/Xcode-beta.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -iframework /Users/intialbuquerque/Downloads/Xcode-beta.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator15.0.sdk/Developer/Library/Frameworks -filelist /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Stamps.build/Debug-iphonesimulator/StampsTests.build/Objects-normal/arm64/StampsTests.LinkFileList -Xlinker -rpath -Xlinker @loader_path/Frameworks -Xlinker -rpath -Xlinker @executable_path/Frameworks -Xlinker -rpath -Xlinker @loader_path/Frameworks -dead_strip -bundle_loader /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/Stamps.app/Stamps -Xlinker -object_path_lto -Xlinker /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Stamps.build/Debug-iphonesimulator/StampsTests.build/Objects-normal/arm64/StampsTests_lto.o -Xlinker -export_dynamic -Xlinker -no_deduplicate -Xlinker -objc_abi_version -Xlinker 2 -fobjc-link-runtime -L/Users/intialbuquerque/Downloads/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator -L/usr/lib/swift -Xlinker -add_ast_path -Xlinker /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Stamps.build/Debug-iphonesimulator/StampsTests.build/Objects-normal/arm64/StampsTests.swiftmodule -lc++ -licucore -lsqlite3 -lz -framework CFNetwork -framework CoreTelephony -framework FBLPromises -framework FirebaseAuth -framework FirebaseCore -framework FirebaseCoreDiagnostics -framework FirebaseDatabase -framework FirebaseFirestore -framework FirebaseInstallations -framework Foundation -framework GTMSessionFetcher -framework GoogleDataTransport -framework GoogleUtilities -framework SafariServices -framework Security -framework StoreKit -framework SystemConfiguration -framework UIKit -framework absl -framework grpc -framework grpcpp -framework leveldb -framework nanopb -framework openssl_grpc -framework XCTest -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __entitlements -Xlinker /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Stamps.build/Debug-iphonesimulator/StampsTests.build/StampsTests.xctest-Simulated.xcent -framework Pods_StampsTests -Xlinker -no_adhoc_codesign -Xlinker -dependency_info -Xlinker /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Stamps.build/Debug-iphonesimulator/StampsTests.build/Objects-normal/arm64/StampsTests_dependency_info.dat -o /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/Stamps.app/PlugIns/StampsTests.xctest/StampsTests
+
+CopySwiftLibs /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/Stamps.app/PlugIns/StampsTests.xctest (in target 'StampsTests' from project 'Stamps')
+    cd /Users/intialbuquerque/projects/stamps/Stamps
+    export CODESIGN_ALLOCATE\=/Users/intialbuquerque/Downloads/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/codesign_allocate
+    export DEVELOPER_DIR\=/Users/intialbuquerque/Downloads/Xcode-beta.app/Contents/Developer
+    export SDKROOT\=/Users/intialbuquerque/Downloads/Xcode-beta.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator15.0.sdk
+    builtin-swiftStdLibTool --copy --verbose --sign - --scan-executable /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/Stamps.app/PlugIns/StampsTests.xctest/StampsTests --scan-folder /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/Stamps.app/PlugIns/StampsTests.xctest/Frameworks --scan-folder /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/Stamps.app/PlugIns/StampsTests.xctest/PlugIns --scan-folder /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/Pods_StampsTests.framework --platform iphonesimulator --toolchain /Users/intialbuquerque/Downloads/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --destination /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/Stamps.app/PlugIns/StampsTests.xctest/Frameworks --strip-bitcode --scan-executable /Users/intialbuquerque/Downloads/Xcode-beta.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib/libXCTestSwiftSupport.dylib --strip-bitcode-tool /Users/intialbuquerque/Downloads/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/bitcode_strip --emit-dependency-info /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Stamps.build/Debug-iphonesimulator/StampsTests.build/SwiftStdLibToolInputDependencies.dep --filter-for-swift-os
+
+CodeSign /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/Stamps.app/PlugIns/StampsTests.xctest (in target 'StampsTests' from project 'Stamps')
+    cd /Users/intialbuquerque/projects/stamps/Stamps
+    export CODESIGN_ALLOCATE\=/Users/intialbuquerque/Downloads/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/codesign_allocate
+    
+    Signing Identity:     "-"
+    
+    /usr/bin/codesign --force --sign - --timestamp\=none --generate-entitlement-der /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/Stamps.app/PlugIns/StampsTests.xctest
+
+CodeSign /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/Stamps.app (in target 'Stamps' from project 'Stamps')
+    cd /Users/intialbuquerque/projects/stamps/Stamps
+    export CODESIGN_ALLOCATE\=/Users/intialbuquerque/Downloads/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/codesign_allocate
+    
+    Signing Identity:     "-"
+    
+    /usr/bin/codesign --force --sign - --entitlements /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex/Stamps.build/Debug-iphonesimulator/Stamps.build/Stamps.app.xcent --timestamp\=none --generate-entitlement-der /Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/Stamps.app
+
+/Users/intialbuquerque/projects/stamps/Stamps/Pods/Pods.xcodeproj: warning: The iOS Simulator deployment target 'IPHONEOS_DEPLOYMENT_TARGET' is set to 8.0, but the range of supported deployment target versions is 9.0 to 15.0.99. (in target 'gRPC-C++' from project 'Pods')
+/Users/intialbuquerque/projects/stamps/Stamps/Pods/Pods.xcodeproj: warning: The iOS Simulator deployment target 'IPHONEOS_DEPLOYMENT_TARGET' is set to 8.0, but the range of supported deployment target versions is 9.0 to 15.0.99. (in target 'gRPC-Core' from project 'Pods')
+/Users/intialbuquerque/projects/stamps/Stamps/Pods/Pods.xcodeproj: warning: The iOS Simulator deployment target 'IPHONEOS_DEPLOYMENT_TARGET' is set to 8.0, but the range of supported deployment target versions is 9.0 to 15.0.99. (in target 'abseil' from project 'Pods')
+/Users/intialbuquerque/projects/stamps/Stamps/Pods/Pods.xcodeproj: warning: The iOS Simulator deployment target 'IPHONEOS_DEPLOYMENT_TARGET' is set to 8.0, but the range of supported deployment target versions is 9.0 to 15.0.99. (in target 'leveldb-library' from project 'Pods')
+Testing started
+Testing started for configuration 'Configuration 1'
+/Users/intialbuquerque/projects/stamps/Stamps/Pods/Pods.xcodeproj: warning: The iOS Simulator deployment target 'IPHONEOS_DEPLOYMENT_TARGET' is set to 8.0, but the range of supported deployment target versions is 9.0 to 15.0.99. (in target 'BoringSSL-GRPC' from project 'Pods')
+Test suite 'CustomerStampUnittests' started on 'Clone 1 of iPhone 8 - Stamps (13460)'
+Test case 'CustomerStampUnittests.testClaimSlot()' passed on 'Clone 1 of iPhone 8 - Stamps (13460)' (0.002 seconds)
+Test case 'CustomerStampUnittests.testClaimSlotAllClaimed()' passed on 'Clone 1 of iPhone 8 - Stamps (13460)' (0.543 seconds)
+Test suite 'StampsTests' started on 'Clone 1 of iPhone 8 - Stamps (13460)'
+Test case 'StampsTests.testExample()' passed on 'Clone 1 of iPhone 8 - Stamps (13460)' (0.001 seconds)
+Test case 'StampsTests.testPerformanceExample()' passed on 'Clone 1 of iPhone 8 - Stamps (13460)' (0.302 seconds)
+Test suite 'ReduxStoreTests' started on 'Clone 1 of iPhone 8 - Stamps (13460)'
+Test case 'ReduxStoreTests.testAddCard()' passed on 'Clone 1 of iPhone 8 - Stamps (13460)' (0.001 seconds)
+Test case 'ReduxStoreTests.testchangeState()' passed on 'Clone 1 of iPhone 8 - Stamps (13460)' (0.027 seconds)
+Test suite 'SignUpUnitTests' started on 'Clone 1 of iPhone 8 - Stamps (13460)'
+Test case 'SignUpUnitTests.testSignUpAsStoreShouldFail()' passed on 'Clone 1 of iPhone 8 - Stamps (13460)' (0.001 seconds)
+Test case 'SignUpUnitTests.testSignUpAsStoreSuccessfully()' passed on 'Clone 1 of iPhone 8 - Stamps (13460)' (0.001 seconds)
+Test case 'SignUpUnitTests.testSignUpShouldFail()' passed on 'Clone 1 of iPhone 8 - Stamps (13460)' (0.001 seconds)
+Test case 'SignUpUnitTests.testSignUpSuccessfully()' passed on 'Clone 1 of iPhone 8 - Stamps (13460)' (0.000 seconds)
+Test suite 'LogInUinitTests' started on 'Clone 1 of iPhone 8 - Stamps (13460)'
+Test case 'LogInUinitTests.testLogInAsStoreShouldFail()' passed on 'Clone 1 of iPhone 8 - Stamps (13460)' (0.001 seconds)
+Test case 'LogInUinitTests.testLogInAsStoreSucessfully()' passed on 'Clone 1 of iPhone 8 - Stamps (13460)' (0.001 seconds)
+Test case 'LogInUinitTests.testLogInShouldFail()' passed on 'Clone 1 of iPhone 8 - Stamps (13460)' (0.001 seconds)
+Test case 'LogInUinitTests.testLogInSucessfully()' passed on 'Clone 1 of iPhone 8 - Stamps (13460)' (0.000 seconds)
+Test suite 'CardDataTests' started on 'Clone 1 of iPhone 8 - Stamps (13460)'
+Test case 'CardDataTests.testClaimingCard()' passed on 'Clone 1 of iPhone 8 - Stamps (13460)' (0.001 seconds)
+Test case 'CardDataTests.testClaimingNotStampedCard()' passed on 'Clone 1 of iPhone 8 - Stamps (13460)' (0.000 seconds)
+Test case 'CardDataTests.testStamp()' passed on 'Clone 1 of iPhone 8 - Stamps (13460)' (0.000 seconds)
+Test suite 'CardCustomisationTests' started on 'Clone 1 of iPhone 8 - Stamps (13460)'
+Test case 'CardCustomisationTests.testSubmit()' passed on 'Clone 1 of iPhone 8 - Stamps (13460)' (0.001 seconds)
+Test suite 'StampsUITests' started on 'Clone 1 of iPhone 8 - StampsUITests-Runner (13578)'
+Test case 'StampsUITests.testExample()' passed on 'Clone 1 of iPhone 8 - StampsUITests-Runner (13578)' (4.088 seconds)
+Test suite 'LogInUITests' started on 'Clone 2 of iPhone 8 - StampsUITests-Runner (13847)'
+Test suite 'CustomerStampUITests' started on 'Clone 3 of iPhone 8 - StampsUITests-Runner (13855)'
+Test case 'LogInUITests.testExample()' passed on 'Clone 2 of iPhone 8 - StampsUITests-Runner (13847)' (5.670 seconds)
+Test case 'CustomerStampUITests.testExample()' passed on 'Clone 3 of iPhone 8 - StampsUITests-Runner (13855)' (5.382 seconds)
+Test case 'StampsUITests.testLaunchPerformance()' passed on 'Clone 1 of iPhone 8 - StampsUITests-Runner (13578)' (85.285 seconds)
+Test case 'LogInUITests.testLaunchPerformance()' passed on 'Clone 2 of iPhone 8 - StampsUITests-Runner (13847)' (84.516 seconds)
+
+Test session results, code coverage, and logs:
+	/Users/intialbuquerque/Library/Developer/Xcode/DerivedData/Logs/Test/Run-StampsTests-2021.08.12_18-56-30-+1200.xcresult
+
+** TEST SUCCEEDED **
+

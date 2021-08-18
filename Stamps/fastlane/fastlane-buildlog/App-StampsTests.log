@@ -1,0 +1,7 @@
+Command line invocation:
+    /Users/intialbuquerque/Downloads/Xcode-beta.app/Contents/Developer/usr/bin/xcodebuild -scheme StampsTests -project Stamps.xcodeproj -derivedDataPath "~/Library/Developer/Xcode/DerivedData" -destination "platform=iOS Simulator,id=F4466A34-26F0-44A7-8CF2-127F537F8592" -testPlan StampsTests.xctestplan build test
+
+User defaults from command line:
+    IDEDerivedDataPathOverride = /Users/intialbuquerque/Library/Developer/Xcode/DerivedData
+    IDEPackageSupportUseBuiltinSCM = YES
+
