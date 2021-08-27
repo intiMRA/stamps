@@ -46,12 +46,16 @@ class StampsAPI {
                 self.database.child("stores/\(code)").observe(DataEventType.value, with: { snapshot in
                     if let storeData = snapshot.value as? [String: AnyObject] {
                         guard
-                            let storeName = storeData["name"] as? String
+                            let storeName = storeData["name"] as? String,
+                            let details = storeData["cardDetails"] as? [String: AnyObject],
+                            let numberOfStampsBeforeReward = details["numberBeforeReward"] as? Int,
+                            let numberOfColumns = details["numberOfColumns"] as? Int,
+                            let numberOfRows = details["numberOfRows"] as? Int
                         else {
                             promise(.failure(StampsAPI.scanningError))
                             return
                         }
-                        promise(.success(StoreModel(storeName: storeName, storeId: code)))
+                        promise(.success(StoreModel(storeName: storeName, storeId: code, numberOfrows: numberOfRows, numberOfColumns: numberOfColumns, numberOfStampsBeforeReward: numberOfStampsBeforeReward)))
                     } else {
                         promise(.failure(StampsAPI.scanningError))
                     }
