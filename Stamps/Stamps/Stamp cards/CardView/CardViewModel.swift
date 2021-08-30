@@ -43,7 +43,7 @@ class CardViewModel: ObservableObject {
             return
         }
         
-        if store == nil {
+        if store == nil, card.allSlotsAreClaimed() {
             api?.fetchStoreDetails(code: card.storeId)
                 .sink(receiveCompletion: { completion in
                     switch completion {
@@ -61,7 +61,7 @@ class CardViewModel: ObservableObject {
                 })
                 .store(in: &cancellables)
         } else {
-         loadAlert(card: card)
+            loadAlert(card: card)
             showAlert = true
         }
     }
