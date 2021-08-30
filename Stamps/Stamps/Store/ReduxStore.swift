@@ -55,7 +55,7 @@ struct StoreModel: Equatable {
          storeId: String,
          numberOfrows: Int = 5,
          numberOfColumns: Int = 4,
-         numberOfStampsBeforeReward: Int = 4
+         numberOfStampsBeforeReward: Int = 8
     ) {
         self.storeName = storeName
         self.storeId = storeId

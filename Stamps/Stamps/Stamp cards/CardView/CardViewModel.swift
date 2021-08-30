@@ -16,11 +16,15 @@ struct RewardAlertContent {
 
 class CardViewModel: ObservableObject {
     let api: StampsAPI?
+    var store: StoreModel?
     let reduxStore: ReduxStoreProtocol
     let cardCustomizationAPI: CardCustomizationAPI?
     var alertContent: RewardAlertContent?
     var showLinearAnimation = true
     var showSubmitButton: Bool
+    
+    var cancellables = Set<AnyCancellable>()
+    
     @Published var navigateToTabsView = false
     
     @Published var showAlert = false
@@ -39,13 +43,47 @@ class CardViewModel: ObservableObject {
             return
         }
         
+        if store == nil {
+            api?.fetchStoreDetails(code: card.storeId)
+                .sink(receiveCompletion: { completion in
+                    switch completion {
+                    case .finished:
+                        break
+                    case .failure(let error):
+                        self.alertContent = RewardAlertContent(title: error.title, message: error.message, handler: {
+                            self.showAlert = false
+                        })
+                    }
+                }, receiveValue: { model in
+                    self.store = model
+                    self.loadAlert(card: card)
+                    self.showAlert = true
+                })
+                .store(in: &cancellables)
+        } else {
+         loadAlert(card: card)
+            showAlert = true
+        }
+    }
+    
+    func loadAlert(card: CardData) {
+        guard let numberOfRows = store?.numberOfrows,
+              let numberOfColums = store?.numberOfColumns,
+              let numberOfStampsBeforeReward = store?.numberOfStampsBeforeReward
+        else {
+            alertContent = RewardAlertContent(title: "Something went wrong", message: "Sorry we couldn't claim your stamp, please ty again.", handler: {
+                self.showAlert = false
+            })
+            
+            return
+        }
         alertContent = RewardAlertContent(title: "Reward Redeemed", message: "You redeemed a reward, please show this message to one of the emplyees of the shop.", handler: {
             if card.allSlotsAreClaimed() {
                 self.showLinearAnimation = true
                 self.stamps = card
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     self.showLinearAnimation = false
-                    self.stamps = CardData.newCard(storeName: card.storeName, storeId: card.storeId, listIndex: card.listIndex, firstIsStamped: false, numberOfRows: card.numberOfRows, numberOfColums: card.numberOfColums, numberOfStampsBeforeReward: card.numberOfStampsBeforeReward)
+                    self.stamps = CardData.newCard(storeName: card.storeName, storeId: card.storeId, listIndex: card.listIndex, firstIsStamped: false, numberOfRows: numberOfRows, numberOfColums: numberOfColums, numberOfStampsBeforeReward: numberOfStampsBeforeReward)
                     self.reduxStore.changeState(customerModel: self.reduxStore.customerModel?.replaceCard(self.stamps))
                     self.api?.saveCard(self.stamps)
                 }
@@ -56,7 +94,6 @@ class CardViewModel: ObservableObject {
                 self.api?.saveCard(card)
             }
         })
-        showAlert = true
     }
     
     func submit() {
