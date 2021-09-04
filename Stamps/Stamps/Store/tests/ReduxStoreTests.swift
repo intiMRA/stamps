@@ -27,7 +27,7 @@ class ReduxStoreTests: XCTestCase {
         XCTAssertEqual(ReduxStore.shared.customerModel, customerModel)
         XCTAssertNil(ReduxStore.shared.storeModel)
         
-        let storeModel = StoreModel(storeName: "the store", storeId: "storeId")
+        let storeModel = StoreModel(storeName: "the store", storeId: "storeId", numberOfrows: 5, numberOfColumns: 4, numberOfStampsBeforeReward: 4)
         
         ReduxStore.shared.changeState(storeModel: storeModel)
         XCTAssertEqual(ReduxStore.shared.customerModel, customerModel)

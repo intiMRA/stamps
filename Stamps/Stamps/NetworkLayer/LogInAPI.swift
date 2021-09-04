@@ -38,9 +38,7 @@ func cards(from dict: [String: AnyObject]) -> [CardData] {
     guard let cardsDictionary = dict["cards"] as? [String: AnyObject] else {
         return []
     }
-    cardsDictionary.forEach { (key: String, value: AnyObject) in
-        
-    }
+    
     cardsDictionary.forEach({ key, value in
         guard
             let value = value as? [String: AnyObject],
@@ -70,7 +68,7 @@ func cards(from dict: [String: AnyObject]) -> [CardData] {
 }
 
 func cardSlot(from dict: [String: AnyObject], rowData: [[String: AnyObject]]) -> [CardSlot] {
-
+    
     return rowData.compactMap { value in
         guard
             let isStamped = value["isStamped"] as? Bool,
@@ -133,8 +131,25 @@ class LogInAPI: LogInAPIProtocol {
                     }
                     
                     if isStore {
-                        ReduxStore.shared.changeState(storeModel: StoreModel(storeName: username, storeId: result.user.uid))
-                        promise(.success(LogInModel(userName: username, isStore: true)))
+                        database.child("stores/\(result.user.uid)").observe(DataEventType.value, with: { (snapshot) in
+                            let postDict = snapshot.value as? [String : AnyObject] ?? [:]
+                            guard let name = postDict["name"] as? String,
+                                  let details = postDict["cardDetails"] as? [String: AnyObject],
+                                  let numberOfStampsBeforeReward = details["numberBeforeReward"] as? Int,
+                                  let numberOfColumns = details["numberOfColumns"] as? Int,
+                                  let numberOfRows = details["numberOfRows"] as? Int
+                            else {
+                                promise(.failure(LogInError.unkownError))
+                                return
+                            }
+                            ReduxStore.shared.changeState(storeModel:
+                                                            StoreModel(storeName: name,
+                                                                       storeId: result.user.uid,
+                                                                       numberOfrows: numberOfRows,
+                                                                       numberOfColumns: numberOfColumns,
+                                                                       numberOfStampsBeforeReward: numberOfStampsBeforeReward))
+                            promise(.success(LogInModel(userName: username, isStore: true)))
+                        })
                     } else {
                         database.child("users/\(result.user.uid)").observe(DataEventType.value, with: { (snapshot) in
                             let postDict = snapshot.value as? [String : AnyObject] ?? [:]
@@ -179,8 +194,24 @@ class LogInAPI: LogInAPIProtocol {
                 }
                 
                 if isStore {
-                    ReduxStore.shared.changeState(storeModel: StoreModel(storeName: username, storeId: currentUser.uid))
-                    promise(.success(LogInModel(userName: currentUser.uid, isStore: true)))
+                    database.child("stores/\(currentUser.uid)").observe(DataEventType.value, with: { (snapshot) in
+                        let postDict = snapshot.value as? [String : AnyObject] ?? [:]
+                        guard let name = postDict["name"] as? String,
+                              let details = postDict["cardDetails"] as? [String: AnyObject],
+                              let numberOfStampsBeforeReward = details["numberBeforeReward"] as? Int,
+                              let numberOfColumns = details["numberOfColumns"] as? Int,
+                              let numberOfRows = details["numberOfRows"] as? Int
+                        else {
+                            promise(.failure(LogInError.unkownError))
+                            return
+                        }
+                        ReduxStore.shared.changeState(storeModel: StoreModel(storeName: name,
+                                                                             storeId: currentUser.uid,
+                                                                             numberOfrows: numberOfRows,
+                                                                             numberOfColumns: numberOfColumns,
+                                                                             numberOfStampsBeforeReward: numberOfStampsBeforeReward))
+                        promise(.success(LogInModel(userName: currentUser.uid, isStore: true)))
+                    })
                 } else {
                     database.child("users/\(currentUser.uid)").observe(DataEventType.value, with: { (snapshot) in
                         let postDict = snapshot.value as? [String : AnyObject] ?? [:]
@@ -195,8 +226,8 @@ class LogInAPI: LogInAPIProtocol {
                         promise(.success(LogInModel(userName: username, isStore: false)))
                     })
                 }
-        }
-    }.eraseToAnyPublisher()
+            }
+        }.eraseToAnyPublisher()
     }
     
     func signUp(username: String, password: String, isStore: Bool) -> AnyPublisher<SignUpModel, LogInError> {
@@ -216,7 +247,14 @@ class LogInAPI: LogInAPIProtocol {
                         return
                     }
                     if isStore {
-                        let dic: NSDictionary = ["name": username]
+                        let dic: NSDictionary = ["name": username,
+                                                 "cardDetails":
+                                                    ["numberBeforeReward": 4,
+                                                     "numberOfColumns": 4,
+                                                     "numberOfRows": 5
+                                                    ]
+                        ]
+
                         database.child("stores/\(result.user.uid)").setValue(dic)
                         ReduxStore.shared.changeState(storeModel: StoreModel(storeName: username, storeId: result.user.uid))
                     } else {

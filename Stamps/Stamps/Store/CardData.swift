@@ -108,7 +108,6 @@ struct CardData: Equatable {
             }
         }
         
-        //ToDO pass in the store
         return CardData(card: newCard, storeName: storeName, storeId: storeId, listIndex: listIndex ?? 0, nextToStamp: (row: 0, col: firstIsStamped ? 1 : 0), numberOfRows: numberOfRows, numberOfColums: numberOfColums, numberOfStampsBeforeReward: numberOfStampsBeforeReward)
     }
     

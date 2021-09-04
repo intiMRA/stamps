@@ -46,11 +46,22 @@ struct CustomerModel: Equatable {
 struct StoreModel: Equatable {
     let storeName: String
     let storeId: String
+    let numberOfrows: Int
+    let numberOfColumns: Int
+    let numberOfStampsBeforeReward: Int
     let QRCode: UIImage
     let products: [String] = []
-    init(storeName: String, storeId: String) {
+    init(storeName: String,
+         storeId: String,
+         numberOfrows: Int = 5,
+         numberOfColumns: Int = 4,
+         numberOfStampsBeforeReward: Int = 8
+    ) {
         self.storeName = storeName
         self.storeId = storeId
+        self.numberOfrows = numberOfrows
+        self.numberOfColumns = numberOfColumns
+        self.numberOfStampsBeforeReward = numberOfStampsBeforeReward
         self.QRCode = QRCodeManager.generateQRCode(from: storeId)
     }
     
