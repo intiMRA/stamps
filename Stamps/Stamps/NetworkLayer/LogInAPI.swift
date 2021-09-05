@@ -149,7 +149,7 @@ class LogInAPI: LogInAPIProtocol {
                             ReduxStore.shared.changeState(storeModel:
                                                             StoreModel(storeName: name,
                                                                        storeId: result.user.uid,
-                                                                       numberOfrows: numberOfRows,
+                                                                       numberOfRows: numberOfRows,
                                                                        numberOfColumns: numberOfColumns,
                                                                        numberOfStampsBeforeReward: numberOfStampsBeforeReward))
                             promise(.success(LogInModel(userName: username, isStore: true)))
@@ -211,7 +211,7 @@ class LogInAPI: LogInAPIProtocol {
                         }
                         ReduxStore.shared.changeState(storeModel: StoreModel(storeName: name,
                                                                              storeId: currentUser.uid,
-                                                                             numberOfrows: numberOfRows,
+                                                                             numberOfRows: numberOfRows,
                                                                              numberOfColumns: numberOfColumns,
                                                                              numberOfStampsBeforeReward: numberOfStampsBeforeReward))
                         promise(.success(LogInModel(userName: currentUser.uid, isStore: true)))

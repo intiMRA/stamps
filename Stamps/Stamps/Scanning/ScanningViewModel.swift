@@ -24,6 +24,7 @@ class ScanningViewModel: ObservableObject {
     private let cardApi = StampsAPI()
     
     init() {
+        //TODO flatmap here
         $code
             .dropFirst()
             .receive(on: DispatchQueue.main)
@@ -46,17 +47,39 @@ class ScanningViewModel: ObservableObject {
         }
         
         if let card = ReduxStore.shared.customerModel?.stampCards.first(where: { $0.storeId == code }) {
-            self.storeName = card.storeName
-            
+
             guard let stampedCard = card.stamp() else {
                 self.error = ScanningError(title: "Maximum Number Of Stamps", message: "This card has no more slots to be stamped, please claim your rewards")
                 self.shouldShowAlert = true
                 return
             }
-            ReduxStore.shared.changeState(customerModel: ReduxStore.shared.customerModel?.replaceCard(stampedCard))
+            
             cardApi.saveCard(stampedCard)
+                .receive(on: DispatchQueue.main)
+                .sink(receiveCompletion: { [weak self] completion in
+                    guard let self = self else {
+                        return
+                    }
+                    switch completion {
+                    case .finished:
+                        break
+                    case .failure(let error):
+                        self.error = ScanningError(title: error.title, message: error.message)
+                        self.shouldShowAlert = true
+                    }
+                }, receiveValue: { _ in
+                    self.storeName = card.storeName
+                    ReduxStore.shared.changeState(customerModel: ReduxStore.shared.customerModel?.replaceCard(stampedCard))
+                })
+                .store(in: &cancellables)
         } else {
             cardApi.fetchStoreDetails(code: code)
+                .flatMap(maxPublishers: .max(1), { store -> AnyPublisher<(StoreModel, CardData), ScanningError> in
+                    let card = CardData.newCard(storeName: store.storeName, storeId: store.storeId, listIndex: ReduxStore.shared.customerModel?.stampCards.count, numberOfRows: store.numberOfRows, numberOfColums: store.numberOfColumns, numberOfStampsBeforeReward: store.numberOfStampsBeforeReward)
+                    return self.cardApi.saveCard(card)
+                        .map { _ in (store, card)}
+                        .eraseToAnyPublisher()
+                })
                 .receive(on: DispatchQueue.main)
                 .sink (receiveCompletion: { completion in
                     switch completion {
@@ -67,12 +90,11 @@ class ScanningViewModel: ObservableObject {
                         self.shouldShowAlert = true
                         break
                     }
-                }, receiveValue: { store in
+                }, receiveValue: { store, card in
                     self.storeName = store.storeName
                     
-                    let card = CardData.newCard(storeName: store.storeName, storeId: store.storeId, listIndex: ReduxStore.shared.customerModel?.stampCards.count, numberOfRows: store.numberOfrows, numberOfColums: store.numberOfColumns, numberOfStampsBeforeReward: store.numberOfStampsBeforeReward)
                     ReduxStore.shared.addCard(card)
-                    self.cardApi.saveCard(card)
+                    
                 })
                 .store(in: &cancellables)
         }

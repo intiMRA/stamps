@@ -21,7 +21,7 @@ struct ScanningError: Error {
 class StampsAPI {
     
     let database = Database.database().reference()
-    func saveCard(_ card: CardData) -> AnyPublisher<Void, Error> {
+    func saveCard(_ card: CardData) -> AnyPublisher<Void, ScanningError> {
         Deferred {
             Future { [weak self] promise in
                 guard let self = self, let customerModel = ReduxStore.shared.customerModel else {
@@ -74,7 +74,7 @@ class StampsAPI {
                             promise(.failure(ScanningError.unableToScan))
                             return
                         }
-                        promise(.success(StoreModel(storeName: storeName, storeId: code, numberOfrows: numberOfRows, numberOfColumns: numberOfColumns, numberOfStampsBeforeReward: numberOfStampsBeforeReward)))
+                        promise(.success(StoreModel(storeName: storeName, storeId: code, numberOfRows: numberOfRows, numberOfColumns: numberOfColumns, numberOfStampsBeforeReward: numberOfStampsBeforeReward)))
                     } else {
                         promise(.failure(ScanningError.unableToScan))
                     }
