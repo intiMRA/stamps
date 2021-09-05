@@ -27,76 +27,75 @@ class ScanningViewModel: ObservableObject {
         //TODO flatmap here
         $code
             .dropFirst()
-            .receive(on: DispatchQueue.main)
-            .sink { code in
-                guard !code.isEmpty else {
-                    return
-                }
-                self.foundQRCode(code)
-                self.state = .showReward
-                self.shouldScan = false
+            .receive(on: DispatchQueue.global())
+            .flatMap(maxPublishers: .max(1)) { code -> AnyPublisher<(code: String, details: (storeName: String, card: CardData)), ScanningError> in
+                return self.mapPublishers(code: code)
             }
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    self.state = .startScreen
+                    self.error = error
+                    self.shouldShowAlert = true
+                }
+            }, receiveValue: { tuple in
+                self.foundQRCode(tuple.code, details: tuple.details)
+            })
             .store(in: &cancellables)
     }
     
-    func foundQRCode(_ code: String) {
+    func mapPublishers(code: String) -> AnyPublisher<(code: String, details: (storeName: String, card: CardData)), ScanningError> {
+        guard code.rangeOfCharacter(from: ScanningViewModel.invalidCharacters) == nil else {
+            let error = ScanningError(title: "Invalid Code", message: "The QR code you scanned is not in our database, or a scanning error occured")
+            return Fail(error: error).eraseToAnyPublisher()
+        }
+        
+        if let card = ReduxStore.shared.customerModel?.stampCards.first(where: { $0.storeId == code }) {
+            guard let stampedCard = card.stamp() else {
+                let error = ScanningError(title: "Maximum Number Of Stamps", message: "This card has no more slots to be stamped, please claim your rewards")
+                return Fail(error: error).eraseToAnyPublisher()
+            }
+            
+            return cardApi.saveCard(stampedCard)
+                .map { _ in
+                    let store = (stampedCard.storeName, stampedCard)
+                    return (code, store)
+                }
+                .eraseToAnyPublisher()
+        }
+        
+        return cardApi.fetchStoreDetails(code: code)
+            .flatMap(maxPublishers: .max(1), { store -> AnyPublisher<(StoreModel, CardData), ScanningError> in
+                let card = CardData.newCard(storeName: store.storeName, storeId: store.storeId, listIndex: ReduxStore.shared.customerModel?.stampCards.count, numberOfRows: store.numberOfRows, numberOfColums: store.numberOfColumns, numberOfStampsBeforeReward: store.numberOfStampsBeforeReward)
+                return self.cardApi.saveCard(card)
+                    .map { _ in (store, card)}
+                    .eraseToAnyPublisher()
+            })
+            .map { store, cardData in
+                (code, (store.storeName, cardData))
+            }
+            .eraseToAnyPublisher()
+        
+    }
+    
+    func foundQRCode(_ code: String, details: (storeName: String, card: CardData)) {
         guard code.rangeOfCharacter(from: ScanningViewModel.invalidCharacters) == nil else {
             self.error = ScanningError(title: "Invalid Code", message: "The QR code you scanned is not in our database, or a scanning error occured")
             self.shouldShowAlert = true
+            self.state = .startScreen
             return
         }
         
         if let card = ReduxStore.shared.customerModel?.stampCards.first(where: { $0.storeId == code }) {
-
-            guard let stampedCard = card.stamp() else {
-                self.error = ScanningError(title: "Maximum Number Of Stamps", message: "This card has no more slots to be stamped, please claim your rewards")
-                self.shouldShowAlert = true
-                return
-            }
-            
-            cardApi.saveCard(stampedCard)
-                .receive(on: DispatchQueue.main)
-                .sink(receiveCompletion: { [weak self] completion in
-                    guard let self = self else {
-                        return
-                    }
-                    switch completion {
-                    case .finished:
-                        break
-                    case .failure(let error):
-                        self.error = ScanningError(title: error.title, message: error.message)
-                        self.shouldShowAlert = true
-                    }
-                }, receiveValue: { _ in
-                    self.storeName = card.storeName
-                    ReduxStore.shared.changeState(customerModel: ReduxStore.shared.customerModel?.replaceCard(stampedCard))
-                })
-                .store(in: &cancellables)
+                self.storeName = card.storeName
+            ReduxStore.shared.changeState(customerModel: ReduxStore.shared.customerModel?.replaceCard(details.card))
         } else {
-            cardApi.fetchStoreDetails(code: code)
-                .flatMap(maxPublishers: .max(1), { store -> AnyPublisher<(StoreModel, CardData), ScanningError> in
-                    let card = CardData.newCard(storeName: store.storeName, storeId: store.storeId, listIndex: ReduxStore.shared.customerModel?.stampCards.count, numberOfRows: store.numberOfRows, numberOfColums: store.numberOfColumns, numberOfStampsBeforeReward: store.numberOfStampsBeforeReward)
-                    return self.cardApi.saveCard(card)
-                        .map { _ in (store, card)}
-                        .eraseToAnyPublisher()
-                })
-                .receive(on: DispatchQueue.main)
-                .sink (receiveCompletion: { completion in
-                    switch completion {
-                    case .finished:
-                        break
-                    case let .failure(error):
-                        self.error = error
-                        self.shouldShowAlert = true
-                        break
-                    }
-                }, receiveValue: { store, card in
-                    self.storeName = store.storeName
-                    
-                    ReduxStore.shared.addCard(card)
-                    
-                })
-                .store(in: &cancellables)
+            self.storeName = details.storeName
+            ReduxStore.shared.addCard(details.card)
+            
         }
     }
 }

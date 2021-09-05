@@ -86,14 +86,11 @@ struct CardData: Equatable {
             
             //if the next row is the last we still need to stam the last slot
             if nextRow == card.count {
-                //TODO remove
-                CardData.hasFinishedCard = true
                 return CardData(card: newCard, storeName: storeName, storeId: storeId, listIndex: listIndex, nextToStamp: (row: nextRow, col: nextCol), numberOfRows: self.numberOfRows, numberOfColums: self.numberOfColums, numberOfStampsBeforeReward: self.numberOfStampsBeforeReward)
             }
         }
         
-        guard nextRow < card.count || CardData.hasFinishedCard else {
-            CardData.hasFinishedCard = false
+        guard nextRow < card.count else {
             return nil
         }
         
@@ -142,12 +139,12 @@ struct CardData: Equatable {
         }
         
         //if previous index is negative, then set to the previous row
-        let prevColIndex = colIndex - 1 >= 0 ? colIndex - 1 : card[0].count - 1
-        let prevRow = prevColIndex == card[0].count - 1 ? card[rowIndex - 1] : card[rowIndex]
+        let prevColIndex = colIndex - 1 >= 0 ? colIndex - 1 : card[0].lastIndex()
+        let prevRow = prevColIndex == card[0].lastIndex() ? card[rowIndex - 1] : card[rowIndex]
         
-        guard rowIndex < card.count - 1 else {
+        guard rowIndex < card.lastIndex() else {
             var newCard = card
-            guard var row = self.card.last, let slot = row.last?.claim(previousSlot: prevRow[prevColIndex]) else {
+            guard var row = self.card.last, let slot = row[colIndex].claim(previousSlot: prevRow[prevColIndex]) else {
                 return nil
             }
             row[colIndex] = slot.stamp()

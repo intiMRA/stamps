@@ -27,7 +27,7 @@ struct ScanningView: View {
                     
                 })
             case .scanning:
-                QRCodeScanningViewSwiftUI(code: $viewModel.code, shouldScan: viewModel.shouldScan)
+                QRCodeScanningViewSwiftUI(viewModel, shouldScan: viewModel.shouldScan)
             case .showReward:
                 VStack {
                     Text("Congrats you've a new stamp on your stamp for \(viewModel.storeName)")
