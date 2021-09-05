@@ -23,7 +23,6 @@ class LogOutAPI {
                 } catch {
                     promise(.failure(LogInError.unkownError))
                 }
-                
             }
         }
         .eraseToAnyPublisher()
