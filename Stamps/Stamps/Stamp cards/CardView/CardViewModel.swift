@@ -45,30 +45,40 @@ class CardViewModel: ObservableObject {
         
         if card.allSlotsAreClaimed() {
             api?.fetchStoreDetails(code: card.storeId)
-                .flatMap(maxPublishers: .max(1), { model -> AnyPublisher<StoreModel, ScanningError>  in
+                .flatMap(maxPublishers: .max(1), { model -> AnyPublisher<(model: StoreModel?, error: ScanningError?), Never>  in
                     guard let api = self.api else {
                         let error = ScanningError.unableToSave
-                        return Fail(error: error).eraseToAnyPublisher()
+                        return Just((model: nil, error: error)).eraseToAnyPublisher()
                     }
                     
                     let newCard = CardData.newCard(storeName: card.storeName, storeId: card.storeId, listIndex: card.listIndex, firstIsStamped: false, numberOfRows: model.numberOfRows, numberOfColums: model.numberOfColumns, numberOfStampsBeforeReward: model.numberOfStampsBeforeReward)
                     
                     return api.saveCard(newCard)
-                        .map { _ in
-                            model
-                        }
+                        .map { _ in (model: model, error: nil) }
+                        .catch({ error in
+                            Just((model: nil, error: error)).eraseToAnyPublisher()
+                        })
                         .eraseToAnyPublisher()
                 })
-                .sink(receiveCompletion: { completion in
-                    switch completion {
-                    case .finished:
-                        break
-                    case .failure(let error):
-                        self.alertContent = RewardAlertContent(title: error.title, message: error.message, handler: {
-                            self.showAlert = false
-                        })
+                .catch({ error in
+                    Just((model: nil, error: error)).eraseToAnyPublisher()
+                })
+                .receive(on: DispatchQueue.main)
+                .sink(receiveValue: { tuple in
+                    guard tuple.error == nil, let model = tuple.model else {
+                        if let error = tuple.error {
+                            self.alertContent = RewardAlertContent(title: error.title, message: error.message, handler: {
+                                self.showAlert = false
+                            })
+                        } else {
+                            let error = ScanningError.unableToSave
+                            self.alertContent = RewardAlertContent(title: error.title, message: error.message, handler: {
+                                self.showAlert = false
+                            })
+                        }
+                        return
                     }
-                }, receiveValue: { model in
+                    
                     self.store = model
                     self.loadAlert(card: card)
                     self.showAlert = true

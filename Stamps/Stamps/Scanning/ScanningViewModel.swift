@@ -24,7 +24,6 @@ class ScanningViewModel: ObservableObject {
     private let cardApi = StampsAPI()
     
     init() {
-        //TODO flatmap here
         $code
             .dropFirst()
             .receive(on: DispatchQueue.main)
@@ -84,14 +83,21 @@ class ScanningViewModel: ObservableObject {
         }
         
         return cardApi.fetchStoreDetails(code: code)
-            .flatMap(maxPublishers: .max(1), { store -> AnyPublisher<(StoreModel, CardData), ScanningError> in
+            .flatMap(maxPublishers: .max(1), { store -> AnyPublisher<(data: (store: StoreModel, card: CardData)?, error: ScanningError?), Never> in
                 let card = CardData.newCard(storeName: store.storeName, storeId: store.storeId, listIndex: ReduxStore.shared.customerModel?.stampCards.count, numberOfRows: store.numberOfRows, numberOfColums: store.numberOfColumns, numberOfStampsBeforeReward: store.numberOfStampsBeforeReward)
                 return self.cardApi.saveCard(card)
-                    .map { _ in (store, card)}
+                    .map { _ in (data: (store: store, card: card), error: nil)}
+                    .catch({ error in
+                        Just((data: nil, error: error)).eraseToAnyPublisher()
+                    })
                     .eraseToAnyPublisher()
             })
-            .map { store, cardData in
-                (code, (store.storeName, cardData), nil)
+            .map { details, error in
+                guard error == nil, let details = details else {
+                    return (nil, nil, error)
+                }
+                
+                return (code: code, details: (storeName: details.store.storeName, card: details.card), error: error)
             }
             .catch({ error in
                 return Just((code: nil, details: nil, error: error)).eraseToAnyPublisher()
