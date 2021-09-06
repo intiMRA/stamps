@@ -45,6 +45,20 @@ class CardViewModel: ObservableObject {
         
         if card.allSlotsAreClaimed() {
             api?.fetchStoreDetails(code: card.storeId)
+                .flatMap(maxPublishers: .max(1), { model -> AnyPublisher<StoreModel, ScanningError>  in
+                    guard let api = self.api else {
+                        let error = ScanningError.unableToSave
+                        return Fail(error: error).eraseToAnyPublisher()
+                    }
+                    
+                    let newCard = CardData.newCard(storeName: card.storeName, storeId: card.storeId, listIndex: card.listIndex, firstIsStamped: false, numberOfRows: model.numberOfRows, numberOfColums: model.numberOfColumns, numberOfStampsBeforeReward: model.numberOfStampsBeforeReward)
+                    
+                    return api.saveCard(newCard)
+                        .map { _ in
+                            model
+                        }
+                        .eraseToAnyPublisher()
+                })
                 .sink(receiveCompletion: { completion in
                     switch completion {
                     case .finished:
@@ -61,14 +75,27 @@ class CardViewModel: ObservableObject {
                 })
                 .store(in: &cancellables)
         } else {
-            loadAlert(card: card)
-            showAlert = true
+            api?.saveCard(card)
+                .receive(on: DispatchQueue.main)
+                .sink(receiveCompletion: { completion in
+                    switch completion {
+                    case .finished:
+                        break
+                    case .failure(let error):
+                        self.alertContent = RewardAlertContent(title: error.title, message: error.message, handler: {
+                            self.showAlert = false
+                        })
+                    }
+                }, receiveValue: { _ in
+                    self.loadAlert(card: card)
+                    self.showAlert = true
+                })
+                .store(in: &cancellables)
         }
     }
     
     func loadAlert(card: CardData) {
-        alertContent = RewardAlertContent(title: "Reward Redeemed", message: "You redeemed a reward, please show this message to one of the emplyees of the shop.", handler: {
-            let oldStamps = self.stamps
+        alertContent = RewardAlertContent(title: "Reward Redeemed", message: "You redeemed a reward, please show this message to one of the employees of the shop.", handler: {
             if card.allSlotsAreClaimed() {
                 guard let numberOfRows = self.store?.numberOfRows,
                       let numberOfColums = self.store?.numberOfColumns,
@@ -77,61 +104,19 @@ class CardViewModel: ObservableObject {
                     self.alertContent = RewardAlertContent(title: "Something went wrong", message: "Sorry we couldn't claim your stamp, please ty again.", handler: {
                         self.showAlert = false
                     })
-                    
                     return
                 }
                 self.showLinearAnimation = true
-                self.stamps = card
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                    self.api?.saveCard(self.stamps)
-                        .receive(on: DispatchQueue.main)
-                        .sink(receiveCompletion: { completion in
-                            switch completion {
-                                
-                            case .finished:
-                                break
-                            case .failure(let error):
-                                self.stamps = oldStamps
-                                self.showAlert = false
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                                    self.showAlert = true
-                                    self.alertContent = RewardAlertContent(title: error.title, message: error.message, handler: {
-                                        self.showAlert = false
-                                    })
-                                }
-                            }
-                        }, receiveValue: { _ in
-                            self.showLinearAnimation = false
-                            self.stamps = CardData.newCard(storeName: card.storeName, storeId: card.storeId, listIndex: card.listIndex, firstIsStamped: false, numberOfRows: numberOfRows, numberOfColums: numberOfColums, numberOfStampsBeforeReward: numberOfStampsBeforeReward)
-                            self.reduxStore.changeState(customerModel: self.reduxStore.customerModel?.replaceCard(self.stamps))
-                            
-                        })
-                        .store(in: &self.cancellables)
+                    self.showLinearAnimation = false
+                    self.stamps = CardData.newCard(storeName: card.storeName, storeId: card.storeId, listIndex: card.listIndex, firstIsStamped: false, numberOfRows: numberOfRows, numberOfColums: numberOfColums, numberOfStampsBeforeReward: numberOfStampsBeforeReward)
+                    self.reduxStore.changeState(customerModel: self.reduxStore.customerModel?.replaceCard(self.stamps))
                 }
+                
             } else {
-                self.api?.saveCard(card)
-                    .receive(on: DispatchQueue.main)
-                    .sink(receiveCompletion: { completion in
-                        switch completion {
-                        case .finished:
-                            break
-                        case .failure(let error):
-                            self.stamps = oldStamps
-                            self.showAlert = false
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                                self.showAlert = true
-                                self.alertContent = RewardAlertContent(title: error.title, message: error.message, handler: {
-                                    self.showAlert = false
-                                })
-                            }
-                        }
-                    }, receiveValue: { _ in
-                        self.showLinearAnimation = true
-                        self.stamps = card
-                        self.reduxStore.changeState(customerModel: self.reduxStore.customerModel?.replaceCard(card))
-                        
-                    })
-                    .store(in: &self.cancellables)
+                self.showLinearAnimation = true
+                self.stamps = card
+                self.reduxStore.changeState(customerModel: self.reduxStore.customerModel?.replaceCard(card))
             }
         })
     }

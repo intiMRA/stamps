@@ -40,15 +40,19 @@ struct ScanningView: View {
                     viewModel.shouldScan = true
                     
                 })
+            case .blankScreen:
+                EmptyView()
             }
             
         }
+        .onAppear(perform: viewModel.satringState)
         .alert(isPresented: $viewModel.shouldShowAlert) {
             Alert(
                 title: Text(viewModel.error?.title ?? ""),
                 message: Text(viewModel.error?.message ?? ""),
                 dismissButton: .cancel(Text("Ok"), action: {
                     viewModel.error = nil
+                    viewModel.state = .startScreen
                 })
             )
         }

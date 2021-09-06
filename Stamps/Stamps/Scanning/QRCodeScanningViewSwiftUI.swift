@@ -49,9 +49,7 @@ struct QRCodeScanningViewSwiftUI: UIViewRepresentable {
         }
         
         func foundQRCode(code: String) {
-            parent.viewModel.code = code
-            parent.viewModel.shouldScan = false
-            parent.viewModel.state = .showReward
+            parent.viewModel.setCode(code)
         }
         
         func stopedRunning() {
