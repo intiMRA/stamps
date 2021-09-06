@@ -27,33 +27,25 @@ class ScanningViewModel: ObservableObject {
         //TODO flatmap here
         $code
             .dropFirst()
-            .subscribe(on: DispatchQueue.global())
-            .receive(on: DispatchQueue.global())
-            .flatMap(maxPublishers: .max(1)) { code -> AnyPublisher<(code: String, details: (storeName: String, card: CardData)), ScanningError> in
+            .receive(on: DispatchQueue.main)
+            .flatMap(maxPublishers: .max(1)) { code in
                 return self.mapPublishers(code: code)
             }
             .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { completion in
-                switch completion {
-                case .finished:
-                    break
-                case .failure(let error):
+            .sink(receiveValue: { tuple in
+                guard tuple.error == nil else {
                     self.state = .startScreen
-                    self.error = error
+                    self.error = tuple.error
                     self.shouldShowAlert = true
+                    return
                 }
-            }, receiveValue: { tuple in
-                self.foundQRCode(tuple.code, details: tuple.details)
+                
+                guard let code = tuple.code, let details = tuple.details else {
+                    return
+                }
+                
+                self.foundQRCode(code, details: details)
             })
-            .store(in: &cancellables)
-        
-        $code
-            .sink { code in
-                if ReduxStore.shared.customerModel?.stampCards.first(where: { $0.storeId == code })?.card.last?.last?.isStamped == true {
-                    self.error = ScanningError(title: "Maximum Number Of Stamps", message: "This card has no more slots to be stamped, please claim your rewards")
-                    self.shouldShowAlert = true
-                }
-            }
             .store(in: &cancellables)
     }
     
@@ -68,23 +60,26 @@ class ScanningViewModel: ObservableObject {
         self.state = .blankScreen
     }
     
-    func mapPublishers(code: String) -> AnyPublisher<(code: String, details: (storeName: String, card: CardData)), ScanningError> {
+    func mapPublishers(code: String) -> AnyPublisher<(code: String?, details: (storeName: String, card: CardData)?, error: ScanningError?), Never> {
         guard code.rangeOfCharacter(from: ScanningViewModel.invalidCharacters) == nil else {
             let error = ScanningError(title: "Invalid Code", message: "The QR code you scanned is not in our database, or a scanning error occured")
-            return Fail(error: error).eraseToAnyPublisher()
+            return Just((code: nil, details: nil, error: error)).eraseToAnyPublisher()
         }
         
         if let card = ReduxStore.shared.customerModel?.stampCards.first(where: { $0.storeId == code }) {
             guard let stampedCard = card.stamp() else {
                 let error = ScanningError(title: "Maximum Number Of Stamps", message: "This card has no more slots to be stamped, please claim your rewards")
-                return Fail(error: error).eraseToAnyPublisher()
+                return Just((code: nil, details: nil, error: error)).eraseToAnyPublisher()
             }
             
             return cardApi.saveCard(stampedCard)
                 .map { _ in
                     let store = (stampedCard.storeName, stampedCard)
-                    return (code, store)
+                    return (code, store, nil)
                 }
+                .catch({ error in
+                    return Just((code: nil, details: nil, error: error)).eraseToAnyPublisher()
+                })
                 .eraseToAnyPublisher()
         }
         
@@ -96,8 +91,11 @@ class ScanningViewModel: ObservableObject {
                     .eraseToAnyPublisher()
             })
             .map { store, cardData in
-                (code, (store.storeName, cardData))
+                (code, (store.storeName, cardData), nil)
             }
+            .catch({ error in
+                return Just((code: nil, details: nil, error: error)).eraseToAnyPublisher()
+            })
             .eraseToAnyPublisher()
         
     }
