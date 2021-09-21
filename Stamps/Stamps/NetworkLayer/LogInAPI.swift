@@ -115,7 +115,11 @@ class LogInAPI: LogInAPIProtocol {
     
     func login(username: String, password: String, isStore: Bool = false) -> AnyPublisher<LogInModel, LogInError> {
         Deferred {
-            Future { [self] promise in
+            Future { [weak self] promise in
+                guard let self = self else {
+                    promise(.failure(LogInError.unkownError))
+                    return
+                }
                 let nameSuffix = isStore ? "@stampsStore.com" : "@stamps.com"
                 Auth.auth().signIn(withEmail: "\(username)\(nameSuffix)", password: password) { result, error in
                     guard let result = result else {
@@ -131,7 +135,7 @@ class LogInAPI: LogInAPIProtocol {
                     }
                     
                     if isStore {
-                        database.child("stores/\(result.user.uid)").observe(DataEventType.value, with: { (snapshot) in
+                        self.database.child("stores/\(result.user.uid)").observe(DataEventType.value, with: { (snapshot) in
                             let postDict = snapshot.value as? [String : AnyObject] ?? [:]
                             guard let name = postDict["name"] as? String,
                                   let details = postDict["cardDetails"] as? [String: AnyObject],
@@ -145,13 +149,13 @@ class LogInAPI: LogInAPIProtocol {
                             ReduxStore.shared.changeState(storeModel:
                                                             StoreModel(storeName: name,
                                                                        storeId: result.user.uid,
-                                                                       numberOfrows: numberOfRows,
+                                                                       numberOfRows: numberOfRows,
                                                                        numberOfColumns: numberOfColumns,
                                                                        numberOfStampsBeforeReward: numberOfStampsBeforeReward))
                             promise(.success(LogInModel(userName: username, isStore: true)))
                         })
                     } else {
-                        database.child("users/\(result.user.uid)").observe(DataEventType.value, with: { (snapshot) in
+                        self.database.child("users/\(result.user.uid)").observe(DataEventType.value, with: { (snapshot) in
                             let postDict = snapshot.value as? [String : AnyObject] ?? [:]
                             guard let name = postDict["name"] as? String else {
                                 promise(.failure(LogInError.unkownError))
@@ -170,8 +174,8 @@ class LogInAPI: LogInAPIProtocol {
     
     func logInUserAlreadySignedIn() -> AnyPublisher<LogInModel, LogInError> {
         Deferred {
-            Future { [self] promise in
-                guard let currentUser = Auth.auth().currentUser else {
+            Future { [weak self] promise in
+                guard let self = self, let currentUser = Auth.auth().currentUser else {
                     promise(.failure(LogInError.unkownError))
                     return
                 }
@@ -194,7 +198,7 @@ class LogInAPI: LogInAPIProtocol {
                 }
                 
                 if isStore {
-                    database.child("stores/\(currentUser.uid)").observe(DataEventType.value, with: { (snapshot) in
+                    self.database.child("stores/\(currentUser.uid)").observe(DataEventType.value, with: { (snapshot) in
                         let postDict = snapshot.value as? [String : AnyObject] ?? [:]
                         guard let name = postDict["name"] as? String,
                               let details = postDict["cardDetails"] as? [String: AnyObject],
@@ -207,13 +211,13 @@ class LogInAPI: LogInAPIProtocol {
                         }
                         ReduxStore.shared.changeState(storeModel: StoreModel(storeName: name,
                                                                              storeId: currentUser.uid,
-                                                                             numberOfrows: numberOfRows,
+                                                                             numberOfRows: numberOfRows,
                                                                              numberOfColumns: numberOfColumns,
                                                                              numberOfStampsBeforeReward: numberOfStampsBeforeReward))
                         promise(.success(LogInModel(userName: currentUser.uid, isStore: true)))
                     })
                 } else {
-                    database.child("users/\(currentUser.uid)").observe(DataEventType.value, with: { (snapshot) in
+                    self.database.child("users/\(currentUser.uid)").observe(DataEventType.value, with: { (snapshot) in
                         let postDict = snapshot.value as? [String : AnyObject] ?? [:]
                         guard let name = postDict["name"] as? String else {
                             promise(.failure(LogInError.unkownError))
@@ -232,7 +236,12 @@ class LogInAPI: LogInAPIProtocol {
     
     func signUp(username: String, password: String, isStore: Bool) -> AnyPublisher<SignUpModel, LogInError> {
         Deferred {
-            Future { [self] promise in
+            Future {  [weak self] promise in
+                guard let self = self else {
+                    promise(.failure(LogInError.unkownError))
+                    return
+                }
+                
                 let nameSuffix = isStore ? "@stampsStore.com" : "@stamps.com"
                 Auth.auth().createUser(withEmail: "\(username.replacingOccurrences(of: " ", with: "-"))\(nameSuffix)", password: password) { result, error in
                     guard let result = result else {
@@ -254,15 +263,34 @@ class LogInAPI: LogInAPIProtocol {
                                                      "numberOfRows": 5
                                                     ]
                         ]
-
-                        database.child("stores/\(result.user.uid)").setValue(dic)
-                        ReduxStore.shared.changeState(storeModel: StoreModel(storeName: username, storeId: result.user.uid))
+                        
+                        self.database.child("stores/\(result.user.uid)").setValue(dic) { error,_  in
+                            guard error == nil else {
+                                if let errorCode = AuthErrorCode(rawValue: error!._code) {
+                                    promise(.failure(LogInAPI.logInError(from: errorCode)))
+                                } else {
+                                    promise(.failure(LogInError.unkownError))
+                                }
+                                return
+                            }
+                            ReduxStore.shared.changeState(storeModel: StoreModel(storeName: username, storeId: result.user.uid))
+                            promise(.success(SignUpModel(name: username, id: result.user.uid)))
+                        }
                     } else {
                         let dic: NSDictionary = ["name": username]
-                        database.child("users/\(result.user.uid)").setValue(dic)
-                        ReduxStore.shared.changeState(customerModel: CustomerModel(userId: result.user.uid, username: username, stampCards: []))
+                        self.database.child("users/\(result.user.uid)").setValue(dic){ error,_  in
+                            guard error == nil else {
+                                if let errorCode = AuthErrorCode(rawValue: error!._code) {
+                                    promise(.failure(LogInAPI.logInError(from: errorCode)))
+                                } else {
+                                    promise(.failure(LogInError.unkownError))
+                                }
+                                return
+                            }
+                            ReduxStore.shared.changeState(customerModel: CustomerModel(userId: result.user.uid, username: username, stampCards: []))
+                            promise(.success(SignUpModel(name: username, id: result.user.uid)))
+                        }
                     }
-                    promise(.success(SignUpModel(name: username, id: result.user.uid)))
                 }
             }
         }

@@ -54,11 +54,30 @@ class CardCustomisationViewModel: ObservableObject {
     
     func submit() {
         api.uploadNewCardDetails(numberOfRows: numberOfRowsInt, numberOfColumns: numberOfColsInt, numberBeforeReward: rewardsAfterNumberInt, storeId: storeId)
-        
-        alertContent = RewardAlertContent(title: "Updated", message: "Your card details have been updated.", handler: {
-            self.showAlert = false
-            self.navigateToTabsView = true
-        })
-        self.showAlert = true
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { [weak self] completion in
+                guard let self = self else {
+                    return
+                }
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    self.alertContent = RewardAlertContent(title: error.title, message: error.message, handler: {
+                        self.showAlert = false
+                    })
+                    self.showAlert = true
+                }
+            }, receiveValue: { [weak self] _ in
+                guard let self = self else {
+                    return
+                }
+                self.alertContent = RewardAlertContent(title: "Updated", message: "Your card details have been updated.", handler: {
+                    self.showAlert = false
+                    self.navigateToTabsView = true
+                })
+                self.showAlert = true
+            })
+            .store(in: &cancellables)
     }
 }

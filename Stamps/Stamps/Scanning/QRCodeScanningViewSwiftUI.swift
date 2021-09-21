@@ -8,8 +8,13 @@ import SwiftUI
 
 struct QRCodeScanningViewSwiftUI: UIViewRepresentable {
     
-    @Binding var code: String
+    @StateObject var viewModel: ScanningViewModel
     let shouldScan: Bool
+    
+    init(_ viewModel: ScanningViewModel, shouldScan: Bool) {
+        self._viewModel = StateObject(wrappedValue: viewModel)
+        self.shouldScan = shouldScan
+    }
     
     func makeUIView(context: UIViewRepresentableContext<QRCodeScanningViewSwiftUI>) -> QRCodeScanningView {
         let qrCodeView = QRCodeScanningView()
@@ -44,7 +49,7 @@ struct QRCodeScanningViewSwiftUI: UIViewRepresentable {
         }
         
         func foundQRCode(code: String) {
-            parent.code = code
+            parent.viewModel.setCode(code)
         }
         
         func stopedRunning() {

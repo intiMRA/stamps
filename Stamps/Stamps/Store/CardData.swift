@@ -33,7 +33,7 @@ struct CardSlot {
 }
 
 struct CardData: Equatable {
-    
+    private static var hasFinishedCard = false
     let card: [[CardSlot]]
     let nextToStamp: (row: Int, col: Int)
     let storeName: String
@@ -63,30 +63,47 @@ struct CardData: Equatable {
     }
     
     func stamp() -> CardData? {
+        
+        let currentCol = nextToStamp.col
+        
         guard nextToStamp.row < card.count else {
-            //should never happen
-            return self
+            return nil
         }
         
         var row = card[nextToStamp.row]
         var newCard = card
-        let slot = row[nextToStamp.col]
-        row[nextToStamp.col] = slot.stamp()
+        let slot = row[currentCol]
+        row[currentCol] = slot.stamp()
         newCard[nextToStamp.row] = row
         
-        guard nextToStamp.row < card.count - 1 else {
-
-            guard nextToStamp.col + 1 < row.count else {
-                //Tell customer to claim rewards
-                return nil
+        var nextRow = nextToStamp.row
+        var nextCol = nextToStamp.col + 1
+        
+        // check if change row
+        if currentCol == row.lastIndex() {
+            nextRow += 1
+            nextCol = 0
+            
+            //if the next row is the last we still need to stam the last slot
+            if nextRow == card.count {
+                return CardData(card: newCard, storeName: storeName, storeId: storeId, listIndex: listIndex, nextToStamp: (row: nextRow, col: nextCol), numberOfRows: self.numberOfRows, numberOfColums: self.numberOfColums, numberOfStampsBeforeReward: self.numberOfStampsBeforeReward)
             }
-            return CardData(card: newCard, storeName: storeName, storeId: storeId, listIndex: listIndex, nextToStamp: (row: nextToStamp.row, col: nextToStamp.col + 1), numberOfRows: self.numberOfRows, numberOfColums: self.numberOfColums, numberOfStampsBeforeReward: self.numberOfStampsBeforeReward)
         }
         
-        guard nextToStamp.col + 2 < row.count else {
-            return CardData(card: newCard, storeName: storeName, storeId: storeId, listIndex: listIndex, nextToStamp: (row: nextToStamp.row + 1, col: 0), numberOfRows: self.numberOfRows, numberOfColums: self.numberOfColums, numberOfStampsBeforeReward: self.numberOfStampsBeforeReward)
+        guard nextRow < card.count else {
+            return nil
         }
-        return CardData(card: newCard, storeName: storeName, storeId: storeId, listIndex: listIndex, nextToStamp: (row: nextToStamp.row, col: nextToStamp.col + 1), numberOfRows: self.numberOfRows, numberOfColums: self.numberOfColums, numberOfStampsBeforeReward: self.numberOfStampsBeforeReward)
+        
+        guard !card[nextRow][nextCol].hasIcon else {
+            if nextCol == row.lastIndex() {
+                return CardData(card: newCard, storeName: storeName, storeId: storeId, listIndex: listIndex, nextToStamp: (row: nextRow + 1, col: 0), numberOfRows: self.numberOfRows, numberOfColums: self.numberOfColums, numberOfStampsBeforeReward: self.numberOfStampsBeforeReward)
+            }
+            
+            //skip icon
+            return CardData(card: newCard, storeName: storeName, storeId: storeId, listIndex: listIndex, nextToStamp: (row: nextRow, col: nextCol + 1), numberOfRows: self.numberOfRows, numberOfColums: self.numberOfColums, numberOfStampsBeforeReward: self.numberOfStampsBeforeReward)
+        }
+        
+        return CardData(card: newCard, storeName: storeName, storeId: storeId, listIndex: listIndex, nextToStamp: (row: nextRow, col: nextCol), numberOfRows: self.numberOfRows, numberOfColums: self.numberOfColums, numberOfStampsBeforeReward: self.numberOfStampsBeforeReward)
     }
     
     static func newCard(storeName: String, storeId: String, listIndex: Int?, firstIsStamped: Bool = true, numberOfRows: Int, numberOfColums: Int, numberOfStampsBeforeReward: Int) -> CardData {
@@ -114,24 +131,29 @@ struct CardData: Equatable {
     func claim(index: String) -> CardData? {
         guard
             let rowIndex = Int(String(index.split(separator: "_")[0])),
-            Int(index.split(separator: "_")[1]) == card[0].count - 1,
-            rowIndex < card.count
+            let colIndex = Int(index.split(separator: "_")[1]),
+            rowIndex < card.count,
+            card[rowIndex][colIndex].hasIcon
         else {
             return self
         }
         
-        guard rowIndex < card.count - 1 else {
+        //if previous index is negative, then set to the previous row
+        let prevColIndex = colIndex - 1 >= 0 ? colIndex - 1 : card[0].lastIndex()
+        let prevRow = prevColIndex == card[0].lastIndex() ? card[rowIndex - 1] : card[rowIndex]
+        
+        guard rowIndex < card.lastIndex() else {
             var newCard = card
-            guard var row = self.card.last, let slot = row.last?.claim(previousSlot: row[row.count - 2]) else {
+            guard var row = self.card.last, let slot = row[colIndex].claim(previousSlot: prevRow[prevColIndex]) else {
                 return nil
             }
-            row[row.count - 1] = slot.stamp()
+            row[colIndex] = slot.stamp()
             newCard[rowIndex] = row
             return CardData(card: newCard, storeName: storeName, storeId: storeId, listIndex: listIndex, nextToStamp: nextToStamp, numberOfRows: self.numberOfRows, numberOfColums: self.numberOfColums, numberOfStampsBeforeReward: self.numberOfStampsBeforeReward)
         }
         var newCard = card
         var row = card[rowIndex]
-        guard let slot = row[row.count - 1].claim(previousSlot: row[row.count - 2]) else {
+        guard let slot = row[colIndex].claim(previousSlot: prevRow[prevColIndex]) else {
             return nil
         }
         var nextToStamp = self.nextToStamp
@@ -140,14 +162,20 @@ struct CardData: Equatable {
             nextToStamp = (row: nextToStamp.row + 1, col: 0)
         }
         
-        row[row.count - 1] = slot.stamp()
+        row[colIndex] = slot.stamp()
         newCard[rowIndex] = row
         
         return CardData(card: newCard, storeName: storeName, storeId: storeId, listIndex: listIndex, nextToStamp: nextToStamp, numberOfRows: self.numberOfRows, numberOfColums: self.numberOfColums, numberOfStampsBeforeReward: self.numberOfStampsBeforeReward)
     }
     
     func allSlotsAreClaimed() -> Bool {
-        self.card.first(where: { $0.last?.claimed == false }) == nil
+        self.card.first(where: {
+            let rewardSlot = $0.first(where: { $0.hasIcon })
+            guard let rewardSlot = rewardSlot else {
+                return false
+            }
+            return !rewardSlot.claimed
+        }) == nil
     }
     
     static func == (lhs: CardData, rhs: CardData) -> Bool {

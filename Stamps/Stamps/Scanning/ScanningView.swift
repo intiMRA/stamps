@@ -27,7 +27,7 @@ struct ScanningView: View {
                     
                 })
             case .scanning:
-                QRCodeScanningViewSwiftUI(code: $viewModel.code, shouldScan: viewModel.shouldScan)
+                QRCodeScanningViewSwiftUI(viewModel, shouldScan: viewModel.shouldScan)
             case .showReward:
                 VStack {
                     Text("Congrats you've a new stamp on your stamp for \(viewModel.storeName)")
@@ -40,15 +40,19 @@ struct ScanningView: View {
                     viewModel.shouldScan = true
                     
                 })
+            case .blankScreen:
+                EmptyView()
             }
             
         }
+        .onAppear(perform: viewModel.satringState)
         .alert(isPresented: $viewModel.shouldShowAlert) {
             Alert(
                 title: Text(viewModel.error?.title ?? ""),
                 message: Text(viewModel.error?.message ?? ""),
                 dismissButton: .cancel(Text("Ok"), action: {
                     viewModel.error = nil
+                    viewModel.state = .startScreen
                 })
             )
         }

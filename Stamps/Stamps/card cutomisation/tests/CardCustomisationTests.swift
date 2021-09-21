@@ -44,8 +44,11 @@ class CardCustomisationTests: XCTestCase {
 
 class MockCardCustomizationAPI: CardCustomizationAPIProtocol {
     var expectation: XCTestExpectation?
-    func uploadNewCardDetails(numberOfRows: Int, numberOfColumns: Int, numberBeforeReward: Int, storeId: String) {
+    func uploadNewCardDetails(numberOfRows: Int, numberOfColumns: Int, numberBeforeReward: Int, storeId: String) -> AnyPublisher<Void, CardCustomizationError> {
         expectation?.fulfill()
         expectation = nil
+        return Just(())
+            .setFailureType(to: CardCustomizationError.self)
+            .eraseToAnyPublisher()
     }
 }
