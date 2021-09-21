@@ -12,7 +12,11 @@ import Combine
 import FirebaseDatabase
 import FirebaseAuth
 
-class LogOutAPI {
+protocol LogOutAPIProtocol {
+    func logout() -> AnyPublisher<Void, LogInError>
+}
+
+class LogOutAPI: LogOutAPIProtocol {
     
     func logout() -> AnyPublisher<Void, LogInError> {
         Deferred {
