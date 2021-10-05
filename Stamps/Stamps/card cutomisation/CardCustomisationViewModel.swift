@@ -23,7 +23,7 @@ class CardCustomisationViewModel: ObservableObject {
     var rewardsAfterNumberInt  = 8
     var alertContent: RewardAlertContent?
     
-    var cancellables = Set<AnyCancellable>()
+    var cancellable = Set<AnyCancellable>()
     
     let api: CardCustomizationAPIProtocol
     init(storeName: String? = nil, storeId: String? = nil, api: CardCustomizationAPIProtocol = CardCustomizationAPI()) {
@@ -35,21 +35,21 @@ class CardCustomisationViewModel: ObservableObject {
                 self.numberOfRowsInt = rows
             }
         }
-        .store(in: &cancellables)
+        .store(in: &cancellable)
         
         $numberOfCols.sink { cols in
             if let cols = Int(cols) {
                 self.numberOfColsInt = cols
             }
         }
-        .store(in: &cancellables)
+        .store(in: &cancellable)
         
         $rewardsAfterNumber.sink { rewards in
             if let rewards = Int(rewards) {
                 self.rewardsAfterNumberInt = rewards
             }
         }
-        .store(in: &cancellables)
+        .store(in: &cancellable)
     }
     
     func submit() {
@@ -78,6 +78,6 @@ class CardCustomisationViewModel: ObservableObject {
                 })
                 self.showAlert = true
             })
-            .store(in: &cancellables)
+            .store(in: &cancellable)
     }
 }

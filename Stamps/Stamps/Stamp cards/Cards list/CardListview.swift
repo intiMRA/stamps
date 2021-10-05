@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-struct CardListview: View {
+struct CardListView: View {
     @StateObject var viewModel = CardListViewModel()
     var body: some View {
         ZStack {
             Color.background
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             if viewModel.cardsList.count == 0 {
-                Text("you dont have any cards yet")
+                Text("you don't have any cards yet")
                     .foregroundColor(Color.textColor)
                     .padding(.horizontal, 16)
             } else {
@@ -46,6 +46,6 @@ struct CardListview: View {
 
 struct CardListview_Previews: PreviewProvider {
     static var previews: some View {
-        CardListview()
+        CardListView()
     }
 }

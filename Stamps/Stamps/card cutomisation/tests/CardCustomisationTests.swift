@@ -10,13 +10,13 @@ import Combine
 @testable import Stamps
 
 class CardCustomisationTests: XCTestCase {
-    var cancellables = Set<AnyCancellable>()
+    var cancellable = Set<AnyCancellable>()
     func testSubmit() {
         let api = MockCardCustomizationAPI()
         let vm = CardCustomisationViewModel(storeName: "storeName", storeId: "id", api: api)
         api.expectation = self.expectation(description: "waiting for submission")
         let alertExpectation = self.expectation(description: "waiting for alert")
-        let navigationtExpectation = self.expectation(description: "waiting for navigation")
+        let navigationExpectation = self.expectation(description: "waiting for navigation")
         
         vm.submit()
         
@@ -27,15 +27,15 @@ class CardCustomisationTests: XCTestCase {
                     vm.alertContent?.handler()
                 }
             }
-            .store(in: &cancellables)
+            .store(in: &cancellable)
         
         vm.$navigateToTabsView
             .sink { navigate in
                 if navigate {
-                    navigationtExpectation.fulfill()
+                    navigationExpectation.fulfill()
                 }
             }
-            .store(in: &cancellables)
+            .store(in: &cancellable)
         
         waitForExpectations(timeout: 10)
     }

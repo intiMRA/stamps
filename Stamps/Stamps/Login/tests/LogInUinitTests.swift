@@ -11,8 +11,8 @@ import FirebaseAuth
 import Combine
 
 class LogInUinitTests: XCTestCase {
-    var cancellables = Set<AnyCancellable>()
-    func testLogInSucessfully() {
+    var cancellable = Set<AnyCancellable>()
+    func testLogInSuccessfully() {
         let viewModel = LogInViewModel(api: MockLogInAPI())
         
         viewModel.isStore = false
@@ -30,7 +30,7 @@ class LogInUinitTests: XCTestCase {
                     expectation = nil
                 }
             }
-            .store(in: &cancellables)
+            .store(in: &cancellable)
         
         waitForExpectations(timeout: 10)
     }
@@ -55,14 +55,14 @@ class LogInUinitTests: XCTestCase {
                     expectation = nil
                 }
             }
-            .store(in: &cancellables)
+            .store(in: &cancellable)
         
         waitForExpectations(timeout: 10)
         XCTAssertEqual(viewModel.error?.title, LogInAPI.logInError(from: .internalError).title)
         XCTAssertEqual(viewModel.error?.message, LogInAPI.logInError(from: .internalError).message)
     }
     
-    func testLogInAsStoreSucessfully() {
+    func testLogInAsStoreSuccessfully() {
         let viewModel = LogInViewModel(api: MockLogInAPI())
         
         viewModel.isStore = true
@@ -80,7 +80,7 @@ class LogInUinitTests: XCTestCase {
                     expectation = nil
                 }
             }
-            .store(in: &cancellables)
+            .store(in: &cancellable)
         
         waitForExpectations(timeout: 10)
     }
@@ -105,7 +105,7 @@ class LogInUinitTests: XCTestCase {
                     expectation = nil
                 }
             }
-            .store(in: &cancellables)
+            .store(in: &cancellable)
         
         waitForExpectations(timeout: 10)
         XCTAssertEqual(viewModel.error?.title, LogInAPI.logInError(from: .internalError).title)

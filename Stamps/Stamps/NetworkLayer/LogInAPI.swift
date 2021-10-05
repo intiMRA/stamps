@@ -22,7 +22,7 @@ struct LogInModel {
 }
 
 struct LogInError: Error {
-    static let unkownError = LogInError(title: "Something went wrong", message: "An unknown error occured, please try again later.")
+    static let unkownError = LogInError(title: "Something went wrong", message: "An unknown error occurred, please try again later.")
     let title: String
     let message: String
 }
@@ -49,7 +49,7 @@ func cards(from dict: [String: AnyObject]) -> [CardData] {
             let rowIndex = lastIndex["row"] as? Int,
             let col = lastIndex["col"] as? Int,
             let numberOfRows = value["numberOfRows"] as? Int,
-            let numberOfColums = value["numberOfColums"] as? Int,
+            let numberOfColumns = value["numberOfColumns"] as? Int,
             let stampsAfter = value["stampsAfter"] as? Int,
             let cardDictionary = value["card"] as? [[[String: AnyObject]]]
         else {
@@ -62,7 +62,7 @@ func cards(from dict: [String: AnyObject]) -> [CardData] {
             cardsSlots.append(cardSlot(from: value, rowData: data))
         }
         
-        cards.append(CardData(card: cardsSlots, storeName: storeName, storeId: storeId, listIndex: listIndex, nextToStamp: (row: rowIndex, col: col), numberOfRows: numberOfRows, numberOfColums: numberOfColums, numberOfStampsBeforeReward: stampsAfter))
+        cards.append(CardData(card: cardsSlots, storeName: storeName, storeId: storeId, listIndex: listIndex, nextToStamp: (row: rowIndex, col: col), numberOfRows: numberOfRows, numberOfColumns: numberOfColumns, numberOfStampsBeforeReward: stampsAfter))
     })
     return cards
 }

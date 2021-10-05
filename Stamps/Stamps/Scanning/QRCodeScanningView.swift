@@ -17,7 +17,7 @@ protocol QRCodeScanningViewDelegate: AnyObject {
 class QRCodeScanningView: UIView {
     weak var delegate: QRCodeScanningViewDelegate?
     
-    /// capture settion which allows us to start and stop scanning.
+    /// capture section which allows us to start and stop scanning.
     var captureSession: AVCaptureSession?
     
     // Init methods..

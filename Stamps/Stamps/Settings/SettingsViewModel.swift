@@ -15,7 +15,7 @@ class SettingsViewModel: ObservableObject {
     
     let isStore: Bool
     let api: LogOutAPIProtocol
-    private var cancellables = Set<AnyCancellable>()
+    private var cancellable = Set<AnyCancellable>()
     
     init(isStore: Bool = ReduxStore.shared.storeModel != nil, api: LogOutAPIProtocol = LogOutAPI()) {
         self.isStore = isStore
@@ -37,6 +37,6 @@ class SettingsViewModel: ObservableObject {
             }, receiveValue: { [weak self] in
                 self?.isLoggedOut = true
             })
-            .store(in: &cancellables)
+            .store(in: &cancellable)
     }
 }

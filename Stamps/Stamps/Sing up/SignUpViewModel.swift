@@ -17,7 +17,7 @@ class SignUpViewModel: ObservableObject {
     @Published var showAlert = false
     var error: LogInError?
     private let api: LogInAPIProtocol
-    private var cancellables = Set<AnyCancellable>()
+    private var cancellable = Set<AnyCancellable>()
     
     init(api: LogInAPIProtocol = LogInAPI()) {
         self.api = api
@@ -42,6 +42,6 @@ class SignUpViewModel: ObservableObject {
                 self.id = model.id
                 self.signUpSuccessfully = true
             })
-            .store(in: &cancellables)
+            .store(in: &cancellable)
     }
 }
