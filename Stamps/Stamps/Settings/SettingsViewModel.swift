@@ -14,10 +14,10 @@ class SettingsViewModel: ObservableObject {
     @Published var showCardCustomisation = false
     
     let isStore: Bool
-    let api: LogOutAPI
+    let api: LogOutAPIProtocol
     private var cancellables = Set<AnyCancellable>()
     
-    init(isStore: Bool = ReduxStore.shared.storeModel != nil, api: LogOutAPI = LogOutAPI()) {
+    init(isStore: Bool = ReduxStore.shared.storeModel != nil, api: LogOutAPIProtocol = LogOutAPI()) {
         self.isStore = isStore
         self.api = api
     }
