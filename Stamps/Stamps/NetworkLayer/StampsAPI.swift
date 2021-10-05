@@ -18,7 +18,12 @@ struct ScanningError: Error {
     static let unableToSave = ScanningError(title: "Unable To Save ", message: "Something went wrong while saving your stamp, plese check your internet connection and try again.")
 }
 
-class StampsAPI {
+protocol StampsAPIProtocol {
+    func saveCard(_ card: CardData) -> AnyPublisher<Void, ScanningError>
+    func fetchStoreDetails(code: String) -> AnyPublisher<StoreModel, ScanningError>
+}
+
+class StampsAPI: StampsAPIProtocol {
     
     let database = Database.database().reference()
     func saveCard(_ card: CardData) -> AnyPublisher<Void, ScanningError> {

@@ -21,9 +21,12 @@ class ScanningViewModel: ObservableObject {
     @Published var shouldShowAlert = false
     var error: ScanningError?
     private var cancellables = Set<AnyCancellable>()
-    private let cardApi = StampsAPI()
+    private let cardApi: StampsAPIProtocol
+    private let reduxStore: ReduxStoreProtocol
     
-    init() {
+    init(cardApi: StampsAPIProtocol = StampsAPI(), reduxStore: ReduxStoreProtocol = ReduxStore.shared) {
+        self.cardApi = cardApi
+        self.reduxStore = reduxStore
         $code
             .dropFirst()
             .receive(on: DispatchQueue.main)
@@ -65,7 +68,7 @@ class ScanningViewModel: ObservableObject {
             return Just((code: nil, details: nil, error: error)).eraseToAnyPublisher()
         }
         
-        if let card = ReduxStore.shared.customerModel?.stampCards.first(where: { $0.storeId == code }) {
+        if let card = reduxStore.customerModel?.stampCards.first(where: { $0.storeId == code }) {
             guard let stampedCard = card.stamp() else {
                 let error = ScanningError(title: "Maximum Number Of Stamps", message: "This card has no more slots to be stamped, please claim your rewards")
                 return Just((code: nil, details: nil, error: error)).eraseToAnyPublisher()
@@ -84,7 +87,7 @@ class ScanningViewModel: ObservableObject {
         
         return cardApi.fetchStoreDetails(code: code)
             .flatMap(maxPublishers: .max(1), { store -> AnyPublisher<(data: (store: StoreModel, card: CardData)?, error: ScanningError?), Never> in
-                let card = CardData.newCard(storeName: store.storeName, storeId: store.storeId, listIndex: ReduxStore.shared.customerModel?.stampCards.count, numberOfRows: store.numberOfRows, numberOfColums: store.numberOfColumns, numberOfStampsBeforeReward: store.numberOfStampsBeforeReward)
+                let card = CardData.newCard(storeName: store.storeName, storeId: store.storeId, listIndex: self.reduxStore.customerModel?.stampCards.count, numberOfRows: store.numberOfRows, numberOfColums: store.numberOfColumns, numberOfStampsBeforeReward: store.numberOfStampsBeforeReward)
                 return self.cardApi.saveCard(card)
                     .map { _ in (data: (store: store, card: card), error: nil)}
                     .catch({ error in
@@ -118,12 +121,12 @@ class ScanningViewModel: ObservableObject {
             return
         }
         self.state = .showReward
-        if let card = ReduxStore.shared.customerModel?.stampCards.first(where: { $0.storeId == code }) {
+        if let card = reduxStore.customerModel?.stampCards.first(where: { $0.storeId == code }) {
             self.storeName = card.storeName
-            ReduxStore.shared.changeState(customerModel: ReduxStore.shared.customerModel?.replaceCard(details.card))
+            reduxStore.changeState(customerModel: ReduxStore.shared.customerModel?.replaceCard(details.card))
         } else {
             self.storeName = details.storeName
-            ReduxStore.shared.addCard(details.card)
+            reduxStore.addCard(details.card)
             
         }
     }
