@@ -20,7 +20,7 @@ class ScanningViewModel: ObservableObject {
     @Published var storeName = ""
     @Published var shouldShowAlert = false
     var error: ScanningError?
-    private var cancellables = Set<AnyCancellable>()
+    private var cancellable = Set<AnyCancellable>()
     private let cardApi: StampsAPIProtocol
     private let reduxStore: ReduxStoreProtocol
     
@@ -48,10 +48,10 @@ class ScanningViewModel: ObservableObject {
                 
                 self.foundQRCode(code, details: details)
             })
-            .store(in: &cancellables)
+            .store(in: &cancellable)
     }
     
-    func satringState() {
+    func startingState() {
         self.state = .startScreen
         shouldScan = false
     }
@@ -64,7 +64,7 @@ class ScanningViewModel: ObservableObject {
     
     func mapPublishers(code: String) -> AnyPublisher<(code: String?, details: (storeName: String, card: CardData)?, error: ScanningError?), Never> {
         guard code.rangeOfCharacter(from: ScanningViewModel.invalidCharacters) == nil else {
-            let error = ScanningError(title: "Invalid Code", message: "The QR code you scanned is not in our database, or a scanning error occured")
+            let error = ScanningError(title: "Invalid Code", message: "The QR code you scanned is not in our database, or a scanning error occurred")
             return Just((code: nil, details: nil, error: error)).eraseToAnyPublisher()
         }
         
@@ -115,7 +115,7 @@ class ScanningViewModel: ObservableObject {
         }
         
         guard code.rangeOfCharacter(from: ScanningViewModel.invalidCharacters) == nil else {
-            self.error = ScanningError(title: "Invalid Code", message: "The QR code you scanned is not in our database, or a scanning error occured")
+            self.error = ScanningError(title: "Invalid Code", message: "The QR code you scanned is not in our database, or a scanning error occurred")
             self.shouldShowAlert = true
             self.state = .startScreen
             return
@@ -123,7 +123,7 @@ class ScanningViewModel: ObservableObject {
         self.state = .showReward
         if let card = reduxStore.customerModel?.stampCards.first(where: { $0.storeId == code }) {
             self.storeName = card.storeName
-            reduxStore.changeState(customerModel: ReduxStore.shared.customerModel?.replaceCard(details.card))
+            reduxStore.changeState(customerModel: reduxStore.customerModel?.replaceCard(details.card))
         } else {
             self.storeName = details.storeName
             reduxStore.addCard(details.card)
