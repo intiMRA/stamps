@@ -45,7 +45,7 @@ struct ScanningView: View {
             }
             
         }
-        .onAppear(perform: viewModel.satringState)
+        .onAppear(perform: viewModel.startingState)
         .alert(isPresented: $viewModel.shouldShowAlert) {
             Alert(
                 title: Text(viewModel.error?.title ?? ""),

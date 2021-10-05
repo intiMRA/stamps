@@ -17,6 +17,7 @@
 		3576112626C3D2800028C497 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3576112526C3D2800028C497 /* GoogleService-Info.plist */; };
 		3579BF0626F97F18006DC28B /* SettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3579BF0526F97F18006DC28B /* SettingsTests.swift */; };
 		357AAA6A26A2577E00C403D7 /* SignUpUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357AAA6926A2577E00C403D7 /* SignUpUnitTests.swift */; };
+		357CC30E270C226300059479 /* ScanningViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357CC30D270C226300059479 /* ScanningViewModelTests.swift */; };
 		3581BEDA26A589F200DED9FD /* CardCustomisationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3581BED926A589F200DED9FD /* CardCustomisationView.swift */; };
 		3581BEDC26A58A1400DED9FD /* CardCustomisationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3581BEDB26A58A1400DED9FD /* CardCustomisationViewModel.swift */; };
 		3583DD3A26A281A1008D0A6C /* ReduxStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3583DD3926A281A1008D0A6C /* ReduxStoreTests.swift */; };
@@ -87,6 +88,7 @@
 		3576112926C3F2D40028C497 /* Stamps.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Stamps.xctestplan; sourceTree = "<group>"; };
 		3579BF0526F97F18006DC28B /* SettingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTests.swift; sourceTree = "<group>"; };
 		357AAA6926A2577E00C403D7 /* SignUpUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpUnitTests.swift; sourceTree = "<group>"; };
+		357CC30D270C226300059479 /* ScanningViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanningViewModelTests.swift; sourceTree = "<group>"; };
 		3581BED926A589F200DED9FD /* CardCustomisationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCustomisationView.swift; sourceTree = "<group>"; };
 		3581BEDB26A58A1400DED9FD /* CardCustomisationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCustomisationViewModel.swift; sourceTree = "<group>"; };
 		3583DD3926A281A1008D0A6C /* ReduxStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReduxStoreTests.swift; sourceTree = "<group>"; };
@@ -210,6 +212,14 @@
 			isa = PBXGroup;
 			children = (
 				357AAA6926A2577E00C403D7 /* SignUpUnitTests.swift */,
+			);
+			path = tests;
+			sourceTree = "<group>";
+		};
+		357CC30C270C222400059479 /* tests */ = {
+			isa = PBXGroup;
+			children = (
+				357CC30D270C226300059479 /* ScanningViewModelTests.swift */,
 			);
 			path = tests;
 			sourceTree = "<group>";
@@ -413,6 +423,7 @@
 		417FD733264A672A002AEDE8 /* Scanning */ = {
 			isa = PBXGroup;
 			children = (
+				357CC30C270C222400059479 /* tests */,
 				417FD734264A6761002AEDE8 /* ScanningView.swift */,
 				417FD736264A6803002AEDE8 /* ScanningViewModel.swift */,
 				3596620A2653DA6E003D3323 /* QRCodeScanningView.swift */,
@@ -747,6 +758,7 @@
 				358C04F926C1431C00BFD6BD /* CardCustomisationTests.swift in Sources */,
 				357AAA6A26A2577E00C403D7 /* SignUpUnitTests.swift in Sources */,
 				41249C52263BD49000BF3D2C /* LogInUinitTests.swift in Sources */,
+				357CC30E270C226300059479 /* ScanningViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

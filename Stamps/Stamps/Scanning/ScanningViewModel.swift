@@ -20,10 +20,13 @@ class ScanningViewModel: ObservableObject {
     @Published var storeName = ""
     @Published var shouldShowAlert = false
     var error: ScanningError?
-    private var cancellables = Set<AnyCancellable>()
-    private let cardApi = StampsAPI()
+    private var cancellable = Set<AnyCancellable>()
+    private let cardApi: StampsAPIProtocol
+    private let reduxStore: ReduxStoreProtocol
     
-    init() {
+    init(cardApi: StampsAPIProtocol = StampsAPI(), reduxStore: ReduxStoreProtocol = ReduxStore.shared) {
+        self.cardApi = cardApi
+        self.reduxStore = reduxStore
         $code
             .dropFirst()
             .receive(on: DispatchQueue.main)
@@ -45,10 +48,10 @@ class ScanningViewModel: ObservableObject {
                 
                 self.foundQRCode(code, details: details)
             })
-            .store(in: &cancellables)
+            .store(in: &cancellable)
     }
     
-    func satringState() {
+    func startingState() {
         self.state = .startScreen
         shouldScan = false
     }
@@ -61,11 +64,11 @@ class ScanningViewModel: ObservableObject {
     
     func mapPublishers(code: String) -> AnyPublisher<(code: String?, details: (storeName: String, card: CardData)?, error: ScanningError?), Never> {
         guard code.rangeOfCharacter(from: ScanningViewModel.invalidCharacters) == nil else {
-            let error = ScanningError(title: "Invalid Code", message: "The QR code you scanned is not in our database, or a scanning error occured")
+            let error = ScanningError(title: "Invalid Code", message: "The QR code you scanned is not in our database, or a scanning error occurred")
             return Just((code: nil, details: nil, error: error)).eraseToAnyPublisher()
         }
         
-        if let card = ReduxStore.shared.customerModel?.stampCards.first(where: { $0.storeId == code }) {
+        if let card = reduxStore.customerModel?.stampCards.first(where: { $0.storeId == code }) {
             guard let stampedCard = card.stamp() else {
                 let error = ScanningError(title: "Maximum Number Of Stamps", message: "This card has no more slots to be stamped, please claim your rewards")
                 return Just((code: nil, details: nil, error: error)).eraseToAnyPublisher()
@@ -84,7 +87,7 @@ class ScanningViewModel: ObservableObject {
         
         return cardApi.fetchStoreDetails(code: code)
             .flatMap(maxPublishers: .max(1), { store -> AnyPublisher<(data: (store: StoreModel, card: CardData)?, error: ScanningError?), Never> in
-                let card = CardData.newCard(storeName: store.storeName, storeId: store.storeId, listIndex: ReduxStore.shared.customerModel?.stampCards.count, numberOfRows: store.numberOfRows, numberOfColums: store.numberOfColumns, numberOfStampsBeforeReward: store.numberOfStampsBeforeReward)
+                let card = CardData.newCard(storeName: store.storeName, storeId: store.storeId, listIndex: self.reduxStore.customerModel?.stampCards.count, numberOfRows: store.numberOfRows, numberOfColums: store.numberOfColumns, numberOfStampsBeforeReward: store.numberOfStampsBeforeReward)
                 return self.cardApi.saveCard(card)
                     .map { _ in (data: (store: store, card: card), error: nil)}
                     .catch({ error in
@@ -112,18 +115,18 @@ class ScanningViewModel: ObservableObject {
         }
         
         guard code.rangeOfCharacter(from: ScanningViewModel.invalidCharacters) == nil else {
-            self.error = ScanningError(title: "Invalid Code", message: "The QR code you scanned is not in our database, or a scanning error occured")
+            self.error = ScanningError(title: "Invalid Code", message: "The QR code you scanned is not in our database, or a scanning error occurred")
             self.shouldShowAlert = true
             self.state = .startScreen
             return
         }
         self.state = .showReward
-        if let card = ReduxStore.shared.customerModel?.stampCards.first(where: { $0.storeId == code }) {
+        if let card = reduxStore.customerModel?.stampCards.first(where: { $0.storeId == code }) {
             self.storeName = card.storeName
-            ReduxStore.shared.changeState(customerModel: ReduxStore.shared.customerModel?.replaceCard(details.card))
+            reduxStore.changeState(customerModel: reduxStore.customerModel?.replaceCard(details.card))
         } else {
             self.storeName = details.storeName
-            ReduxStore.shared.addCard(details.card)
+            reduxStore.addCard(details.card)
             
         }
     }
