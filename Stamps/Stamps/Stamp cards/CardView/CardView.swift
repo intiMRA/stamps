@@ -24,7 +24,7 @@ struct CardView: View {
                     }
                 })
                 if viewModel.showSubmitButton {
-                    Button("Submit") {
+                    Button("Submit".localized) {
                         viewModel.submit()
                     }
                     .foregroundColor(Color.textColor)
@@ -40,7 +40,7 @@ struct CardView: View {
             Alert(
                 title: Text(viewModel.alertContent?.title ?? ""),
                 message: Text(viewModel.alertContent?.message ?? ""),
-                dismissButton: .cancel(Text("Ok"), action: {
+                dismissButton: .cancel(Text("Ok".localized), action: {
                     viewModel.alertContent?.handler()
                     viewModel.alertContent = nil
                 })
@@ -48,7 +48,7 @@ struct CardView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .animation( viewModel.showLinearAnimation ? .linear(duration: 0.25) : .easeInOut(duration: 0.25))
-        .navigationBarTitle("Stamps", displayMode: .inline)
+        .navigationBarTitle("Stamps".localized, displayMode: .inline)
     }
 }
 

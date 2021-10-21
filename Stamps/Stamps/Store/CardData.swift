@@ -66,11 +66,11 @@ struct CardData: Equatable {
         
         let currentCol = nextToStamp.col
         
-        guard nextToStamp.row < card.count else {
+        guard var row = card[safe: nextToStamp.row] else {
             return nil
         }
         
-        var row = card[nextToStamp.row]
+        
         var newCard = card
         let slot = row[currentCol]
         row[currentCol] = slot.stamp()

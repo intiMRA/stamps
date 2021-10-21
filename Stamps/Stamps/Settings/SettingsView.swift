@@ -15,7 +15,7 @@ struct SettingsView: View {
             VStack(alignment: .leading, spacing: 20) {
                 HStack {
                     Icon(.logout)
-                    Text("Log Out")
+                    Text("LogOut".localized)
                 }
                 .contentShape(Rectangle())
                 .onTapGesture(count: 1, perform: viewModel.logOut)
@@ -27,7 +27,7 @@ struct SettingsView: View {
                 if viewModel.isStore {
                     HStack {
                         Icon(.customize)
-                        Text("Customise your card")
+                        Text("CustomiseYourCard".localized)
                     }
                     .contentShape(Rectangle())
                     .onTapGesture(count: 1, perform: {viewModel.showCardCustomisation = true})
@@ -43,9 +43,9 @@ struct SettingsView: View {
         }
         .alert(isPresented: $viewModel.shouldShowAlert) {
             Alert(
-                title: Text("We are sorry"),
-                message: Text("We could not log you out, please try again."),
-                dismissButton: .cancel(Text("Ok"))
+                title: Text("WeAreSorry".localized),
+                message: Text("WeCouldNotLogOut".localized),
+                dismissButton: .cancel(Text("Ok".localized))
             )
         }
     }

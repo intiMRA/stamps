@@ -14,6 +14,8 @@
 		351CA582268080EB006ABAC2 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351CA581268080EB006ABAC2 /* SettingsView.swift */; };
 		352288452650BFAE00BD1DFD /* CardListview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352288442650BFAE00BD1DFD /* CardListview.swift */; };
 		352288472650BFC500BD1DFD /* CardListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352288462650BFC500BD1DFD /* CardListViewModel.swift */; };
+		35746F722721597A009D27E4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 35746F712721597A009D27E4 /* Localizable.strings */; };
+		35746F74272159E3009D27E4 /* String+Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35746F73272159E3009D27E4 /* String+Localizable.swift */; };
 		3576112626C3D2800028C497 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3576112526C3D2800028C497 /* GoogleService-Info.plist */; };
 		3579BF0626F97F18006DC28B /* SettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3579BF0526F97F18006DC28B /* SettingsTests.swift */; };
 		357AAA6A26A2577E00C403D7 /* SignUpUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357AAA6926A2577E00C403D7 /* SignUpUnitTests.swift */; };
@@ -84,6 +86,8 @@
 		351CA581268080EB006ABAC2 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		352288442650BFAE00BD1DFD /* CardListview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListview.swift; sourceTree = "<group>"; };
 		352288462650BFC500BD1DFD /* CardListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListViewModel.swift; sourceTree = "<group>"; };
+		35746F712721597A009D27E4 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		35746F73272159E3009D27E4 /* String+Localizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localizable.swift"; sourceTree = "<group>"; };
 		3576112526C3D2800028C497 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Stamps/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3576112926C3F2D40028C497 /* Stamps.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Stamps.xctestplan; sourceTree = "<group>"; };
 		3579BF0526F97F18006DC28B /* SettingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTests.swift; sourceTree = "<group>"; };
@@ -200,6 +204,15 @@
 			path = "Cards list";
 			sourceTree = "<group>";
 		};
+		35746F7027215922009D27E4 /* Resorses */ = {
+			isa = PBXGroup;
+			children = (
+				35746F712721597A009D27E4 /* Localizable.strings */,
+				35746F73272159E3009D27E4 /* String+Localizable.swift */,
+			);
+			path = Resorses;
+			sourceTree = "<group>";
+		};
 		3579BF0426F97EFF006DC28B /* unittests */ = {
 			isa = PBXGroup;
 			children = (
@@ -288,6 +301,7 @@
 		41249C18263BD37F00BF3D2C /* Stamps */ = {
 			isa = PBXGroup;
 			children = (
+				35746F7027215922009D27E4 /* Resorses */,
 				3581BED826A589B600DED9FD /* card cutomisation */,
 				351CA580268080CD006ABAC2 /* Settings */,
 				35FB33FB264F44ED00CCB847 /* Store */,
@@ -581,6 +595,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35746F722721597A009D27E4 /* Localizable.strings in Resources */,
 				41249C21263BD38200BF3D2C /* Preview Assets.xcassets in Resources */,
 				3576112626C3D2800028C497 /* GoogleService-Info.plist in Resources */,
 				4143AA832643D9E800DCC6D7 /* Assets.xcassets in Resources */,
@@ -735,6 +750,7 @@
 				41249C1A263BD37F00BF3D2C /* StampsApp.swift in Sources */,
 				352288452650BFAE00BD1DFD /* CardListview.swift in Sources */,
 				3596620D2653E10C003D3323 /* QRCodeScanningViewSwiftUI.swift in Sources */,
+				35746F74272159E3009D27E4 /* String+Localizable.swift in Sources */,
 				417912FF2640FD3600BDAD3C /* LogInAPI.swift in Sources */,
 				358F22A326E4B9C100AEC9C3 /* Collection+Safe.swift in Sources */,
 				35FB33FF264F45FF00CCB847 /* CardData.swift in Sources */,

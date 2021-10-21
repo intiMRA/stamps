@@ -72,7 +72,7 @@ class CardCustomisationViewModel: ObservableObject {
                 guard let self = self else {
                     return
                 }
-                self.alertContent = RewardAlertContent(title: "Updated", message: "Your card details have been updated.", handler: {
+                self.alertContent = RewardAlertContent(title: "Updated".localized, message: "CardDetailsUpdated".localized, handler: {
                     self.showAlert = false
                     self.navigateToTabsView = true
                 })

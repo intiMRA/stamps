@@ -20,7 +20,7 @@ struct UserTabView: View {
                     VStack {
                         Image(iconName: .list)
                             .renderingMode(.template)
-                        Text("Your Cards")
+                        Text("YourCards".localized)
                     }
                 }
                 .tag(0)
@@ -30,7 +30,7 @@ struct UserTabView: View {
                     VStack {
                         Image(iconName: .qrCode)
                             .renderingMode(.template)
-                        Text("Scan")
+                        Text("Scan".localized)
                     }
                 }
                 .tag(1)
@@ -40,7 +40,7 @@ struct UserTabView: View {
                     VStack {
                         Image(iconName: .settings)
                             .renderingMode(.template)
-                        Text("Settings")
+                        Text("Settings".localized)
                     }
                 }
                 .tag(2)

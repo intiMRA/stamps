@@ -26,7 +26,7 @@ struct ShopStamp: View {
             .tabItem {
                 Image(iconName: .qrCode)
                     .renderingMode(.template)
-                Text("Your Cards")
+                Text("YourCards".localized)
             }
             .tag(0)
             
@@ -35,7 +35,7 @@ struct ShopStamp: View {
                     VStack {
                         Image(iconName: .settings)
                             .renderingMode(.template)
-                        Text("Settings")
+                        Text("Settings".localized)
                     }
                 }
                 .tag(1)

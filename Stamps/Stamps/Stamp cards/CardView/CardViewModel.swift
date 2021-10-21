@@ -100,13 +100,13 @@ class CardViewModel: ObservableObject {
     }
     
     func loadAlert(card: CardData) {
-        alertContent = RewardAlertContent(title: "Reward Redeemed", message: "You redeemed a reward, please show this message to one of the employees of the shop.", handler: {
+        alertContent = RewardAlertContent(title: "RewardRedeemedTitle".localized, message: "RewardRedeemedMessage".localized, handler: {
             if card.allSlotsAreClaimed() {
                 guard let numberOfRows = self.store?.numberOfRows,
                       let numberOfColumns = self.store?.numberOfColumns,
                       let numberOfStampsBeforeReward = self.store?.numberOfStampsBeforeReward
                 else {
-                    self.alertContent = RewardAlertContent(title: "Something went wrong", message: "Sorry we couldn't claim your stamp, please ty again.", handler: {
+                    self.alertContent = RewardAlertContent(title: "UnkownErrorTitle".localized, message: "UnkownErrorMessage".localized, handler: {
                         self.showAlert = false
                     })
                     return
@@ -149,7 +149,7 @@ class CardViewModel: ObservableObject {
                 guard let self = self else {
                     return
                 }
-                self.alertContent = RewardAlertContent(title: "Updated", message: "Your card details have been updated.", handler: {
+                self.alertContent = RewardAlertContent(title: "Updated".localized, message: "CardDetailsUpdated".localized, handler: {
                     self.showAlert = false
                     self.navigateToTabsView = true
                 })

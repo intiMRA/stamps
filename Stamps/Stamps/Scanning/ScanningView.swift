@@ -16,7 +16,7 @@ struct ScanningView: View {
             switch viewModel.state {
             case .startScreen:
                 VStack {
-                    Text("Please tap to scan.")
+                    Text("PleaseTapToScan".localized)
                         .foregroundColor(Color.textColor)
                 }
                 .contentShape(Rectangle())
@@ -30,7 +30,7 @@ struct ScanningView: View {
                 QRCodeScanningViewSwiftUI(viewModel, shouldScan: viewModel.shouldScan)
             case .showReward:
                 VStack {
-                    Text("Congrats you've a new stamp on your stamp for \(viewModel.storeName)")
+                    Text("Congrats".localizeWithFormat(arguments: viewModel.storeName))
                         .foregroundColor(Color.textColor)
                 }
                 .contentShape(Rectangle())
@@ -50,7 +50,7 @@ struct ScanningView: View {
             Alert(
                 title: Text(viewModel.error?.title ?? ""),
                 message: Text(viewModel.error?.message ?? ""),
-                dismissButton: .cancel(Text("Ok"), action: {
+                dismissButton: .cancel(Text("Ok".localized), action: {
                     viewModel.error = nil
                     viewModel.state = .startScreen
                 })

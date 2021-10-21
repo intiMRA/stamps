@@ -16,21 +16,21 @@ struct CardCustomisationView: View {
         ZStack {
             Color.background
             VStack(alignment: .leading) {
-                Text("Number of rows in your card")
+                Text("NumberOfRows".localized)
                 CustomTextField(placeholder: viewModel.numberOfRows, text: $viewModel.numberOfRows, keyboardType: .numberPad)
                 
-                Text("Number of columns in your card")
+                Text("NumberOfColumns".localized)
                 CustomTextField(placeholder: viewModel.numberOfCols, text: $viewModel.numberOfCols, keyboardType: .numberPad)
                 
-                Text("Number of stamps required before reward")
+                Text("NumberOfStampsBeforeReward".localized)
                 CustomTextField(placeholder: viewModel.rewardsAfterNumber, text: $viewModel.rewardsAfterNumber, keyboardType: .numberPad)
                 
                 VStack(alignment: .center) {
-                    NavigationLink("preview", destination: CardView(viewModel: CardViewModel(cardData: CardData.newCard(storeName: "store", storeId: viewModel.storeId, listIndex: 0, firstIsStamped: false, numberOfRows: viewModel.numberOfRowsInt, numberOfColumns: viewModel.numberOfColsInt, numberOfStampsBeforeReward: viewModel.rewardsAfterNumberInt), showSubmitButton: true)))
+                    NavigationLink("Preview".localized, destination: CardView(viewModel: CardViewModel(cardData: CardData.newCard(storeName: viewModel.storeName, storeId: viewModel.storeId, listIndex: 0, firstIsStamped: false, numberOfRows: viewModel.numberOfRowsInt, numberOfColumns: viewModel.numberOfColsInt, numberOfStampsBeforeReward: viewModel.rewardsAfterNumberInt), showSubmitButton: true)))
                         .foregroundColor(Color.textColor)
                         .padding(.bottom, 10)
                     
-                        Button("Submit") {
+                    Button("Submit".localized) {
                             viewModel.submit()
                         }
                         .foregroundColor(Color.textColor)
@@ -47,7 +47,7 @@ struct CardCustomisationView: View {
                 Alert(
                     title: Text(viewModel.alertContent?.title ?? ""),
                     message: Text(viewModel.alertContent?.message ?? ""),
-                    dismissButton: .cancel(Text("Ok"), action: {
+                    dismissButton: .cancel(Text("Ok".localized), action: {
                         viewModel.alertContent?.handler()
                         viewModel.alertContent = nil
                     })
