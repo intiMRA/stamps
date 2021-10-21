@@ -18,8 +18,8 @@ class SettingsTests: XCTestCase {
         
         vm.$isLoggedOut
             .dropFirst()
-            .sink { logedout in
-                XCTAssertTrue(logedout)
+            .sink { loggedOut in
+                XCTAssertTrue(loggedOut)
             }
             .store(in: &cancellable)
         

@@ -19,7 +19,7 @@ class LogInViewModel: ObservableObject {
     @Published var isStore = false
     @Published var state: LogInType = .loading
     var error: LogInError?
-    private var cancellables = Set<AnyCancellable>()
+    private var cancellable = Set<AnyCancellable>()
     private let api: LogInAPIProtocol
     
     init(api: LogInAPIProtocol = LogInAPI()) {
@@ -47,7 +47,7 @@ class LogInViewModel: ObservableObject {
                 self.logInSuccess = true
             }
         })
-        .store(in: &cancellables)
+        .store(in: &cancellable)
     }
     
     func logInUserAlreadySignedIn() {
@@ -69,6 +69,6 @@ class LogInViewModel: ObservableObject {
                     self.state = .user
                 }
             })
-            .store(in: &cancellables)
+            .store(in: &cancellable)
     }
 }

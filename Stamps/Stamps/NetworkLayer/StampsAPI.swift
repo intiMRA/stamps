@@ -13,9 +13,9 @@ import FirebaseAuth
 struct ScanningError: Error {
     let title: String
     let message: String
-    static let unableToScan = ScanningError(title: "Invalid Code", message: "The QR code you scanned is not in our database, or a scanning error occured.")
+    static let unableToScan = ScanningError(title: "Invalid Code", message: "The QR code you scanned is not in our database, or a scanning error occurred.")
     
-    static let unableToSave = ScanningError(title: "Unable To Save ", message: "Something went wrong while saving your stamp, plese check your internet connection and try again.")
+    static let unableToSave = ScanningError(title: "Unable To Save ", message: "Something went wrong while saving your stamp, please check your internet connection and try again.")
 }
 
 protocol StampsAPIProtocol {
@@ -44,7 +44,7 @@ class StampsAPI: StampsAPIProtocol {
                     "storeId": card.storeId,
                     "storeName": card.storeName,
                     "numberOfRows": card.numberOfRows,
-                    "numberOfColums": card.numberOfColums,
+                    "numberOfColumns": card.numberOfColumns,
                     "stampsAfter": card.numberOfStampsBeforeReward,
                     "card": cardToSave
                 ]

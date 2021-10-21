@@ -13,7 +13,7 @@ import Combine
 struct CardCustomizationError: Error {
     let title: String
     let message: String
-    static let savingError = CardCustomizationError(title: "Unable To Save ", message: "Something went wrong while saving your card, plese check your internet connection and try again.")
+    static let savingError = CardCustomizationError(title: "Unable To Save ", message: "Something went wrong while saving your card, please check your internet connection and try again.")
 }
 
 protocol CardCustomizationAPIProtocol {

@@ -18,7 +18,7 @@ class ReduxStoreTests: XCTestCase {
         XCTAssertNil(ReduxStore.shared.storeModel)
         
         
-        let card = CardData(card: [[]], storeName: "the store", storeId: "id", listIndex: 1, nextToStamp: (row: 0, col: 0), numberOfRows: 0, numberOfColums: 0, numberOfStampsBeforeReward: 0)
+        let card = CardData(card: [[]], storeName: "the store", storeId: "id", listIndex: 1, nextToStamp: (row: 0, col: 0), numberOfRows: 0, numberOfColumns: 0, numberOfStampsBeforeReward: 0)
         
         let customerModel = CustomerModel(userId: "customerId", username: "pete", stampCards: [card])
         
@@ -41,7 +41,7 @@ class ReduxStoreTests: XCTestCase {
         XCTAssertNil(ReduxStore.shared.storeModel)
         
         
-        let card = CardData(card: [[]], storeName: "the store", storeId: "id", listIndex: 1, nextToStamp: (row: 0, col: 0), numberOfRows: 0, numberOfColums: 0, numberOfStampsBeforeReward: 0)
+        let card = CardData(card: [[]], storeName: "the store", storeId: "id", listIndex: 1, nextToStamp: (row: 0, col: 0), numberOfRows: 0, numberOfColumns: 0, numberOfStampsBeforeReward: 0)
         
         let customerModel = CustomerModel(userId: "customerId", username: "pete", stampCards: [])
         

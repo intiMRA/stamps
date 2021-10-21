@@ -15,22 +15,22 @@ struct RewardAlertContent {
 }
 
 class CardViewModel: ObservableObject {
-    let api: StampsAPI?
+    let api: StampsAPIProtocol
     var store: StoreModel?
     let reduxStore: ReduxStoreProtocol
-    let cardCustomizationAPI: CardCustomizationAPI?
+    let cardCustomizationAPI: CardCustomizationAPIProtocol
     var alertContent: RewardAlertContent?
     var showLinearAnimation = true
     var showSubmitButton: Bool
     
-    var cancellables = Set<AnyCancellable>()
+    var cancellable = Set<AnyCancellable>()
     
     @Published var navigateToTabsView = false
     
     @Published var showAlert = false
-    @Published var stamps: CardData = CardData(storeName: "", storeId: "", listIndex: -1, numberOfRows: 0, numberOfColums: 0, numberOfStampsBeforeReward: 0)
+    @Published var stamps: CardData = CardData(storeName: "", storeId: "", listIndex: -1, numberOfRows: 0, numberOfColumns: 0, numberOfStampsBeforeReward: 0)
     
-    init(cardData: CardData, api: StampsAPI? = StampsAPI(), showSubmitButton: Bool = false, cardCustomizationAPI: CardCustomizationAPI? = CardCustomizationAPI(), reduxStore: ReduxStoreProtocol = ReduxStore.shared) {
+    init(cardData: CardData, api: StampsAPIProtocol = StampsAPI(), showSubmitButton: Bool = false, cardCustomizationAPI: CardCustomizationAPIProtocol = CardCustomizationAPI(), reduxStore: ReduxStoreProtocol = ReduxStore.shared) {
         self.stamps = cardData
         self.api = api
         self.showSubmitButton = showSubmitButton
@@ -44,16 +44,11 @@ class CardViewModel: ObservableObject {
         }
         
         if card.allSlotsAreClaimed() {
-            api?.fetchStoreDetails(code: card.storeId)
+            api.fetchStoreDetails(code: card.storeId)
                 .flatMap(maxPublishers: .max(1), { model -> AnyPublisher<(model: StoreModel?, error: ScanningError?), Never>  in
-                    guard let api = self.api else {
-                        let error = ScanningError.unableToSave
-                        return Just((model: nil, error: error)).eraseToAnyPublisher()
-                    }
+                    let newCard = CardData.newCard(storeName: card.storeName, storeId: card.storeId, listIndex: card.listIndex, firstIsStamped: false, numberOfRows: model.numberOfRows, numberOfColumns: model.numberOfColumns, numberOfStampsBeforeReward: model.numberOfStampsBeforeReward)
                     
-                    let newCard = CardData.newCard(storeName: card.storeName, storeId: card.storeId, listIndex: card.listIndex, firstIsStamped: false, numberOfRows: model.numberOfRows, numberOfColums: model.numberOfColumns, numberOfStampsBeforeReward: model.numberOfStampsBeforeReward)
-                    
-                    return api.saveCard(newCard)
+                    return self.api.saveCard(newCard)
                         .map { _ in (model: model, error: nil) }
                         .catch({ error in
                             Just((model: nil, error: error)).eraseToAnyPublisher()
@@ -83,9 +78,9 @@ class CardViewModel: ObservableObject {
                     self.loadAlert(card: card)
                     self.showAlert = true
                 })
-                .store(in: &cancellables)
+                .store(in: &cancellable)
         } else {
-            api?.saveCard(card)
+            api.saveCard(card)
                 .receive(on: DispatchQueue.main)
                 .sink(receiveCompletion: { completion in
                     switch completion {
@@ -100,7 +95,7 @@ class CardViewModel: ObservableObject {
                     self.loadAlert(card: card)
                     self.showAlert = true
                 })
-                .store(in: &cancellables)
+                .store(in: &cancellable)
         }
     }
     
@@ -108,7 +103,7 @@ class CardViewModel: ObservableObject {
         alertContent = RewardAlertContent(title: "Reward Redeemed", message: "You redeemed a reward, please show this message to one of the employees of the shop.", handler: {
             if card.allSlotsAreClaimed() {
                 guard let numberOfRows = self.store?.numberOfRows,
-                      let numberOfColums = self.store?.numberOfColumns,
+                      let numberOfColumns = self.store?.numberOfColumns,
                       let numberOfStampsBeforeReward = self.store?.numberOfStampsBeforeReward
                 else {
                     self.alertContent = RewardAlertContent(title: "Something went wrong", message: "Sorry we couldn't claim your stamp, please ty again.", handler: {
@@ -119,20 +114,21 @@ class CardViewModel: ObservableObject {
                 self.showLinearAnimation = true
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     self.showLinearAnimation = false
-                    self.stamps = CardData.newCard(storeName: card.storeName, storeId: card.storeId, listIndex: card.listIndex, firstIsStamped: false, numberOfRows: numberOfRows, numberOfColums: numberOfColums, numberOfStampsBeforeReward: numberOfStampsBeforeReward)
-                    self.reduxStore.changeState(customerModel: self.reduxStore.customerModel?.replaceCard(self.stamps))
+                    let cardData = CardData.newCard(storeName: card.storeName, storeId: card.storeId, listIndex: card.listIndex, firstIsStamped: false, numberOfRows: numberOfRows, numberOfColumns: numberOfColumns, numberOfStampsBeforeReward: numberOfStampsBeforeReward)
+                    self.reduxStore.changeState(customerModel: self.reduxStore.customerModel?.replaceCard(cardData))
+                    self.stamps = cardData
                 }
                 
             } else {
                 self.showLinearAnimation = true
-                self.stamps = card
                 self.reduxStore.changeState(customerModel: self.reduxStore.customerModel?.replaceCard(card))
+                self.stamps = card
             }
         })
     }
     
     func submit() {
-        cardCustomizationAPI?.uploadNewCardDetails(numberOfRows: stamps.numberOfRows, numberOfColumns: stamps.numberOfColums, numberBeforeReward: stamps.numberOfStampsBeforeReward, storeId: stamps.storeId)
+        cardCustomizationAPI.uploadNewCardDetails(numberOfRows: stamps.numberOfRows, numberOfColumns: stamps.numberOfColumns, numberBeforeReward: stamps.numberOfStampsBeforeReward, storeId: stamps.storeId)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { [weak self] completion in
                 switch completion {
@@ -159,6 +155,6 @@ class CardViewModel: ObservableObject {
                 })
                 self.showAlert = true
             })
-            .store(in: &cancellables)
+            .store(in: &cancellable)
     }
 }

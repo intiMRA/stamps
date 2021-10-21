@@ -11,7 +11,7 @@ import FirebaseAuth
 import Combine
 
 class SignUpUnitTests: XCTestCase {
-    var cancellables = Set<AnyCancellable>()
+    var cancellable = Set<AnyCancellable>()
     
     func testSignUpSuccessfully() {
         let api = MockLogInAPI()
@@ -30,7 +30,7 @@ class SignUpUnitTests: XCTestCase {
                 idExpectation?.fulfill()
                 idExpectation = nil
             }
-            .store(in: &cancellables)
+            .store(in: &cancellable)
         
         var signUpExpectation: XCTestExpectation? = self.expectation(description: "wait for signin")
         
@@ -42,7 +42,7 @@ class SignUpUnitTests: XCTestCase {
                     signUpExpectation = nil
                 }
             }
-            .store(in: &cancellables)
+            .store(in: &cancellable)
         
         waitForExpectations(timeout: 10)
         XCTAssertEqual("pete", vm.name)
@@ -67,7 +67,7 @@ class SignUpUnitTests: XCTestCase {
                     alertExpectation = nil
                 }
             }
-            .store(in: &cancellables)
+            .store(in: &cancellable)
         
         waitForExpectations(timeout: 10)
         XCTAssertEqual(vm.error?.title, LogInAPI.logInError(from: .internalError).title)
@@ -91,7 +91,7 @@ class SignUpUnitTests: XCTestCase {
                 idExpectation?.fulfill()
                 idExpectation = nil
             }
-            .store(in: &cancellables)
+            .store(in: &cancellable)
         
         var signUpExpectation: XCTestExpectation? = self.expectation(description: "wait for signin")
         
@@ -103,7 +103,7 @@ class SignUpUnitTests: XCTestCase {
                     signUpExpectation = nil
                 }
             }
-            .store(in: &cancellables)
+            .store(in: &cancellable)
         
         waitForExpectations(timeout: 10)
         XCTAssertEqual("pete", vm.name)
@@ -128,7 +128,7 @@ class SignUpUnitTests: XCTestCase {
                     alertExpectation = nil
                 }
             }
-            .store(in: &cancellables)
+            .store(in: &cancellable)
         
         waitForExpectations(timeout: 10)
         XCTAssertEqual(vm.error?.title, LogInAPI.logInError(from: .internalError).title)

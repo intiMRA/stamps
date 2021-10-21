@@ -87,7 +87,7 @@ class ScanningViewModel: ObservableObject {
         
         return cardApi.fetchStoreDetails(code: code)
             .flatMap(maxPublishers: .max(1), { store -> AnyPublisher<(data: (store: StoreModel, card: CardData)?, error: ScanningError?), Never> in
-                let card = CardData.newCard(storeName: store.storeName, storeId: store.storeId, listIndex: self.reduxStore.customerModel?.stampCards.count, numberOfRows: store.numberOfRows, numberOfColums: store.numberOfColumns, numberOfStampsBeforeReward: store.numberOfStampsBeforeReward)
+                let card = CardData.newCard(storeName: store.storeName, storeId: store.storeId, listIndex: self.reduxStore.customerModel?.stampCards.count, numberOfRows: store.numberOfRows, numberOfColumns: store.numberOfColumns, numberOfStampsBeforeReward: store.numberOfStampsBeforeReward)
                 return self.cardApi.saveCard(card)
                     .map { _ in (data: (store: store, card: card), error: nil)}
                     .catch({ error in
