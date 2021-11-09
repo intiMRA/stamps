@@ -1,6 +1,0 @@
-framework module Pods_Stamps_StampsUITests {
-  umbrella header "Pods-Stamps-StampsUITests-umbrella.h"
-
-  export *
-  module * { export * }
-}
