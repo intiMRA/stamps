@@ -25,6 +25,7 @@
 		3583E9A926AAAEA900CB93E5 /* CardCustomizationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3583E9A826AAAEA900CB93E5 /* CardCustomizationAPI.swift */; };
 		3584F9D02661AA5900146AC3 /* StampsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3584F9CF2661AA5900146AC3 /* StampsAPI.swift */; };
 		35874BF62678897000B58D4C /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35874BF52678897000B58D4C /* Icon.swift */; };
+		358A7C5E274623CB004A7870 /* View+Padding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358A7C5D274623CB004A7870 /* View+Padding.swift */; };
 		358C04F926C1431C00BFD6BD /* CardCustomisationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358C04F826C1431C00BFD6BD /* CardCustomisationTests.swift */; };
 		358F22A326E4B9C100AEC9C3 /* Collection+Safe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358F22A226E4B9C100AEC9C3 /* Collection+Safe.swift */; };
 		358F22A526E4DE9100AEC9C3 /* Collection+LastIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358F22A426E4DE9100AEC9C3 /* Collection+LastIndex.swift */; };
@@ -97,6 +98,7 @@
 		3583E9A826AAAEA900CB93E5 /* CardCustomizationAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCustomizationAPI.swift; sourceTree = "<group>"; };
 		3584F9CF2661AA5900146AC3 /* StampsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StampsAPI.swift; sourceTree = "<group>"; };
 		35874BF52678897000B58D4C /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
+		358A7C5D274623CB004A7870 /* View+Padding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Padding.swift"; sourceTree = "<group>"; };
 		358C04F826C1431C00BFD6BD /* CardCustomisationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCustomisationTests.swift; sourceTree = "<group>"; };
 		358F22A226E4B9C100AEC9C3 /* Collection+Safe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Safe.swift"; sourceTree = "<group>"; };
 		358F22A426E4DE9100AEC9C3 /* Collection+LastIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+LastIndex.swift"; sourceTree = "<group>"; };
@@ -439,6 +441,7 @@
 				419DE7682645044A00C54E69 /* QRCodeManager.swift */,
 				358F22A226E4B9C100AEC9C3 /* Collection+Safe.swift */,
 				358F22A426E4DE9100AEC9C3 /* Collection+LastIndex.swift */,
+				358A7C5D274623CB004A7870 /* View+Padding.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -615,6 +618,7 @@
 				3596620D2653E10C003D3323 /* QRCodeScanningViewSwiftUI.swift in Sources */,
 				35746F74272159E3009D27E4 /* String+Localizable.swift in Sources */,
 				417912FF2640FD3600BDAD3C /* LogInAPI.swift in Sources */,
+				358A7C5E274623CB004A7870 /* View+Padding.swift in Sources */,
 				358F22A326E4B9C100AEC9C3 /* Collection+Safe.swift in Sources */,
 				35FB33FF264F45FF00CCB847 /* CardData.swift in Sources */,
 				41A0AC7E263FCAED00008542 /* SignUpView.swift in Sources */,
