@@ -1,0 +1,101 @@
+/* 
+  Localizable.strings
+  Stamps
+
+  Created by Inti Albuquerque on 21/10/21.
+  
+*/
+"Stamps" = "Stamps";
+
+"NumberOfRows" = "Number of rows in your card";
+
+"NumberOfColumns" = "Number of columns in your card";
+
+"NumberOfStampsBeforeReward" = "Number of stamps required before reward";
+
+"Preview" = "Preview";
+
+"Submit" = "Submit";
+
+"Ok" = "Ok";
+
+"Updated" = "Updated";
+
+"CardDetailsUpdated" = "Your card details have been updated.";
+
+"LogOut" = "Log Out";
+
+"CustomiseYourCard" = "Customise your card";
+
+"WeAreSorry" = "We are sorry";
+
+"WeCouldNotLogOut" = "We could not log you out, please try again.";
+
+"Congrats" = "Congrats you've a new stamp on your stamp for %@";
+
+"PleaseTapToScan" = "Please tap to scan.";
+
+"InvalidCode" = "Invalid Code";
+
+"QRCodeError" = "The QR code you scanned is not in our database, or a scanning error occurred";
+
+"MaximumNumberOfStamps" = "Maximum Number Of Stamps";
+
+"NoMoreSlots" = "This card has no more slots to be stamped, please claim your rewards";
+
+"YourCards" = "Your Cards";
+
+"Scan" = "Scan";
+
+"Settings" = "Settings";
+
+"LogIn" = "Log In";
+
+"SingUpAsAStore" = "Sing up as a store";
+
+"Password" = "Password";
+
+"UserName" = "User name";
+
+"UnkownErrorTitle" = "Something went wrong";
+
+"UnkownErrorMessage" = "An unknown error occurred, please try again later.";
+
+"WrongCredentialsErrorTitle" = "Wrong Credentials";
+
+"WrongCredentialsErrorMessage" = "Please enter a valid username and password.";
+
+"InvalidUsername" = "Invalid Username";
+
+"InvalidUserNameError" = "This username is invalid, please choose a different one.";
+
+"InvalidPassword" = "Invalid Password";
+
+"InvalidPasswordError" = "Please enter your correct password.";
+
+"NoSuchUserNameError" = "There is no user with that name in our database, please enter a correct username.";
+
+"InvalidCredentials" = "Invalid Credentials";
+
+"AccountExistsWithDifferentCredential" = "Please enter a correct username and password.";
+
+"NetworkErrorMessage" = "Please make sure you have an internet connection to use the app.";
+
+"NetworkErrorTitle" = "Network Error";
+
+"CredentialAlreadyInUse" = "Please enter your correct username and password.";
+
+"WeakPassword" = "Passwords need to contain at least 1 number and need to be at least 6 characters long.";
+
+"QRCodeNotFound" = "The QR code you scanned is not in our database, or a scanning error occurred.";
+
+"UnableToSaveErrorTitle" = "Unable To Save";
+
+"UnableToSaveMessage" = "Something went wrong while saving your stamp, please check your internet connection and try again.";
+
+"NoCards" = "You don't have any cards yet";
+
+"RewardRedeemedTitle" = "Reward Redeemed";
+
+"RewardRedeemedMessage" = "You redeemed a reward, please show this message to one of the employees of the shop.";
+

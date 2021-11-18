@@ -22,7 +22,7 @@ struct LogInModel {
 }
 
 struct LogInError: Error {
-    static let unkownError = LogInError(title: "Something went wrong", message: "An unknown error occurred, please try again later.")
+    static let unkownError = LogInError(title: "UnkownErrorTtitle".localized, message: "UnkownErrorMessage".localized)
     let title: String
     let message: String
 }
@@ -89,25 +89,25 @@ class LogInAPI: LogInAPIProtocol {
     static func logInError(from errorCode: AuthErrorCode) -> LogInError {
         switch errorCode {
         case .invalidCredential:
-            return LogInError(title: "Wrong Credentials", message: "Please enter a valid username and password.")
+            return LogInError(title: "WrongCredentialsErrorTitle".localized, message: "WrongCredentialsErrorMessage".localized)
         case .emailAlreadyInUse:
-            return LogInError(title: "Invalid Username", message: "Please enter another username this one is already in use.")
+            return LogInError(title: "InvalidUsername".localized, message: "CredentialAlreadyInUse".localized)
         case .invalidEmail:
-            return LogInError(title: "Invalid Username", message: "This username is invalid, please choose a different one.")
+            return LogInError(title: "InvalidUsername".localized, message: "InvalidUserNameError".localized)
         case .wrongPassword:
-            return LogInError(title: "Invalid Password", message: "Plese enter your correct password.")
+            return LogInError(title: "InvalidPassword".localized, message: "InvalidPasswordError".localized)
         case .userNotFound:
-            return LogInError(title: "Invalid Username", message: "There is no user with that name in our database, please enter a correct username.")
+            return LogInError(title: "InvalidUsername".localized, message: "NoSuchUserNameError".localized)
         case .accountExistsWithDifferentCredential:
-            return LogInError(title: "Invalid Credentials", message: "Please enter a correct username and password.")
+            return LogInError(title: "InvalidCredentials".localized, message: "AccountExistsWithDifferentCredential".localized)
         case .networkError:
-            return LogInError(title: "Network Error", message: "Please make sure you have an internet connection to use the app.")
+            return LogInError(title: "NetworkErrorTitle".localized, message: "NetworkErrorMessage".localized)
         case .credentialAlreadyInUse:
-            return LogInError(title: "Invalid Credentials", message: "Please enter your correct username and password.")
+            return LogInError(title: "InvalidCredentials".localized, message: "CredentialAlreadyInUse".localized)
         case .weakPassword:
-            return LogInError(title: "Invalid Password", message: "Passwords need to contain at least 1 number and need to be at least 6 characters long.")
+            return LogInError(title: "InvalidPassword".localized, message: "WeakPassword".localized)
         case .webNetworkRequestFailed:
-            return LogInError(title: "Network Error", message: "Please make sure you have an internet connection to use the app.")
+            return LogInError(title: "NetworkErrorTitle".localized, message: "NetworkErrorMessage".localized)
         default:
             return LogInError.unkownError
         }

@@ -64,13 +64,13 @@ class ScanningViewModel: ObservableObject {
     
     func mapPublishers(code: String) -> AnyPublisher<(code: String?, details: (storeName: String, card: CardData)?, error: ScanningError?), Never> {
         guard code.rangeOfCharacter(from: ScanningViewModel.invalidCharacters) == nil else {
-            let error = ScanningError(title: "Invalid Code", message: "The QR code you scanned is not in our database, or a scanning error occurred")
+            let error = ScanningError(title: "InvalidCode".localized, message: "QRCodeError".localized)
             return Just((code: nil, details: nil, error: error)).eraseToAnyPublisher()
         }
         
         if let card = reduxStore.customerModel?.stampCards.first(where: { $0.storeId == code }) {
             guard let stampedCard = card.stamp() else {
-                let error = ScanningError(title: "Maximum Number Of Stamps", message: "This card has no more slots to be stamped, please claim your rewards")
+                let error = ScanningError(title: "MaximumNumberOfStamps".localized, message: "NoMoreSlots".localized)
                 return Just((code: nil, details: nil, error: error)).eraseToAnyPublisher()
             }
             
@@ -115,7 +115,7 @@ class ScanningViewModel: ObservableObject {
         }
         
         guard code.rangeOfCharacter(from: ScanningViewModel.invalidCharacters) == nil else {
-            self.error = ScanningError(title: "Invalid Code", message: "The QR code you scanned is not in our database, or a scanning error occurred")
+            self.error = ScanningError(title: "InvalidCode".localized, message: "QRCodeError".localized)
             self.shouldShowAlert = true
             self.state = .startScreen
             return

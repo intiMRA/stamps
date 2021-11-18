@@ -14,7 +14,7 @@ struct CardListView: View {
             Color.background
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             if viewModel.cardsList.count == 0 {
-                Text("you don't have any cards yet")
+                Text("NoCards".localized)
                     .foregroundColor(Color.textColor)
                     .padding(.horizontal, 16)
             } else {

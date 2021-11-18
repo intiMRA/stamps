@@ -63,35 +63,35 @@ struct LogInView: View {
                 
                 HStack(spacing: 10) {
                     Icon(.email)
-                    CustomTextField(placeholder: "UserName", text: $viewModel.username, secureEntry: false)
+                    CustomTextField(placeholder: "UserName".localized, text: $viewModel.username, secureEntry: false)
                 }
                 HStack {
                     Icon(.password)
-                    CustomTextField(placeholder: "Password", text: $viewModel.password, secureEntry: true)
+                    CustomTextField(placeholder: "Password".localized, text: $viewModel.password, secureEntry: true)
                 }
                 
                 HStack {
                     Icon(.shop)
-                    Toggle("sing up as a store", isOn: $viewModel.isStore)
+                    Toggle("SingUpAsAStore".localized, isOn: $viewModel.isStore)
                         .toggleStyle(SwitchToggleStyle(tint: .toggle))
                 }
                 
-                NavigationLink("Sign Up", destination: SignUpView())
+                NavigationLink("SignUp".localized, destination: SignUpView())
                     .foregroundColor(Color.textColor)
-                Button("log in") {
+                Button("logIn".localized) {
                     viewModel.login()
                 }
                 .foregroundColor(Color.textColor)
                 
             }
             .padding()
-            .navigationBarTitle("Log In", displayMode: .inline)
+            .navigationBarTitle("LogIn".localized, displayMode: .inline)
         }
         .alert(isPresented: $viewModel.showAlert) {
             Alert(
                 title: Text(viewModel.error?.title ?? ""),
                 message: Text(viewModel.error?.message ?? ""),
-                dismissButton: .cancel(Text("Ok"), action: {
+                dismissButton: .cancel(Text("Ok".localized), action: {
                     viewModel.error = nil
                 })
             )
