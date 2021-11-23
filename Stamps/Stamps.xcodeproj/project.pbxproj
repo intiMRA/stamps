@@ -18,6 +18,7 @@
 		3579BF0626F97F18006DC28B /* SettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3579BF0526F97F18006DC28B /* SettingsTests.swift */; };
 		357AAA6A26A2577E00C403D7 /* SignUpUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357AAA6926A2577E00C403D7 /* SignUpUnitTests.swift */; };
 		357CC30E270C226300059479 /* ScanningViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357CC30D270C226300059479 /* ScanningViewModelTests.swift */; };
+		357CD8D0274CE500004C30B7 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357CD8CF274CE500004C30B7 /* CustomButton.swift */; };
 		3581BEDA26A589F200DED9FD /* CardCustomisationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3581BED926A589F200DED9FD /* CardCustomisationView.swift */; };
 		3581BEDC26A58A1400DED9FD /* CardCustomisationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3581BEDB26A58A1400DED9FD /* CardCustomisationViewModel.swift */; };
 		3583DD3A26A281A1008D0A6C /* ReduxStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3583DD3926A281A1008D0A6C /* ReduxStoreTests.swift */; };
@@ -91,6 +92,7 @@
 		3579BF0526F97F18006DC28B /* SettingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTests.swift; sourceTree = "<group>"; };
 		357AAA6926A2577E00C403D7 /* SignUpUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpUnitTests.swift; sourceTree = "<group>"; };
 		357CC30D270C226300059479 /* ScanningViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanningViewModelTests.swift; sourceTree = "<group>"; };
+		357CD8CF274CE500004C30B7 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		3581BED926A589F200DED9FD /* CardCustomisationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCustomisationView.swift; sourceTree = "<group>"; };
 		3581BEDB26A58A1400DED9FD /* CardCustomisationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCustomisationViewModel.swift; sourceTree = "<group>"; };
 		3583DD3926A281A1008D0A6C /* ReduxStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReduxStoreTests.swift; sourceTree = "<group>"; };
@@ -389,6 +391,7 @@
 			isa = PBXGroup;
 			children = (
 				4143AA772643C9B900DCC6D7 /* CustomTextField.swift */,
+				357CD8CF274CE500004C30B7 /* CustomButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -623,6 +626,7 @@
 				35FB33FF264F45FF00CCB847 /* CardData.swift in Sources */,
 				41A0AC7E263FCAED00008542 /* SignUpView.swift in Sources */,
 				41249C82263BD68C00BF3D2C /* CardView.swift in Sources */,
+				357CD8D0274CE500004C30B7 /* CustomButton.swift in Sources */,
 				417FD737264A6803002AEDE8 /* ScanningViewModel.swift in Sources */,
 				358F22A526E4DE9100AEC9C3 /* Collection+LastIndex.swift in Sources */,
 				351CA582268080EB006ABAC2 /* SettingsView.swift in Sources */,

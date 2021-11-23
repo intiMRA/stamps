@@ -14,6 +14,7 @@ class CardCustomisationViewModel: ObservableObject {
     @Published var rewardsAfterNumber = "8"
     @Published var showAlert = false
     @Published var navigateToTabsView = false
+    @Published var navigateToCreateView = false
     
     let storeId: String
     let storeName: String

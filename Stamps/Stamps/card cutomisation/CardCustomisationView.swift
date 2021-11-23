@@ -13,27 +13,39 @@ struct CardCustomisationView: View {
         self._viewModel = StateObject(wrappedValue: viewModel)
     }
     var body: some View {
-        ZStack {
+        ZStack(alignment: .topLeading) {
             Color.background
             VStack(alignment: .leading) {
                 Text("NumberOfRows".localized)
+                    .bold()
+                    .padding(edges: .bottom, padding: .Xxxsmall)
                 CustomTextField(placeholder: viewModel.numberOfRows, text: $viewModel.numberOfRows, keyboardType: .numberPad)
+                    .padding(edges: .bottom, padding: .medium)
                 
                 Text("NumberOfColumns".localized)
+                    .bold()
+                    .padding(edges: .bottom, padding: .Xxxsmall)
                 CustomTextField(placeholder: viewModel.numberOfCols, text: $viewModel.numberOfCols, keyboardType: .numberPad)
+                    .padding(edges: .bottom, padding: .medium)
                 
                 Text("NumberOfStampsBeforeReward".localized)
+                    .bold()
+                    .padding(edges: .bottom, padding: .Xxxsmall)
                 CustomTextField(placeholder: viewModel.rewardsAfterNumber, text: $viewModel.rewardsAfterNumber, keyboardType: .numberPad)
+                    .padding(edges: .bottom, padding: .medium)
                 
                 VStack(alignment: .center) {
-                    NavigationLink("Preview".localized, destination: CardView(viewModel: CardViewModel(cardData: CardData.newCard(storeName: viewModel.storeName, storeId: viewModel.storeId, listIndex: 0, firstIsStamped: false, numberOfRows: viewModel.numberOfRowsInt, numberOfColumns: viewModel.numberOfColsInt, numberOfStampsBeforeReward: viewModel.rewardsAfterNumberInt), showSubmitButton: true)))
-                        .foregroundColor(Color.textColor)
-                        .padding(.bottom, 10)
+                    NavigationLink(
+                        destination: CardView(viewModel: CardViewModel(cardData: CardData.newCard(storeName: viewModel.storeName, storeId: viewModel.storeId, listIndex: 0, firstIsStamped: false, numberOfRows: viewModel.numberOfRowsInt, numberOfColumns: viewModel.numberOfColsInt, numberOfStampsBeforeReward: viewModel.rewardsAfterNumberInt), showSubmitButton: true)),
+                        isActive: $viewModel.navigateToCreateView,
+                        label: {
+                            EmptyView()
+                        })
+                    CustomButton(title: "Preview".localized, action: { viewModel.navigateToCreateView = true })
+                    .padding(edges: .bottom, padding: .Xxsmall)
                     
-                    Button("Submit".localized) {
-                            viewModel.submit()
-                        }
-                        .foregroundColor(Color.textColor)
+                    CustomButton(title: "Submit".localized, action: viewModel.submit)
+                    .padding(edges: .bottom, padding: .Xxsmall)
                     
                     NavigationLink(destination: ShopStamp(storeId: viewModel.storeId), isActive: $viewModel.navigateToTabsView) {
                         EmptyView()
