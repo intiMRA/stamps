@@ -30,7 +30,7 @@ struct CardView: View {
                         .padding(edges: .horizontal, padding: .medium)
                 }
                 
-                NavigationLink(destination: ShopStamp(storeId: viewModel.stamps.storeId), isActive: $viewModel.navigateToTabsView) {
+                NavigationLink(destination: ShopTabView(storeId: viewModel.stamps.storeId), isActive: $viewModel.navigateToTabsView) {
                     EmptyView()
                 }
             }

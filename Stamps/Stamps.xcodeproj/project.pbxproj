@@ -26,14 +26,19 @@
 		3583E9A926AAAEA900CB93E5 /* CardCustomizationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3583E9A826AAAEA900CB93E5 /* CardCustomizationAPI.swift */; };
 		3584F9D02661AA5900146AC3 /* StampsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3584F9CF2661AA5900146AC3 /* StampsAPI.swift */; };
 		35874BF62678897000B58D4C /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35874BF52678897000B58D4C /* Icon.swift */; };
+		358806292751D22C002CEED5 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 358806282751D22C002CEED5 /* FirebaseAuth */; };
+		3588062B2751D22C002CEED5 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 3588062A2751D22C002CEED5 /* FirebaseDatabase */; };
+		3588062D2751D22C002CEED5 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 3588062C2751D22C002CEED5 /* Lottie */; };
+		3588062F2751E1C4002CEED5 /* View+HidesNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3588062E2751E1C4002CEED5 /* View+HidesNavigationBar.swift */; };
 		358A7C5E274623CB004A7870 /* View+Padding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358A7C5D274623CB004A7870 /* View+Padding.swift */; };
 		358C04F926C1431C00BFD6BD /* CardCustomisationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358C04F826C1431C00BFD6BD /* CardCustomisationTests.swift */; };
 		358F22A326E4B9C100AEC9C3 /* Collection+Safe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358F22A226E4B9C100AEC9C3 /* Collection+Safe.swift */; };
 		358F22A526E4DE9100AEC9C3 /* Collection+LastIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358F22A426E4DE9100AEC9C3 /* Collection+LastIndex.swift */; };
+		3593AC802750CBB1008691E2 /* stamp-animation.json in Resources */ = {isa = PBXBuildFile; fileRef = 3593AC7E2750CBB1008691E2 /* stamp-animation.json */; };
+		3593AC812750CBB1008691E2 /* reward-animation.json in Resources */ = {isa = PBXBuildFile; fileRef = 3593AC7F2750CBB1008691E2 /* reward-animation.json */; };
+		3593AC832750CBF1008691E2 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3593AC822750CBF1008691E2 /* LottieView.swift */; };
 		3596620B2653DA6E003D3323 /* QRCodeScanningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3596620A2653DA6E003D3323 /* QRCodeScanningView.swift */; };
 		3596620D2653E10C003D3323 /* QRCodeScanningViewSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3596620C2653E10C003D3323 /* QRCodeScanningViewSwiftUI.swift */; };
-		35988E78273A71A9006F7EB4 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 35988E77273A71A9006F7EB4 /* FirebaseAuth */; };
-		35988E7A273A71A9006F7EB4 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 35988E79273A71A9006F7EB4 /* FirebaseDatabase */; };
 		35FB33FD264F450300CCB847 /* ReduxStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FB33FC264F450300CCB847 /* ReduxStore.swift */; };
 		35FB33FF264F45FF00CCB847 /* CardData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FB33FE264F45FF00CCB847 /* CardData.swift */; };
 		41249C1A263BD37F00BF3D2C /* StampsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41249C19263BD37F00BF3D2C /* StampsApp.swift */; };
@@ -58,7 +63,7 @@
 		417FD735264A6761002AEDE8 /* ScanningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417FD734264A6761002AEDE8 /* ScanningView.swift */; };
 		417FD737264A6803002AEDE8 /* ScanningViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417FD736264A6803002AEDE8 /* ScanningViewModel.swift */; };
 		419DE7692645044A00C54E69 /* QRCodeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419DE7682645044A00C54E69 /* QRCodeManager.swift */; };
-		419DE77226450B7600C54E69 /* ShopStamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419DE77126450B7600C54E69 /* ShopStamp.swift */; };
+		419DE77226450B7600C54E69 /* ShopTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419DE77126450B7600C54E69 /* ShopTabView.swift */; };
 		41A0AC7E263FCAED00008542 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A0AC7D263FCAED00008542 /* SignUpView.swift */; };
 /* End PBXBuildFile section */
 
@@ -100,10 +105,15 @@
 		3583E9A826AAAEA900CB93E5 /* CardCustomizationAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCustomizationAPI.swift; sourceTree = "<group>"; };
 		3584F9CF2661AA5900146AC3 /* StampsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StampsAPI.swift; sourceTree = "<group>"; };
 		35874BF52678897000B58D4C /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
+		3588062E2751E1C4002CEED5 /* View+HidesNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+HidesNavigationBar.swift"; sourceTree = "<group>"; };
 		358A7C5D274623CB004A7870 /* View+Padding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Padding.swift"; sourceTree = "<group>"; };
 		358C04F826C1431C00BFD6BD /* CardCustomisationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCustomisationTests.swift; sourceTree = "<group>"; };
 		358F22A226E4B9C100AEC9C3 /* Collection+Safe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Safe.swift"; sourceTree = "<group>"; };
 		358F22A426E4DE9100AEC9C3 /* Collection+LastIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+LastIndex.swift"; sourceTree = "<group>"; };
+		3593AC7E2750CBB1008691E2 /* stamp-animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "stamp-animation.json"; sourceTree = "<group>"; };
+		3593AC7F2750CBB1008691E2 /* reward-animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "reward-animation.json"; sourceTree = "<group>"; };
+		3593AC822750CBF1008691E2 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
+		3593AC842750D56B008691E2 /* reward-animation.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = "reward-animation.json"; path = "Stamps/Assets/Animations/reward-animation.json"; sourceTree = "<group>"; };
 		3596620A2653DA6E003D3323 /* QRCodeScanningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeScanningView.swift; sourceTree = "<group>"; };
 		3596620C2653E10C003D3323 /* QRCodeScanningViewSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeScanningViewSwiftUI.swift; sourceTree = "<group>"; };
 		35CEA0F9265BB44500FFF9DE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -137,7 +147,7 @@
 		417FD734264A6761002AEDE8 /* ScanningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanningView.swift; sourceTree = "<group>"; };
 		417FD736264A6803002AEDE8 /* ScanningViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanningViewModel.swift; sourceTree = "<group>"; };
 		419DE7682645044A00C54E69 /* QRCodeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeManager.swift; sourceTree = "<group>"; };
-		419DE77126450B7600C54E69 /* ShopStamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopStamp.swift; sourceTree = "<group>"; };
+		419DE77126450B7600C54E69 /* ShopTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopTabView.swift; sourceTree = "<group>"; };
 		41A0AC7D263FCAED00008542 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -146,8 +156,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				35988E7A273A71A9006F7EB4 /* FirebaseDatabase in Frameworks */,
-				35988E78273A71A9006F7EB4 /* FirebaseAuth in Frameworks */,
+				3588062B2751D22C002CEED5 /* FirebaseDatabase in Frameworks */,
+				358806292751D22C002CEED5 /* FirebaseAuth in Frameworks */,
+				3588062D2751D22C002CEED5 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,12 +261,28 @@
 			path = tests;
 			sourceTree = "<group>";
 		};
+		358806272751D22C002CEED5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		358C04F726C142C700BFD6BD /* tests */ = {
 			isa = PBXGroup;
 			children = (
 				358C04F826C1431C00BFD6BD /* CardCustomisationTests.swift */,
 			);
 			path = tests;
+			sourceTree = "<group>";
+		};
+		3593AC7D2750CB69008691E2 /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				3593AC7F2750CBB1008691E2 /* reward-animation.json */,
+				3593AC7E2750CBB1008691E2 /* stamp-animation.json */,
+			);
+			path = Animations;
 			sourceTree = "<group>";
 		};
 		35FB33FB264F44ED00CCB847 /* Store */ = {
@@ -271,11 +298,13 @@
 		41249C0D263BD37E00BF3D2C = {
 			isa = PBXGroup;
 			children = (
+				3593AC842750D56B008691E2 /* reward-animation.json */,
 				3576112526C3D2800028C497 /* GoogleService-Info.plist */,
 				41249C18263BD37F00BF3D2C /* Stamps */,
 				41249C2A263BD38300BF3D2C /* StampsTests */,
 				41249C35263BD38300BF3D2C /* StampsUITests */,
 				41249C17263BD37F00BF3D2C /* Products */,
+				358806272751D22C002CEED5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -399,6 +428,7 @@
 		417912822640A7A900BDAD3C /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				3593AC7D2750CB69008691E2 /* Animations */,
 				4143AA822643D9E800DCC6D7 /* Assets.xcassets */,
 				417912832640A7F500BDAD3C /* Color.xcassets */,
 				417912882640ACCF00BDAD3C /* Color+Custom.swift */,
@@ -445,6 +475,8 @@
 				358F22A226E4B9C100AEC9C3 /* Collection+Safe.swift */,
 				358F22A426E4DE9100AEC9C3 /* Collection+LastIndex.swift */,
 				358A7C5D274623CB004A7870 /* View+Padding.swift */,
+				3593AC822750CBF1008691E2 /* LottieView.swift */,
+				3588062E2751E1C4002CEED5 /* View+HidesNavigationBar.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -452,7 +484,7 @@
 		419DE77026450B4D00C54E69 /* ShopStamps */ = {
 			isa = PBXGroup;
 			children = (
-				419DE77126450B7600C54E69 /* ShopStamp.swift */,
+				419DE77126450B7600C54E69 /* ShopTabView.swift */,
 			);
 			path = ShopStamps;
 			sourceTree = "<group>";
@@ -474,8 +506,9 @@
 			);
 			name = Stamps;
 			packageProductDependencies = (
-				35988E77273A71A9006F7EB4 /* FirebaseAuth */,
-				35988E79273A71A9006F7EB4 /* FirebaseDatabase */,
+				358806282751D22C002CEED5 /* FirebaseAuth */,
+				3588062A2751D22C002CEED5 /* FirebaseDatabase */,
+				3588062C2751D22C002CEED5 /* Lottie */,
 			);
 			productName = Stamps;
 			productReference = 41249C16263BD37F00BF3D2C /* Stamps.app */;
@@ -550,6 +583,7 @@
 			mainGroup = 41249C0D263BD37E00BF3D2C;
 			packageReferences = (
 				35988E76273A71A9006F7EB4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				3593AC7A2750C8D3008691E2 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = 41249C17263BD37F00BF3D2C /* Products */;
 			projectDirPath = "";
@@ -567,6 +601,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3593AC812750CBB1008691E2 /* reward-animation.json in Resources */,
+				3593AC802750CBB1008691E2 /* stamp-animation.json in Resources */,
 				35746F722721597A009D27E4 /* Localizable.strings in Resources */,
 				41249C21263BD38200BF3D2C /* Preview Assets.xcassets in Resources */,
 				3576112626C3D2800028C497 /* GoogleService-Info.plist in Resources */,
@@ -596,10 +632,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3588062F2751E1C4002CEED5 /* View+HidesNavigationBar.swift in Sources */,
 				351CA57F26807CBE006ABAC2 /* LogOutAPI.swift in Sources */,
 				3583E9A926AAAEA900CB93E5 /* CardCustomizationAPI.swift in Sources */,
 				417FD735264A6761002AEDE8 /* ScanningView.swift in Sources */,
-				419DE77226450B7600C54E69 /* ShopStamp.swift in Sources */,
+				419DE77226450B7600C54E69 /* ShopTabView.swift in Sources */,
 				352288472650BFC500BD1DFD /* CardListViewModel.swift in Sources */,
 				41249C6C263BD5D200BF3D2C /* CardViewModel.swift in Sources */,
 				35874BF62678897000B58D4C /* Icon.swift in Sources */,
@@ -628,6 +665,7 @@
 				41249C82263BD68C00BF3D2C /* CardView.swift in Sources */,
 				357CD8D0274CE500004C30B7 /* CustomButton.swift in Sources */,
 				417FD737264A6803002AEDE8 /* ScanningViewModel.swift in Sources */,
+				3593AC832750CBF1008691E2 /* LottieView.swift in Sources */,
 				358F22A526E4DE9100AEC9C3 /* Collection+LastIndex.swift in Sources */,
 				351CA582268080EB006ABAC2 /* SettingsView.swift in Sources */,
 			);
@@ -726,7 +764,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -781,7 +819,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -801,7 +839,7 @@
 				DEVELOPMENT_TEAM = 6K524MKAFK;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Stamps/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -809,7 +847,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "-.StampsApp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -823,7 +861,7 @@
 				DEVELOPMENT_TEAM = 6K524MKAFK;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Stamps/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -831,7 +869,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "-.StampsApp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -843,7 +881,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6K524MKAFK;
 				INFOPLIST_FILE = StampsTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -865,7 +903,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6K524MKAFK;
 				INFOPLIST_FILE = StampsTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -961,6 +999,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		3593AC7A2750C8D3008691E2 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		35988E76273A71A9006F7EB4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
@@ -972,15 +1018,20 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		35988E77273A71A9006F7EB4 /* FirebaseAuth */ = {
+		358806282751D22C002CEED5 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 35988E76273A71A9006F7EB4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
 		};
-		35988E79273A71A9006F7EB4 /* FirebaseDatabase */ = {
+		3588062A2751D22C002CEED5 /* FirebaseDatabase */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 35988E76273A71A9006F7EB4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseDatabase;
+		};
+		3588062C2751D22C002CEED5 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3593AC7A2750C8D3008691E2 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

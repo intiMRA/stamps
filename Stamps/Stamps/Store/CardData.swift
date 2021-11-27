@@ -168,6 +168,16 @@ struct CardData: Equatable {
         return CardData(card: newCard, storeName: storeName, storeId: storeId, listIndex: listIndex, nextToStamp: nextToStamp, numberOfRows: self.numberOfRows, numberOfColumns: self.numberOfColumns, numberOfStampsBeforeReward: self.numberOfStampsBeforeReward)
     }
     
+    func isRewardStamp() -> Bool {
+        let row = nextToStamp.row
+        let col = nextToStamp.col
+        if col - 1 >= 0 {
+            return card[row][col - 1].hasIcon
+        } else {
+            return card[safe: row - 1]?[card[0].lastIndex()].hasIcon == true
+        }
+    }
+    
     func allSlotsAreClaimed() -> Bool {
         self.card.first(where: {
             let rewardSlot = $0.first(where: { $0.hasIcon })

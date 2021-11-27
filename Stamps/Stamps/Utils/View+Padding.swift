@@ -16,6 +16,7 @@ enum Padding: CGFloat {
     case small = 16
     case medium = 20
     case large = 24
+    case XLarge = 40
 }
 
 extension View {

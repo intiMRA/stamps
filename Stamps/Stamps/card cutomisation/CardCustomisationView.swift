@@ -47,14 +47,14 @@ struct CardCustomisationView: View {
                     CustomButton(title: "Submit".localized, action: viewModel.submit)
                     .padding(edges: .bottom, padding: .Xxsmall)
                     
-                    NavigationLink(destination: ShopStamp(storeId: viewModel.storeId), isActive: $viewModel.navigateToTabsView) {
+                    NavigationLink(destination: ShopTabView(storeId: viewModel.storeId), isActive: $viewModel.navigateToTabsView) {
                         EmptyView()
                     }
                 }
-                .padding(.top, 20)
+                .padding(edges: .top, padding: .medium)
                 .frame(maxWidth: .infinity)
             }
-            .padding(.horizontal, 16)
+            .padding(edges: .horizontal, padding: .small)
             .alert(isPresented: $viewModel.showAlert) {
                 Alert(
                     title: Text(viewModel.alertContent?.title ?? ""),

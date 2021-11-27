@@ -14,7 +14,7 @@ struct ScanningView: View {
             Color.background
             
             switch viewModel.state {
-            case .startScreen:
+            case .showStartState:
                 VStack {
                     Text("PleaseTapToScan".localized)
                         .foregroundColor(Color.textColor)
@@ -29,22 +29,29 @@ struct ScanningView: View {
             case .scanning:
                 QRCodeScanningViewSwiftUI(viewModel, shouldScan: viewModel.shouldScan)
             case .showReward:
-                VStack {
-                    Text("Congrats".localizeWithFormat(arguments: viewModel.storeName))
-                        .foregroundColor(Color.textColor)
-                }
-                .contentShape(Rectangle())
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .onTapGesture(count: 1, perform: {
-                    viewModel.state = .scanning
-                    viewModel.shouldScan = true
-                    
-                })
+                    VStack {
+                        Text("Congrats".localizeWithFormat(arguments: viewModel.storeName))
+                            .foregroundColor(Color.textColor)
+                    }
+                    .contentShape(Rectangle())
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .onTapGesture(count: 1, perform: {
+                        viewModel.state = .scanning
+                        viewModel.shouldScan = true
+                        
+                    })
             case .blankScreen:
                 EmptyView()
+            case .showStampAnimation:
+                LottieView(name: .done, completion: { _ in viewModel.state = .showStartState })
+                    .frame(size: 200)
+            case .showRewardAnimation:
+                LottieView(name: .heart, completion: { _ in viewModel.state = .showReward })
+                    .frame(size: 200)
             }
             
         }
+        .hideNavigationBar()
         .onAppear(perform: viewModel.startingState)
         .alert(isPresented: $viewModel.shouldShowAlert) {
             Alert(
@@ -52,7 +59,7 @@ struct ScanningView: View {
                 message: Text(viewModel.error?.message ?? ""),
                 dismissButton: .cancel(Text("Ok".localized), action: {
                     viewModel.error = nil
-                    viewModel.state = .startScreen
+                    viewModel.state = .showStartState
                 })
             )
         }

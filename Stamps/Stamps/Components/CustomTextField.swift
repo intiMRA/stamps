@@ -27,7 +27,7 @@ struct CustomTextField: View {
         ZStack(alignment: .leading) {
             if text.isEmpty {
                 Text(placeholder)
-                    .padding(.leading, 10)
+                    .padding(edges: .leading, padding: .Xsmall)
                     .foregroundColor(Color.textColor)
                     .opacity(0.7)
             }
@@ -35,11 +35,11 @@ struct CustomTextField: View {
             if secureEntry {
                 SecureField("", text: $text, onCommit: commit)
                     .keyboardType(keyboardType)
-                    .padding(.leading, 10)
+                    .padding(edges: .leading, padding: .Xsmall)
             } else {
                 TextField("", text: $text, onEditingChanged: editingChanged, onCommit: commit)
                     .keyboardType(keyboardType)
-                    .padding(.leading, 10)
+                    .padding(edges: .leading, padding: .Xsmall)
             }
         }
         .frame(height: 24)

@@ -16,7 +16,7 @@ struct CardListView: View {
             if viewModel.cardsList.count == 0 {
                 Text("NoCards".localized)
                     .foregroundColor(Color.textColor)
-                    .padding(.horizontal, 16)
+                    .padding(edges: .horizontal, padding: .small)
             } else {
                 ScrollView {
                     LazyVStack(alignment: .leading) {
@@ -29,7 +29,8 @@ struct CardListView: View {
                                         .renderingMode(.template)
                                         .foregroundColor(.icon)
                                 }
-                                .padding(.horizontal, 16)
+                                .padding(edges: .horizontal, padding: .small)
+                                .padding(edges: .bottom, padding: .small)
                             }
                         }
                         Spacer()
@@ -38,6 +39,7 @@ struct CardListView: View {
                 .background(Color.background)
             }
         }
+        .hideNavigationBar()
         .onAppear(perform: {
             viewModel.loadData()
         })
