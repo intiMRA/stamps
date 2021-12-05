@@ -29,14 +29,11 @@ struct SignUpView: View {
                         .toggleStyle(SwitchToggleStyle(tint: .toggle))
                 }
                 
-                Button("Submit".localized) {
-                    viewModel.signUp()
-                }
-                .foregroundColor(Color.textColor)
+                CustomButton(title: "Submit".localized, action: viewModel.signUp)
                 
             }
             .padding()
-            .navigationBarTitle("LogIn".localized, displayMode: .inline)
+            .navigationBarTitle("SignUp".localized, displayMode: .inline)
         }
         .alert(isPresented: $viewModel.showAlert) {
             Alert(
@@ -52,7 +49,7 @@ struct SignUpView: View {
     @ViewBuilder
     var nextView: some View {
         if viewModel.isStore {
-            ShopStamp(storeId: viewModel.id)
+            ShopTabView(storeId: viewModel.id)
         } else {
             UserTabView()
         }

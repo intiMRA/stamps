@@ -23,15 +23,14 @@ struct CardView: View {
                         viewModel.claim(slot.index)
                     }
                 })
+                
                 if viewModel.showSubmitButton {
-                    Button("Submit".localized) {
-                        viewModel.submit()
-                    }
-                    .foregroundColor(Color.textColor)
-                    .padding()
+                    CustomButton(title: "Submit".localized, action: viewModel.submit)
+                        .padding(edges: .vertical, padding: .small)
+                        .padding(edges: .horizontal, padding: .medium)
                 }
                 
-                NavigationLink(destination: ShopStamp(storeId: viewModel.stamps.storeId), isActive: $viewModel.navigateToTabsView) {
+                NavigationLink(destination: ShopTabView(storeId: viewModel.stamps.storeId), isActive: $viewModel.navigateToTabsView) {
                     EmptyView()
                 }
             }
@@ -62,10 +61,9 @@ private struct Card: View {
                     HorizontalCardStackView(content: content.card[index], completion: completion)
                 }
             }
-            .padding(.all, 10)
+            .padding(edges: .all, padding: .Xsmall)
         }
         .background(Color.white.opacity(0.2))
-        .padding()
         .cornerRadius(5)
     }
 }

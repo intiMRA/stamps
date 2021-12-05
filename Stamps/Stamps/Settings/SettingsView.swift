@@ -12,35 +12,46 @@ struct SettingsView: View {
     var body: some View {
         ZStack(alignment: .leading) {
             Color.background
-            VStack(alignment: .leading, spacing: 20) {
-                HStack {
-                    Icon(.logout)
-                    Text("LogOut".localized)
-                }
-                .contentShape(Rectangle())
-                .onTapGesture(count: 1, perform: viewModel.logOut)
-                NavigationLink(destination: LogInView(), isActive: $viewModel.isLoggedOut) {
-                    EmptyView()
-                }
-                .transition(.slide)
-                
-                if viewModel.isStore {
-                    HStack {
-                        Icon(.customize)
-                        Text("CustomiseYourCard".localized)
+            ScrollView {
+                VStack(alignment: .leading, spacing: 10) {
+                    Button(action: viewModel.logOut) {
+                        HStack {
+                            HStack {
+                                Icon(.logout)
+                                Text("LogOut".localized)
+                            }
+                        }
+                        Spacer()
                     }
-                    .contentShape(Rectangle())
-                    .onTapGesture(count: 1, perform: {viewModel.showCardCustomisation = true})
-                    NavigationLink(destination: CardCustomisationView(), isActive: $viewModel.showCardCustomisation) {
+                    
+                    NavigationLink(destination: LogInView(), isActive: $viewModel.isLoggedOut) {
                         EmptyView()
                     }
                     .transition(.slide)
+                    
+                    if viewModel.isStore {
+                        Button(action: { viewModel.showCardCustomisation = true }) {
+                            HStack {
+                                HStack {
+                                    Icon(.customize)
+                                    Text("CustomiseYourCard".localized)
+                                }
+                                Spacer()
+                            }
+                        }
+                        
+                        NavigationLink(destination: CardCustomisationView(), isActive: $viewModel.showCardCustomisation) {
+                            EmptyView()
+                        }
+                        .transition(.slide)
+                    }
+                    
+                    Spacer()
                 }
-                
-                Spacer()
+                .padding(edges: .horizontal, padding: .small)
             }
-            .padding(.horizontal, 16)
         }
+        .hideNavigationBar()
         .alert(isPresented: $viewModel.shouldShowAlert) {
             Alert(
                 title: Text("WeAreSorry".localized),

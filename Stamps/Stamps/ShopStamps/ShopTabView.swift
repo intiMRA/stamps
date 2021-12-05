@@ -1,18 +1,19 @@
 //
-//  TabBarView.swift
+//  ShopStamp.swift
 //  Stamps
 //
-//  Created by Inti Resende Albuquerque on 11/05/21.
+//  Created by Inti Resende Albuquerque on 7/05/21.
 //
 
 import SwiftUI
 
-struct UserTabView: View {
+struct ShopTabView: View {
+    let storeId: String
     @State private var selection = 0
-    init() {
+    init(storeId: String) {
+        self.storeId = storeId
         UITabBar.appearance().isTranslucent = false
     }
-    
     var body: some View {
         ZStack {
             Color.background
@@ -22,19 +23,23 @@ struct UserTabView: View {
                         .ignoresSafeArea(.all)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                     VStack {
-                        CardListView()
-                            .padding(edges: .top, padding: .large)
+                        Spacer()
+                        Image(uiImage: QRCodeManager.generateQRCode(from: storeId))
+                            .interpolation(.none)
+                            .resizable()
+                            .frame(size: 200)
+                            .padding(edges: .top, padding: .XLarge)
+                            .hideNavigationBar()
+                        Spacer()
                         Rectangle()
                             .frame(height: 1)
                             .opacity(0.3)
                     }
                 }
                 .tabItem {
-                    VStack {
-                        Image(iconName: .list)
-                            .renderingMode(.template)
-                        Text("YourCards".localized)
-                    }
+                    Image(iconName: .qrCode)
+                        .renderingMode(.template)
+                    Text("YourCards".localized)
                 }
                 .tag(0)
                 ZStack {
@@ -42,28 +47,8 @@ struct UserTabView: View {
                         .ignoresSafeArea(.all)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                     VStack {
-                        ScanningView()
-                            .padding(edges: .top, padding: .large)
-                        Rectangle()
-                            .frame(height: 1)
-                            .opacity(0.3)
-                    }
-                }
-                .tabItem {
-                    VStack {
-                        Image(iconName: .qrCode)
-                            .renderingMode(.template)
-                        Text("Scan".localized)
-                    }
-                }
-                .tag(1)
-                ZStack {
-                    Color.background
-                        .ignoresSafeArea(.all)
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    VStack {
                         SettingsView()
-                            .padding(edges: .top, padding: .large)
+                            .padding(edges: .top, padding: .XLarge)
                         Rectangle()
                             .frame(height: 1)
                             .opacity(0.3)
@@ -76,19 +61,18 @@ struct UserTabView: View {
                         Text("Settings".localized)
                     }
                 }
-                .tag(2)
+                .tag(1)
             }
             .accentColor(.textColor)
             .padding(edges: .bottom, padding: .Xxsmall)
         }
-        .hideNavigationBar()
         .edgesIgnoringSafeArea(.all)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 
-struct TabBarView_Previews: PreviewProvider {
+struct ShopStamp_Previews: PreviewProvider {
     static var previews: some View {
-        UserTabView()
+        ShopTabView(storeId: "that")
     }
 }

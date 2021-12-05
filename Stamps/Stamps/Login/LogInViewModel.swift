@@ -17,6 +17,7 @@ class LogInViewModel: ObservableObject {
     @Published var logInSuccess = false
     @Published var showAlert = false
     @Published var isStore = false
+    @Published var navigateToSignUp = false
     @Published var state: LogInType = .loading
     var error: LogInError?
     private var cancellable = Set<AnyCancellable>()

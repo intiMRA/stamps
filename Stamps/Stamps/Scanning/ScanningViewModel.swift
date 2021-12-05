@@ -9,13 +9,13 @@ import Foundation
 import Combine
 
 enum ScanningViewModelState: String {
-    case startScreen, scanning, showReward, blankScreen
+    case showStartState, scanning, showReward, blankScreen, showStampAnimation, showRewardAnimation
 }
 
 class ScanningViewModel: ObservableObject {
     static var invalidCharacters = CharacterSet(charactersIn: ".#$[]")
     var shouldScan: Bool = false
-    @Published var state: ScanningViewModelState = .startScreen
+    @Published var state: ScanningViewModelState = .showStartState
     @Published var code: String = ""
     @Published var storeName = ""
     @Published var shouldShowAlert = false
@@ -36,7 +36,7 @@ class ScanningViewModel: ObservableObject {
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { tuple in
                 guard tuple.error == nil else {
-                    self.state = .startScreen
+                    self.state = .showStartState
                     self.error = tuple.error
                     self.shouldShowAlert = true
                     return
@@ -52,7 +52,7 @@ class ScanningViewModel: ObservableObject {
     }
     
     func startingState() {
-        self.state = .startScreen
+        self.state = .showStartState
         shouldScan = false
     }
     
@@ -117,16 +117,19 @@ class ScanningViewModel: ObservableObject {
         guard code.rangeOfCharacter(from: ScanningViewModel.invalidCharacters) == nil else {
             self.error = ScanningError(title: "InvalidCode".localized, message: "QRCodeError".localized)
             self.shouldShowAlert = true
-            self.state = .startScreen
+            self.state = .showStartState
             return
         }
-        self.state = .showReward
         if let card = reduxStore.customerModel?.stampCards.first(where: { $0.storeId == code }) {
             self.storeName = card.storeName
             reduxStore.changeState(customerModel: reduxStore.customerModel?.replaceCard(details.card))
+            
+            self.state = card.isRewardStamp() ? .showRewardAnimation : .showStampAnimation
+            
         } else {
             self.storeName = details.storeName
             reduxStore.addCard(details.card)
+            self.state = .showStampAnimation
             
         }
     }

@@ -32,6 +32,10 @@ public extension Color {
     static var textColor: Color {
         Color("TextColor")
     }
+    
+    static var buttonTextColor: Color {
+        Color("ButtonTextColor")
+    }
 }
 
 extension UIColor {
@@ -53,5 +57,9 @@ extension UIColor {
     
     static var icon: UIColor {
         UIColor(named: "IconColor") ?? .black
+    }
+    
+    static var buttonTextColor: UIColor {
+        UIColor(named: "ButtonTextColor") ?? .black
     }
 }

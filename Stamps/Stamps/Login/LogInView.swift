@@ -44,7 +44,7 @@ struct LogInView: View {
             case .loading:
                 Color.background
             case .store:
-                ShopStamp(storeId: viewModel.username)
+                ShopTabView(storeId: viewModel.username)
             case .user:
                 UserTabView()
             case .notLoggedIn:
@@ -60,6 +60,7 @@ struct LogInView: View {
             Color.background
             VStack(spacing: 10) {
                 NavigationLink(destination: nextView, isActive: $viewModel.logInSuccess) { EmptyView() }
+                NavigationLink(destination: SignUpView(), isActive: $viewModel.navigateToSignUp) { EmptyView() }
                 
                 HStack(spacing: 10) {
                     Icon(.email)
@@ -75,13 +76,11 @@ struct LogInView: View {
                     Toggle("SingUpAsAStore".localized, isOn: $viewModel.isStore)
                         .toggleStyle(SwitchToggleStyle(tint: .toggle))
                 }
+                .padding(edges: .bottom, padding: .Xxsmall)
                 
-                NavigationLink("SignUp".localized, destination: SignUpView())
-                    .foregroundColor(Color.textColor)
-                Button("logIn".localized) {
-                    viewModel.login()
-                }
-                .foregroundColor(Color.textColor)
+                CustomButton(title: "SignUp".localized, action: { viewModel.navigateToSignUp = true })
+                
+                CustomButton(title: "logIn".localized, action: viewModel.login)
                 
             }
             .padding()
@@ -101,7 +100,7 @@ struct LogInView: View {
     @ViewBuilder
     var nextView: some View {
         if viewModel.isStore {
-            ShopStamp(storeId: viewModel.username)
+            ShopTabView(storeId: viewModel.username)
         } else {
             UserTabView()
         }
