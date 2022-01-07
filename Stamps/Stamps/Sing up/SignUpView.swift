@@ -16,10 +16,15 @@ struct SignUpView: View {
                 NavigationLink(destination: nextView, isActive: $viewModel.signUpSuccessfully) { EmptyView() }
                 
                 HStack(spacing: 10) {
+                    Icon(.user)
+                    CustomTextField(placeholder: viewModel.isStore ? "StoreName".localized : "UserName".localized, text: $viewModel.userName, secureEntry: false)
+                }
+                
+                HStack(spacing: 10) {
                     Icon(.email)
                     CustomTextField(placeholder: "Email".localized, text: $viewModel.email, secureEntry: false)
                 }
-                HStack {
+                HStack(spacing: 10) {
                     Icon(.password)
                     CustomTextField(placeholder: "Password".localized, text: $viewModel.password, secureEntry: true)
                 }

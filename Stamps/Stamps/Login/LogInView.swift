@@ -44,7 +44,7 @@ struct LogInView: View {
             case .loading:
                 Color.background
             case .store:
-                ShopTabView(storeId: viewModel.email)
+                ShopTabView(storeId: viewModel.id)
             case .user:
                 UserTabView()
             case .notLoggedIn:
@@ -100,7 +100,7 @@ struct LogInView: View {
     @ViewBuilder
     var nextView: some View {
         if viewModel.isStore {
-            ShopTabView(storeId: viewModel.email)
+            ShopTabView(storeId: viewModel.id)
         } else {
             UserTabView()
         }
