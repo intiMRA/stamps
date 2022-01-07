@@ -24,7 +24,9 @@ extension ReduxStoreProtocol {
 struct CustomerModel: Equatable {
     
     let userId: String
-    let username: String
+    let email: String
+    //TODO: user name
+    let un: String
     let stampCards: [CardData]
     
     func replaceCard(_ card: CardData) -> CustomerModel {
@@ -34,8 +36,7 @@ struct CustomerModel: Equatable {
         var cards = stampCards
         cards[index] = card
         
-        return CustomerModel(userId: self.userId, username: self.username, stampCards: cards)
-        
+        return CustomerModel(userId: self.userId, email: self.email, un: "", stampCards: cards)
     }
     
     static func == (lhs: CustomerModel, rhs: CustomerModel) -> Bool {
@@ -94,7 +95,7 @@ class ReduxStore: ReduxStoreProtocol {
         }
         var cards = customerModel.stampCards
         cards.append(card)
-        ReduxStore.shared.changeState(customerModel: CustomerModel(userId: customerModel.userId, username: customerModel.username, stampCards: cards))
+        ReduxStore.shared.changeState(customerModel: CustomerModel(userId: customerModel.userId, email: customerModel.email, un: customerModel.un, stampCards: cards))
     }
     
     func setNill() {

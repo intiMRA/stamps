@@ -55,7 +55,7 @@
 
 "Password" = "Password";
 
-"UserName" = "User name";
+"email" = "Email";
 
 "UnkownErrorTitle" = "Something went wrong";
 
@@ -63,27 +63,27 @@
 
 "WrongCredentialsErrorTitle" = "Wrong Credentials";
 
-"WrongCredentialsErrorMessage" = "Please enter a valid username and password.";
+"WrongCredentialsErrorMessage" = "Please enter a valid email and password.";
 
-"InvalidUsername" = "Invalid Username";
+"InvalidEmail" = "Invalid Email";
 
-"InvalidUserNameError" = "This username is invalid, please choose a different one.";
+"InvalidEmailError" = "This email is invalid, please choose a different one.";
 
 "InvalidPassword" = "Invalid Password";
 
 "InvalidPasswordError" = "Please enter your correct password.";
 
-"NoSuchUserNameError" = "There is no user with that name in our database, please enter a correct username.";
+"NoSuchEmailError" = "There is no user with that name in our database, please enter a correct email.";
 
 "InvalidCredentials" = "Invalid Credentials";
 
-"AccountExistsWithDifferentCredential" = "Please enter a correct username and password.";
+"AccountExistsWithDifferentCredential" = "Please enter a correct email and password.";
 
 "NetworkErrorMessage" = "Please make sure you have an internet connection to use the app.";
 
 "NetworkErrorTitle" = "Network Error";
 
-"CredentialAlreadyInUse" = "Please enter your correct username and password.";
+"CredentialAlreadyInUse" = "Please enter your correct email and password.";
 
 "WeakPassword" = "Passwords need to contain at least 1 number and need to be at least 6 characters long.";
 

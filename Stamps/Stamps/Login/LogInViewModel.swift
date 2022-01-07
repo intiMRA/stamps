@@ -12,7 +12,7 @@ enum LogInType: String {
 }
 
 class LogInViewModel: ObservableObject {
-    @Published var username = ""
+    @Published var email = ""
     @Published var password = ""
     @Published var logInSuccess = false
     @Published var showAlert = false
@@ -29,10 +29,10 @@ class LogInViewModel: ObservableObject {
     }
     
     func login() {
-        guard !password.isEmpty, !username.isEmpty else {
+        guard !password.isEmpty, !email.isEmpty else {
             return
         }
-        api.login(username: username, password: password, isStore: isStore)
+        api.login(email: email, password: password, isStore: isStore)
             .receive(on: DispatchQueue.main)
             .sink (receiveCompletion: { [weak self] completion in
             switch completion {
@@ -44,7 +44,7 @@ class LogInViewModel: ObservableObject {
             }
             
         }, receiveValue: { model in
-            if model.userName == self.username {
+            if model.email == self.email {
                 self.logInSuccess = true
             }
         })
@@ -65,7 +65,7 @@ class LogInViewModel: ObservableObject {
             }, receiveValue: { model in
                 if model.isStore {
                     self.state = .store
-                    self.username = model.userName
+                    self.email = model.email
                 } else {
                     self.state = .user
                 }

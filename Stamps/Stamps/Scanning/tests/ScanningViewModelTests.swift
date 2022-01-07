@@ -55,7 +55,7 @@ class ScanningViewModelTests: XCTestCase {
         let store = MockReduxStore()
         let data = CardData(card: [[CardSlot(isStamped: false, index: "0_0"), CardSlot(isStamped: false, index: "0_1")]], storeName: "Store", storeId: "StoreID", listIndex: 0, nextToStamp: (row: 0, col: 0), numberOfRows: 1, numberOfColumns: 1, numberOfStampsBeforeReward: 1)
         
-        store.customerModel = CustomerModel(userId: "id", username: "name", stampCards: [data])
+        store.customerModel = CustomerModel(userId: "id", email: "name", un: "", stampCards: [data])
         store.storeModel = StoreModel(storeName: "Store", storeId: "StoreID")
         let api = MockStampsAPI()
         let vm = ScanningViewModel(cardApi: api, reduxStore: store)

@@ -16,7 +16,7 @@ class LogInUinitTests: XCTestCase {
         let viewModel = LogInViewModel(api: MockLogInAPI())
         
         viewModel.isStore = false
-        viewModel.username = "pete"
+        viewModel.email = "pete"
         viewModel.password = "password"
         
         viewModel.login()
@@ -41,7 +41,7 @@ class LogInUinitTests: XCTestCase {
         let viewModel = LogInViewModel(api: api)
         
         viewModel.isStore = false
-        viewModel.username = "pete"
+        viewModel.email = "pete"
         viewModel.password = "password"
         
         viewModel.login()
@@ -66,7 +66,7 @@ class LogInUinitTests: XCTestCase {
         let viewModel = LogInViewModel(api: MockLogInAPI())
         
         viewModel.isStore = true
-        viewModel.username = "pete"
+        viewModel.email = "pete"
         viewModel.password = "password"
         
         viewModel.login()
@@ -91,7 +91,7 @@ class LogInUinitTests: XCTestCase {
         let viewModel = LogInViewModel(api: api)
         
         viewModel.isStore = true
-        viewModel.username = "pete"
+        viewModel.email = "pete"
         viewModel.password = "password"
         
         viewModel.login()
@@ -116,12 +116,12 @@ class LogInUinitTests: XCTestCase {
 
 class MockLogInAPI: LogInAPIProtocol {
     var error: AuthErrorCode?
-    func login(username: String, password: String, isStore: Bool) -> AnyPublisher<LogInModel, LogInError> {
+    func login(email: String, password: String, isStore: Bool) -> AnyPublisher<LogInModel, LogInError> {
         if let error = error {
             return Fail(error: LogInAPI.logInError(from: error))
                 .eraseToAnyPublisher()
         }
-        return Just(LogInModel(userName: username, isStore: isStore))
+        return Just(LogInModel(un: "", email: email, isStore: isStore))
             .setFailureType(to: LogInError.self)
             .eraseToAnyPublisher()
     }
@@ -131,17 +131,17 @@ class MockLogInAPI: LogInAPIProtocol {
             return Fail(error: LogInAPI.logInError(from: error))
                 .eraseToAnyPublisher()
         }
-        return Just(LogInModel(userName: "test name", isStore: false))
+        return Just(LogInModel(un: "", email: "test name", isStore: false))
             .setFailureType(to: LogInError.self)
             .eraseToAnyPublisher()
     }
     
-    func signUp(username: String, password: String, isStore: Bool) -> AnyPublisher<SignUpModel, LogInError> {
+    func signUp(email: String, password: String, isStore: Bool) -> AnyPublisher<SignUpModel, LogInError> {
         if let error = error {
             return Fail(error: LogInAPI.logInError(from: error))
                 .eraseToAnyPublisher()
         }
-        return Just(SignUpModel(name: username, id: "id"))
+        return Just(SignUpModel(name: email, id: "id"))
             .setFailureType(to: LogInError.self)
             .eraseToAnyPublisher()
     }

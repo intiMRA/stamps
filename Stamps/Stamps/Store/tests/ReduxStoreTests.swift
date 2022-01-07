@@ -20,7 +20,7 @@ class ReduxStoreTests: XCTestCase {
         
         let card = CardData(card: [[]], storeName: "the store", storeId: "id", listIndex: 1, nextToStamp: (row: 0, col: 0), numberOfRows: 0, numberOfColumns: 0, numberOfStampsBeforeReward: 0)
         
-        let customerModel = CustomerModel(userId: "customerId", username: "pete", stampCards: [card])
+        let customerModel = CustomerModel(userId: "customerId", email: "pete", un: "", stampCards: [card])
         
         ReduxStore.shared.changeState(customerModel: customerModel)
         
@@ -43,7 +43,7 @@ class ReduxStoreTests: XCTestCase {
         
         let card = CardData(card: [[]], storeName: "the store", storeId: "id", listIndex: 1, nextToStamp: (row: 0, col: 0), numberOfRows: 0, numberOfColumns: 0, numberOfStampsBeforeReward: 0)
         
-        let customerModel = CustomerModel(userId: "customerId", username: "pete", stampCards: [])
+        let customerModel = CustomerModel(userId: "customerId", email: "pete", un: "", stampCards: [])
         
         ReduxStore.shared.changeState(customerModel: customerModel)
         

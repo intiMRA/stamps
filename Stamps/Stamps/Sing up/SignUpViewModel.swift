@@ -27,7 +27,7 @@ class SignUpViewModel: ObservableObject {
         guard !password.isEmpty, !name.isEmpty else {
             return
         }
-        api.signUp(username: name, password: password, isStore: isStore)
+        api.signUp(email: name, password: password, isStore: isStore)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
                 switch completion {
