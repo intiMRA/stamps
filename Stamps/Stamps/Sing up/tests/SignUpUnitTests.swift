@@ -16,7 +16,7 @@ class SignUpUnitTests: XCTestCase {
     func testSignUpSuccessfully() {
         let api = MockLogInAPI()
         let vm = SignUpViewModel(api: api)
-        vm.name = "pete"
+        vm.email = "pete"
         vm.password = "password"
         vm.isStore = false
         
@@ -45,14 +45,14 @@ class SignUpUnitTests: XCTestCase {
             .store(in: &cancellable)
         
         waitForExpectations(timeout: 10)
-        XCTAssertEqual("pete", vm.name)
+        XCTAssertEqual("pete", vm.email)
     }
     
     func testSignUpShouldFail() {
         let api = MockLogInAPI()
         api.error = .internalError
         let vm = SignUpViewModel(api: api)
-        vm.name = "pete"
+        vm.email = "pete"
         vm.password = "password"
         vm.isStore = false
         
@@ -77,7 +77,7 @@ class SignUpUnitTests: XCTestCase {
     func testSignUpAsStoreSuccessfully() {
         let api = MockLogInAPI()
         let vm = SignUpViewModel(api: api)
-        vm.name = "pete"
+        vm.email = "pete"
         vm.password = "password"
         vm.isStore = true
         
@@ -106,14 +106,14 @@ class SignUpUnitTests: XCTestCase {
             .store(in: &cancellable)
         
         waitForExpectations(timeout: 10)
-        XCTAssertEqual("pete", vm.name)
+        XCTAssertEqual("pete", vm.email)
     }
     
     func testSignUpAsStoreShouldFail() {
         let api = MockLogInAPI()
         api.error = .internalError
         let vm = SignUpViewModel(api: api)
-        vm.name = "pete"
+        vm.email = "pete"
         vm.password = "password"
         vm.isStore = true
         

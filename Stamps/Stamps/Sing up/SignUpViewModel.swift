@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 class SignUpViewModel: ObservableObject {
-    @Published var name = ""
+    @Published var email = ""
     @Published var id = ""
     @Published var password = ""
     @Published var isStore = false
@@ -24,10 +24,10 @@ class SignUpViewModel: ObservableObject {
     }
     
     func signUp() {
-        guard !password.isEmpty, !name.isEmpty else {
+        guard !password.isEmpty, !email.isEmpty else {
             return
         }
-        api.signUp(username: name, password: password, isStore: isStore)
+        api.signUp(email: email, password: password, isStore: isStore)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
                 switch completion {
@@ -38,7 +38,7 @@ class SignUpViewModel: ObservableObject {
                     self.error = error
                 }
             }, receiveValue: { model in
-                self.name = model.name
+                self.email = model.email
                 self.id = model.id
                 self.signUpSuccessfully = true
             })

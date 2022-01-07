@@ -17,7 +17,7 @@ struct SignUpView: View {
                 
                 HStack(spacing: 10) {
                     Icon(.email)
-                    CustomTextField(placeholder: "UserName".localized, text: $viewModel.name, secureEntry: false)
+                    CustomTextField(placeholder: "Email".localized, text: $viewModel.email, secureEntry: false)
                 }
                 HStack {
                     Icon(.password)
