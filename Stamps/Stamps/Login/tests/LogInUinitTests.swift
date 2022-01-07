@@ -141,7 +141,7 @@ class MockLogInAPI: LogInAPIProtocol {
             return Fail(error: LogInAPI.logInError(from: error))
                 .eraseToAnyPublisher()
         }
-        return Just(SignUpModel(name: email, id: "id"))
+        return Just(SignUpModel(un: "", email: email, id: "id"))
             .setFailureType(to: LogInError.self)
             .eraseToAnyPublisher()
     }

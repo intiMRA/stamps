@@ -55,7 +55,7 @@
 
 "Password" = "Password";
 
-"email" = "Email";
+"Email" = "Email";
 
 "UnkownErrorTitle" = "Something went wrong";
 
@@ -73,7 +73,7 @@
 
 "InvalidPasswordError" = "Please enter your correct password.";
 
-"NoSuchEmailError" = "There is no user with that name in our database, please enter a correct email.";
+"NoSuchEmailError" = "There is no user with that email in our database, please enter a correct email.";
 
 "InvalidCredentials" = "Invalid Credentials";
 

@@ -30,7 +30,9 @@ struct LogInError: Error {
 }
 
 struct SignUpModel {
-    let name: String
+    //TODO: user name
+    let un: String
+    let email: String
     let id: String
 }
 
@@ -298,7 +300,7 @@ class LogInAPI: LogInAPIProtocol {
                                 return
                             }
                             ReduxStore.shared.changeState(storeModel: StoreModel(storeName: email, storeId: result.user.uid))
-                            promise(.success(SignUpModel(name: email, id: result.user.uid)))
+                            promise(.success(SignUpModel(un: "", email: email, id: result.user.uid)))
                         }
                     } else {
                         let dic: NSDictionary = ["email": email]
@@ -312,7 +314,7 @@ class LogInAPI: LogInAPIProtocol {
                                 return
                             }
                             ReduxStore.shared.changeState(customerModel: CustomerModel(userId: result.user.uid, email: email, un: "", stampCards: []))
-                            promise(.success(SignUpModel(name: email, id: result.user.uid)))
+                            promise(.success(SignUpModel(un: "", email: email, id: result.user.uid)))
                         }
                     }
                 }
