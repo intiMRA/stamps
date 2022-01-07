@@ -70,6 +70,7 @@ struct StoreModel: Equatable {
     }
 }
 
+//TODO: async
 class ReduxStore: ReduxStoreProtocol {
     private(set) static var shared = ReduxStore()
     
