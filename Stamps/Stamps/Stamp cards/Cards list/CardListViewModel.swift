@@ -11,10 +11,6 @@ import Combine
 class CardListViewModel: ObservableObject {
     @Published var cardsList = [CardData]()
     
-    init() {
-        self.cardsList = ReduxStore.shared.customerModel?.stampCards ?? []
-    }
-    
     func cardData(for cardName: String) -> CardData? {
         cardsList.first { $0.storeName == cardName }
     }

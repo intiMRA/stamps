@@ -135,23 +135,17 @@ class LogInAPI: LogInAPIProtocol {
                 }
                 
                 let emailWithSuffix = isStore ? "\(part1)_Store@\(part2)" : email
-                Auth.auth().signIn(withEmail: emailWithSuffix, password: password) { result, error in
-                    guard let result = result else {
-                        if let error = error {
-                            if let errorCode = AuthErrorCode(rawValue: error._code) {
-                                promise(.failure(LogInAPI.logInError(from: errorCode)))
-                            }
-                            promise(.failure(LogInError.unkownError))
-                        } else {
-                            promise(.failure(LogInError.unkownError))
-                        }
-                        return
-                    }
+                
+                Task.init {
                     
-                    if isStore {
-                        self.store.collection("stores").document(result.user.uid).getDocument(completion: { snapshot, error in
-                            guard snapshot?.exists == true,
-                                  let snapshot = snapshot?.data(),
+                    do {
+                        let result = try await Auth.auth().signIn(withEmail: emailWithSuffix, password: password)
+                        
+                        if isStore {
+                            let snapshot = try await self.store.collection("stores").document(result.user.uid).getDocument()
+                            
+                            guard snapshot.exists == true,
+                                  let snapshot = snapshot.data(),
                                   let name = snapshot["name"] as? String,
                                   let details = snapshot["cardDetails"] as? [String: AnyObject],
                                   let numberOfStampsBeforeReward = details["numberBeforeReward"] as? Int,
@@ -161,27 +155,36 @@ class LogInAPI: LogInAPIProtocol {
                                 promise(.failure(LogInError.unkownError))
                                 return
                             }
-                            ReduxStore.shared.changeState(storeModel:
-                                                            StoreModel(storeName: name,
-                                                                       storeId: result.user.uid,
-                                                                       numberOfRows: numberOfRows,
-                                                                       numberOfColumns: numberOfColumns,
-                                                                       numberOfStampsBeforeReward: numberOfStampsBeforeReward))
+                            
+                            await ReduxStore.shared.changeState(storeModel:
+                                                                    StoreModel(storeName: name,
+                                                                               storeId: result.user.uid,
+                                                                               numberOfRows: numberOfRows,
+                                                                               numberOfColumns: numberOfColumns,
+                                                                               numberOfStampsBeforeReward: numberOfStampsBeforeReward))
                             promise(.success(LogInModel(id: result.user.uid, userName: name, email: email, isStore: true)))
-                        })
-                    } else {
-                        self.store.collection("users").document(result.user.uid).getDocument { snapshot, error in
-                            guard snapshot?.exists == true,
-                                  let snapshot = snapshot?.data(),
-                                let email = snapshot["email"] as? String,
+                            
+                        } else {
+                            
+                            let snapshot = try await self.store.collection("users").document(result.user.uid).getDocument()
+                            
+                            guard snapshot.exists == true,
+                                  let snapshot = snapshot.data(),
+                                  let email = snapshot["email"] as? String,
                                   let name = snapshot["name"] as? String
                             else {
                                 promise(.failure(LogInError.unkownError))
                                 return
                             }
                             let stampCards: [CardData] = cards(from: snapshot)
-                            ReduxStore.shared.changeState(customerModel: CustomerModel(userId: result.user.uid, email: email, userName: name, stampCards: stampCards))
+                            await ReduxStore.shared.changeState(customerModel: CustomerModel(userId: result.user.uid, email: email, userName: name, stampCards: stampCards))
                             promise(.success(LogInModel(id: result.user.uid, userName: name, email: email, isStore: false)))
+                        }
+                    } catch{
+                        if let errorCode = AuthErrorCode(rawValue: error._code) {
+                            promise(.failure(LogInAPI.logInError(from: errorCode)))
+                        } else {
+                            promise(.failure(LogInError.unkownError))
                         }
                     }
                 }
@@ -205,32 +208,28 @@ class LogInAPI: LogInAPIProtocol {
                 Task.init {
                     do {
                         try await self.reloadUser()
-                    } catch {
-                        try Auth.auth().signOut()
-                        promise(.failure(LogInError.unkownError))
-                    }
-                    
-                    let splitUserEmail = currentUser.email?.split(separator: "@")
-                    guard let subString = splitUserEmail?[0] else {
-                        promise(.failure(LogInError.unkownError))
-                        return
-                    }
-                    let usernameFromEmail = String(subString)
-                    let isStore = splitUserEmail?[safe: 0]?.split(separator: "_").last == "Store"
-                    guard ReduxStore.shared.customerModel == nil else {
-                        //TODO: correct UserName
-                        if isStore {
-                            promise(.success(LogInModel(id: currentUser.uid, userName: ReduxStore.shared.customerModel!.userName, email: currentUser.uid, isStore: true)))
-                        } else {
-                            promise(.success(LogInModel(id: currentUser.uid, userName: ReduxStore.shared.customerModel!.userName, email: ReduxStore.shared.customerModel!.email, isStore: false)))
+                        
+                        let splitUserEmail = currentUser.email?.split(separator: "@")
+                        guard let subString = splitUserEmail?[0] else {
+                            promise(.failure(LogInError.unkownError))
+                            return
                         }
-                        return
-                    }
-                    
-                    if isStore {
-                        self.store.collection("stores").document(currentUser.uid).getDocument { snapshot, error in
-                            guard snapshot?.exists == true,
-                                  let snapshot = snapshot?.data(),
+                        let usernameFromEmail = String(subString)
+                        let isStore = splitUserEmail?[safe: 0]?.split(separator: "_").last == "Store"
+                        guard ReduxStore.shared.customerModel == nil else {
+                            //TODO: correct UserName
+                            if isStore {
+                                promise(.success(LogInModel(id: currentUser.uid, userName: ReduxStore.shared.customerModel!.userName, email: currentUser.uid, isStore: true)))
+                            } else {
+                                promise(.success(LogInModel(id: currentUser.uid, userName: ReduxStore.shared.customerModel!.userName, email: ReduxStore.shared.customerModel!.email, isStore: false)))
+                            }
+                            return
+                        }
+                        
+                        if isStore {
+                            let snapshot = try await self.store.collection("stores").document(currentUser.uid).getDocument()
+                            guard snapshot.exists == true,
+                                  let snapshot = snapshot.data(),
                                   let name = snapshot["name"] as? String,
                                   let details = snapshot["cardDetails"] as? [String: AnyObject],
                                   let numberOfStampsBeforeReward = details["numberBeforeReward"] as? Int,
@@ -240,18 +239,18 @@ class LogInAPI: LogInAPIProtocol {
                                 promise(.failure(LogInError.unkownError))
                                 return
                             }
-                            ReduxStore.shared.changeState(storeModel: StoreModel(storeName: name,
-                                                                                 storeId: currentUser.uid,
-                                                                                 numberOfRows: numberOfRows,
-                                                                                 numberOfColumns: numberOfColumns,
-                                                                                 numberOfStampsBeforeReward: numberOfStampsBeforeReward))
+                            await ReduxStore.shared.changeState(storeModel: StoreModel(storeName: name,
+                                                                                       storeId: currentUser.uid,
+                                                                                       numberOfRows: numberOfRows,
+                                                                                       numberOfColumns: numberOfColumns,
+                                                                                       numberOfStampsBeforeReward: numberOfStampsBeforeReward))
                             promise(.success(LogInModel(id: currentUser.uid, userName: name, email: currentUser.uid, isStore: true)))
-                        }
-                    } else {
-                        self.store.collection("users").document(currentUser.uid).getDocument { snapshot, error in
                             
-                            guard snapshot?.exists == true,
-                                  let snapshot = snapshot?.data(),
+                        } else {
+                            
+                            let snapshot = try await self.store.collection("users").document(currentUser.uid).getDocument()
+                            guard snapshot.exists == true,
+                                  let snapshot = snapshot.data(),
                                   let email = snapshot["email"] as? String,
                                   let name = snapshot["name"] as? String
                             else {
@@ -260,10 +259,13 @@ class LogInAPI: LogInAPIProtocol {
                             }
                             let stampCards: [CardData] = cards(from: snapshot)
                             if ReduxStore.shared.customerModel == nil {
-                                ReduxStore.shared.changeState(customerModel: CustomerModel(userId: currentUser.uid, email: email, userName: name, stampCards: stampCards))
+                                await ReduxStore.shared.changeState(customerModel: CustomerModel(userId: currentUser.uid, email: email, userName: name, stampCards: stampCards))
                             }
                             promise(.success(LogInModel(id: currentUser.uid, userName: name, email: usernameFromEmail, isStore: false)))
                         }
+                    } catch {
+                        try Auth.auth().signOut()
+                        promise(.failure(LogInError.unkownError))
                     }
                 }
             }
@@ -284,58 +286,44 @@ class LogInAPI: LogInAPIProtocol {
                 }
                 
                 let emailWithSuffix = isStore ? "\(part1)_Store@\(part2)" : email
-                print(emailWithSuffix)
-                Auth.auth().createUser(withEmail: emailWithSuffix, password: password) { result, error in
-                    guard let result = result else {
-                        if let error = error {
-                            if let errorCode = AuthErrorCode(rawValue: error._code) {
-                                promise(.failure(LogInAPI.logInError(from: errorCode)))
-                            }
-                            promise(.failure(LogInError.unkownError))
+                Task.init {
+                    
+                    do {
+                        let result = try await Auth.auth().createUser(withEmail: emailWithSuffix, password: password)
+                        
+                        if isStore {
+                            let dic: [String : Any] = ["email": email,
+                                                       "name": userName,
+                                                       "cardDetails":
+                                                        ["numberBeforeReward": 4,
+                                                         "numberOfColumns": 4,
+                                                         "numberOfRows": 5
+                                                        ]
+                            ]
+                            
+                            try await self.store.collection("stores").document(result.user.uid).setData(dic)
+                            
+                            await ReduxStore.shared.changeState(storeModel: StoreModel(storeName: userName, storeId: result.user.uid))
+                            promise(.success(SignUpModel(userName: userName, email: email, id: result.user.uid)))
+                            
+                        } else {
+                            let dic: [String : Any] = [
+                                "email": email,
+                                "name": userName
+                            ]
+                            
+                            try await self.store.collection("users").document(result.user.uid).setData(dic)
+                            await ReduxStore.shared.changeState(customerModel: CustomerModel(userId: result.user.uid, email: email, userName: userName, stampCards: []))
+                            promise(.success(SignUpModel(userName: userName, email: email, id: result.user.uid)))
+                            
+                        }
+                        
+                        
+                    } catch {
+                        if let errorCode = AuthErrorCode(rawValue: error._code) {
+                            promise(.failure(LogInAPI.logInError(from: errorCode)))
                         } else {
                             promise(.failure(LogInError.unkownError))
-                        }
-                        return
-                    }
-                    if isStore {
-                        let dic: [String : Any] = ["email": email,
-                                                 "name": userName,
-                                                 "cardDetails":
-                                                    ["numberBeforeReward": 4,
-                                                     "numberOfColumns": 4,
-                                                     "numberOfRows": 5
-                                                    ]
-                        ]
-                        self.store.collection("stores").document(result.user.uid).setData(dic) { error in
-                            guard error == nil else {
-                                if let errorCode = AuthErrorCode(rawValue: error!._code) {
-                                    promise(.failure(LogInAPI.logInError(from: errorCode)))
-                                } else {
-                                    promise(.failure(LogInError.unkownError))
-                                }
-                                return
-                            }
-                            ReduxStore.shared.changeState(storeModel: StoreModel(storeName: userName, storeId: result.user.uid))
-                            promise(.success(SignUpModel(userName: userName, email: email, id: result.user.uid)))
-                        }
-                        
-                    } else {
-                        let dic: [String : Any] = [
-                            "email": email,
-                            "name": userName
-                        ]
-                        
-                        self.store.collection("users").document(result.user.uid).setData(dic) { error in
-                            guard error == nil else {
-                                if let errorCode = AuthErrorCode(rawValue: error!._code) {
-                                    promise(.failure(LogInAPI.logInError(from: errorCode)))
-                                } else {
-                                    promise(.failure(LogInError.unkownError))
-                                }
-                                return
-                            }
-                            ReduxStore.shared.changeState(customerModel: CustomerModel(userId: result.user.uid, email: email, userName: userName, stampCards: []))
-                            promise(.success(SignUpModel(userName: userName, email: email, id: result.user.uid)))
                         }
                     }
                 }

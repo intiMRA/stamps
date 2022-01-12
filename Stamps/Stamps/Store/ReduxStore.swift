@@ -11,14 +11,14 @@ import UIKit
 protocol ReduxStoreProtocol {
     var customerModel: CustomerModel? { get }
     var storeModel: StoreModel? { get }
-    func changeState(customerModel: CustomerModel?, storeModel: StoreModel?)
-    func addCard(_ card: CardData)
+    func changeState(customerModel: CustomerModel?, storeModel: StoreModel?) async
+    func addCard(_ card: CardData) async
     
 }
 
 extension ReduxStoreProtocol {
-    func changeState(customerModel: CustomerModel? = nil, storeModel: StoreModel? = nil) {
-        changeState(customerModel: customerModel, storeModel: storeModel)
+    func changeState(customerModel: CustomerModel? = nil, storeModel: StoreModel? = nil) async {
+        await changeState(customerModel: customerModel, storeModel: storeModel)
     }
 }
 struct CustomerModel: Equatable {
@@ -71,7 +71,7 @@ struct StoreModel: Equatable {
 }
 
 //TODO: async
-class ReduxStore: ReduxStoreProtocol {
+actor ReduxStore: ReduxStoreProtocol {
     private(set) static var shared = ReduxStore()
     
     let customerModel: CustomerModel?
@@ -82,20 +82,20 @@ class ReduxStore: ReduxStoreProtocol {
         self.storeModel = storeModel
     }
     
-    func changeState(customerModel: CustomerModel? = nil, storeModel: StoreModel? = nil) {
+    func changeState(customerModel: CustomerModel? = nil, storeModel: StoreModel? = nil) async {
         if customerModel == nil && storeModel == nil {
             return
         }
         ReduxStore.shared = ReduxStore(customerModel: customerModel ?? ReduxStore.shared.customerModel, storeModel: storeModel ?? ReduxStore.shared.storeModel)
     }
     
-    func addCard(_ card: CardData) {
+    func addCard(_ card: CardData) async {
         guard let customerModel = self.customerModel else {
             return
         }
         var cards = customerModel.stampCards
         cards.append(card)
-        ReduxStore.shared.changeState(customerModel: CustomerModel(userId: customerModel.userId, email: customerModel.email, userName: customerModel.userName, stampCards: cards))
+        await ReduxStore.shared.changeState(customerModel: CustomerModel(userId: customerModel.userId, email: customerModel.email, userName: customerModel.userName, stampCards: cards))
     }
     
     func setNill() {

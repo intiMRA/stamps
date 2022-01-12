@@ -12,6 +12,10 @@ enum ScanningViewModelState: String {
     case showStartState, scanning, showReward, blankScreen, showStampAnimation, showRewardAnimation
 }
 
+enum FoundQRCodeStates {
+    case hasCard(card: CardData), doesNotHaveCard, none
+}
+
 class ScanningViewModel: ObservableObject {
     static var invalidCharacters = CharacterSet(charactersIn: ".#$[]")
     var shouldScan: Bool = false
@@ -22,11 +26,9 @@ class ScanningViewModel: ObservableObject {
     var error: ScanningError?
     private var cancellable = Set<AnyCancellable>()
     private let cardApi: StampsAPIProtocol
-    private let reduxStore: ReduxStoreProtocol
     
-    init(cardApi: StampsAPIProtocol = StampsAPI(), reduxStore: ReduxStoreProtocol = ReduxStore.shared) {
+    init(cardApi: StampsAPIProtocol = StampsAPI()) {
         self.cardApi = cardApi
-        self.reduxStore = reduxStore
         $code
             .dropFirst()
             .receive(on: DispatchQueue.main)
@@ -45,8 +47,21 @@ class ScanningViewModel: ObservableObject {
                 guard let code = tuple.code, let details = tuple.details else {
                     return
                 }
-                
-                self.foundQRCode(code, details: details)
+                Task.init {
+                    let returnedDetails = await self.foundQRCode(code, details: details)
+                    DispatchQueue.main.async {
+                        switch returnedDetails {
+                        case let .hasCard(card: card):
+                            self.storeName = card.storeName
+                            self.state = card.isRewardStamp() ? .showRewardAnimation : .showStampAnimation
+                        case .doesNotHaveCard:
+                            self.storeName = details.storeName
+                            self.state = .showStampAnimation
+                        case .none:
+                            break
+                        }
+                    }
+                }
             })
             .store(in: &cancellable)
     }
@@ -68,7 +83,7 @@ class ScanningViewModel: ObservableObject {
             return Just((code: nil, details: nil, error: error)).eraseToAnyPublisher()
         }
         
-        if let card = reduxStore.customerModel?.stampCards.first(where: { $0.storeId == code }) {
+        if let card = ReduxStore.shared.customerModel?.stampCards.first(where: { $0.storeId == code }) {
             guard let stampedCard = card.stamp() else {
                 let error = ScanningError(title: "MaximumNumberOfStamps".localized, message: "NoMoreSlots".localized)
                 return Just((code: nil, details: nil, error: error)).eraseToAnyPublisher()
@@ -82,18 +97,18 @@ class ScanningViewModel: ObservableObject {
                 .catch({ error in
                     return Just((code: nil, details: nil, error: error)).eraseToAnyPublisher()
                 })
-                .eraseToAnyPublisher()
+                        .eraseToAnyPublisher()
         }
         
         return cardApi.fetchStoreDetails(code: code)
             .flatMap(maxPublishers: .max(1), { store -> AnyPublisher<(data: (store: StoreModel, card: CardData)?, error: ScanningError?), Never> in
-                let card = CardData.newCard(storeName: store.storeName, storeId: store.storeId, listIndex: self.reduxStore.customerModel?.stampCards.count, numberOfRows: store.numberOfRows, numberOfColumns: store.numberOfColumns, numberOfStampsBeforeReward: store.numberOfStampsBeforeReward)
+                let card = CardData.newCard(storeName: store.storeName, storeId: store.storeId, listIndex: ReduxStore.shared.customerModel?.stampCards.count, numberOfRows: store.numberOfRows, numberOfColumns: store.numberOfColumns, numberOfStampsBeforeReward: store.numberOfStampsBeforeReward)
                 return self.cardApi.saveCard(card)
                     .map { _ in (data: (store: store, card: card), error: nil)}
                     .catch({ error in
                         Just((data: nil, error: error)).eraseToAnyPublisher()
                     })
-                    .eraseToAnyPublisher()
+                            .eraseToAnyPublisher()
             })
             .map { details, error in
                 guard error == nil, let details = details else {
@@ -105,31 +120,27 @@ class ScanningViewModel: ObservableObject {
             .catch({ error in
                 return Just((code: nil, details: nil, error: error)).eraseToAnyPublisher()
             })
-            .eraseToAnyPublisher()
-        
+                    .eraseToAnyPublisher()
+                    
     }
     
-    func foundQRCode(_ code: String, details: (storeName: String, card: CardData)) {
+    func foundQRCode(_ code: String, details: (storeName: String, card: CardData)) async ->  FoundQRCodeStates {
         guard !code.isEmpty else {
-            return
+            return .none
         }
         
         guard code.rangeOfCharacter(from: ScanningViewModel.invalidCharacters) == nil else {
             self.error = ScanningError(title: "InvalidCode".localized, message: "QRCodeError".localized)
             self.shouldShowAlert = true
             self.state = .showStartState
-            return
+            return .none
         }
-        if let card = reduxStore.customerModel?.stampCards.first(where: { $0.storeId == code }) {
-            self.storeName = card.storeName
-            reduxStore.changeState(customerModel: reduxStore.customerModel?.replaceCard(details.card))
-            
-            self.state = card.isRewardStamp() ? .showRewardAnimation : .showStampAnimation
-            
+        if let card = ReduxStore.shared.customerModel?.stampCards.first(where: { $0.storeId == code }) {
+            await ReduxStore.shared.changeState(customerModel: ReduxStore.shared.customerModel?.replaceCard(details.card))
+            return .hasCard(card: card)
         } else {
-            self.storeName = details.storeName
-            reduxStore.addCard(details.card)
-            self.state = .showStampAnimation
+            await ReduxStore.shared.addCard(details.card)
+            return .doesNotHaveCard
             
         }
     }

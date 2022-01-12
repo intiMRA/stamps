@@ -17,7 +17,6 @@ struct RewardAlertContent {
 class CardViewModel: ObservableObject {
     let api: StampsAPIProtocol
     var store: StoreModel?
-    let reduxStore: ReduxStoreProtocol
     let cardCustomizationAPI: CardCustomizationAPIProtocol
     var alertContent: RewardAlertContent?
     var showLinearAnimation = true
@@ -30,12 +29,11 @@ class CardViewModel: ObservableObject {
     @Published var showAlert = false
     @Published var stamps: CardData = CardData(storeName: "", storeId: "", listIndex: -1, numberOfRows: 0, numberOfColumns: 0, numberOfStampsBeforeReward: 0)
     
-    init(cardData: CardData, api: StampsAPIProtocol = StampsAPI(), showSubmitButton: Bool = false, cardCustomizationAPI: CardCustomizationAPIProtocol = CardCustomizationAPI(), reduxStore: ReduxStoreProtocol = ReduxStore.shared) {
+    init(cardData: CardData, api: StampsAPIProtocol = StampsAPI(), showSubmitButton: Bool = false, cardCustomizationAPI: CardCustomizationAPIProtocol = CardCustomizationAPI()) {
         self.stamps = cardData
         self.api = api
         self.showSubmitButton = showSubmitButton
         self.cardCustomizationAPI = cardCustomizationAPI
-        self.reduxStore = reduxStore
     }
     
     func claim(_ index: String) {
@@ -53,32 +51,32 @@ class CardViewModel: ObservableObject {
                         .catch({ error in
                             Just((model: nil, error: error)).eraseToAnyPublisher()
                         })
-                        .eraseToAnyPublisher()
+                                .eraseToAnyPublisher()
                 })
                 .catch({ error in
                     Just((model: nil, error: error)).eraseToAnyPublisher()
                 })
-                .receive(on: DispatchQueue.main)
-                .sink(receiveValue: { tuple in
-                    guard tuple.error == nil, let model = tuple.model else {
-                        if let error = tuple.error {
-                            self.alertContent = RewardAlertContent(title: error.title, message: error.message, handler: {
-                                self.showAlert = false
-                            })
-                        } else {
-                            let error = ScanningError.unableToSave
-                            self.alertContent = RewardAlertContent(title: error.title, message: error.message, handler: {
-                                self.showAlert = false
-                            })
-                        }
-                        return
-                    }
-                    
-                    self.store = model
-                    self.loadAlert(card: card)
-                    self.showAlert = true
-                })
-                .store(in: &cancellable)
+                        .receive(on: DispatchQueue.main)
+                        .sink(receiveValue: { tuple in
+                            guard tuple.error == nil, let model = tuple.model else {
+                                if let error = tuple.error {
+                                    self.alertContent = RewardAlertContent(title: error.title, message: error.message, handler: {
+                                        self.showAlert = false
+                                    })
+                                } else {
+                                    let error = ScanningError.unableToSave
+                                    self.alertContent = RewardAlertContent(title: error.title, message: error.message, handler: {
+                                        self.showAlert = false
+                                    })
+                                }
+                                return
+                            }
+                            
+                            self.store = model
+                            self.loadAlert(card: card)
+                            self.showAlert = true
+                        })
+                        .store(in: &cancellable)
         } else {
             api.saveCard(card)
                 .receive(on: DispatchQueue.main)
@@ -113,16 +111,22 @@ class CardViewModel: ObservableObject {
                 }
                 self.showLinearAnimation = true
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                    self.showLinearAnimation = false
-                    let cardData = CardData.newCard(storeName: card.storeName, storeId: card.storeId, listIndex: card.listIndex, firstIsStamped: false, numberOfRows: numberOfRows, numberOfColumns: numberOfColumns, numberOfStampsBeforeReward: numberOfStampsBeforeReward)
-                    self.reduxStore.changeState(customerModel: self.reduxStore.customerModel?.replaceCard(cardData))
-                    self.stamps = cardData
+                    Task.init {
+                        self.showLinearAnimation = false
+                        let cardData = CardData.newCard(storeName: card.storeName, storeId: card.storeId, listIndex: card.listIndex, firstIsStamped: false, numberOfRows: numberOfRows, numberOfColumns: numberOfColumns, numberOfStampsBeforeReward: numberOfStampsBeforeReward)
+                        await ReduxStore.shared.changeState(customerModel: ReduxStore.shared.customerModel?.replaceCard(cardData))
+                        self.stamps = cardData
+                    }
                 }
                 
             } else {
-                self.showLinearAnimation = true
-                self.reduxStore.changeState(customerModel: self.reduxStore.customerModel?.replaceCard(card))
-                self.stamps = card
+                Task.init {
+                    self.showLinearAnimation = true
+                    await ReduxStore.shared.changeState(customerModel: ReduxStore.shared.customerModel?.replaceCard(card))
+                    DispatchQueue.main.async {
+                        self.stamps = card
+                    }
+                }
             }
         })
     }
