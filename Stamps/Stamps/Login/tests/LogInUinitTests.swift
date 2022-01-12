@@ -121,7 +121,7 @@ class MockLogInAPI: LogInAPIProtocol {
             return Fail(error: LogInAPI.logInError(from: error))
                 .eraseToAnyPublisher()
         }
-        return Just(LogInModel(un: "", email: email, isStore: isStore))
+        return Just(LogInModel(id: "", userName: "pete", email: email, isStore: isStore))
             .setFailureType(to: LogInError.self)
             .eraseToAnyPublisher()
     }
@@ -131,17 +131,17 @@ class MockLogInAPI: LogInAPIProtocol {
             return Fail(error: LogInAPI.logInError(from: error))
                 .eraseToAnyPublisher()
         }
-        return Just(LogInModel(un: "", email: "test name", isStore: false))
+        return Just(LogInModel(id: "", userName: "pete", email: "test name", isStore: false))
             .setFailureType(to: LogInError.self)
             .eraseToAnyPublisher()
     }
     
-    func signUp(email: String, password: String, isStore: Bool) -> AnyPublisher<SignUpModel, LogInError> {
+    func signUp(email: String, userName: String, password: String, isStore: Bool) -> AnyPublisher<SignUpModel, LogInError> {
         if let error = error {
             return Fail(error: LogInAPI.logInError(from: error))
                 .eraseToAnyPublisher()
         }
-        return Just(SignUpModel(un: "", email: email, id: "id"))
+        return Just(SignUpModel(userName: userName, email: email, id: "id"))
             .setFailureType(to: LogInError.self)
             .eraseToAnyPublisher()
     }

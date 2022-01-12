@@ -9,7 +9,6 @@ import Foundation
 
 import Foundation
 import Combine
-import FirebaseDatabase
 import FirebaseAuth
 
 protocol LogOutAPIProtocol {

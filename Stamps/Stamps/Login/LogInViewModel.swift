@@ -12,6 +12,7 @@ enum LogInType: String {
 }
 
 class LogInViewModel: ObservableObject {
+    @Published var id = ""
     @Published var email = ""
     @Published var password = ""
     @Published var logInSuccess = false
@@ -44,9 +45,8 @@ class LogInViewModel: ObservableObject {
             }
             
         }, receiveValue: { model in
-            if model.email == self.email {
-                self.logInSuccess = true
-            }
+            self.id = model.id
+            self.logInSuccess = true
         })
         .store(in: &cancellable)
     }
@@ -66,6 +66,7 @@ class LogInViewModel: ObservableObject {
                 if model.isStore {
                     self.state = .store
                     self.email = model.email
+                    self.id = model.id
                 } else {
                     self.state = .user
                 }

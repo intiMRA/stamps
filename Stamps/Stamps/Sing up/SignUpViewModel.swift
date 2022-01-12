@@ -9,6 +9,7 @@ import Foundation
 import Combine
 
 class SignUpViewModel: ObservableObject {
+    @Published var userName = ""
     @Published var email = ""
     @Published var id = ""
     @Published var password = ""
@@ -27,7 +28,7 @@ class SignUpViewModel: ObservableObject {
         guard !password.isEmpty, !email.isEmpty else {
             return
         }
-        api.signUp(email: email, password: password, isStore: isStore)
+        api.signUp(email: email, userName: userName, password: password, isStore: isStore)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
                 switch completion {
@@ -40,6 +41,7 @@ class SignUpViewModel: ObservableObject {
             }, receiveValue: { model in
                 self.email = model.email
                 self.id = model.id
+                self.userName = model.userName
                 self.signUpSuccessfully = true
             })
             .store(in: &cancellable)

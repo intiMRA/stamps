@@ -25,8 +25,7 @@ struct CustomerModel: Equatable {
     
     let userId: String
     let email: String
-    //TODO: user name
-    let un: String
+    let userName: String
     let stampCards: [CardData]
     
     func replaceCard(_ card: CardData) -> CustomerModel {
@@ -36,7 +35,7 @@ struct CustomerModel: Equatable {
         var cards = stampCards
         cards[index] = card
         
-        return CustomerModel(userId: self.userId, email: self.email, un: "", stampCards: cards)
+        return CustomerModel(userId: self.userId, email: self.email, userName: self.userName, stampCards: cards)
     }
     
     static func == (lhs: CustomerModel, rhs: CustomerModel) -> Bool {
@@ -71,6 +70,7 @@ struct StoreModel: Equatable {
     }
 }
 
+//TODO: async
 class ReduxStore: ReduxStoreProtocol {
     private(set) static var shared = ReduxStore()
     
@@ -95,7 +95,7 @@ class ReduxStore: ReduxStoreProtocol {
         }
         var cards = customerModel.stampCards
         cards.append(card)
-        ReduxStore.shared.changeState(customerModel: CustomerModel(userId: customerModel.userId, email: customerModel.email, un: customerModel.un, stampCards: cards))
+        ReduxStore.shared.changeState(customerModel: CustomerModel(userId: customerModel.userId, email: customerModel.email, userName: customerModel.userName, stampCards: cards))
     }
     
     func setNill() {

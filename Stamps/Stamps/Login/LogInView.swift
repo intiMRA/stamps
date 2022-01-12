@@ -44,7 +44,7 @@ struct LogInView: View {
             case .loading:
                 Color.background
             case .store:
-                ShopTabView(storeId: viewModel.email)
+                ShopTabView(storeId: viewModel.id)
             case .user:
                 UserTabView()
             case .notLoggedIn:
@@ -64,7 +64,7 @@ struct LogInView: View {
                 
                 HStack(spacing: 10) {
                     Icon(.email)
-                    CustomTextField(placeholder: "Email".localized, text: $viewModel.email, secureEntry: false)
+                    CustomTextField(placeholder: "Email".localized, text: $viewModel.email, secureEntry: false, keyboardType: .emailAddress)
                 }
                 HStack {
                     Icon(.password)
@@ -100,7 +100,7 @@ struct LogInView: View {
     @ViewBuilder
     var nextView: some View {
         if viewModel.isStore {
-            ShopTabView(storeId: viewModel.email)
+            ShopTabView(storeId: viewModel.id)
         } else {
             UserTabView()
         }

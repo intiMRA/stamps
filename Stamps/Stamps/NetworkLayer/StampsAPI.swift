@@ -7,7 +7,7 @@
 
 import Foundation
 import Combine
-import FirebaseDatabase
+import FirebaseFirestore
 import FirebaseAuth
 
 struct ScanningError: Error {
@@ -25,7 +25,7 @@ protocol StampsAPIProtocol {
 
 class StampsAPI: StampsAPIProtocol {
     
-    let database = Database.database().reference()
+    let store = Firestore.firestore()
     func saveCard(_ card: CardData) -> AnyPublisher<Void, ScanningError> {
         Deferred {
             Future { [weak self] promise in
@@ -38,7 +38,13 @@ class StampsAPI: StampsAPIProtocol {
                 
                 let cardToSave: NSArray = card.card.map { $0.map { ["isStamped": $0.isStamped, "index": $0.index, "hasIcon": $0.hasIcon, "claimed": $0.claimed] } } as NSArray
                 
-                let cardDict: NSDictionary = [
+                var cardToSaveDict = [String: AnyObject]()
+                
+                for i in 0..<cardToSave.count {
+                    cardToSaveDict["\(i)"] = cardToSave[i] as AnyObject
+                }
+                
+                let cardDict: [String: Any] = [
                     "nextToStamp": nextToStamp,
                     "listIndex": card.listIndex,
                     "storeId": card.storeId,
@@ -46,9 +52,9 @@ class StampsAPI: StampsAPIProtocol {
                     "numberOfRows": card.numberOfRows,
                     "numberOfColumns": card.numberOfColumns,
                     "stampsAfter": card.numberOfStampsBeforeReward,
-                    "card": cardToSave
+                    "card": cardToSaveDict
                 ]
-                self.database.child("users/\(customerModel.userId)/cards/\(card.storeId)").setValue(cardDict) { error, _ in
+                self.store.collection("users").document(customerModel.userId).setData(["cards": [card.storeId: cardDict]], merge: true) { error in
                     guard error == nil else {
                         promise(.failure(ScanningError.unableToSave))
                         return
@@ -67,10 +73,12 @@ class StampsAPI: StampsAPIProtocol {
                     promise(.failure(ScanningError.unableToScan))
                     return
                 }
-                self.database.child("stores/\(code)").observe(DataEventType.value, with: { snapshot in
-                    if let storeData = snapshot.value as? [String: AnyObject] {
+                self.store.collection("stores").document(code).getDocument { snapshot, error in
+                    if let storeData = snapshot {
                         guard
-                            let storeName = storeData["email"] as? String,
+                            storeData.exists == true,
+                            let storeData = storeData.data(),
+                            let storeName = storeData["name"] as? String,
                             let details = storeData["cardDetails"] as? [String: AnyObject],
                             let numberOfStampsBeforeReward = details["numberBeforeReward"] as? Int,
                             let numberOfColumns = details["numberOfColumns"] as? Int,
@@ -83,7 +91,7 @@ class StampsAPI: StampsAPIProtocol {
                     } else {
                         promise(.failure(ScanningError.unableToScan))
                     }
-                })
+                }
             }
         }
         .eraseToAnyPublisher()

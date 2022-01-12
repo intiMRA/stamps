@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import FirebaseDatabase
+import FirebaseFirestore
 import FirebaseAuth
 import Combine
 
@@ -22,7 +22,7 @@ protocol CardCustomizationAPIProtocol {
 
 class CardCustomizationAPI: CardCustomizationAPIProtocol {
     
-    let database = Database.database().reference()
+    let store = Firestore.firestore()
     
     func uploadNewCardDetails(numberOfRows: Int, numberOfColumns: Int, numberBeforeReward: Int, storeId: String) -> AnyPublisher<Void, CardCustomizationError> {
         Deferred {
@@ -32,13 +32,8 @@ class CardCustomizationAPI: CardCustomizationAPIProtocol {
                     return
                 }
                 let newDetails: NSDictionary = ["numberOfRows": numberOfRows, "numberOfColumns": numberOfColumns, "numberBeforeReward": numberBeforeReward]
-                self.database.child("stores/\(storeId)/cardDetails").setValue(newDetails) { error, _ in
-                    guard error == nil else {
-                        promise(.failure(CardCustomizationError.savingError))
-                        return
-                    }
-                    promise(.success(()))
-                }
+                self.store.collection("stores").document(storeId).setValue(newDetails, forKey: "cardDetails")
+                promise(.success(()))
                 
             }
         }
