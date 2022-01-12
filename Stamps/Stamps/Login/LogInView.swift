@@ -64,7 +64,7 @@ struct LogInView: View {
                 
                 HStack(spacing: 10) {
                     Icon(.email)
-                    CustomTextField(placeholder: "Email".localized, text: $viewModel.email, secureEntry: false)
+                    CustomTextField(placeholder: "Email".localized, text: $viewModel.email, secureEntry: false, keyboardType: .emailAddress)
                 }
                 HStack {
                     Icon(.password)
